@@ -1,10 +1,15 @@
 import { Box, Grid, Paper } from "@material-ui/core"
 import { useEffect } from "react";
 
+/**
+ * 更新履歴
+ */
 export const AppHistory = () => {
 
+    /** widgetロード可否 */
     let isLoadwidgets = false;
 
+    /** 初期表示 */
     useEffect(() => {
         if (!isLoadwidgets) {
           const s = document.createElement("script");
@@ -12,7 +17,7 @@ export const AppHistory = () => {
           document.body.appendChild(s);
           isLoadwidgets = true;
         }
-      }, []);
+    }, []);
 
     return(
         <Box sx={{ mt: 3}}>
