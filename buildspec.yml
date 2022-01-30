@@ -3,13 +3,13 @@ version: 0.2
 phases:
     install:
         runtime-versions:
-            nodejs: 12
+            nodejs: 10
     pre_build:
         commands:
-            - npm install
+            - yarn
     build:
         commands:
-            - npm run build
+           - yarn build
 artifacts:
     files:
         - '**/*'
