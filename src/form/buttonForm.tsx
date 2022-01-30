@@ -8,13 +8,19 @@ import { css } from '@emotion/react';
 
 export const ButtonForm = () => {
 
+    /** 検索ボタン */
     const searchBtn = css ({
         width: '100%'
     });
 
+    /** キャンセルボタン */
     const cancelStyle = css({
         color: '#fff',
-        verticalAlign: 'middle'
+    });
+
+    /** キャンセルボタン右よせ */
+    const rightCanlcel = css({
+        textAlign: 'right'
     });
 
     return(
@@ -22,7 +28,7 @@ export const ButtonForm = () => {
             <Grid item xs={10}>
                 <Button variant="contained" color="primary" css={searchBtn} endIcon={<SearchIcon />}>検索</Button>
             </Grid>
-            <Grid item xs={2}>
+            <Grid item xs={2} css={rightCanlcel}>
                 <IconButton aria-label="delete" size="large" css={cancelStyle}>
                     <DeleteIcon fontSize="inherit" />
                 </IconButton>
