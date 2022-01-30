@@ -46,8 +46,10 @@ ReactDOM.render(
         textDecoration: 'none'
       },
       header: {
-        position: "fixed !important",
         top: '0'
+      },
+      '.MuiAppBar-positionStatic': {
+        position: 'fixed',
       },
       '.MuiAppBar-colorPrimary': {
         background: myTheme.palette.primary.dark
