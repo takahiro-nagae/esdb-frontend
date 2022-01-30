@@ -6,7 +6,7 @@ import SearchIcon from '@material-ui/icons/Search';
 /**
  * 自由検索のコンポーネント
  */
-export const FreeSearch = () => {
+export const FreeSearch = (props: {mq: any}) => {
 
     const description = css({
         textAlign: 'center',
@@ -28,7 +28,10 @@ export const FreeSearch = () => {
         border: '1px solid #424242',
         borderRadius: '999px',
         backgroundColor: '#424242',
-        width:'50%'
+        width:'50%',
+        [props.mq[0]]: {
+            width: '100%'
+        },
     });
 
     /** 検索入力欄 */
@@ -40,6 +43,9 @@ export const FreeSearch = () => {
         width:'50%',
         '&:focus': {
             outlineWidth: '0'
+        },
+        [props.mq[0]]: {
+            width: '100%'
         },
     });
 
