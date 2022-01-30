@@ -12,6 +12,8 @@ import GlobalStyles from "@mui/material/GlobalStyles";
 import { Footer } from './common/footer';
 import { About } from './static/about';
 import { AppHistory } from './static/appHistory';
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
 
 /**
  * テーマ
@@ -32,6 +34,12 @@ const breakpoints = [751];
 const mq = breakpoints.map(
     bp => `@media (max-width: ${bp}px)`
 );
+
+/** 最大幅 */
+const maxWidth = css({
+  maxWidth: '1200px',
+  margin: 'auto'
+});
 
 
 ReactDOM.render(
@@ -74,7 +82,7 @@ ReactDOM.render(
       <Header />
       <Routes>
         {/* ホーム */}
-        <Route path="/" element={<Home mq={mq} />} />
+        <Route path="/" element={<Home mq={mq} maxWidth={maxWidth} />} />
         {/* 更新履歴 */}
         <Route path='history' element={<AppHistory />} />
         {/* 当サイトについて */}
