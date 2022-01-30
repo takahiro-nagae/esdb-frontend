@@ -27,6 +27,11 @@ const myTheme = createTheme({
   },
 });
 
+/** ブレークポイント */
+const breakpoints = [751];
+const mq = breakpoints.map(
+    bp => `@media (max-width: ${bp}px)`
+);
 
 
 ReactDOM.render(
@@ -69,7 +74,7 @@ ReactDOM.render(
       <Header />
       <Routes>
         {/* ホーム */}
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home mq={mq} />} />
         {/* 更新履歴 */}
         <Route path='history' element={<AppHistory />} />
         {/* 当サイトについて */}

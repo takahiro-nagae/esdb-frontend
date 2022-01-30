@@ -6,8 +6,8 @@ import { SearchForm } from '../form/searchForm';
 /**
  * トップ画面
  */
-export const Home = () => {
+export const Home = (props: {mq: any}) => {
     return(
-        <SearchForm />
+        <SearchForm mq={props.mq} />
     )
 }

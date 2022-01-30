@@ -13,7 +13,7 @@ import { FreeSearch } from "./freeSearch";
 /**
  * 検索フォームコンポーネント
  */
-export const SearchForm = () => {
+export const SearchForm = (props: {mq: any}) => {
     const { control, handleSubmit } = useForm({
         defaultValues: {
             checkBox: false,
@@ -58,7 +58,7 @@ export const SearchForm = () => {
         <Box sx={{ mt: 3}}>
             <Grid container justifyContent="center" css={maxWidth}>
                 <Grid item xs ={11}>
-                    <FreeSearch />
+                    <FreeSearch mq={props.mq}/>
                 </Grid>
                 <Grid item xs={11}>
                     <Paper>
