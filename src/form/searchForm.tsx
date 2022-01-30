@@ -8,6 +8,7 @@ import { NameForm } from "./nameForm";
 import { RankForm } from "./rankForm";
 import { TargetForm } from "./targetForm";
 import { ButtonForm } from "./buttonForm";
+import { FreeSearch } from "./freeSearch";
 
 /**
  * 検索フォームコンポーネント
@@ -56,6 +57,9 @@ export const SearchForm = () => {
     return(
         <Box sx={{ mt: 3}}>
             <Grid container justifyContent="center" css={maxWidth}>
+                <Grid item xs ={11}>
+                    <FreeSearch />
+                </Grid>
                 <Grid item xs={11}>
                     <Paper>
                         <Box sx={{ p: 2}}>
