@@ -1,4 +1,4 @@
-import { Box, Grid, MenuItem, Paper, TextField } from "@material-ui/core";
+import { Box, Grid, Paper } from "@material-ui/core";
 import { Controller, useForm } from "react-hook-form";
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
@@ -13,7 +13,7 @@ import { FreeSearch } from "./freeSearch";
 /**
  * 検索フォームコンポーネント
  */
-export const SearchForm = (props: {mq: any}) => {
+export const SearchForm = (props: {mq: any, maxWidth: any}) => {
     const { control, handleSubmit } = useForm({
         defaultValues: {
             checkBox: false,
@@ -49,14 +49,10 @@ export const SearchForm = (props: {mq: any}) => {
             color: '#fff',
         }
     });
-    const maxWidth = css({
-       maxWidth: '1200px',
-       margin: 'auto'
-    });
 
     return(
         <Box sx={{ mt: 3}}>
-            <Grid container justifyContent="center" css={maxWidth}>
+            <Grid container justifyContent="center" css={props.maxWidth}>
                 <Grid item xs ={11}>
                     <FreeSearch mq={props.mq}/>
                 </Grid>
