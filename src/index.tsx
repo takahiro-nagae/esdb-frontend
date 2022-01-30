@@ -45,12 +45,6 @@ ReactDOM.render(
         color: myTheme.palette.primary.light,
         textDecoration: 'none'
       },
-      header: {
-        top: '0'
-      },
-      '.MuiAppBar-positionStatic': {
-        position: 'fixed',
-      },
       '.MuiAppBar-colorPrimary': {
         background: myTheme.palette.primary.dark
       },
