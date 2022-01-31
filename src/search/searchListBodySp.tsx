@@ -16,9 +16,13 @@ export const SearchListBodySp = (props: {tableContent: any}) => {
 
     return(
         <TableRow css={props.tableContent}>
+            {/* No */}
             <TableCell>1</TableCell>
+            {/* 名称 */}
             <TableCell>フラミンゴスレイヤー</TableCell>
+            {/* 位置 */}
             <TableCell>接頭</TableCell>
+            {/* ランク */}
             <TableCell>F</TableCell>
             {/* スマホ用開閉ボタン */}
             <TableCell>
