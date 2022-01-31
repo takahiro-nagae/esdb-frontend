@@ -14,6 +14,7 @@ import { About } from './static/about';
 import { AppHistory } from './static/appHistory';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+import { SearchList } from './search/searchList';
 
 /**
  * テーマ
@@ -30,7 +31,7 @@ const myTheme = createTheme({
 });
 
 /** ブレークポイント */
-const breakpoints = [751];
+const breakpoints = [600];
 const mq = breakpoints.map(
     bp => `@media (max-width: ${bp}px)`
 );
@@ -89,6 +90,8 @@ ReactDOM.render(
         <Route path="about" element={<About />} />
         {/* プライバシーポリシー */}
         <Route path='privacyPolicy' element={<PrivacyPolicy />} />
+        {/* 検索結果 */}
+        <Route path='detail' element={<SearchList maxWidth={maxWidth} breakPoint={breakpoints[0]} />} />
       </Routes>
       <Footer />
     </Router>

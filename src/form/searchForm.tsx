@@ -1,5 +1,4 @@
 import { Box, Grid, Paper } from "@material-ui/core";
-import { Controller, useForm } from "react-hook-form";
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { PositionForm } from "./positionForm";
@@ -14,13 +13,6 @@ import { FreeSearch } from "./freeSearch";
  * 検索フォームコンポーネント
  */
 export const SearchForm = (props: {mq: any, maxWidth: any}) => {
-    const { control, handleSubmit } = useForm({
-        defaultValues: {
-            checkBox: false,
-            textBox: "",
-            pullDown: "",
-        },
-    });
 
     /** ラベルのスタイル */
     const labelStyle = css ({
