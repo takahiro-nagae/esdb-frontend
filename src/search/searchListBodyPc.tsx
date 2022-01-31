@@ -9,12 +9,19 @@ import { css } from '@emotion/react';
 export const SearchListBodyPc = (props:{tableContent: any}) => {
     return(
         <TableRow css={props.tableContent}>
+            {/* No */}
             <TableCell>1</TableCell>
+            {/* 名称 */}
             <TableCell>フラミンゴスレイヤー</TableCell>
+            {/* 位置 */}
             <TableCell>接頭</TableCell>
+            {/* ランク */}
             <TableCell>F</TableCell>
+            {/* 対象 */}
             <TableCell>全て</TableCell>
+            {/* 効果 */}
             <TableCell>最大負傷率2~4%減少</TableCell>
+            {/* 入手先 */}
             <TableCell>
                 <p>
                     ■フラミンゴスレイヤー ソルジャー ブレスレット<br/>　- レッドスケルトン(鎧)
