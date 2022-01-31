@@ -9,6 +9,10 @@ import TableRow from '@mui/material/TableRow';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import MediaQuery from "react-responsive";
+import { SearchListHeadPc } from './searchListHeadPc';
+import { SearchListHeadSp } from './searchListHeadSp';
+import { SearchListBodySp } from './searchListBodySp';
+import { SearchListBodyPc } from './searchListBodyPc';
 
 /**
  * 検索結果一覧
@@ -40,13 +44,16 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
             backgroundColor: '#383B40'
         },
         'td': {
-
+            color: '#fff'
+        },
+        'svg': {
             color: '#fff'
         }
     });
 
     /** ブレークポイントクエリ */
-    const query = "(min-width:" + props.breakPoint + "px)";
+    const minQuery = "(min-width:" + props.breakPoint + "px)";
+    const maxQuery = "(max-width:" + props.breakPoint + "px)";
 
     return(
         <Box sx={{ mt: 3}}>
@@ -58,57 +65,27 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
                             <Table stickyHeader aria-label="sticky table">
                                 {/* ヘッダー */}
                                 <TableHead>
-                                    <TableRow>
-                                        <TableCell css={tableHeader}>No.</TableCell>
-                                        <TableCell css={tableHeader}>名称</TableCell>
-                                        <TableCell css={tableHeader}>位置</TableCell>
-                                        <TableCell css={tableHeader}>ランク</TableCell>
-                                        <TableCell css={tableHeader}>対象</TableCell>
-                                        <MediaQuery query={query}>
-                                            <TableCell css={tableHeader}>効果</TableCell>
-                                            <TableCell css={tableHeader}>入手先</TableCell>
-                                        </MediaQuery>
-                                    </TableRow>
+                                    {/* PC */}
+                                    <MediaQuery query={minQuery}>
+                                        <SearchListHeadPc tableHeader={tableHeader} />
+                                    </MediaQuery>
+                                    {/* SP */}
+                                    <MediaQuery query={maxQuery}>
+                                        <SearchListHeadSp tableHeader={tableHeader} />
+                                    </MediaQuery>
                                 </TableHead>
                                 {/* ボディ */}
                                 <TableBody>
-                                    <TableRow css={tableContent}>
-                                        <TableCell>1</TableCell>
-                                        <TableCell>フラミンゴスレイヤー</TableCell>
-                                        <TableCell>接頭</TableCell>
-                                        <TableCell>F</TableCell>
-                                        <TableCell>全て</TableCell>
-                                        <MediaQuery query={query}>
-                                            <TableCell>最大負傷率2~4%減少</TableCell>
-                                            <TableCell>
-                                                <p>
-                                                    ■フラミンゴスレイヤー ソルジャー ブレスレット<br/>　- レッドスケルトン(鎧)
-                                                </p>
-                                                <p>
-                                                    ■ES<br/>　- コッカースパニエルミニのアイテム収集
-                                                </p>
-                                            </TableCell>
-                                        </MediaQuery>
-                                    </TableRow>
-                                    <TableRow css={tableContent}>
-                                        <TableCell>1</TableCell>
-                                        <TableCell>フラミンゴスレイヤー</TableCell>
-                                        <TableCell>接頭</TableCell>
-                                        <TableCell>F</TableCell>
-                                        <TableCell>全て</TableCell>
-                                        <MediaQuery query={query}>
-                                            <TableCell>最大負傷率2~4%減少</TableCell>
-                                            <TableCell>
-                                                <p>
-                                                    ■フラミンゴスレイヤー ソルジャー ブレスレット<br/>　- レッドスケルトン(鎧)
-                                                </p>
-                                                <p>
-                                                    ■ES<br/>　- コッカースパニエルミニのアイテム収集
-                                                </p>
-                                            </TableCell>
-                                        </MediaQuery>
-                                    </TableRow>
+                                    {/* PC */}
+                                    <MediaQuery query={minQuery}>
+                                        <SearchListBodyPc tableContent={tableContent} />
+                                    </MediaQuery>
+                                    {/* SP */}
+                                    <MediaQuery query={maxQuery}>
+                                        <SearchListBodySp tableContent={tableContent} />
+                                    </MediaQuery>
                                 </TableBody>
+
                             </Table>
                         </TableContainer>
                     </Box>
