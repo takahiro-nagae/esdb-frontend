@@ -5,6 +5,8 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+import effectColor from './effectColor';
+
 
 /**
  * SPの検索一覧
@@ -56,7 +58,7 @@ export const SearchListBodySp = (props: {tableContent: any}) => {
                                 <TableRow>
                                     <TableCell css={acodHead}>効果</TableCell>
                                     <TableCell css={accBody}>
-                                        最大負傷率2~4%減少
+                                        <p css={effectColor('decrease')} >最大負傷率2~4%減少</p>
                                     </TableCell>
                                 </TableRow>
                                 <TableRow>
