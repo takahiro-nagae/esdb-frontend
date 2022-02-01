@@ -9,7 +9,6 @@ import { css } from '@emotion/react';
 export const SearchListHeadSp = (props: {tableHeader: any}) => {
     return(
         <TableRow>
-            <TableCell css={props.tableHeader}>No.</TableCell>
             <TableCell css={props.tableHeader}>名称</TableCell>
             <TableCell css={props.tableHeader}>位置</TableCell>
             <TableCell css={props.tableHeader}>ランク</TableCell>
