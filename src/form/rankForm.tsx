@@ -60,9 +60,8 @@ export const RankForm = (props: {formMargin: any, selectBox: any, labelStyle: an
                             <span>以下</span>
                     </ToggleButton>
                     </ToggleButtonGroup>
-                    </Grid>
+                </Grid>
             </Grid>
-
         </>
     );
 }
