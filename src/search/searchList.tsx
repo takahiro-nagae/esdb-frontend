@@ -60,7 +60,7 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
             <Grid container justifyContent="center" css={props.maxWidth}>
                 <p css={hit}><span css={hitCount}>933</span>件ヒットしました</p>
                 <Grid item xs={12}>
-                    <Box sx={{ p: 2}}>
+                    <Box sx={{ p: 1}}>
                         <TableContainer sx={{ maxHeight: 440 }}>
                             <Table stickyHeader aria-label="sticky table">
                                 {/* ヘッダー */}
