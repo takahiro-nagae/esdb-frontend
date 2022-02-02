@@ -47,6 +47,8 @@ export const SearchListBodySp = (props: {tableContent: any}) => {
                 <TableCell>
                     <RankModal rank={"F"} />
                 </TableCell>
+                {/* 値 */}
+                <TableCell>-4</TableCell>
                 {/* スマホ用開閉ボタン */}
                 <TableCell>
                     <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>

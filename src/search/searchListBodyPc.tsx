@@ -1,4 +1,4 @@
-import { TableCell, TableRow } from "@material-ui/core";
+import { Tab, TableCell, TableRow } from "@material-ui/core";
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import effectColor from "./effectColor";
@@ -27,6 +27,8 @@ export const SearchListBodyPc = (props:{tableContent: any}) => {
             </TableCell>
             {/* 対象 */}
             <TableCell>全て</TableCell>
+            {/* 値 */}
+            <TableCell>-4</TableCell>
             {/* 効果 */}
             <TableCell><p css={effectColor('decrease')} >最大負傷率2~4%減少</p></TableCell>
             {/* 入手先 */}

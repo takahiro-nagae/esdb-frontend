@@ -14,6 +14,7 @@ export const SearchListHeadPc = (props: {tableHeader: any}) => {
             <TableCell css={props.tableHeader}>位置</TableCell>
             <TableCell css={props.tableHeader}>ランク</TableCell>
             <TableCell css={props.tableHeader}>対象</TableCell>
+            <TableCell css={props.tableHeader}>値</TableCell>
             <TableCell css={props.tableHeader}>効果</TableCell>
             <TableCell css={props.tableHeader}>入手先</TableCell>
         </TableRow>
