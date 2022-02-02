@@ -1,7 +1,8 @@
-import { TableBody, TableCell, TableRow } from "@material-ui/core";
+import { TableCell, TableRow } from "@material-ui/core";
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import effectColor from "./effectColor";
+import { RankModal } from "./rankModal";
 
 /**
  * PCの検索一覧
@@ -17,7 +18,9 @@ export const SearchListBodyPc = (props:{tableContent: any}) => {
             {/* 位置 */}
             <TableCell>接頭</TableCell>
             {/* ランク */}
-            <TableCell>F</TableCell>
+            <TableCell>
+                <RankModal rank={"F"} />
+            </TableCell>
             {/* 対象 */}
             <TableCell>全て</TableCell>
             {/* 効果 */}
