@@ -6,6 +6,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import effectColor from './effectColor';
+import { RankModal } from "./rankModal";
 
 
 /**
@@ -40,7 +41,9 @@ export const SearchListBodySp = (props: {tableContent: any}) => {
                 {/* 位置 */}
                 <TableCell>接頭</TableCell>
                 {/* ランク */}
-                <TableCell>F</TableCell>
+                <TableCell>
+                    <RankModal rank={"F"} />
+                </TableCell>
                 {/* スマホ用開閉ボタン */}
                 <TableCell>
                     <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
