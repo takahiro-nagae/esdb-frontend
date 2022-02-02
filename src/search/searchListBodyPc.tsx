@@ -3,6 +3,7 @@ import { TableCell, TableRow } from "@material-ui/core";
 import { css } from '@emotion/react';
 import effectColor from "./effectColor";
 import { RankModal } from "./rankModal";
+import positionColor from "./positionColor";
 
 /**
  * PCの検索一覧
@@ -14,9 +15,12 @@ export const SearchListBodyPc = (props:{tableContent: any}) => {
             {/* No */}
             <TableCell>1</TableCell>
             {/* 名称 */}
-            <TableCell>フラミンゴスレイヤー</TableCell>
+            <TableCell>
+                <span>フラミンゴスレイヤー</span><br />
+                <small>Flamingo Slayer's</small>
+            </TableCell>
             {/* 位置 */}
-            <TableCell>接頭</TableCell>
+            <TableCell css={positionColor('1')} >接頭(prefix)</TableCell>
             {/* ランク */}
             <TableCell>
                 <RankModal rank={"F"} />
