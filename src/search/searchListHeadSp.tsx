@@ -12,6 +12,7 @@ export const SearchListHeadSp = (props: {tableHeader: any}) => {
             <TableCell css={props.tableHeader}>名称</TableCell>
             <TableCell css={props.tableHeader}>位置</TableCell>
             <TableCell css={props.tableHeader}>ランク</TableCell>
+            <TableCell css={props.tableHeader}>値</TableCell>
             <TableCell css={props.tableHeader}></TableCell>
         </TableRow>
     );
