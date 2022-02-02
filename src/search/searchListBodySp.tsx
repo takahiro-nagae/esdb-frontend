@@ -7,6 +7,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { css } from '@emotion/react';
 import effectColor from './effectColor';
 import { RankModal } from "./rankModal";
+import positionColor from "./positionColor";
 
 
 /**
@@ -37,9 +38,11 @@ export const SearchListBodySp = (props: {tableContent: any}) => {
         <>
             <TableRow css={props.tableContent}>
                 {/* 名称 */}
-                <TableCell>フラミンゴスレイヤー</TableCell>
+                <TableCell>
+                    <span>フラミンゴスレイヤー</span>
+                </TableCell>
                 {/* 位置 */}
-                <TableCell>接頭</TableCell>
+                <TableCell css={positionColor('1')} >接頭(prefix)</TableCell>
                 {/* ランク */}
                 <TableCell>
                     <RankModal rank={"F"} />
