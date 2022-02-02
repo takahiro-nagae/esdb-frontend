@@ -12,8 +12,6 @@ import positionColor from "./positionColor";
 export const SearchListBodyPc = (props:{tableContent: any}) => {
     return(
         <TableRow css={props.tableContent}>
-            {/* No */}
-            <TableCell>1</TableCell>
             {/* 名称 */}
             <TableCell>
                 <span>フラミンゴスレイヤー</span><br />
