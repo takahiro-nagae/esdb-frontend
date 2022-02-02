@@ -49,7 +49,6 @@ export const RankModal = (props: {rank: string}) => {
         backgroundColor: '#0854a3',
     });
 
-
     return(
         <>
             <Button onClick={handleOpen}>{props.rank}</Button>
