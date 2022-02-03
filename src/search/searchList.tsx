@@ -1,18 +1,14 @@
 import { Box, Grid, Paper } from '@material-ui/core';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
-import TablePagination from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import MediaQuery from "react-responsive";
 import { SearchListHeadPc } from './searchListHeadPc';
-import { SearchListHeadSp } from './searchListHeadSp';
-import { SearchListBodySp } from './searchListBodySp';
 import { SearchListBodyPc } from './searchListBodyPc';
+import { EnchantCard } from './enchantCard';
 
 /**
  * 検索結果一覧
@@ -61,33 +57,24 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
                 <p css={hit}><span css={hitCount}>933</span>件ヒットしました</p>
                 <Grid item xs={12}>
                     <Box sx={{ p: 1}}>
-                        <TableContainer sx={{ maxHeight: 440 }}>
-                            <Table stickyHeader aria-label="sticky table">
-                                {/* ヘッダー */}
-                                <TableHead>
-                                    {/* PC */}
-                                    <MediaQuery query={minQuery}>
-                                        <SearchListHeadPc tableHeader={tableHeader} />
-                                    </MediaQuery>
-                                    {/* SP */}
-                                    <MediaQuery query={maxQuery}>
-                                        <SearchListHeadSp tableHeader={tableHeader} />
-                                    </MediaQuery>
-                                </TableHead>
-                                {/* ボディ */}
-                                <TableBody>
-                                    {/* PC */}
-                                    <MediaQuery query={minQuery}>
+                        <MediaQuery query={minQuery}>
+                            <TableContainer sx={{ maxHeight: 440 }}>
+                                <Table stickyHeader aria-label="sticky table">
+                                    {/* ヘッダー */}
+                                    <TableHead>
+                                         <SearchListHeadPc tableHeader={tableHeader} />
+                                    </TableHead>
+                                    {/* ボディ */}
+                                    <TableBody>
+                                        {/* PC */}
                                         <SearchListBodyPc tableContent={tableContent} />
-                                    </MediaQuery>
-                                    {/* SP */}
-                                    <MediaQuery query={maxQuery}>
-                                        <SearchListBodySp tableContent={tableContent} />
-                                    </MediaQuery>
-                                </TableBody>
-
-                            </Table>
-                        </TableContainer>
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+                        </MediaQuery>
+                        <MediaQuery query={maxQuery}>
+                            <EnchantCard />
+                        </MediaQuery>
                     </Box>
                 </Grid>
             </Grid>
