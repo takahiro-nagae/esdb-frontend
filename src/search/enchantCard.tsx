@@ -46,6 +46,11 @@ export const EnchantCard = () => {
         paddingLeft: '16px'
     });
 
+    /** 値 */
+    const value = css({
+        color: '#fff'
+    });
+
     /** アコーディオンのヘッダー */
     const acodHead = css({
         backgroundColor: '#2f2f2f',
@@ -69,18 +74,25 @@ export const EnchantCard = () => {
                     boxSizing: 'border-box' }}>
                 <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around' }}>
                     <Box>
+                        {/* エンチャント名 */}
                         <Typography variant="subtitle1" css={title} >
                             フラミンゴスレイヤー
                         </Typography>
+                        {/* エンチャント英名 */}
                         <Typography variant="subtitle2" css={subtitle}>
                             Flamingo Slayer's
                         </Typography>
                         <div>
+                            {/* 位置 */}
                             <Typography style={{display: 'inline'}}
                                 variant="subtitle2" css={positionColor('1')} >接頭(prefix)</Typography>
                             <Typography variant='body1' css={inline} ><small>ランク</small></Typography>
+                            {/* ランク */}
                             <RankModal rank={"F"} />
                         </div>
+                    </Box>
+                    <Box>
+                        <p css={value}>-4</p>
                     </Box>
                     <Box>
                         <IconButton css={accIcon} aria-label="expand row" onClick={() => setOpen(!open)}>
@@ -88,16 +100,20 @@ export const EnchantCard = () => {
                         </IconButton>
                     </Box>
                 </Box>
+                {/* アコーディオン内コンテンツ */}
                 <Collapse in={open} timeout="auto" unmountOnExit>
                         <Box sx={{ paddingBottom: 10 }}>
+                            {/* 対象 */}
                             <p css={target}>対象：全て</p>
                             <Table size="small" aria-label="purchases">
+                                {/* 効果 */}
                                 <TableRow>
                                     <TableCell css={acodHead}>効果</TableCell>
                                     <TableCell css={accBody}>
                                         <p css={effectColor('decrease')} >最大負傷率2~4%減少</p>
                                     </TableCell>
                                 </TableRow>
+                                {/* 入手先 */}
                                 <TableRow>
                                     <TableCell css={acodHead}>入手先</TableCell>
                                     <TableCell css={accBody}>
@@ -113,6 +129,5 @@ export const EnchantCard = () => {
                         </Box>
                 </Collapse>
         </Card>
-
     );
 }

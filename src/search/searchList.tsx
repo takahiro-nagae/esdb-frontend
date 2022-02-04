@@ -26,27 +26,6 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
         fontSize: '18px'
     });
 
-    /** テーブルヘッダー */
-    const tableHeader = css ({
-        backgroundColor: '#0854a3',
-        color: '#fff',
-        border: 'none'
-    });
-
-    /** コンテント各行の基本スタイル */
-    const tableContent = css ({
-        backgroundColor: '#2f2f2f',
-        '&:nth-of-type(even)': {
-            backgroundColor: '#383B40'
-        },
-        'td': {
-            color: '#fff'
-        },
-        'svg': {
-            color: '#fff'
-        }
-    });
-
     /** ブレークポイントクエリ */
     const minQuery = "(min-width:" + props.breakPoint + "px)";
     const maxQuery = "(max-width:" + props.breakPoint + "px)";
@@ -62,12 +41,12 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
                                 <Table stickyHeader aria-label="sticky table">
                                     {/* ヘッダー */}
                                     <TableHead>
-                                         <SearchListHeadPc tableHeader={tableHeader} />
+                                         <SearchListHeadPc />
                                     </TableHead>
                                     {/* ボディ */}
                                     <TableBody>
                                         {/* PC */}
-                                        <SearchListBodyPc tableContent={tableContent} />
+                                        <SearchListBodyPc />
                                     </TableBody>
                                 </Table>
                             </TableContainer>

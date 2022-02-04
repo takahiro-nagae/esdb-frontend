@@ -9,9 +9,24 @@ import positionColor from "./positionColor";
  * PCの検索一覧
  * @param tableContent コンテント全体のCSS
  */
-export const SearchListBodyPc = (props:{tableContent: any}) => {
+export const SearchListBodyPc = () => {
+
+    /** コンテント各行の基本スタイル */
+    const tableContent = css ({
+        backgroundColor: '#2f2f2f',
+        '&:nth-of-type(even)': {
+            backgroundColor: '#383B40'
+        },
+        'td': {
+            color: '#fff'
+        },
+        'svg': {
+            color: '#fff'
+        }
+    });
+
     return(
-        <TableRow css={props.tableContent}>
+        <TableRow css={tableContent}>
             {/* 名称 */}
             <TableCell>
                 <span>フラミンゴスレイヤー</span><br />
