@@ -2,6 +2,9 @@ import { TextField } from "@material-ui/core";
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
+/**
+ * エンチャント名コンポーネント
+ */
 export const NameForm = (props: {formMargin: any}) => {
     return(
         <TextField

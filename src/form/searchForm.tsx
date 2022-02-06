@@ -8,11 +8,21 @@ import { RankForm } from "./rankForm";
 import { TargetForm } from "./targetForm";
 import { ButtonForm } from "./buttonForm";
 import { FreeSearch } from "./freeSearch";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 /**
  * 検索フォームコンポーネント
  */
 export const SearchForm = (props: {mq: any, maxWidth: any}) => {
+
+    /** 効果 */
+    const [effectList, setEffectList] = useState([]);
+    /** ランク */
+    const [rankList, setRankList] = useState([]);
+    /**　対象 */
+    const [targetList, setTargetList] =  useState([]);
+
 
     /** ラベルのスタイル */
     const labelStyle = css ({
@@ -42,6 +52,21 @@ export const SearchForm = (props: {mq: any, maxWidth: any}) => {
         }
     });
 
+    useEffect(() => {
+        // フォームデータ
+        axios.get('https://wd5zeazzd9.execute-api.ap-northeast-1.amazonaws.com/Prod/')
+        .then((res) => {
+            if(res.data != undefined) {
+                // 効果
+                setEffectList(res.data.effect);
+                // ランク
+                setRankList(res.data.rank);
+                // 対象
+                setTargetList(res.data.target);
+            }
+        });
+    }, []);
+
     return(
         <Box sx={{ mt: 3}}>
             <Grid container justifyContent="center" css={props.maxWidth}>
@@ -57,13 +82,13 @@ export const SearchForm = (props: {mq: any, maxWidth: any}) => {
                                     {/* エンチャント名 */}
                                     <NameForm formMargin={formMargin} />
                                     {/* 効果 */}
-                                    <EffectForm formMargin={formMargin} />
+                                    <EffectForm effectList={effectList} formMargin={formMargin} />
                                     {/* 位置 */}
                                     <PositionForm formMargin={formMargin} selectBox={selectBox} labelStyle={labelStyle} />
                                     {/* ランク */}
-                                    <RankForm formMargin={formMargin} selectBox={selectBox} labelStyle={labelStyle} />
+                                    <RankForm rankList={rankList} formMargin={formMargin} selectBox={selectBox} labelStyle={labelStyle} />
                                     {/* 対象 */}
-                                    <TargetForm formMargin={formMargin} />
+                                    <TargetForm targetList={targetList} formMargin={formMargin} />
                                     {/* ボタン部 */}
                                     <ButtonForm />
                                 </form>
