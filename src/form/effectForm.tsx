@@ -5,7 +5,7 @@ import { css } from '@emotion/react';
 /**
  * 効果コンポーネント
  */
-export const EffectForm = (props: {formMargin: any}) => {
+export const EffectForm = (props: {effectList: Array<any>,formMargin: any}) => {
     return(
         <>
             {/* 効果 */}
@@ -19,6 +19,14 @@ export const EffectForm = (props: {formMargin: any}) => {
                 fullWidth
             >
                 <MenuItem value="">指定無し</MenuItem>
+                {props.effectList.map(effect => (
+                    /**
+                     * 効果を追加
+                     * 0 : 効果ID
+                     * 1 : 効果名
+                     */
+                    <MenuItem value={effect[0]}>{effect[1]}</MenuItem>
+                ))}
             </TextField>
             {/* 効果詳細条件 */}
             <Grid container css={props.formMargin}>
