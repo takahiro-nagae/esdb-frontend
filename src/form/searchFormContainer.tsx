@@ -5,7 +5,7 @@ import { FreeSearch } from "./freeSearch";
 import { SearchForm } from "./searchForm";
 
 /**
- * 検索フォームコンポーネント
+ * 検索フォームコンテナコンポーネント
  */
 export const SearchFormContainer = (props: {mq: any, maxWidth: any}) => {
     return(
