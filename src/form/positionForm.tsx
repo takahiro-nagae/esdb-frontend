@@ -9,7 +9,7 @@ import { css } from '@emotion/react';
  */
 export const PositionForm = (props: {formMargin: any, selectBox: any, labelStyle: any}) => {
     /** 位置の現在地：初期値は指定無し */
-    const [positionValue, setPositionValue] = useState('left');
+    const [positionValue, setPositionValue] = useState('0');
 
     const handleAlignment = (
         event: React.MouseEvent<HTMLElement>,

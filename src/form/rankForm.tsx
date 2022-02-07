@@ -37,6 +37,7 @@ export const RankForm = (props: {rankList: Array<any>,
                         variant="outlined"
                         css={props.formMargin}
                         name="rank"
+                        defaultValue=""
                     >
                         <MenuItem value="">指定無し</MenuItem>
                         {props.rankList.map(rank => (
@@ -44,7 +45,7 @@ export const RankForm = (props: {rankList: Array<any>,
                              * ランクを追加
                              * 0 : ランク
                              */
-                            <MenuItem value={rank[0]}>{rank[0]}</MenuItem>
+                            <MenuItem value={rank[0]} key={rank[0]}>{rank[0]}</MenuItem>
                         ))}
                     </TextField>
                 </Grid>

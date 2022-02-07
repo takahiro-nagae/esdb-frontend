@@ -18,6 +18,7 @@ export const EffectForm = (props: {effectList: Array<any>,formMargin: any}) => {
                 css={props.formMargin}
                 name="effect"
                 helperText="効果を指定してください"
+                defaultValue=""
             >
                 <MenuItem value="">指定無し</MenuItem>
                 {props.effectList.map(effect => (
@@ -26,7 +27,7 @@ export const EffectForm = (props: {effectList: Array<any>,formMargin: any}) => {
                      * 0 : 効果ID
                      * 1 : 効果名
                      */
-                    <MenuItem value={effect[0]}>{effect[1]}</MenuItem>
+                    <MenuItem value={effect[0]} key={effect[0]}>{effect[1]}</MenuItem>
                 ))}
             </TextField>
             {/* 効果詳細条件 */}
@@ -51,7 +52,9 @@ export const EffectForm = (props: {effectList: Array<any>,formMargin: any}) => {
                             variant="outlined"
                             name="range"
                             helperText="以上 or 以下"
+                            defaultValue=""
                         >
+                            <MenuItem value=""></MenuItem>
                             <MenuItem value="1">以上</MenuItem>
                             <MenuItem value="2">以下</MenuItem>
                         </TextField>
