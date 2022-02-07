@@ -16,6 +16,7 @@ export const TargetForm = (props: {targetList: Array<any>, formMargin: any}) => 
             css={props.formMargin}
             name="target"
             helperText="対象を指定してください"
+            defaultValue=""
         >
             <MenuItem value="">指定無し</MenuItem>
             {props.targetList.map(target => (
@@ -24,7 +25,7 @@ export const TargetForm = (props: {targetList: Array<any>, formMargin: any}) => 
                  * 0 : 対象コード
                  * 1 : 対象名
                  */
-                <MenuItem value={target[0]}>{target[1]}</MenuItem>
+                <MenuItem value={target[0]} key={target[0]}>{target[1]}</MenuItem>
             ))}
         </TextField>
     );
