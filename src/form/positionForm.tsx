@@ -8,14 +8,15 @@ import { css } from '@emotion/react';
  * 位置検索コンポーネント
  */
 export const PositionForm = (props: {formMargin: any, selectBox: any, labelStyle: any}) => {
-    const [alignment, setAlignment] = useState('left');
+    /** 位置の現在地：初期値は指定無し */
+    const [positionValue, setPositionValue] = useState('left');
 
     const handleAlignment = (
         event: React.MouseEvent<HTMLElement>,
         newAlignment: string | null,
       ) => {
         if (newAlignment !== null) {
-          setAlignment(newAlignment);
+            setPositionValue(newAlignment);
         }
     };
 
@@ -23,33 +24,35 @@ export const PositionForm = (props: {formMargin: any, selectBox: any, labelStyle
         <>
             <label css={props.labelStyle}><small>位置</small></label>
             <ToggleButtonGroup
-                value={alignment}
+                fullWidth
                 exclusive
                 size='small'
-                onChange={handleAlignment}
-                fullWidth
-                aria-label="text alignment"
                 css={props.formMargin}
+                onChange={handleAlignment}
+                value={positionValue}
+                aria-label="position"
             >
-            <ToggleButton
-                value="left"
-                aria-label="left aligned"
-                css={props.selectBox}
+                <ToggleButton
+                    css={props.selectBox}
+                    value="0"
+                    aria-label="0"
                 >
                     <span>指定無し</span>
-            </ToggleButton>
-            <ToggleButton
-                value="center"
-                aria-label="centered"
-                css={props.selectBox}>
+                </ToggleButton>
+                <ToggleButton
+                    css={props.selectBox}
+                    value="1"
+                    aria-label="1"
+                >
                     <span>接頭</span>
-            </ToggleButton>
-            <ToggleButton
-                value="right"
-                aria-label="right aligned"
-                css={props.selectBox}>
+                </ToggleButton>
+                <ToggleButton
+                    css={props.selectBox}
+                    value="2"
+                    aria-label="2"
+                >
                     <span>接尾</span>
-            </ToggleButton>
+                </ToggleButton>
             </ToggleButtonGroup>
         </>
     );

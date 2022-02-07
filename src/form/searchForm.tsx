@@ -23,7 +23,6 @@ export const SearchForm = (props: {mq: any, maxWidth: any}) => {
     /**　対象 */
     const [targetList, setTargetList] =  useState([]);
 
-
     /** ラベルのスタイル */
     const labelStyle = css ({
         color: 'rgba(255,255,255,0.7)',
@@ -52,6 +51,9 @@ export const SearchForm = (props: {mq: any, maxWidth: any}) => {
         }
     });
 
+    // ********************
+    // 初期表示
+    // ********************
     useEffect(() => {
         // フォームデータ
         axios.get('https://wd5zeazzd9.execute-api.ap-northeast-1.amazonaws.com/Prod/')

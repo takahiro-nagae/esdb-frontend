@@ -24,22 +24,18 @@ export const FreeSearch = (props: {mq: any}) => {
     const searchBar = css({
         display: 'flex',
         justifyContent: 'space-between',
-        padding: '10px',
-        border: '1px solid #424242',
-        borderRadius: '999px',
-        backgroundColor: '#424242',
         width:'50%',
         [props.mq[0]]: {
             width: '100%'
         },
+        padding: '10px',
+        border: '1px solid #424242',
+        borderRadius: '999px',
+        backgroundColor: '#424242',
     });
 
     /** 検索入力欄 */
     const searchBarInput = css({
-        border: 'none !important',
-        backgroundColor: '#424242',
-        padding: '8px',
-        color: '#fff',
         width:'50%',
         '&:focus': {
             outlineWidth: '0'
@@ -47,6 +43,10 @@ export const FreeSearch = (props: {mq: any}) => {
         [props.mq[0]]: {
             width: '100%'
         },
+        border: 'none !important',
+        padding: '8px',
+        backgroundColor: '#424242',
+        color: '#fff',
     });
 
     /** ボタン */
@@ -60,15 +60,16 @@ export const FreeSearch = (props: {mq: any}) => {
             キーワード検索
         </p>
         <div css={search}>
-        <div css={searchBar}>
-            <input
-                css={searchBarInput}
-                placeholder="Search"
-            />
-            <IconButton size="small" aria-label="search">
-                <SearchIcon fontSize="small" css={buttonStyle} />
-            </IconButton>
-        </div>
+            <div css={searchBar}>
+                <input
+                    css={searchBarInput}
+                    placeholder="Search"
+                    name="search"
+                />
+                <IconButton size="small" aria-label="search">
+                    <SearchIcon fontSize="small" css={buttonStyle} />
+                </IconButton>
+            </div>
         </div>
         </>
     );
