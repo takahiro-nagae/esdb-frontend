@@ -1,4 +1,6 @@
+/** サードパーティーライブラリ */
 import { Box, Grid, Paper } from "@material-ui/core";
+/** ローカルライブラリ */
 import { FreeSearch } from "./freeSearch";
 import { SearchForm } from "./searchForm";
 
@@ -6,10 +8,12 @@ import { SearchForm } from "./searchForm";
  * 検索フォームコンポーネント
  */
 export const SearchFormContainer = (props: {mq: any, maxWidth: any}) => {
-
     return(
         <Box sx={{ mt: 3}}>
-            <Grid container justifyContent="center" css={props.maxWidth}>
+            <Grid container
+                  justifyContent="center"
+                  css={props.maxWidth}
+            >
                 <Grid item xs ={11}>
                     <FreeSearch mq={props.mq}/>
                 </Grid>
