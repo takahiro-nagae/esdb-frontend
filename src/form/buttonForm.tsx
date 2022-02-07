@@ -24,17 +24,16 @@ export const ButtonForm = () => {
         textAlign: 'right'
     });
 
-    /** 検索ボタン */
-    let navigate = useNavigate();
-    const search = () => {
-        navigate('/detail');
-    }
+    // /** 検索ボタン */
+    // let navigate = useNavigate();
+    // const search = () => {
+    //     navigate('/detail');
+    // }
 
     return(
         <Grid container alignItems='center'>
             <Grid item xs={10}>
-                <Button variant="contained" onClick={search}
-                color="primary" css={searchBtn} endIcon={<SearchIcon />}>検索</Button>
+                <Button variant="contained" type='submit' color="primary" css={searchBtn} endIcon={<SearchIcon />}>検索</Button>
             </Grid>
             <Grid item xs={2} css={rightCanlcel}>
                 <IconButton aria-label="delete" size="large" css={cancelStyle}>
