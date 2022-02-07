@@ -114,7 +114,8 @@ export const SearchForm = () => {
         target: string
     }
 
-    const { register, handleSubmit, formState } = useForm<any>({
+    /** フォームの設定 */
+    const { register, handleSubmit, formState } = useForm<ValuesType>({
         mode: 'onSubmit',
         defaultValues: {
             /** 位置初期値：指定無し */
@@ -124,10 +125,12 @@ export const SearchForm = () => {
         }
       })
 
+    /** フォームの処理成功 */
     const handleOnSubmit: SubmitHandler<ValuesType> = (values) => {
         console.log(values)
       }
 
+    /** フォームの処理失敗 */
     const handleOnError: SubmitErrorHandler<ValuesType> = (errors) => {
         console.log(errors)
     }
@@ -183,7 +186,7 @@ export const SearchForm = () => {
                 id='effect'
                 helperText='効果を指定してください'
                 defaultValue=''
-                {...register('ffect')}
+                {...register('effect')}
             >
                 <MenuItem value=''>指定無し</MenuItem>
                 {effectList.map(effect => (
