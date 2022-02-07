@@ -8,13 +8,14 @@ import { css } from '@emotion/react';
 export const TargetForm = (props: {targetList: Array<any>, formMargin: any}) => {
     return(
         <TextField
-            css={props.formMargin}
-            label="対象"
-            variant="outlined"
-            size="small"
-            helperText="対象を指定してください"
-            select
             fullWidth
+            select
+            size="small"
+            variant="outlined"
+            label="対象"
+            css={props.formMargin}
+            name="target"
+            helperText="対象を指定してください"
         >
             <MenuItem value="">指定無し</MenuItem>
             {props.targetList.map(target => (

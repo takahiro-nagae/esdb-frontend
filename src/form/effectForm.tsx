@@ -10,13 +10,14 @@ export const EffectForm = (props: {effectList: Array<any>,formMargin: any}) => {
         <>
             {/* 効果 */}
             <TextField
-                css={props.formMargin}
-                label="効果"
-                variant="outlined"
-                size="small"
-                helperText="効果を指定してください"
-                select
                 fullWidth
+                select
+                size="small"
+                variant="outlined"
+                label="効果"
+                css={props.formMargin}
+                name="effect"
+                helperText="効果を指定してください"
             >
                 <MenuItem value="">指定無し</MenuItem>
                 {props.effectList.map(effect => (
@@ -32,22 +33,24 @@ export const EffectForm = (props: {effectList: Array<any>,formMargin: any}) => {
             <Grid container css={props.formMargin}>
                 <Grid item xs={5}>
                     <TextField
+                        fullWidth
                         label="値"
-                        type="number"
                         size="small"
                         variant="outlined"
+                        type="number"
+                        name="effectVal"
                         helperText="効果の値"
-                        fullWidth
                     />
                 </Grid>
                 <Grid item xs={2}></Grid>
                     <Grid item xs={5}>
                         <TextField
-                            variant="outlined"
-                            size="small"
-                            helperText="以上 or 以下"
-                            select
                             fullWidth
+                            select
+                            size="small"
+                            variant="outlined"
+                            name="range"
+                            helperText="以上 or 以下"
                         >
                             <MenuItem value="1">以上</MenuItem>
                             <MenuItem value="2">以下</MenuItem>

@@ -8,12 +8,13 @@ import { css } from '@emotion/react';
 export const NameForm = (props: {formMargin: any}) => {
     return(
         <TextField
-            css={props.formMargin}
-            label="エンチャント名"
-            helperText="エンチャント名を入力してください"
             fullWidth
-            variant="outlined"
             size="small"
+            variant="outlined"
+            label="エンチャント名"
+            name="enchantName"
+            css={props.formMargin}
+            helperText="エンチャント名を入力してください"
         />
     );
 }
