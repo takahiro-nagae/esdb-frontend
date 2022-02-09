@@ -1,6 +1,7 @@
+/** サードパーティーライブラリ */
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { AppBar, Box, Paper } from "@material-ui/core";
+import { Box } from "@material-ui/core";
 
 /**
  * フッターコンポーネント
