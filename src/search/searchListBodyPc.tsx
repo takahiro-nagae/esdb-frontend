@@ -1,13 +1,15 @@
-import { Tab, TableCell, TableRow } from "@material-ui/core";
+/** サードパーティーライブラリ */
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+import { TableCell, TableRow } from "@material-ui/core";
+
+/** ローカルライブラリ */
 import effectColor from "./effectColor";
 import { RankModal } from "./rankModal";
 import positionColor from "./positionColor";
 
 /**
  * PCの検索一覧
- * @param tableContent コンテント全体のCSS
  */
 export const SearchListBodyPc = () => {
 

@@ -1,21 +1,26 @@
+/** 標準ライブラリ */
+import { useState } from "react";
+
+/** サードパーティーライブラリ */
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
+import { Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import { useState } from "react";
-import { Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
-/** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
 
 /**
  * ランクモーダル
  */
 export const RankModal = (props: {rank: string}) => {
 
-
+    /** ランクオープンのフラグ */
     const [open, setOpen] = useState(false);
+    /**  モーダルオープン処理 */
     const handleOpen = () => {
       setOpen(true);
     };
+    /** モーダルクローズ処理 */
     const handleClose = () => {
       setOpen(false);
     };
