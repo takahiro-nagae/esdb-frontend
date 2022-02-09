@@ -11,7 +11,7 @@ import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-/** 独自ライブラリ */
+/** ローカルライブラリ */
 import { cancelStyle, rightCanlcel, searchBtn } from './common/formStyle';
 import { EnchantName } from './component/enchantName';
 import { Effect } from './component/effect';

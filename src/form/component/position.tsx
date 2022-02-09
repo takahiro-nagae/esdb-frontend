@@ -3,7 +3,7 @@
 import { UseFormRegister } from "react-hook-form";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 
-/** 独自ライブラリ */
+/** ローカルライブラリ */
 import { formMargin, labelStyle, selectBox } from "../common/formStyle";
 import { FormData } from './../common/formData';
 
