@@ -1,17 +1,16 @@
+/** サードパーティーライブラリ */
 /** @jsxImportSource @emotion/react */
-
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
-import { useState } from "react";
 import { UseFormRegister } from "react-hook-form";
+import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+
+/** 独自ライブラリ */
 import { formMargin, labelStyle, selectBox } from "../common/formStyle";
 import { FormData } from './../common/formData';
 
 /**
  * 位置のコンポーネント
  */
-export const Position = (props: { register: UseFormRegister<FormData> }) => {
-    /** 位置の現在地：初期値は指定無し */
-    const [potision, setPosition] = useState('0');
+export const Position = (props: { register: UseFormRegister<FormData>, potision: string, setPosition: any }) => {
 
     /** 位置の選択変更 */
     const handlePosition = (
@@ -19,8 +18,7 @@ export const Position = (props: { register: UseFormRegister<FormData> }) => {
         newAlignment: string | null,
       ) => {
         if (newAlignment !== null) {
-            setPosition(newAlignment);
-            props.register('position');
+            props.setPosition(newAlignment);
         }
     };
 
@@ -32,9 +30,9 @@ export const Position = (props: { register: UseFormRegister<FormData> }) => {
                 exclusive
                 size='small'
                 css={formMargin}
-                value={potision}
+                onChange={handlePosition}
+                value={props.potision}
                 id='position'
-                { ...props.register('position') }
             >
                 <ToggleButton
                     css={selectBox}
