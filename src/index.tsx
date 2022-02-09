@@ -1,20 +1,24 @@
-import React from 'react';
+/** 標準ライブラリ */
 import ReactDOM from 'react-dom';
-import './index.css';
-import reportWebVitals from './reportWebVitals';
+
+/** サードパーティーライブラリ */
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Home } from './home/home';
 import { createTheme } from '@material-ui/core/styles'
 import { ThemeProvider } from '@material-ui/core';
-import { PrivacyPolicy } from './static/privacyPolicy';
-import { Header } from './common/header';
 import GlobalStyles from "@mui/material/GlobalStyles";
+
+/** ローカルライブラリ */
+import './index.css';
+import reportWebVitals from './reportWebVitals';
+import { Home } from './home/home';
+import { Header } from './common/header';
 import { Footer } from './common/footer';
 import { About } from './static/about';
 import { AppHistory } from './static/appHistory';
-/** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
 import { SearchList } from './search/searchList';
+import { PrivacyPolicy } from './static/privacyPolicy';
 
 /**
  * テーマ

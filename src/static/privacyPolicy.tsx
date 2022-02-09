@@ -1,3 +1,4 @@
+/** サードパーティーライブラリ */
 import { Box, Grid, Paper } from '@material-ui/core';
 
 /**
