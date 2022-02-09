@@ -29,18 +29,3 @@ export const selectBox = css({
         color: '#fff',
     }
 });
-
-/** 検索ボタン */
-export const searchBtn = css ({
-    width: '100%'
-});
-
-/** キャンセルボタン */
-export const cancelStyle = css({
-    color: '#fff',
-});
-
-/** キャンセルボタン右よせ */
-export const rightCanlcel = css({
-    textAlign: 'right'
-});
