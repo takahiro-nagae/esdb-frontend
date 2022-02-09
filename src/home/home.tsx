@@ -1,4 +1,4 @@
-import React from 'react';
+/** ローカルライブラリ */
 import { SearchFormContainer } from '../form/searchFormContainer';
 
 /**
