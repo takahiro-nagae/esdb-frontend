@@ -1,8 +1,13 @@
+/** サードパーティーライブラリ */
 /** @jsxImportSource @emotion/react */
-
 import { MenuItem, TextField } from "@material-ui/core";
+
+/** ローカルライブラリ */
 import { formMargin } from "../common/formStyle";
 
+/**
+ * 対象コンポーネント
+ */
 export const Target = (props: {register: any, targetList: Array<any>}) => {
     return(
         <TextField
