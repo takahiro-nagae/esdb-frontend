@@ -1,17 +1,18 @@
 /** 標準ライブラリ */
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+
 /** サードパーティーライブラリ */
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
+import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import { Grid } from '@material-ui/core';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import DeleteIcon from '@mui/icons-material/Delete';
 
+/** 独自ライブラリ */
 import { cancelStyle, rightCanlcel, searchBtn } from './common/formStyle';
-import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import { EnchantName } from './component/enchantName';
 import { Effect } from './component/effect';
 import { Position } from './component/position';
@@ -32,6 +33,10 @@ export const SearchForm = () => {
     const [rankList, setRankList] = useState([]);
     /**　対象 */
     const [targetList, setTargetList] =  useState([]);
+    /** ランクの現在値:初期値は一致 */
+    const [rankRange, setRankRange] = useState('1');
+    /** 位置の現在地：初期値は指定無し */
+    const [potision, setPosition] = useState('0');
 
     // ********************
     // 初期表示
@@ -55,19 +60,13 @@ export const SearchForm = () => {
     // フォームの設定
     // ********************
     /** 初期設定 */
-    const { register, handleSubmit, formState } = useForm<FormData>({
-        mode: 'onSubmit',
-        defaultValues: {
-            /** 位置初期値：指定無し */
-            position: '0',
-            /** ランク：一致 */
-            rankRange: '1'
-        }
-    });
+    const { register, handleSubmit } = useForm<FormData>({});
 
     /** フォームの処理成功 */
     const handleOnSubmit: SubmitHandler<FormData> = (values) => {
-        console.log(values)
+        values.position = potision;
+        values.rankRange = rankRange;
+        console.log(values);
     }
 
     /** フォームの処理失敗 */
@@ -82,9 +81,9 @@ export const SearchForm = () => {
             {/* 効果 */}
             <Effect register={register} effectList={effectList} />
             {/* 位置 */}
-            <Position register={register} />
+            <Position register={register} potision={potision} setPosition={setPosition} />
             {/* ランク */}
-            <Rank register={register} rankList={rankList} />
+            <Rank register={register} rankList={rankList} rankRange={rankRange} setRankRange={setRankRange} />
             {/* 対象 */}
             <Target register={register} targetList={targetList} />
             {/* ボタン部 */}

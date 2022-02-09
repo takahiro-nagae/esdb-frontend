@@ -1,15 +1,18 @@
+/** サードパーティーライブラリ */
 /** @jsxImportSource @emotion/react */
-
+import { UseFormRegister } from "react-hook-form";
 import { Grid, MenuItem, TextField } from "@material-ui/core";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
-import { useState } from "react";
-import { UseFormRegister } from "react-hook-form";
+
+/** 独自ライブラリ */
 import { formMargin, labelStyle, selectBox } from "../common/formStyle";
 import { FormData } from './../common/formData';
 
-export const Rank = (props: {register: UseFormRegister<FormData>, rankList: Array<any>}) => {
-    /** ランクの現在値:初期値は一致 */
-    const [rankValue, setRankValue] = useState('1');
+/**
+ * ランクのコンポーネント
+ */
+export const Rank = (props: {register: UseFormRegister<FormData>
+    , rankList: Array<any>, rankRange: string, setRankRange: any}) => {
 
     /** ランクの現在値変更 */
     const handleRank = (
@@ -17,8 +20,7 @@ export const Rank = (props: {register: UseFormRegister<FormData>, rankList: Arra
         newRankValue: string | null,
         ) => {
         if (newRankValue !== null) {
-            setRankValue(newRankValue);
-            props.register('rankRange');
+            props.setRankRange(newRankValue);
         }
     };
 
@@ -58,8 +60,7 @@ export const Rank = (props: {register: UseFormRegister<FormData>, rankList: Arra
                         size='small'
                         css={formMargin}
                         onChange={handleRank}
-                        value={rankValue}
-                        id='rankRange'
+                        value={props.rankRange}
                     >
                         <ToggleButton
                             css={selectBox}
