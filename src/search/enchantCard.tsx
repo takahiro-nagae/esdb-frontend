@@ -1,14 +1,19 @@
-import * as React from 'react';
-import { Box, Collapse, Table, TableCell, TableRow } from "@material-ui/core";
-import Card from '@mui/material/Card';
-import Typography from '@mui/material/Typography';
-import positionColor from './positionColor';
+/** 標準ライブラリ */
+import { useState } from "react";
+
+/** サードパーティーライブラリ */
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { RankModal } from './rankModal';
+import { Box, Collapse, Table, TableCell, TableRow } from "@material-ui/core";
 import { IconButton } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import Card from '@mui/material/Card';
+import Typography from '@mui/material/Typography';
+
+/** ローカルライブラリ */
+import positionColor from './positionColor';
+import { RankModal } from './rankModal';
 import effectColor from './effectColor';
 
 /**
@@ -17,7 +22,7 @@ import effectColor from './effectColor';
 export const EnchantCard = () => {
 
     /** オープン状態 */
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
 
     /** インライン */
     const inline = css({
