@@ -4,6 +4,7 @@ import axios from 'axios';
 
 /** サードパーティーライブラリ */
 /** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import { Grid } from '@material-ui/core';
 import Button from '@mui/material/Button';
@@ -12,7 +13,6 @@ import SearchIcon from '@mui/icons-material/Search';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 /** ローカルライブラリ */
-import { cancelStyle, rightCanlcel, searchBtn } from './common/formStyle';
 import { EnchantName } from './component/enchantName';
 import { Effect } from './component/effect';
 import { Position } from './component/position';
@@ -24,6 +24,21 @@ import { FormData } from './common/formData';
  * 検索フォーム
  */
 export const SearchForm = () => {
+/** 検索ボタン */
+    const searchBtn = css ({
+        width: '100%'
+    });
+
+    /** キャンセルボタン */
+    const cancelStyle = css({
+        color: '#fff',
+    });
+
+    /** キャンセルボタン右よせ */
+    const rightCanlcel = css({
+        textAlign: 'right'
+    });
+
     // ********************
     // state
     // ********************
