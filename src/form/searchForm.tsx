@@ -5,6 +5,7 @@ import axios from 'axios';
 /** サードパーティーライブラリ */
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+import { useNavigate, createSearchParams } from 'react-router-dom';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import { Grid } from '@material-ui/core';
 import Button from '@mui/material/Button';
@@ -53,6 +54,8 @@ export const SearchForm = () => {
     /** 位置の現在地：初期値は指定無し */
     const [potision, setPosition] = useState('0');
 
+    const navigate = useNavigate();
+
     // ********************
     // 初期表示
     // ********************
@@ -81,7 +84,11 @@ export const SearchForm = () => {
     const handleOnSubmit: SubmitHandler<FormData> = (values) => {
         values.position = potision;
         values.rankRange = rankRange;
-        console.log(values);
+
+        navigate({
+            pathname: '/detail',
+            search: `?${createSearchParams(values)}`,
+          });
     }
 
     /** フォームの処理失敗 */

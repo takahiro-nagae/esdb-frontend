@@ -7,7 +7,7 @@ export type FormData = {
     /** 効果 */
     effect: string,
     /** 効果の値 */
-    effectVal: number,
+    effectVal: string,
     /** 効果の範囲 */
     range: string,
     /** 位置 */

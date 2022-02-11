@@ -1,6 +1,10 @@
+/** 標準ライブラリ */
+import { useEffect } from 'react';
+
 /** サードパーティーライブラリ */
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+import { useSearchParams } from 'react-router-dom';
 import MediaQuery from "react-responsive";
 import { Box, Grid } from '@material-ui/core';
 import Table from '@mui/material/Table';
@@ -28,6 +32,17 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
         color: '#f00',
         fontSize: '18px'
     });
+
+    /** 遷移元からのデータ */
+    const [searchParams] = useSearchParams();
+
+
+    // ********************
+    // 初期表示
+    // ********************
+    useEffect(() => {
+        console.log(searchParams.get('rankRange'));
+    }, []);
 
     /** ブレークポイントクエリ */
     const minQuery = "(min-width:" + props.breakPoint + "px)";
