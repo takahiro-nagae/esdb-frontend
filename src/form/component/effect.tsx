@@ -30,7 +30,7 @@ export const Effect = (props: {register: any, effectList: Array<any>}) => {
                      * 0 : 効果ID
                      * 1 : 効果名
                      */
-                    <MenuItem value={effect[0]} key={effect[0]}>{effect[1]}</MenuItem>
+                    <MenuItem value={effect['effect_id']} key={effect['effect_id']}>{effect['effect']}</MenuItem>
                 ))}
             </TextField>
             {/* 効果詳細条件 */}
