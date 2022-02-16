@@ -46,7 +46,7 @@ export const Rank = (props: {register: UseFormRegister<FormData>
                              * ランクを追加
                              * 0 : ランク
                              */
-                            <MenuItem value={rank[0]} key={rank[0]}>{rank[0]}</MenuItem>
+                            <MenuItem value={rank['rank']} key={rank['rank']}>{rank['rank']}</MenuItem>
                         ))}
                     </TextField>
                 </Grid>

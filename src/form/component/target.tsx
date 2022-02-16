@@ -29,7 +29,7 @@ export const Target = (props: {register: any, targetList: Array<any>}) => {
                  * 0 : 対象コード
                  * 1 : 対象名
                  */
-                <MenuItem value={target[0]} key={target[0]}>{target[1]}</MenuItem>
+                <MenuItem value={target['target_code']} key={target['target_code']}>{target['target_name']}</MenuItem>
             ))}
         </TextField>
     );
