@@ -6,7 +6,7 @@ import { TableCell, TableRow } from "@material-ui/core";
 /**
  * PC用の検索一覧ヘッダー
  */
-export const SearchListHeadPc = () => {
+export const SearchListHead = () => {
 
     /** テーブルヘッダー */
     const tableHeader = css ({
