@@ -11,7 +11,7 @@ import positionColor from "./positionColor";
 /**
  * PCの検索一覧
  */
-export const SearchListBodyPc = () => {
+export const SearchListBody = () => {
 
     /** コンテント各行の基本スタイル */
     const tableContent = css ({

@@ -13,8 +13,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 
 /** ローカルライブラリ */
-import { SearchListHeadPc } from './searchListHeadPc';
-import { SearchListBodyPc } from './searchListBodyPc';
+import { SearchListHead } from './searchListHead';
+import { SearchListBody } from './searchListBody';
 import { EnchantCard } from './enchantCard';
 
 /**
@@ -59,12 +59,12 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
                                 <Table stickyHeader aria-label="sticky table">
                                     {/* ヘッダー */}
                                     <TableHead>
-                                         <SearchListHeadPc />
+                                         <SearchListHead />
                                     </TableHead>
                                     {/* ボディ */}
                                     <TableBody>
                                         {/* PC */}
-                                        <SearchListBodyPc />
+                                        <SearchListBody />
                                     </TableBody>
                                 </Table>
                             </TableContainer>
