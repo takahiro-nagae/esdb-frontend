@@ -10,7 +10,7 @@ export const SearchListHead = () => {
 
     /** テーブルヘッダー */
     const tableHeader = css ({
-        backgroundColor: '#0854a3',
+        backgroundColor: '#1F2023',
         color: '#fff',
         border: 'none'
     });
