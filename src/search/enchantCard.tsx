@@ -4,7 +4,7 @@ import { useState } from "react";
 /** サードパーティーライブラリ */
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { Box, Collapse, Table, TableCell, TableRow } from "@material-ui/core";
+import { Box, Collapse, Table, TableBody, TableCell, TableRow } from "@material-ui/core";
 import { IconButton } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
@@ -12,14 +12,14 @@ import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 
 /** ローカルライブラリ */
-import positionColor from './positionColor';
+import { positionColor, positionName } from './positionFunction';
 import { RankModal } from './rankModal';
 import effectColor from './effectColor';
 
 /**
  * エンチャントカード
  */
-export const EnchantCard = () => {
+export const EnchantCard = (props: {enchant: any}) => {
 
     /** オープン状態 */
     const [open, setOpen] = useState(false);
@@ -72,28 +72,36 @@ export const EnchantCard = () => {
         color: '#fff'
     });
 
+    /** 効果区分を配列化 */
+    const effectKbnArray:Array<any> = props.enchant.effect_kbn && props.enchant.effect_kbn.split('@');
+    /** 効果名を配列化 */
+    const effectNameArray:Array<any> = props.enchant.effect_name && props.enchant.effect_name.split('@');
+    /** 入手先を配列化 */
+    const routeNameArray:Array<any> = props.enchant.route_name && props.enchant.route_name.split('@');
+
     return(
         <Card sx={{ minWidth: 275,
                     backgroundColor: '#3C3B40',
                     padding: '8px',
+                    margin: '8px',
                     boxSizing: 'border-box' }}>
                 <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around' }}>
                     <Box>
                         {/* エンチャント名 */}
                         <Typography variant="subtitle1" css={title} >
-                            フラミンゴスレイヤー
+                            {props.enchant.enchant_name}
                         </Typography>
                         {/* エンチャント英名 */}
                         <Typography variant="subtitle2" css={subtitle}>
-                            Flamingo Slayer's
+                            {props.enchant.enchant_name_en}
                         </Typography>
                         <div>
                             {/* 位置 */}
                             <Typography style={{display: 'inline'}}
-                                variant="subtitle2" css={positionColor('1')} >接頭(prefix)</Typography>
+                                variant="subtitle2" css={positionColor(props.enchant.position_id)} >{positionName(props.enchant.position_id)}</Typography>
                             <Typography variant='body1' css={inline} ><small>ランク</small></Typography>
                             {/* ランク */}
-                            <RankModal rank={"F"} />
+                            <RankModal rank={props.enchant.rank} />
                         </div>
                     </Box>
                     <Box>
@@ -109,27 +117,28 @@ export const EnchantCard = () => {
                 <Collapse in={open} timeout="auto" unmountOnExit>
                         <Box sx={{ paddingBottom: 10 }}>
                             {/* 対象 */}
-                            <p css={target}>対象：全て</p>
+                            <p css={target}>対象：{props.enchant.target_name}</p>
                             <Table size="small" aria-label="purchases">
-                                {/* 効果 */}
-                                <TableRow>
-                                    <TableCell css={acodHead}>効果</TableCell>
-                                    <TableCell css={accBody}>
-                                        <p css={effectColor('decrease')} >最大負傷率2~4%減少</p>
-                                    </TableCell>
-                                </TableRow>
-                                {/* 入手先 */}
-                                <TableRow>
-                                    <TableCell css={acodHead}>入手先</TableCell>
-                                    <TableCell css={accBody}>
-                                        <p>
-                                            ■フラミンゴスレイヤー ソルジャー ブレスレット<br/>　- レッドスケルトン(鎧)
-                                        </p>
-                                        <p>
-                                            ■ES<br/>　- コッカースパニエルミニのアイテム収集
-                                        </p>
-                                    </TableCell>
-                                </TableRow>
+                                <TableBody>
+                                    {/* 効果 */}
+                                    <TableRow>
+                                        <TableCell css={acodHead}>効果</TableCell>
+                                        <TableCell css={accBody}>
+                                            { effectKbnArray && effectKbnArray.map((effectKbn, index) =>
+                                                <p css={effectColor(effectKbn)} key={index} >{effectNameArray[index]}</p>
+                                            )}
+                                        </TableCell>
+                                    </TableRow>
+                                    {/* 入手先 */}
+                                    <TableRow>
+                                        <TableCell css={acodHead}>入手先</TableCell>
+                                        <TableCell css={accBody}>
+                                            {routeNameArray && routeNameArray.map((route, index) => (
+                                                <p dangerouslySetInnerHTML={{ __html: route }} key={index}></p>
+                                            ))}
+                                        </TableCell>
+                                    </TableRow>
+                                </TableBody>
                             </Table>
                         </Box>
                 </Collapse>

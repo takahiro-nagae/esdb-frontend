@@ -96,7 +96,9 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
                             </TableContainer>
                         </MediaQuery>
                         <MediaQuery query={maxQuery}>
-                            <EnchantCard />
+                            {enchantList.map(enchant => (
+                                <EnchantCard enchant={enchant} key={enchant.enchant_id} />
+                            ))}
                         </MediaQuery>
                     </Box>
                 </Grid>

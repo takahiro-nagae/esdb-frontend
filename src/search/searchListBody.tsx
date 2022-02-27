@@ -6,7 +6,7 @@ import { TableCell, TableRow } from "@material-ui/core";
 /** ローカルライブラリ */
 import effectColor from "./effectColor";
 import { RankModal } from "./rankModal";
-import positionColor from "./positionColor";
+import { positionColor, positionName } from "./positionFunction";
 
 /**
  * PCの検索一覧
@@ -41,7 +41,7 @@ export const SearchListBody = (props: {enchant: any}) => {
                 <small>{props.enchant.enchant_name_en}</small>
             </TableCell>
             {/* 位置 */}
-            <TableCell css={positionColor(props.enchant.position_id)} >接頭(prefix)</TableCell>
+            <TableCell css={positionColor(props.enchant.position_id)} >{positionName(props.enchant.position_id)}</TableCell>
             {/* ランク */}
             <TableCell>
                 <RankModal rank={props.enchant.rank} />
