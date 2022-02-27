@@ -52,11 +52,11 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
     // ********************
     useEffect(() => {
 
-        const requestParams = {enchantName: searchParams.get('enchantName'), effect: searchParams.get('effect'), effectVal: searchParams.get('effectVal')
-                            ,range: searchParams.get('range') , rank: searchParams.get('rank') , target: searchParams.get('target')
-                            , position: searchParams.get('position') , rankRange: searchParams.get('rankRange') };
+        const requestParams = '?enchantName=' + searchParams.get('enchantName') + '&effect=' + searchParams.get('effect') + '&effectVal=' + searchParams.get('effectVal')
+                            + '&range=' + searchParams.get('range') + '&rank=' + searchParams.get('rank') + '&target=' + searchParams.get('target')
+                            + '&position=' + searchParams.get('position') + '&rankRange=' + searchParams.get('rankRange') ;
 
-        axios.get('https://wd5zeazzd9.execute-api.ap-northeast-1.amazonaws.com/Prod/detail', { params: { requestParams } })
+        axios.get('https://wd5zeazzd9.execute-api.ap-northeast-1.amazonaws.com/Prod/detail' + requestParams)
         .then((res) => {
             if(res.data != undefined) {
                 // 効果
