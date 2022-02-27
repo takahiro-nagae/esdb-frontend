@@ -25,7 +25,7 @@ import { FormData } from './common/formData';
  * 検索フォーム
  */
 export const SearchForm = () => {
-/** 検索ボタン */
+    /** 検索ボタン */
     const searchBtn = css ({
         width: '100%'
     });
