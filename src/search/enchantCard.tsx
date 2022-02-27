@@ -72,6 +72,10 @@ export const EnchantCard = (props: {enchant: any}) => {
         color: '#fff'
     });
 
+    const routeFont = css({
+        color: '#333'
+    });
+
     /** 効果区分を配列化 */
     const effectKbnArray:Array<any> = props.enchant.effect_kbn && props.enchant.effect_kbn.split('@');
     /** 効果名を配列化 */
@@ -134,7 +138,7 @@ export const EnchantCard = (props: {enchant: any}) => {
                                         <TableCell css={acodHead}>入手先</TableCell>
                                         <TableCell css={accBody}>
                                             {routeNameArray && routeNameArray.map((route, index) => (
-                                                <p dangerouslySetInnerHTML={{ __html: route }} key={index}></p>
+                                                <p dangerouslySetInnerHTML={{ __html: route }} key={index} css={routeFont}></p>
                                             ))}
                                         </TableCell>
                                     </TableRow>
