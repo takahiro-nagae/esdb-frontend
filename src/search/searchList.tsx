@@ -12,9 +12,10 @@ import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import TableCell from '@mui/material/TableCell/TableCell';
 
 /** ローカルライブラリ */
-import { SearchListHead } from './searchListHead';
 import { SearchListBody } from './searchListBody';
 import { EnchantCard } from './enchantCard';
 
@@ -33,6 +34,13 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
     const hitCount = css({
         color: '#f00',
         fontSize: '18px'
+    });
+
+    /** テーブルヘッダー */
+    const tableHeader = css ({
+        backgroundColor: '#1F2023',
+        color: '#fff',
+        border: 'none'
     });
 
     /** 遷移元からのデータ */
@@ -75,16 +83,24 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
 
     return(
         <Box sx={{ mt: 3}}>
-            <Grid container justifyContent="center" css={props.maxWidth}>
+            <Grid container alignItems='center' direction='column'>
                 <p css={hit}><span css={hitCount}>{count}</span>件ヒットしました</p>
-                <Grid item xs={12}>
+                <Grid item xs={11}>
                     <Box sx={{ p: 1}}>
                         <MediaQuery query={minQuery}>
-                            <TableContainer sx={{ maxHeight: 440 }}>
+                            <TableContainer sx={{ maxHeight: 800 }}>
                                 <Table stickyHeader aria-label="sticky table">
                                     {/* ヘッダー */}
                                     <TableHead>
-                                         <SearchListHead />
+                                         <TableRow>
+                                            <TableCell css={tableHeader}>名称</TableCell>
+                                            <TableCell css={tableHeader}>位置</TableCell>
+                                            <TableCell css={tableHeader}>ランク</TableCell>
+                                            <TableCell css={tableHeader}>対象</TableCell>
+                                            <TableCell css={tableHeader}>値</TableCell>
+                                            <TableCell css={tableHeader}>効果</TableCell>
+                                            <TableCell css={tableHeader}>入手先</TableCell>
+                                        </TableRow>
                                     </TableHead>
                                     {/* ボディ */}
                                     <TableBody>
