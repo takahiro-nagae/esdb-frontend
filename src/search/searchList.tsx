@@ -43,6 +43,10 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
         border: 'none'
     });
 
+    const spWidth = css ({
+       width: '100%'
+    });
+
     /** 遷移元からのデータ */
     const [searchParams] = useSearchParams();
 
@@ -61,7 +65,6 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
     // 初期表示
     // ********************
     useEffect(() => {
-
         const requestParams = '?enchantName=' + searchParams.get('enchantName') + '&effect=' + searchParams.get('effect') + '&effectVal=' + searchParams.get('effectVal')
                             + '&range=' + searchParams.get('range') + '&rank=' + searchParams.get('rank') + '&target=' + searchParams.get('target')
                             + '&position=' + searchParams.get('position') + '&rankRange=' + searchParams.get('rankRange') ;
@@ -118,7 +121,7 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
                     </Grid>
                 </MediaQuery>
                 <MediaQuery query={maxQuery}>
-                    <Grid item xs={12}>
+                    <Grid item xs={12} css={spWidth}>
                         <Box sx={{ p: 1}}>
                             {enchantList.map(enchant => (
                                 <EnchantCard enchant={enchant} valFlag={valFlag} key={enchant.enchant_id} />
