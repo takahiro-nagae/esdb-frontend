@@ -84,8 +84,7 @@ export const EnchantCard = (props: {enchant: any, valFlag: boolean}) => {
     const routeNameArray:Array<any> = props.enchant.route_name && props.enchant.route_name.split('@');
 
     return(
-        <Card sx={{ minWidth: 275,
-                    backgroundColor: '#3C3B40',
+        <Card sx={{ backgroundColor: '#3C3B40',
                     padding: '8px',
                     margin: '8px',
                     boxSizing: 'border-box' }}>
