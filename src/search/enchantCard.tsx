@@ -19,7 +19,7 @@ import effectColor from './effectColor';
 /**
  * エンチャントカード
  */
-export const EnchantCard = (props: {enchant: any}) => {
+export const EnchantCard = (props: {enchant: any, valFlag: boolean}) => {
 
     /** オープン状態 */
     const [open, setOpen] = useState(false);
@@ -109,7 +109,7 @@ export const EnchantCard = (props: {enchant: any}) => {
                         </div>
                     </Box>
                     <Box>
-                        <p css={value}>-4</p>
+                        {props.valFlag && <p css={value}>{props.enchant.disp_val}</p> }
                     </Box>
                     <Box>
                         <IconButton css={accIcon} aria-label="expand row" onClick={() => setOpen(!open)}>
