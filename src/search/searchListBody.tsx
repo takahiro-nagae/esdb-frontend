@@ -11,7 +11,7 @@ import { positionColor, positionName } from "./positionFunction";
 /**
  * PCの検索一覧
  */
-export const SearchListBody = (props: {enchant: any}) => {
+export const SearchListBody = (props: {enchant: any, valFlg: boolean}) => {
     /** コンテント各行の基本スタイル */
     const tableContent = css ({
         backgroundColor: '#33363b',
@@ -49,7 +49,7 @@ export const SearchListBody = (props: {enchant: any}) => {
             {/* 対象 */}
             <TableCell>{props.enchant.target_name}</TableCell>
             {/* 値 */}
-            <TableCell>-4</TableCell>
+            {props.valFlg && <TableCell>{props.enchant.disp_val}</TableCell>}
             {/* 効果 */}
             <TableCell>
                 { effectKbnArray && effectKbnArray.map((effectKbn, index) =>

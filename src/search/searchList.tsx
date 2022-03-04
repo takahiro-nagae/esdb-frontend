@@ -53,6 +53,8 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
     const [enchantList, setEnchantList] = useState(Array(0));
     /** 件数 */
     const [count, setcount] = useState(0);
+    /** 値表示のフラグ */
+    const [valFlag, setValFlag] = useState(false);
 
 
     // ********************
@@ -71,6 +73,8 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
                 setEnchantList(res.data);
                 // 件数
                 setcount(res.data.length);
+                // 値の表示フラグ
+                setValFlag(res.data[0].disp_val != undefined)
             }
         }).catch((error) => {
             console.log(error)
@@ -85,9 +89,9 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
         <Box sx={{ mt: 3}}>
             <Grid container alignItems='center' direction='column'>
                 <p css={hit}><span css={hitCount}>{count}</span>件ヒットしました</p>
-                <Grid item xs={11}>
-                    <Box sx={{ p: 1}}>
-                        <MediaQuery query={minQuery}>
+                <MediaQuery query={minQuery}>
+                    <Grid item xs={11}>
+                        <Box sx={{ p: 1}}>
                             <TableContainer sx={{ maxHeight: 800 }}>
                                 <Table stickyHeader aria-label="sticky table">
                                     {/* ヘッダー */}
@@ -97,7 +101,7 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
                                             <TableCell css={tableHeader}>位置</TableCell>
                                             <TableCell css={tableHeader}>ランク</TableCell>
                                             <TableCell css={tableHeader}>対象</TableCell>
-                                            <TableCell css={tableHeader}>値</TableCell>
+                                            { valFlag && <TableCell css={tableHeader}>値</TableCell> }
                                             <TableCell css={tableHeader}>効果</TableCell>
                                             <TableCell css={tableHeader}>入手先</TableCell>
                                         </TableRow>
@@ -105,19 +109,23 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
                                     {/* ボディ */}
                                     <TableBody>
                                         {enchantList.map(enchant => (
-                                            <SearchListBody enchant={enchant} key={enchant.enchant_id} />
+                                            <SearchListBody enchant={enchant}  valFlg={valFlag} key={enchant.enchant_id} />
                                         ))}
                                     </TableBody>
                                 </Table>
                             </TableContainer>
-                        </MediaQuery>
-                        <MediaQuery query={maxQuery}>
+                        </Box>
+                    </Grid>
+                </MediaQuery>
+                <MediaQuery query={maxQuery}>
+                    <Grid item xs={12}>
+                        <Box sx={{ p: 1}}>
                             {enchantList.map(enchant => (
-                                <EnchantCard enchant={enchant} key={enchant.enchant_id} />
+                                <EnchantCard enchant={enchant} valFlag={valFlag} key={enchant.enchant_id} />
                             ))}
-                        </MediaQuery>
-                    </Box>
-                </Grid>
+                        </Box>
+                    </Grid>
+                </MediaQuery>
             </Grid>
         </Box>
     );
