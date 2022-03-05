@@ -11,26 +11,31 @@ export default function effectColor (effectStr: string) {
         case 'increase':
             // 増加
             return css({
-                color: '#5f5fff'
+                color: '#7070ff',
+                margin: '2px'
             });
         case 'decrease':
             // 減少
             return css({
-                color: '#ff3b3b'
+                color: '#ff3b3b',
+                margin: '2px'
             });
         case 'not-relevant':
             // ランクに関係なく
             return css({
-                color: '#92fa92'
+                color: '#11D612',
+                margin: '2px'
             });
         case 'designated':
             // 専用
             return css({
-                color: '#f0f'
+                color: '#f0f',
+                margin: '2px'
             });
         default:
             return css({
-                color: '#f461f4'
+                color: '#f461f4',
+                margin: '2px'
             });
     }
 }
