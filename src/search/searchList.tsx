@@ -112,7 +112,7 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
                                     {/* ボディ */}
                                     <TableBody>
                                         {enchantList.map(enchant => (
-                                            <SearchListBody enchant={enchant}  valFlg={valFlag} key={enchant.enchant_id} />
+                                            <SearchListBody enchant={enchant} valFlg={valFlag} key={enchant.enchant_id} />
                                         ))}
                                     </TableBody>
                                 </Table>
