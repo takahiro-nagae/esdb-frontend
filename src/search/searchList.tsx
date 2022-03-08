@@ -12,6 +12,7 @@ import { Box, Grid } from '@material-ui/core';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
+import TablePagination from '@mui/material/TablePagination';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell/TableCell';
@@ -19,6 +20,7 @@ import TableCell from '@mui/material/TableCell/TableCell';
 /** ローカルライブラリ */
 import { SearchListBody } from './searchListBody';
 import { EnchantCard } from './enchantCard';
+import { width } from '@mui/system';
 
 /**
  * 検索結果一覧
@@ -44,8 +46,16 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
         border: 'none'
     });
 
+    /** ページネーション */
+    const pagenation = css ({
+        backgroundColor: '#3C3B40',
+        color: '#ccc',
+        borderTop: '1px solid rgba(81, 81, 81, 1)',
+        borderBottom: '1px solid rgba(81, 81, 81, 1)'
+    });
+
     /** スマホの横幅指定 */
-    const spWidth = css ({
+    const dataWidth = css ({
        width: '100%'
     });
 
@@ -69,6 +79,10 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
     const [valFlag, setValFlag] = useState(false);
     /** ローディングフラグ */
     const [loadingFlag, setLoadingFlag] = useState(false);
+    /** ページ */
+    const [page, setPage] = useState(0);
+    /** 現在のページ */
+    const [rowsPerPage, setRowsPerPage] = useState(10);
 
 
     // ********************
@@ -98,6 +112,15 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
         });
     }, []);
 
+    const handleChangePage = (event: unknown, newPage: number) => {
+        setPage(newPage);
+    };
+
+    const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setRowsPerPage(+event.target.value);
+        setPage(0);
+    };
+
     /** ブレークポイントクエリ */
     const minQuery = "(min-width:" + props.breakPoint + "px)";
     const maxQuery = "(max-width:" + props.breakPoint + "px)";
@@ -117,9 +140,9 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
                     <>
                         <p css={result}><span css={hitCount}>{count}</span>件ヒットしました</p>
                         <MediaQuery query={minQuery}>
-                            <Grid item xs={11}>
+                            <Grid item xs={11} css={dataWidth}>
                                 <Box sx={{ p: 1}}>
-                                    <TableContainer sx={{ maxHeight: 800 }}>
+                                    <TableContainer sx={{ maxHeight: 640}}>
                                         <Table stickyHeader aria-label="sticky table">
                                             {/* ヘッダー */}
                                             <TableHead>
@@ -135,17 +158,27 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
                                             </TableHead>
                                             {/* ボディ */}
                                             <TableBody>
-                                                {enchantList.map(enchant => (
+                                                {enchantList.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(enchant => (
                                                     <SearchListBody enchant={enchant} valFlg={valFlag} key={enchant.enchant_id} />
                                                 ))}
                                             </TableBody>
                                         </Table>
                                     </TableContainer>
+                                    <TablePagination
+                                        rowsPerPageOptions={[10, 25, 100]}
+                                        component="div"
+                                        count={count}
+                                        rowsPerPage={rowsPerPage}
+                                        page={page}
+                                        onPageChange={handleChangePage}
+                                        onRowsPerPageChange={handleChangeRowsPerPage}
+                                        css={pagenation}
+                                    />
                                 </Box>
                             </Grid>
                         </MediaQuery>
                         <MediaQuery query={maxQuery}>
-                            <Grid item xs={12} css={spWidth}>
+                            <Grid item xs={12} css={dataWidth}>
                                 <Box sx={{ p: 1}}>
                                     {enchantList.map(enchant => (
                                         <EnchantCard enchant={enchant} valFlag={valFlag} key={enchant.enchant_id} />

@@ -14,10 +14,7 @@ import { positionColor, positionName } from "./positionFunction";
 export const SearchListBody = (props: {enchant: any, valFlg: boolean}) => {
     /** コンテント各行の基本スタイル */
     const tableContent = css ({
-        backgroundColor: '#33363b',
-        '&:nth-of-type(even)': {
-            backgroundColor: '#383B40'
-        },
+        backgroundColor: '#3C3B40',
         'td': {
             color: '#fff'
         },
