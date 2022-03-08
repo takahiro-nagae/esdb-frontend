@@ -41,7 +41,7 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
 
     /** テーブルヘッダー */
     const tableHeader = css ({
-        backgroundColor: '#282828',
+        backgroundColor: '#1F2023',
         color: '#fff',
         border: 'none'
     });
