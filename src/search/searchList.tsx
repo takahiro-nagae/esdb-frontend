@@ -105,7 +105,7 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
     return(
         <Box sx={{ mt: 3}}>
             <Grid container alignItems='center' direction='column' css={verticalCenter}>
-                { !loadingFlag && <ReactLoading type="spin" /> }
+                { !loadingFlag && <ReactLoading type="bubbles" /> }
                 { loadingFlag && count == 0 &&
                     <>
                         <p css={result}>検索結果は0件です</p>
