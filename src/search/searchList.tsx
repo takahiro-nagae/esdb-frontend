@@ -16,11 +16,14 @@ import TablePagination from '@mui/material/TablePagination';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell/TableCell';
+import IconButton from '@mui/material/IconButton';
+import { KeyboardDoubleArrowUp } from '@mui/icons-material';
+import { animateScroll as scroll } from "react-scroll";
 
 /** ローカルライブラリ */
 import { SearchListBody } from './searchListBody';
 import { EnchantCard } from './enchantCard';
-import { width } from '@mui/system';
+
 
 /**
  * 検索結果一覧
@@ -63,6 +66,14 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
     const verticalCenter = css ({
         position: 'absolute',
         top: '50%'
+    });
+
+    /**  トップに戻るアイコンの設定 */
+    const topIcon = css({
+        position: 'fixed',
+        right: '10px',
+        bottm: '10px',
+        color: '#fff'
     });
 
     /** 遷移元からのデータ */
@@ -119,6 +130,10 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
     const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
         setRowsPerPage(+event.target.value);
         setPage(0);
+    };
+
+    const scrollToTop = () => {
+        scroll.scrollToTop();
     };
 
     /** ブレークポイントクエリ */
@@ -185,6 +200,9 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
                                     ))}
                                 </Box>
                             </Grid>
+                            <IconButton color="secondary" aria-label="add an alarm" css={topIcon} onClick={scrollToTop} style={{ position: 'fixed', bottom: '40px' }}>
+                                <KeyboardDoubleArrowUp sx={{ fontSize: 40 }} />
+                            </IconButton>
                         </MediaQuery>
                     </>
                 }
