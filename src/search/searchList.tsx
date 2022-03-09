@@ -73,7 +73,6 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
         position: 'fixed',
         right: '20px',
         color: '#fff',
-        background: '#282828'
     });
 
     /** 遷移元からのデータ */
@@ -200,7 +199,7 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
                                     ))}
                                 </Box>
                             </Grid>
-                            <IconButton color="secondary" aria-label="add an alarm" css={topIcon} onClick={scrollToTop} style={{ position: 'fixed', bottom: '48px' }}>
+                            <IconButton color="secondary" aria-label="add an alarm" css={topIcon} onClick={scrollToTop} style={{ position: 'fixed', bottom: '48px', background: '#282828' }}>
                                 <KeyboardDoubleArrowUp sx={{ fontSize: 40 }} />
                             </IconButton>
                         </MediaQuery>
