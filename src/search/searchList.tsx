@@ -71,9 +71,9 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
     /**  トップに戻るアイコンの設定 */
     const topIcon = css({
         position: 'fixed',
-        right: '10px',
-        bottm: '10px',
-        color: '#fff'
+        right: '20px',
+        color: '#fff',
+        background: '#282828'
     });
 
     /** 遷移元からのデータ */
@@ -200,7 +200,7 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
                                     ))}
                                 </Box>
                             </Grid>
-                            <IconButton color="secondary" aria-label="add an alarm" css={topIcon} onClick={scrollToTop} style={{ position: 'fixed', bottom: '40px' }}>
+                            <IconButton color="secondary" aria-label="add an alarm" css={topIcon} onClick={scrollToTop} style={{ position: 'fixed', bottom: '48px' }}>
                                 <KeyboardDoubleArrowUp sx={{ fontSize: 40 }} />
                             </IconButton>
                         </MediaQuery>
