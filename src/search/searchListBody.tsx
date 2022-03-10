@@ -5,7 +5,7 @@ import { TableCell, TableRow } from "@material-ui/core";
 
 /** ローカルライブラリ */
 import effectColor from "./effectColor";
-import { RankModal } from "./rankModal";
+import { RankModal } from "./rank/rankModal";
 import { positionColor, positionName } from "./positionFunction";
 
 /**

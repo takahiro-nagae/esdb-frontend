@@ -19,7 +19,7 @@ import { About } from './static/about';
 import { AppHistory } from './static/appHistory';
 import { SearchList } from './search/searchList';
 import { PrivacyPolicy } from './static/privacyPolicy';
-import { RankIndex } from './search/rankIndex';
+import { RankIndex } from './search//rank/rankIndex';
 
 /**
  * テーマ
