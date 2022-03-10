@@ -19,6 +19,7 @@ import { About } from './static/about';
 import { AppHistory } from './static/appHistory';
 import { SearchList } from './search/searchList';
 import { PrivacyPolicy } from './static/privacyPolicy';
+import { RankIndex } from './search/rankIndex';
 
 /**
  * テーマ
@@ -96,6 +97,8 @@ ReactDOM.render(
         <Route path='privacyPolicy' element={<PrivacyPolicy />} />
         {/* 検索結果 */}
         <Route path='detail' element={<SearchList maxWidth={maxWidth} breakPoint={breakpoints[0]} />} />
+        {/* ランク（検索インデックス用） */}
+        <Route path='rank/:rank' element={<RankIndex />} />
       </Routes>
       <Footer />
     </Router>
