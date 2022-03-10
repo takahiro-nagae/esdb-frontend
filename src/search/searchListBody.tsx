@@ -30,6 +30,9 @@ export const SearchListBody = (props: {enchant: any, valFlg: boolean}) => {
     /** 入手先を配列化 */
     const routeNameArray:Array<any> = props.enchant.route_name && props.enchant.route_name.split('@');
 
+    /** 省略までの件数 */
+    const omtCount = 3;
+
     return(
         <TableRow css={tableContent}>
             {/* 名称 */}
@@ -55,9 +58,10 @@ export const SearchListBody = (props: {enchant: any, valFlg: boolean}) => {
             </TableCell>
             {/* 入手先 */}
             <TableCell>
-                {routeNameArray && routeNameArray.map((route, index) => (
+                {routeNameArray && routeNameArray.slice(0,omtCount).map((route, index) => (
                     <p dangerouslySetInnerHTML={{ __html: route }} key={index}></p>
                 ))}
+                {routeNameArray.length > omtCount && <a><small>&#187;{routeNameArray.length-3}件省略しました</small></a>}
             </TableCell>
         </TableRow>
     );
