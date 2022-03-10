@@ -58,10 +58,10 @@ export const SearchListBody = (props: {enchant: any, valFlg: boolean}) => {
             </TableCell>
             {/* 入手先 */}
             <TableCell>
-                {routeNameArray && routeNameArray.slice(0,omtCount).map((route, index) => (
+                {routeNameArray && routeNameArray.slice(0, omtCount).map((route, index) => (
                     <p dangerouslySetInnerHTML={{ __html: route }} key={index}></p>
                 ))}
-                {routeNameArray.length > omtCount && <a><small>&#187;{routeNameArray.length-3}件省略しました</small></a>}
+                {routeNameArray != undefined && routeNameArray.length > omtCount && <a><small>&#187;{routeNameArray.length-3}件省略しました</small></a>}
             </TableCell>
         </TableRow>
     );
