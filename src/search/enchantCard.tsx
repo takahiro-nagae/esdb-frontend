@@ -13,7 +13,7 @@ import Typography from '@mui/material/Typography';
 
 /** ローカルライブラリ */
 import { positionColor, positionName } from './positionFunction';
-import { RankModal } from './rankModal';
+import { RankModal } from './rank/rankModal';
 import effectColor from './effectColor';
 
 /**
