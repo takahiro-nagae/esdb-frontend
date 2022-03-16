@@ -13,16 +13,16 @@ import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import TableCell from '@mui/material/TableCell/TableCell';
 import IconButton from '@mui/material/IconButton';
 import { KeyboardDoubleArrowUp } from '@mui/icons-material';
 import { animateScroll as scroll } from "react-scroll";
 
 /** ローカルライブラリ */
-import { SearchListBody } from './searchListBody';
+import { SearchListBody } from './pc/searchListBody';
 import { EnchantCard } from './enchantCard';
+import { Order } from './pc/order';
+import { HeadData } from './pc/headData';
+import { SearchListHead } from './pc/searchListHead';
 
 
 /**
@@ -42,19 +42,15 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
         fontSize: '18px'
     });
 
-    /** テーブルヘッダー */
-    const tableHeader = css ({
-        backgroundColor: '#1F2023',
-        color: '#fff',
-        border: 'none'
-    });
-
     /** ページネーション */
     const pagenation = css ({
         backgroundColor: '#3C3B40',
         color: '#ccc',
         borderTop: '1px solid rgba(81, 81, 81, 1)',
-        borderBottom: '1px solid rgba(81, 81, 81, 1)'
+        borderBottom: '1px solid rgba(81, 81, 81, 1)',
+        '.css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon' : {
+            color: '#fff'
+        }
     });
 
     /** スマホの横幅指定 */
@@ -93,6 +89,53 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
     const [page, setPage] = useState(0);
     /** 現在のページ */
     const [rowsPerPage, setRowsPerPage] = useState(10);
+    /** 並び順 */
+    const [order, setOrder] = useState<Order>('desc');
+    /** 並び替えのプロパティ */
+    const [orderBy, setOrderBy] = useState<keyof HeadData>('enchant_name');
+
+    function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
+        if (b[orderBy] < a[orderBy]) {
+          return -1;
+        }
+        if (b[orderBy] > a[orderBy]) {
+          return 1;
+        }
+        return 0;
+    }
+
+    function getComparator<Key extends keyof any>(
+        order: Order,
+        orderBy: Key,
+      ): (
+        a: { [key in Key]: number | string },
+        b: { [key in Key]: number | string },
+      ) => number {
+        return order === 'desc'
+          ? (a, b) => descendingComparator(a, b, orderBy)
+          : (a, b) => -descendingComparator(a, b, orderBy);
+    }
+    function stableSort<T>(array: readonly T[], comparator: (a: T, b: T) => number) {
+        const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
+        stabilizedThis.sort((a, b) => {
+          const order = comparator(a[0], b[0]);
+          if (order !== 0) {
+            return order;
+          }
+          return a[1] - b[1];
+        });
+        return stabilizedThis.map((el) => el[0]);
+      }
+
+
+    const handleRequestSort = (
+        event: React.MouseEvent<unknown>,
+        property: keyof HeadData,
+      ) => {
+        const isAsc = orderBy === property && order === 'asc';
+        setOrder(isAsc ? 'desc' : 'asc');
+        setOrderBy(property);
+    };
 
 
     // ********************
@@ -111,8 +154,9 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
                 // 件数
                 setcount(res.data.length);
                 // 値の表示フラグ
-                if(count > 0) {
+                if(res.data.length > 0) {
                     setValFlag(res.data[0].disp_val != undefined)
+                    setOrderBy('disp_val')
                 }
                 // ローディング完了
                 setLoadingFlag(true);
@@ -156,24 +200,14 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
                         <MediaQuery query={minQuery}>
                             <Grid item xs={11} css={dataWidth}>
                                 <Box sx={{ p: 1}}>
-                                    <TableContainer sx={{ maxHeight: 640}}>
-                                        <Table stickyHeader aria-label="sticky table">
+                                    <TableContainer>
+                                        <Table>
                                             {/* ヘッダー */}
-                                            <TableHead>
-                                                    <TableRow>
-                                                    <TableCell css={tableHeader}>名称</TableCell>
-                                                    <TableCell css={tableHeader}>位置</TableCell>
-                                                    <TableCell css={tableHeader}>ランク</TableCell>
-                                                    <TableCell css={tableHeader}>対象</TableCell>
-                                                    { valFlag && <TableCell css={tableHeader}>値</TableCell> }
-                                                    <TableCell css={tableHeader}>効果</TableCell>
-                                                    <TableCell css={tableHeader}>入手先</TableCell>
-                                                </TableRow>
-                                            </TableHead>
+                                            <SearchListHead onRequestSort={handleRequestSort} order={order} orderBy={orderBy} valFlg={valFlag} />
                                             {/* ボディ */}
                                             <TableBody>
-                                                {enchantList.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(enchant => (
-                                                    <SearchListBody enchant={enchant} valFlg={valFlag} key={enchant.enchant_id} />
+                                                {stableSort(enchantList, getComparator(order, orderBy)).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(enchant => (
+                                                    <SearchListBody enchant={enchant} valFlg={valFlag} key={enchant.enchant_name} />
                                                 ))}
                                             </TableBody>
                                         </Table>
