@@ -4,9 +4,9 @@ import { css } from '@emotion/react';
 import { TableCell, TableRow } from "@material-ui/core";
 
 /** ローカルライブラリ */
-import effectColor from "./effectColor";
-import { RankModal } from "./rank/rankModal";
-import { positionColor, positionName } from "./positionFunction";
+import effectColor from "../effectColor";
+import { RankModal } from "../rank/rankModal";
+import { positionColor, positionName } from "../positionFunction";
 
 /**
  * PCの検索一覧
