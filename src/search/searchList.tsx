@@ -12,7 +12,6 @@ import { Box, Grid } from '@material-ui/core';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
-import TablePagination from '@mui/material/TablePagination';
 import IconButton from '@mui/material/IconButton';
 import { KeyboardDoubleArrowUp } from '@mui/icons-material';
 import { animateScroll as scroll } from "react-scroll";
@@ -23,6 +22,7 @@ import { EnchantCard } from './enchantCard';
 import { Order } from './pc/order';
 import { HeadData } from './pc/headData';
 import { SearchListHead } from './pc/searchListHead';
+import { Pagination } from './pc/pagination';
 
 
 /**
@@ -40,17 +40,6 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
     const hitCount = css({
         color: '#f00',
         fontSize: '18px'
-    });
-
-    /** ページネーション */
-    const pagenation = css ({
-        backgroundColor: '#3C3B40',
-        color: '#ccc',
-        borderTop: '1px solid rgba(81, 81, 81, 1)',
-        borderBottom: '1px solid rgba(81, 81, 81, 1)',
-        '.css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon' : {
-            color: '#fff'
-        }
     });
 
     /** スマホの横幅指定 */
@@ -85,14 +74,14 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
     const [valFlag, setValFlag] = useState(false);
     /** ローディングフラグ */
     const [loadingFlag, setLoadingFlag] = useState(false);
-    /** ページ */
-    const [page, setPage] = useState(0);
-    /** 現在のページ */
-    const [rowsPerPage, setRowsPerPage] = useState(10);
     /** 並び順 */
     const [order, setOrder] = useState<Order>('desc');
     /** 並び替えのプロパティ */
     const [orderBy, setOrderBy] = useState<keyof HeadData>('enchant_name');
+    /** ページ */
+    const [page, setPage] = useState(0);
+    /** 現在のページ */
+    const [rowsPerPage, setRowsPerPage] = useState(10);
 
     function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
         if (b[orderBy] < a[orderBy]) {
@@ -137,6 +126,14 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
         setOrderBy(property);
     };
 
+    const handleChangePage = (event: unknown, newPage: number) => {
+        setPage(newPage);
+    };
+
+    const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setRowsPerPage(+event.target.value);
+        setPage(0);
+    };
 
     // ********************
     // 初期表示
@@ -165,15 +162,6 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
             console.log(error)
         });
     }, []);
-
-    const handleChangePage = (event: unknown, newPage: number) => {
-        setPage(newPage);
-    };
-
-    const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setRowsPerPage(+event.target.value);
-        setPage(0);
-    };
 
     const scrollToTop = () => {
         scroll.scrollToTop();
@@ -212,16 +200,7 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
                                             </TableBody>
                                         </Table>
                                     </TableContainer>
-                                    <TablePagination
-                                        rowsPerPageOptions={[10, 25, 100]}
-                                        component="div"
-                                        count={count}
-                                        rowsPerPage={rowsPerPage}
-                                        page={page}
-                                        onPageChange={handleChangePage}
-                                        onRowsPerPageChange={handleChangeRowsPerPage}
-                                        css={pagenation}
-                                    />
+                                    <Pagination count={count} page={page} rowsPerPage={rowsPerPage} handleChangePage={handleChangePage} handleChangeRowsPerPage={handleChangeRowsPerPage} />
                                 </Box>
                             </Grid>
                         </MediaQuery>
