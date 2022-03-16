@@ -1,7 +1,11 @@
+/** 標準ライブラリ */
 import { useParams } from "react-router-dom";
+
+/** サードパーティーライブラリ」 */
 import { Box, Grid } from '@material-ui/core';
 
-import { Rank } from "./rank"
+/** ローカルライブラリ */
+import { Rank } from "./rank";
 
 /**
  *
