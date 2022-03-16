@@ -44,6 +44,10 @@ export const Rank = (props: {rank: any}) => {
         backgroundColor: '#0854a3',
     });
 
+    const row = css({
+        backgroundColor: '#3C3B40'
+    });
+
 
     // ********************
     // 初期表示
@@ -76,7 +80,7 @@ export const Rank = (props: {rank: any}) => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    <TableRow>
+                    <TableRow css={row}>
                         <TableCell>木曜日以外</TableCell>
                         <TableCell>{rankData.normal_rate}</TableCell>
                         <TableCell>{rankData.elite_rate}</TableCell>
@@ -84,7 +88,7 @@ export const Rank = (props: {rank: any}) => {
                         <TableCell>{rankData.ancient_rate}</TableCell>
                         <TableCell>{rankData.rare_holy_rate}</TableCell>
                     </TableRow>
-                    <TableRow>
+                    <TableRow css={row}>
                         <TableCell>木曜日</TableCell>
                         <TableCell>{rankData.normal_rate_thu}</TableCell>
                         <TableCell>{rankData.elite_rate_thu}</TableCell>
