@@ -81,7 +81,7 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
     /** ページ */
     const [page, setPage] = useState(0);
     /** 現在のページ */
-    const [rowsPerPage, setRowsPerPage] = useState(10);
+    const [rowsPerPage, setRowsPerPage] = useState(30);
 
     function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
         if (b[orderBy] < a[orderBy]) {
@@ -104,6 +104,7 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
           ? (a, b) => descendingComparator(a, b, orderBy)
           : (a, b) => -descendingComparator(a, b, orderBy);
     }
+
     function stableSort<T>(array: readonly T[], comparator: (a: T, b: T) => number) {
         const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
         stabilizedThis.sort((a, b) => {
@@ -116,7 +117,6 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
         return stabilizedThis.map((el) => el[0]);
       }
 
-
     const handleRequestSort = (
         event: React.MouseEvent<unknown>,
         property: keyof HeadData,
@@ -126,10 +126,12 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
         setOrderBy(property);
     };
 
+    /** ページ変更 */
     const handleChangePage = (event: unknown, newPage: number) => {
         setPage(newPage);
     };
 
+    /** ページに表示する件数の変更 */
     const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
         setRowsPerPage(+event.target.value);
         setPage(0);

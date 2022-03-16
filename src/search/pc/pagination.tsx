@@ -25,7 +25,7 @@ export const Pagination = (props: {count: number, page: number, rowsPerPage: num
 
     return(
         <TablePagination
-            rowsPerPageOptions={[10, 25, 100]}
+            rowsPerPageOptions={[30, 60, 100]}
             component="div"
             count={props.count}
             rowsPerPage={props.rowsPerPage}
