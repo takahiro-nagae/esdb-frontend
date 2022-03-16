@@ -15,6 +15,7 @@ import Typography from '@mui/material/Typography';
 import { positionColor, positionName } from './positionFunction';
 import { RankModal } from './rank/rankModal';
 import effectColor from './effectColor';
+import { createEnchantName, createEnchantNameEn, subTitleStyle } from "./enchantNameFunction";
 
 /**
  * エンチャントカード
@@ -37,11 +38,6 @@ export const EnchantCard = (props: {enchant: any, valFlag: boolean}) => {
     const title = css({
         color: '#fff',
         fontWeight: 'bold'
-    });
-
-    /** サブタイトル（エンチャント英名） */
-    const subtitle = css({
-        color: '#aaa'
     });
 
     /** 対象の見た目 */
@@ -92,11 +88,11 @@ export const EnchantCard = (props: {enchant: any, valFlag: boolean}) => {
                     <Box>
                         {/* エンチャント名 */}
                         <Typography variant="subtitle1" css={title} >
-                            {props.enchant.enchant_name}
+                            {createEnchantName(props.enchant.enchant_name, props.enchant.enchant_name_2)}
                         </Typography>
                         {/* エンチャント英名 */}
-                        <Typography variant="subtitle2" css={subtitle}>
-                            {props.enchant.enchant_name_en}
+                        <Typography variant="subtitle2" css={subTitleStyle}>
+                            {createEnchantNameEn(props.enchant.enchant_name_en, props.enchant.position_id)}
                         </Typography>
                         <div>
                             {/* 位置 */}
