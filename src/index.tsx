@@ -20,6 +20,7 @@ import { AppHistory } from './static/appHistory';
 import { SearchList } from './search/searchList';
 import { PrivacyPolicy } from './static/privacyPolicy';
 import { RankIndex } from './search//rank/rankIndex';
+import { DetailIndex } from './search/detail/detailIndex';
 
 /**
  * テーマ
@@ -99,6 +100,8 @@ ReactDOM.render(
         <Route path='detail' element={<SearchList maxWidth={maxWidth} breakPoint={breakpoints[0]} />} />
         {/* ランク（検索インデックス用） */}
         <Route path='rank/:rank' element={<RankIndex />} />
+        {/* エンチャント詳細（検索インデックス用） */}
+        <Route path='detail/:enchant_id' element={<DetailIndex />} />
       </Routes>
       <Footer />
     </Router>

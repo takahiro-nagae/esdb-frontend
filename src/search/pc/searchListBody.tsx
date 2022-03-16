@@ -7,6 +7,8 @@ import { TableCell, TableRow } from "@material-ui/core";
 import effectColor from "../effectColor";
 import { RankModal } from "../rank/rankModal";
 import { positionColor, positionName } from "../positionFunction";
+import { createEnchantName, createEnchantNameEn, subTitleStyle } from '../enchantNameFunction';
+import { DetailModal } from '../detail/detailModal';
 
 /**
  * PCの検索一覧
@@ -37,8 +39,8 @@ export const SearchListBody = (props: {enchant: any, valFlg: boolean}) => {
         <TableRow css={tableContent}>
             {/* 名称 */}
             <TableCell>
-                <span>{props.enchant.enchant_name}</span><br />
-                <small>{props.enchant.enchant_name_en}</small>
+                <span>{createEnchantName(props.enchant.enchant_name, props.enchant.enchant_name_2)}</span><br />
+                <small css={subTitleStyle}>{createEnchantNameEn(props.enchant.enchant_name_en, props.enchant.position_id)}</small>
             </TableCell>
             {/* 位置 */}
             <TableCell css={positionColor(props.enchant.position_id)} >{positionName(props.enchant.position_id)}</TableCell>
@@ -61,7 +63,7 @@ export const SearchListBody = (props: {enchant: any, valFlg: boolean}) => {
                 {routeNameArray && routeNameArray.slice(0, omtCount).map((route, index) => (
                     <p dangerouslySetInnerHTML={{ __html: route }} key={index}></p>
                 ))}
-                {routeNameArray != undefined && routeNameArray.length > omtCount && <a><small>&#187;{routeNameArray.length-3}件省略しました</small></a>}
+                {routeNameArray != undefined && routeNameArray.length > omtCount && <DetailModal enchant_id={props.enchant.enchant_id} count={routeNameArray.length - omtCount} />}
             </TableCell>
         </TableRow>
     );
