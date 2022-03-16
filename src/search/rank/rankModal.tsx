@@ -47,7 +47,7 @@ export const RankModal = (props: {rank: string}) => {
         left: '50%',
         width: '85%',
         transform: 'translate(-50%, -50%)',
-        backgroundColor: '#383B40',
+        backgroundColor: '#27292D',
         padding: '16px'
     });
 
