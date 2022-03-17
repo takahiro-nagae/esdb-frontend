@@ -28,7 +28,7 @@ import { Pagination } from './pc/pagination';
 /**
  * 検索結果一覧
  */
-export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
+export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearchFlg: boolean}) => {
 
     /** 検索結果の文字列 */
     const result = css({
@@ -75,9 +75,9 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
     /** ローディングフラグ */
     const [loadingFlag, setLoadingFlag] = useState(false);
     /** 並び順 */
-    const [order, setOrder] = useState<Order>('desc');
+    const [order, setOrder] = useState<Order>('asc');
     /** 並び替えのプロパティ */
-    const [orderBy, setOrderBy] = useState<keyof HeadData>('enchant_name');
+    const [orderBy, setOrderBy] = useState<keyof HeadData>('enchant_id');
     /** ページ */
     const [page, setPage] = useState(0);
     /** 現在のページ */
@@ -141,19 +141,29 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
     // 初期表示
     // ********************
     useEffect(() => {
-        const requestParams = '?enchantName=' + searchParams.get('enchantName') + '&effect=' + searchParams.get('effect') + '&effectVal=' + searchParams.get('effectVal')
-                            + '&range=' + searchParams.get('range') + '&rank=' + searchParams.get('rank') + '&target=' + searchParams.get('target')
-                            + '&position=' + searchParams.get('position') + '&rankRange=' + searchParams.get('rankRange') ;
 
-        axios.get('https://wd5zeazzd9.execute-api.ap-northeast-1.amazonaws.com/Prod/detail' + requestParams)
+        let path = '';
+        let requestParams = '';
+
+        if(props.freeSearchFlg) {
+            path = '/search'
+            requestParams = '?search=' + searchParams.get('search');
+        } else {
+            path = '/detail'
+            requestParams = '?enchantName=' + searchParams.get('enchantName') + '&effect=' + searchParams.get('effect') + '&effectVal=' + searchParams.get('effectVal')
+            + '&range=' + searchParams.get('range') + '&rank=' + searchParams.get('rank') + '&target=' + searchParams.get('target')
+            + '&position=' + searchParams.get('position') + '&rankRange=' + searchParams.get('rankRange') ;
+        }
+
+        axios.get('https://wd5zeazzd9.execute-api.ap-northeast-1.amazonaws.com/Prod' + path + requestParams)
         .then((res) => {
             if(res.data != undefined) {
-                // 効果
+                // エンチャント一覧
                 setEnchantList(res.data);
                 // 件数
                 setcount(res.data.length);
                 // 値の表示フラグ
-                if(res.data.length > 0) {
+                if(count > 0) {
                     setValFlag(res.data[0].disp_val != undefined)
                     setOrderBy('disp_val')
                 }
@@ -197,7 +207,7 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number}) => {
                                             {/* ボディ */}
                                             <TableBody>
                                                 {stableSort(enchantList, getComparator(order, orderBy)).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(enchant => (
-                                                    <SearchListBody enchant={enchant} valFlg={valFlag} key={enchant.enchant_name} />
+                                                    <SearchListBody enchant={enchant} valFlg={valFlag} key={enchant.enchant_id} />
                                                 ))}
                                             </TableBody>
                                         </Table>

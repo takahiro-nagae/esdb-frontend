@@ -15,9 +15,6 @@ export const SearchFormContainer = (props: {mq: any, maxWidth: any}) => {
                   justifyContent="center"
                   css={props.maxWidth}
             >
-                <Grid item xs ={11}>
-                    <FreeSearch mq={props.mq}/>
-                </Grid>
                 <Grid item xs={11}>
                     <Paper>
                         <Box sx={{ p: 2}}>
