@@ -86,7 +86,7 @@ ReactDOM.render(
       }
     }}/>
     <Router>
-      <Header />
+      <Header mq={mq} breakPoint={breakpoints[0]} />
       <Routes>
         {/* ホーム */}
         <Route path="/" element={<Home mq={mq} maxWidth={maxWidth} />} />
@@ -97,7 +97,9 @@ ReactDOM.render(
         {/* プライバシーポリシー */}
         <Route path='privacyPolicy' element={<PrivacyPolicy />} />
         {/* 検索結果 */}
-        <Route path='detail' element={<SearchList maxWidth={maxWidth} breakPoint={breakpoints[0]} />} />
+        <Route path='detail' element={<SearchList maxWidth={maxWidth} breakPoint={breakpoints[0]} freeSearchFlg={false} />} />
+        {/* 自由入力検索結果 */}
+        <Route path='search' element={<SearchList maxWidth={maxWidth} breakPoint={breakpoints[0]} freeSearchFlg={true} />} />
         {/* ランク（検索インデックス用） */}
         <Route path='rank/:rank' element={<RankIndex />} />
         {/* エンチャント詳細（検索インデックス用） */}
