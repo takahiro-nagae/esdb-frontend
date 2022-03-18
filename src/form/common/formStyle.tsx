@@ -21,11 +21,11 @@ export const selectBox = css({
         background: '#fff',
     },
     '&.Mui-selected:hover': {
-        background: '#007DFF',
+        background: '#3680cd',
         color: '#fff',
     },
     '&.Mui-selected': {
-        background: '#007DFF',
+        background: '#3680cd',
         color: '#fff',
     }
 });

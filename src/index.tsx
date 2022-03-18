@@ -83,7 +83,7 @@ ReactDOM.render(
       },
       '.css-5tpxv9-MuiButtonBase-root-MuiToggleButton-root-RankForm': {
         fontSize: '0.78rem !important'
-      }
+      },
     }}/>
     <Router>
       <Header mq={mq} breakPoint={breakpoints[0]} />
