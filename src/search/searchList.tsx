@@ -165,6 +165,7 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearch
                 if(res.data.length > 0) {
                     setValFlag(res.data[0].disp_val != undefined)
                     setOrderBy('disp_val')
+                    setOrder('desc')
                 }
                 // ローディング完了
                 setLoadingFlag(true);
