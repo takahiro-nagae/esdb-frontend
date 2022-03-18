@@ -137,24 +137,23 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearch
         setPage(0);
     };
 
+    let path = '';
+    let requestParams = '';
+
+    if(props.freeSearchFlg) {
+        path = '/search'
+        requestParams = '?search=' + searchParams.get('search');
+    } else {
+        path = '/detail'
+        requestParams = '?enchantName=' + searchParams.get('enchantName') + '&effect=' + searchParams.get('effect') + '&effectVal=' + searchParams.get('effectVal')
+        + '&range=' + searchParams.get('range') + '&rank=' + searchParams.get('rank') + '&target=' + searchParams.get('target')
+        + '&position=' + searchParams.get('position') + '&rankRange=' + searchParams.get('rankRange') ;
+    }
+
     // ********************
     // 初期表示
     // ********************
     useEffect(() => {
-
-        let path = '';
-        let requestParams = '';
-
-        if(props.freeSearchFlg) {
-            path = '/search'
-            requestParams = '?search=' + searchParams.get('search');
-        } else {
-            path = '/detail'
-            requestParams = '?enchantName=' + searchParams.get('enchantName') + '&effect=' + searchParams.get('effect') + '&effectVal=' + searchParams.get('effectVal')
-            + '&range=' + searchParams.get('range') + '&rank=' + searchParams.get('rank') + '&target=' + searchParams.get('target')
-            + '&position=' + searchParams.get('position') + '&rankRange=' + searchParams.get('rankRange') ;
-        }
-
         axios.get('https://wd5zeazzd9.execute-api.ap-northeast-1.amazonaws.com/Prod' + path + requestParams)
         .then((res) => {
             if(res.data != undefined) {
@@ -173,7 +172,7 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearch
         }).catch((error) => {
             console.log(error)
         });
-    }, []);
+    }, [requestParams]);
 
     const scrollToTop = () => {
         scroll.scrollToTop();
