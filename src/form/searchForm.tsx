@@ -9,9 +9,7 @@ import { useNavigate, createSearchParams } from 'react-router-dom';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import { Grid } from '@material-ui/core';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
-import DeleteIcon from '@mui/icons-material/Delete';
 
 /** ローカルライブラリ */
 import { EnchantName } from './component/enchantName';
@@ -110,13 +108,8 @@ export const SearchForm = () => {
             <Target register={register} targetList={targetList} />
             {/* ボタン部 */}
             <Grid container alignItems='center'>
-                <Grid item xs={10}>
-                    <Button variant='contained' type='submit' color='primary' css={searchBtn} endIcon={<SearchIcon />}>検索</Button>
-                </Grid>
-                <Grid item xs={2} css={rightCanlcel}>
-                    <IconButton aria-label='delete' size='large' css={cancelStyle}>
-                        <DeleteIcon fontSize='inherit' />
-                    </IconButton>
+                <Grid item xs={12}>
+                    <Button variant='contained' type='submit' css={searchBtn} endIcon={<SearchIcon />}>検索</Button>
                 </Grid>
             </Grid>
         </form>

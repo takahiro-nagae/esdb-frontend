@@ -47,7 +47,7 @@ export const FreeSearch = (props: {mq: any}) => {
             width: '100%'
         },
         border: 'none !important',
-        marginLeft: '10px',
+        paddingLeft: '10px',
         backgroundColor: '#191919',
         color: '#fff',
     });
