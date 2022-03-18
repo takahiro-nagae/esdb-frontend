@@ -59,7 +59,7 @@ export const Effect = (props: {register: any, effectList: Array<any>}) => {
                             defaultValue=''
                             {...props.register('range')}
                         >
-                            <MenuItem value=''></MenuItem>
+                            <MenuItem value=''>指定なし</MenuItem>
                             <MenuItem value='1'>以上</MenuItem>
                             <MenuItem value='2'>以下</MenuItem>
                         </TextField>
