@@ -25,6 +25,11 @@ export const SearchListBody = (props: {enchant: any, valFlg: boolean}) => {
         }
     });
 
+    const red = css({
+        color: '#f00',
+        fontWeight: 'bold'
+    })
+
     /** 効果区分を配列化 */
     const effectKbnArray:Array<any> = props.enchant.effect_kbn && props.enchant.effect_kbn.split('@');
     /** 効果名を配列化 */
@@ -39,7 +44,10 @@ export const SearchListBody = (props: {enchant: any, valFlg: boolean}) => {
         <TableRow css={tableContent}>
             {/* 名称 */}
             <TableCell>
-                <span>{createEnchantName(props.enchant.enchant_name, props.enchant.enchant_name_2)}</span><br />
+                <span>{createEnchantName(props.enchant.enchant_name, props.enchant.enchant_name_2)}</span>
+                {props.enchant.invalid_target_flg == '1' && <small css={red}>　貼付不可</small>}
+                {props.enchant.imp_flg == '0' && <small css={red}>　未実装</small>}
+                <br />
                 <small css={subTitleStyle}>{createEnchantNameEn(props.enchant.enchant_name_en, props.enchant.position_id)}</small>
             </TableCell>
             {/* 位置 */}
