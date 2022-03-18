@@ -162,7 +162,7 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearch
                 // 件数
                 setcount(res.data.length);
                 // 値の表示フラグ
-                if(count > 0) {
+                if(res.data.length > 0) {
                     setValFlag(res.data[0].disp_val != undefined)
                     setOrderBy('disp_val')
                 }
