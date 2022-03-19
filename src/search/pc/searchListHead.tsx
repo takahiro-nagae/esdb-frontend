@@ -45,8 +45,10 @@ export const SearchListHead = (props: EnhancedTableProps) => {
         backgroundColor: '#1F2023',
         color: '#fff',
         border: 'none',
+        borderBottom: '1px solid rgba(81,81,81,1)',
         position: 'sticky',
-        top: '0',
+        top: '108px',
+        zIndex: '3',
         'path' : {
             color: '#fff'
         }
