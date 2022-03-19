@@ -16,6 +16,7 @@ import { positionColor, positionName } from './positionFunction';
 import { RankModal } from './rank/rankModal';
 import effectColor from './effectColor';
 import { createEnchantName, createEnchantNameEn, subTitleStyle } from "./enchantNameFunction";
+import { GroundButton } from "./ground/groundButton";
 
 /**
  * エンチャントカード
@@ -101,6 +102,7 @@ export const EnchantCard = (props: {enchant: any, valFlag: boolean}) => {
                             <Typography variant='body1' css={inline} ><small>ランク</small></Typography>
                             {/* ランク */}
                             <RankModal rank={props.enchant.rank} />
+                            <GroundButton enchant_id={props.enchant.enchant_id} rank_ignore_flg={props.enchant.rank_ignore_flg} rank_seq={props.enchant.rank_seq} />
                         </div>
                     </Box>
                     <Box>

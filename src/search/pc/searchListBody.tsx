@@ -9,6 +9,7 @@ import { RankModal } from "../rank/rankModal";
 import { positionColor, positionName } from "../positionFunction";
 import { createEnchantName, createEnchantNameEn, subTitleStyle } from '../enchantNameFunction';
 import { DetailModal } from '../detail/detailModal';
+import { GroundButton } from '../ground/groundButton';
 
 /**
  * PCの検索一覧
@@ -49,12 +50,14 @@ export const SearchListBody = (props: {enchant: any, valFlg: boolean}) => {
                 {props.enchant.imp_flg == '0' && <small css={red}>　未実装</small>}
                 <br />
                 <small css={subTitleStyle}>{createEnchantNameEn(props.enchant.enchant_name_en, props.enchant.position_id)}</small>
+
             </TableCell>
             {/* 位置 */}
             <TableCell css={positionColor(props.enchant.position_id)} >{positionName(props.enchant.position_id)}</TableCell>
             {/* ランク */}
             <TableCell>
-                <RankModal rank={props.enchant.rank} />
+                <RankModal rank={props.enchant.rank} /><br />
+                <GroundButton enchant_id={props.enchant.enchant_id} rank_ignore_flg={props.enchant.rank_ignore_flg} rank_seq={props.enchant.rank_seq} />
             </TableCell>
             {/* 対象 */}
             <TableCell>{props.enchant.target_name}</TableCell>
