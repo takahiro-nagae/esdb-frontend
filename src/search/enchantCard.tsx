@@ -85,64 +85,64 @@ export const EnchantCard = (props: {enchant: any, valFlag: boolean}) => {
                     padding: '8px',
                     margin: '8px',
                     boxSizing: 'border-box' }}>
-                <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around' }}>
-                    <Box>
-                        {/* エンチャント名 */}
-                        <Typography variant="subtitle1" css={title} >
-                            {createEnchantName(props.enchant.enchant_name, props.enchant.enchant_name_2)}
-                        </Typography>
-                        {/* エンチャント英名 */}
-                        <Typography variant="subtitle2" css={subTitleStyle}>
-                            {createEnchantNameEn(props.enchant.enchant_name_en, props.enchant.position_id)}
-                        </Typography>
-                        <div>
-                            {/* 位置 */}
-                            <Typography style={{display: 'inline'}}
-                                variant="subtitle2" css={positionColor(props.enchant.position_id)} >{positionName(props.enchant.position_id)}</Typography>
-                            <Typography variant='body1' css={inline} ><small>ランク</small></Typography>
-                            {/* ランク */}
-                            <RankModal rank={props.enchant.rank} />
-                            <GroundButton enchant_id={props.enchant.enchant_id} rank_ignore_flg={props.enchant.rank_ignore_flg} rank_seq={props.enchant.rank_seq} />
-                        </div>
-                    </Box>
-                    <Box>
-                        {props.valFlag && <p css={value}>{props.enchant.disp_val}</p> }
-                    </Box>
-                    <Box>
-                        <IconButton css={accIcon} aria-label="expand row" onClick={() => setOpen(!open)}>
-                            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-                        </IconButton>
-                    </Box>
+            <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around' }}>
+                <Box>
+                    {/* エンチャント名 */}
+                    <Typography variant="subtitle1" css={title} >
+                        {createEnchantName(props.enchant.enchant_name, props.enchant.enchant_name_2)}
+                    </Typography>
+                    {/* エンチャント英名 */}
+                    <Typography variant="subtitle2" css={subTitleStyle}>
+                        {createEnchantNameEn(props.enchant.enchant_name_en, props.enchant.position_id)}
+                    </Typography>
+                    <div>
+                        {/* 位置 */}
+                        <Typography style={{display: 'inline'}}
+                            variant="subtitle2" css={positionColor(props.enchant.position_id)} >{positionName(props.enchant.position_id)}</Typography>
+                        <Typography variant='body1' css={inline} ><small>ランク</small></Typography>
+                        {/* ランク */}
+                        <RankModal rank={props.enchant.rank} />
+                        <GroundButton enchant_id={props.enchant.enchant_id} rank_ignore_flg={props.enchant.rank_ignore_flg} rank_seq={props.enchant.rank_seq} />
+                    </div>
                 </Box>
-                {/* アコーディオン内コンテンツ */}
-                <Collapse in={open} timeout="auto" unmountOnExit>
-                        <Box sx={{ paddingBottom: 10 }}>
-                            {/* 対象 */}
-                            <p css={target}>対象：{props.enchant.target_name}</p>
-                            <Table size="small" aria-label="purchases">
-                                <TableBody>
-                                    {/* 効果 */}
-                                    <TableRow>
-                                        <TableCell css={acodHead}>効果</TableCell>
-                                        <TableCell css={accBody}>
-                                            { effectKbnArray && effectKbnArray.map((effectKbn, index) =>
-                                                <p css={effectColor(effectKbn)} key={index} >{effectNameArray[index]}</p>
-                                            )}
-                                        </TableCell>
-                                    </TableRow>
-                                    {/* 入手先 */}
-                                    <TableRow>
-                                        <TableCell css={acodHead}>入手先</TableCell>
-                                        <TableCell css={accBody}>
-                                            {routeNameArray && routeNameArray.map((route, index) => (
-                                                <p dangerouslySetInnerHTML={{ __html: route }} key={index} css={routeFont}></p>
-                                            ))}
-                                        </TableCell>
-                                    </TableRow>
-                                </TableBody>
-                            </Table>
-                        </Box>
-                </Collapse>
+                <Box>
+                    {props.valFlag && <p css={value}>{props.enchant.disp_val}</p> }
+                </Box>
+                <Box>
+                    <IconButton css={accIcon} aria-label="expand row" onClick={() => setOpen(!open)}>
+                        {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                    </IconButton>
+                </Box>
+            </Box>
+            {/* アコーディオン内コンテンツ */}
+            <Collapse in={open} timeout="auto" unmountOnExit>
+                    <Box sx={{ paddingBottom: 10 }}>
+                        {/* 対象 */}
+                        <p css={target}>対象：{props.enchant.target_name}</p>
+                        <Table size="small" aria-label="purchases">
+                            <TableBody>
+                                {/* 効果 */}
+                                <TableRow>
+                                    <TableCell css={acodHead}>効果</TableCell>
+                                    <TableCell css={accBody}>
+                                        { effectKbnArray && effectKbnArray.map((effectKbn, index) =>
+                                            <p css={effectColor(effectKbn)} key={index} >{effectNameArray[index]}</p>
+                                        )}
+                                    </TableCell>
+                                </TableRow>
+                                {/* 入手先 */}
+                                <TableRow>
+                                    <TableCell css={acodHead}>入手先</TableCell>
+                                    <TableCell css={accBody}>
+                                        {routeNameArray && routeNameArray.map((route, index) => (
+                                            <p dangerouslySetInnerHTML={{ __html: route }} key={index} css={routeFont}></p>
+                                        ))}
+                                    </TableCell>
+                                </TableRow>
+                            </TableBody>
+                        </Table>
+                    </Box>
+            </Collapse>
         </Card>
     );
 }
