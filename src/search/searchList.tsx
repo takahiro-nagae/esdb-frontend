@@ -23,12 +23,17 @@ import { Order } from './pc/order';
 import { HeadData } from './pc/headData';
 import { SearchListHead } from './pc/searchListHead';
 import { Pagination } from './pc/pagination';
+import { positionName } from './positionFunction';
 
 
 /**
  * 検索結果一覧
  */
 export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearchFlg: boolean}) => {
+
+    /** ブレークポイントクエリ */
+    const minQuery = "(min-width:" + props.breakPoint + "px)";
+    const maxQuery = "(max-width:" + props.breakPoint + "px)";
 
     /** 検索結果の文字列 */
     const result = css({
@@ -45,6 +50,54 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearch
     /** スマホの横幅指定 */
     const dataWidth = css ({
        width: '100%'
+    });
+
+    /** フリー検索の外枠 */
+    const freeSearchBox = css({
+        width: '100%',
+        height: '44px',
+        boxSizing: 'border-box',
+        textAlign: 'right',
+        backgroundColor: '#1F2023',
+        paddingTop: '8px',
+        paddingRight: '8px',
+        position: 'sticky',
+        top: '64px',
+        zIndex: '3'
+    })
+
+    const freeSearchBoxSp = css({
+        width: '100%',
+        height: '56px',
+        boxSizing: 'border-box',
+        textAlign: 'right',
+        backgroundColor: '#1F2023',
+        marginTop: '-3px',
+        paddingTop: '8px',
+        paddingRight: '8px',
+        position: 'sticky',
+        top: '56px',
+        zIndex: '3'
+    });
+
+    /** 検索インプットのスタイル */
+    const freeSearchInput = css({
+        border: '1px solid #424242',
+        backgroundColor: '#191919',
+        paddingLeft: '8px',
+        width: '99%',
+        height: '32px',
+        color: '#fff'
+    });
+
+    /** 検索インプットのスタイル */
+    const freeSearchInputSp = css({
+        border: '1px solid #424242',
+        backgroundColor: '#191919',
+        paddingLeft: '8px',
+        width: '95%',
+        height: '32px',
+        color: '#fff'
     });
 
     /** ローディングや検索結果なしの表示 */
@@ -68,8 +121,12 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearch
     // ********************
     /** エンチャント一覧 */
     const [enchantList, setEnchantList] = useState(Array(0));
+    /** 表示する一覧 */
+    const [rowData, setRowData] = useState(Array(0));
     /** 件数 */
     const [count, setcount] = useState(0);
+    /** 表示用件数 */
+    const [dispCount, setDispCount] = useState(0);
     /** 値表示のフラグ */
     const [valFlag, setValFlag] = useState(false);
     /** ローディングフラグ */
@@ -82,6 +139,8 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearch
     const [page, setPage] = useState(0);
     /** 現在のページ */
     const [rowsPerPage, setRowsPerPage] = useState(30);
+    /** 検索ワード */
+    const [searchWord, setSearchWord] = useState('');
 
     function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
         if (b[orderBy] < a[orderBy]) {
@@ -137,7 +196,9 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearch
         setPage(0);
     };
 
+    /** 初期表示検索用パス */
     let path = '';
+    /** 検索用パラメータ */
     let requestParams = '';
 
     if(props.freeSearchFlg) {
@@ -159,8 +220,11 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearch
             if(res.data != undefined) {
                 // エンチャント一覧
                 setEnchantList(res.data);
+                setRowData(res.data);
                 // 件数
                 setcount(res.data.length);
+                // 表示用の件数
+                setDispCount(res.data.length);
                 // 値の表示フラグ
                 if(res.data.length > 0) {
                     setValFlag(res.data[0].disp_val != undefined)
@@ -179,58 +243,89 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearch
         scroll.scrollToTop();
     };
 
-    /** ブレークポイントクエリ */
-    const minQuery = "(min-width:" + props.breakPoint + "px)";
-    const maxQuery = "(max-width:" + props.breakPoint + "px)";
+    /**
+     * フィルターロジック
+     */
+    function searchItems(value: any) {
+        setSearchWord(value);
+        let listData = enchantList.filter((enchant) => {
+            // 検索用に各値を設定
+            let enchant_name: string = enchant.enchant_name;
+            let position: string = positionName(enchant.position_id);
+            let rank: string = enchant.rank;
+            let target_name:string = enchant.target_name;
+            let effect_name: string = enchant.effect_name;
+            let route_name: string = enchant.route_name != undefined ? enchant.route_name : '';
+
+          return  enchant_name.match(value) || position.match(value) || rank.match(value) || target_name.match(value) || effect_name.match(value) || route_name.match(value);
+        });
+
+        // 検索用のデータ
+        setRowData(listData);
+        // 件数
+        setcount(listData.length);
+        // ページ初期化
+        setPage(0);
+    }
 
     return(
-        <Box sx={{ mt: 3}}>
-            <Grid container alignItems='center' direction='column' css={verticalCenter}>
-                { !loadingFlag && <ReactLoading type="bubbles" /> }
-                { loadingFlag && count == 0 &&
-                    <>
-                        <p css={result}>検索結果は0件です</p>
-                    </>
-                }
-            </Grid>
-            <Grid container alignItems='center' direction='column'>
-                { loadingFlag && count > 0 &&
-                    <>
-                        <p css={result}><span css={hitCount}>{count}</span>件ヒットしました</p>
-                        <MediaQuery query={minQuery}>
-                            <Grid item xs={11} css={dataWidth}>
-                                <Box sx={{ p: 1}}>
-                                    <TableContainer>
-                                        <Table>
-                                            {/* ヘッダー */}
-                                            <SearchListHead onRequestSort={handleRequestSort} order={order} orderBy={orderBy} valFlg={valFlag} />
-                                            {/* ボディ */}
-                                            <TableBody>
-                                                {stableSort(enchantList, getComparator(order, orderBy)).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(enchant => (
-                                                    <SearchListBody enchant={enchant} valFlg={valFlag} key={enchant.enchant_id} />
-                                                ))}
-                                            </TableBody>
-                                        </Table>
-                                    </TableContainer>
-                                    <Pagination count={count} page={page} rowsPerPage={rowsPerPage} handleChangePage={handleChangePage} handleChangeRowsPerPage={handleChangeRowsPerPage} />
-                                </Box>
-                            </Grid>
-                        </MediaQuery>
-                        <MediaQuery query={maxQuery}>
-                            <Grid item xs={12} css={dataWidth}>
-                                <Box sx={{ p: 1}}>
-                                    {enchantList.map(enchant => (
-                                        <EnchantCard enchant={enchant} valFlag={valFlag} key={enchant.enchant_id} />
-                                    ))}
-                                </Box>
-                            </Grid>
-                            <IconButton color="secondary" aria-label="add an alarm" css={topIcon} onClick={scrollToTop} style={{ position: 'fixed', bottom: '48px', background: '#282828' }}>
-                                <KeyboardDoubleArrowUp sx={{ fontSize: 40 }} />
-                            </IconButton>
-                        </MediaQuery>
-                    </>
-                }
-            </Grid>
-        </Box>
+        <>
+            <MediaQuery query={maxQuery}>
+                <Grid item xs={12} css={freeSearchBoxSp}>
+                    <input css={freeSearchInputSp} placeholder='絞り込む' value={searchWord} onChange={(e) => searchItems(e.target.value)} />
+                </Grid>
+            </MediaQuery>
+            <Box sx={{ mt: 3}}>
+                <Grid container alignItems='center' direction='column' css={verticalCenter}>
+                    { !loadingFlag && <ReactLoading type="bubbles" /> }
+                    { loadingFlag && dispCount == 0 &&
+                        <>
+                            <p css={result}>検索結果は0件です</p>
+                        </>
+                    }
+                </Grid>
+                <Grid container alignItems='center' direction='column'>
+                    { loadingFlag && dispCount > 0 &&
+                        <>
+                            <p css={result}><span css={hitCount}>{count}</span>件ヒットしました</p>
+                            <MediaQuery query={minQuery}>
+                                <Grid item xs={11} css={freeSearchBox}>
+                                    <input css={freeSearchInput} placeholder='絞り込む' value={searchWord} onChange={(e) => searchItems(e.target.value)} />
+                                </Grid>
+                                <Grid item xs={11} css={dataWidth}>
+                                    <Box>
+                                        <TableContainer style={{ overflow: 'visible' }}>
+                                            <Table style={{ borderCollapse:'separate' }}>
+                                                {/* ヘッダー */}
+                                                <SearchListHead onRequestSort={handleRequestSort} order={order} orderBy={orderBy} valFlg={valFlag} />
+                                                {/* ボディ */}
+                                                <TableBody>
+                                                    {stableSort(rowData, getComparator(order, orderBy)).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(enchant => (
+                                                        <SearchListBody enchant={enchant} valFlg={valFlag} key={enchant.enchant_id} />
+                                                    ))}
+                                                </TableBody>
+                                            </Table>
+                                        </TableContainer>
+                                        <Pagination count={count} page={page} rowsPerPage={rowsPerPage} handleChangePage={handleChangePage} handleChangeRowsPerPage={handleChangeRowsPerPage} />
+                                    </Box>
+                                </Grid>
+                            </MediaQuery>
+                            <MediaQuery query={maxQuery}>
+                                <Grid item xs={12} css={dataWidth}>
+                                    <Box sx={{ p: 1}}>
+                                        {rowData.map(enchant => (
+                                            <EnchantCard enchant={enchant} valFlag={valFlag} key={enchant.enchant_id} />
+                                        ))}
+                                    </Box>
+                                </Grid>
+                                <IconButton color="secondary" aria-label="add an alarm" css={topIcon} onClick={scrollToTop} style={{ position: 'fixed', bottom: '48px', background: '#282828' }}>
+                                    <KeyboardDoubleArrowUp sx={{ fontSize: 40 }} />
+                                </IconButton>
+                            </MediaQuery>
+                        </>
+                    }
+                </Grid>
+            </Box>
+        </>
     );
 }

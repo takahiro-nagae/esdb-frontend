@@ -8,4 +8,6 @@ export interface HeadData {
     rank: string;
     target_name: string;
     disp_val: string;
+    effect_name: string;
+    route_name: string;
 }
