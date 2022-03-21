@@ -6,11 +6,18 @@ import { useEffect, useState } from "react";
 import { css } from '@emotion/react';
 import axios from "axios";
 import ReactLoading from "react-loading";
+import Card from '@mui/material/Card';
+import { Box, Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+
 
 /** ローカルライブラリ */
 import { createEnchantName, createEnchantNameEn } from "../enchantNameFunction";
+import { RankModal } from "../rank/rankModal";
 
-
+/**
+ * 下地一覧
+ */
 export const GroundList = (props: {enchant_id: string}) => {
 
     /** ローディングフラグ */
@@ -27,6 +34,24 @@ export const GroundList = (props: {enchant_id: string}) => {
 
     const targetEnchantStyle = css({
         color: '#fff'
+    });
+
+    /** テーブルヘッダー */
+    const tableHeader = css ({
+        backgroundColor: '#1F2023',
+        color: '#fff',
+        border: 'none',
+        borderBottom: '1px solid rgba(81,81,81,1)',
+        'path' : {
+            color: '#fff'
+        }
+    });
+
+    const constRank = css({
+        width: '64px',
+        color: '#fff',
+        margin: '0',
+        textAlign: 'center'
     });
 
     // ********************
@@ -46,15 +71,54 @@ export const GroundList = (props: {enchant_id: string}) => {
         });
     }, []);
 
+    // ********************
+    // 各エンチャントを開く
+    // ********************
+    const navigate = useNavigate();
+    const openEnchant = (enchant_id: string) => {
+        navigate({
+            pathname: '/detail/' + enchant_id
+          });
+    };
+
     return(
         <>
             { !loadingFlag && <ReactLoading type="bubbles" /> }
             { loadingFlag &&
-                <p css={targetEnchantStyle} >
-                    <span>対象エンチャント：</span>
-                    <span>{createEnchantName(targetEnchant.enchant_name, targetEnchant.enchant_name_2)}</span>
-                    <span>({createEnchantNameEn(targetEnchant.enchant_name_en, targetEnchant.position_id)})</span>
-                </p>
+                <>
+                    <p css={targetEnchantStyle} >
+                        <span>対象エンチャント：</span>
+                        <span>{createEnchantName(targetEnchant.enchant_name, targetEnchant.enchant_name_2)}</span>
+                        { targetEnchant.enchant_name_en != '' &&
+                            <span>({createEnchantNameEn(targetEnchant.enchant_name_en, targetEnchant.position_id)})</span>
+                        }
+                    </p>
+                    {groundList.map(ground => (
+                        <Card sx={{ backgroundColor: '#3C3B40',
+                            padding: '8px',
+                            margin: '8px',
+                            boxSizing: 'border-box' }}>
+                                <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
+                                    <Box sx={{width: '80px'}}>
+                                        <RankModal rank={ground.rank} />
+                                        <p css={constRank}><small>ランク</small></p>
+                                    </Box>
+                                    <Box>
+                                        {ground.enchant_list.map((enchant: { enchant_id: string; enchant_name: string; enchant_name_2: string; enchant_name_en: string; position_id: string; }) => (
+                                            <Button onClick={() => openEnchant(enchant.enchant_id)}>
+                                                <a>
+                                                    <span>{createEnchantName(enchant.enchant_name, enchant.enchant_name_2)}</span>
+                                                    { enchant.enchant_name_en != '' &&
+                                                        <span>({createEnchantNameEn(enchant.enchant_name_en, enchant.position_id)})</span>
+                                                    }
+                                                </a>
+                                            </Button>
+                                        ))}
+                                    </Box>
+                                </Box>
+                        </Card>
+                    ))}
+                </>
             }
         </>
 
