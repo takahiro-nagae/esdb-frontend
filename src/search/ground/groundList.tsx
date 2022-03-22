@@ -8,8 +8,6 @@ import axios from "axios";
 import ReactLoading from "react-loading";
 import Card from '@mui/material/Card';
 import { Box, Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-
 
 /** ローカルライブラリ */
 import { createEnchantName, createEnchantNameEn } from "../enchantNameFunction";
@@ -74,11 +72,8 @@ export const GroundList = (props: {enchant_id: string}) => {
     // ********************
     // 各エンチャントを開く
     // ********************
-    const navigate = useNavigate();
     const openEnchant = (enchant_id: string) => {
-        navigate({
-            pathname: '/detail/' + enchant_id
-          });
+        window.open('/detail/' + enchant_id,'_blank');
     };
 
     return(
@@ -97,7 +92,8 @@ export const GroundList = (props: {enchant_id: string}) => {
                         <Card sx={{ backgroundColor: '#3C3B40',
                             padding: '8px',
                             margin: '8px',
-                            boxSizing: 'border-box' }}>
+                            boxSizing: 'border-box' }}
+                            key={ground.rank}>
                                 <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
                                     <Box sx={{width: '80px'}}>
                                         <RankModal rank={ground.rank} />
@@ -105,7 +101,7 @@ export const GroundList = (props: {enchant_id: string}) => {
                                     </Box>
                                     <Box>
                                         {ground.enchant_list.map((enchant: { enchant_id: string; enchant_name: string; enchant_name_2: string; enchant_name_en: string; position_id: string; }) => (
-                                            <Button onClick={() => openEnchant(enchant.enchant_id)}>
+                                            <Button onClick={() => openEnchant(enchant.enchant_id)} key={enchant.enchant_id}>
                                                 <a>
                                                     <span>{createEnchantName(enchant.enchant_name, enchant.enchant_name_2)}</span>
                                                     { enchant.enchant_name_en != '' &&
