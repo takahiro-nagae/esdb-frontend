@@ -141,6 +141,7 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearch
     const [rowsPerPage, setRowsPerPage] = useState(30);
     /** 検索ワード */
     const [searchWord, setSearchWord] = useState('');
+    const [effectName, setEffectName] = useState('');
 
     function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
         if (b[orderBy] < a[orderBy]) {
@@ -219,17 +220,20 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearch
         .then((res) => {
             if(res.data != undefined) {
                 // エンチャント一覧
-                setEnchantList(res.data);
-                setRowData(res.data);
+                setEnchantList(res.data.enchant_list);
+                setRowData(res.data.enchant_list);
                 // 件数
-                setcount(res.data.length);
+                setcount(res.data.enchant_list.length);
                 // 表示用の件数
-                setDispCount(res.data.length);
+                setDispCount(res.data.enchant_list.length);
                 // 値の表示フラグ
-                if(res.data.length > 0) {
-                    setValFlag(res.data[0].disp_val != undefined)
+                if(res.data.enchant_list.length > 0) {
+                    setValFlag(res.data.enchant_list[0].disp_val != undefined)
                     setOrderBy('disp_val')
                     setOrder('desc')
+                }
+                if(res.data.effect_name != undefined) {
+                    setEffectName(res.data.effect_name.effect);
                 }
                 // ローディング完了
                 setLoadingFlag(true);
@@ -287,7 +291,12 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearch
                 <Grid container alignItems='center' direction='column'>
                     { loadingFlag && dispCount > 0 &&
                         <>
-                            <p css={result}><span css={hitCount}>{count}</span>件ヒットしました</p>
+                            <p css={result}>
+                                <span css={hitCount}>{count}</span>件ヒットしました
+                                { effectName != '' &&
+                                    <span>　値：{effectName}</span>
+                                }
+                            </p>
                             <MediaQuery query={minQuery}>
                                 <Grid item xs={11} css={freeSearchBox}>
                                     <input css={freeSearchInput} placeholder='絞り込む' value={searchWord} onChange={(e) => searchItems(e.target.value)} />
