@@ -52,6 +52,10 @@ export const GroundList = (props: {enchant_id: string}) => {
         textAlign: 'center'
     });
 
+    const enchantStyke = css({
+        textAlign: 'left'
+    });
+
     // ********************
     // 初期表示
     // ********************
@@ -94,7 +98,7 @@ export const GroundList = (props: {enchant_id: string}) => {
                             margin: '8px',
                             boxSizing: 'border-box' }}
                             key={ground.rank}>
-                                <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
+                                <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'flex-start' }}>
                                     <Box sx={{width: '80px'}}>
                                         <RankModal rank={ground.rank} />
                                         <p css={constRank}><small>ランク</small></p>
@@ -102,7 +106,7 @@ export const GroundList = (props: {enchant_id: string}) => {
                                     <Box>
                                         {ground.enchant_list.map((enchant: { enchant_id: string; enchant_name: string; enchant_name_2: string; enchant_name_en: string; position_id: string; }) => (
                                             <Button onClick={() => openEnchant(enchant.enchant_id)} key={enchant.enchant_id}>
-                                                <a>
+                                                <a css={enchantStyke}>
                                                     <span>{createEnchantName(enchant.enchant_name, enchant.enchant_name_2)}</span>
                                                     { enchant.enchant_name_en != '' &&
                                                         <span>({createEnchantNameEn(enchant.enchant_name_en, enchant.position_id)})</span>
