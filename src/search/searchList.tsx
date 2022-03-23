@@ -38,7 +38,8 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearch
     /** 検索結果の文字列 */
     const result = css({
         fontWeight: 'bold',
-        color: '#fff'
+        color: '#fff',
+        textAlign: 'center'
     });
 
     /** 件数文字列 */
@@ -294,7 +295,10 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearch
                             <p css={result}>
                                 <span css={hitCount}>{count}</span>件ヒットしました
                                 { effectName != '' &&
-                                    <span>　値：{effectName}</span>
+                                    <>
+                                        <br />
+                                        <span>値：{effectName}</span>
+                                    </>
                                 }
                             </p>
                             <MediaQuery query={minQuery}>
