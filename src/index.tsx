@@ -21,6 +21,7 @@ import { SearchList } from './search/searchList';
 import { PrivacyPolicy } from './static/privacyPolicy';
 import { RankIndex } from './search//rank/rankIndex';
 import { DetailIndex } from './search/detail/detailIndex';
+import { Multiplex } from './adsense/multiplex';
 
 /**
  * テーマ
@@ -105,6 +106,7 @@ ReactDOM.render(
         {/* エンチャント詳細（検索インデックス用） */}
         <Route path='detail/:enchant_id' element={<DetailIndex />} />
       </Routes>
+      <Multiplex />
       <Footer />
     </Router>
   </ThemeProvider>,
