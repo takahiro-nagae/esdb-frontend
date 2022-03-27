@@ -11,6 +11,7 @@ import MediaQuery from "react-responsive";
 import { Box, Grid } from '@material-ui/core';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
+import { TableRow } from '@mui/material';
 import TableContainer from '@mui/material/TableContainer';
 import IconButton from '@mui/material/IconButton';
 import { KeyboardDoubleArrowUp } from '@mui/icons-material';
@@ -24,6 +25,8 @@ import { HeadData } from './pc/headData';
 import { SearchListHead } from './pc/searchListHead';
 import { Pagination } from './pc/pagination';
 import { positionName } from './positionFunction';
+import { Infeed } from '../adsense/infeed';
+
 
 
 /**
@@ -313,8 +316,20 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearch
                                                 <SearchListHead onRequestSort={handleRequestSort} order={order} orderBy={orderBy} valFlg={valFlag} />
                                                 {/* ボディ */}
                                                 <TableBody>
-                                                    {stableSort(rowData, getComparator(order, orderBy)).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(enchant => (
-                                                        <SearchListBody enchant={enchant} valFlg={valFlag} key={enchant.enchant_id} />
+                                                    {stableSort(rowData, getComparator(order, orderBy)).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((enchant, index) => (
+                                                        <>
+                                                            {index % 5 == 0 &&
+                                                                <TableRow>
+                                                                    <Infeed />
+                                                                </TableRow>
+                                                            }
+                                                            <SearchListBody enchant={enchant} valFlg={valFlag} key={enchant.enchant_id} />
+                                                            {index == rowData.length &&
+                                                                <TableRow>
+                                                                    <Infeed />
+                                                                </TableRow>
+                                                            }
+                                                        </>
                                                     ))}
                                                 </TableBody>
                                             </Table>
@@ -326,8 +341,16 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearch
                             <MediaQuery query={maxQuery}>
                                 <Grid item xs={12} css={dataWidth}>
                                     <Box sx={{ p: 1}}>
-                                        {rowData.map(enchant => (
-                                            <EnchantCard enchant={enchant} valFlag={valFlag} key={enchant.enchant_id} />
+                                        {rowData.map((enchant, index) => (
+                                            <>
+                                                {index % 5 == 0 &&
+                                                    <Infeed />
+                                                }
+                                                <EnchantCard enchant={enchant} valFlag={valFlag} key={enchant.enchant_id} />
+                                                {index == rowData.length &&
+                                                    <Infeed />
+                                                }
+                                            </>
                                         ))}
                                     </Box>
                                 </Grid>
