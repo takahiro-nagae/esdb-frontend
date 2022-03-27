@@ -53,7 +53,7 @@ export const Header = (props: {mq: any, breakPoint: number}) => {
             <AppBar position="fixed">
                 <Toolbar>
                     <Link to="/" css={headerLink} style={{ marginRight: '12px'}}>
-                        <img src='icon.png' width="32px" height="32px" />
+                        <img src='/icon.png' width="32px" height="32px" />
                     </Link>
                     <FreeSearch mq={props.mq} />
                     <AppMenu />
