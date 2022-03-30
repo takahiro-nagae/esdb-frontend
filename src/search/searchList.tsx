@@ -26,6 +26,7 @@ import { SearchListHead } from './pc/searchListHead';
 import { Pagination } from './pc/pagination';
 import { positionName } from './positionFunction';
 import { Infeed } from '../adsense/infeed';
+import { DisplayWide } from '../adsense/displayWide';
 
 
 
@@ -329,7 +330,7 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearch
                                                     {stableSort(rowData, getComparator(order, orderBy)).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((enchant, index) => (
                                                         <>
                                                             {index != 0 && index % 5 == 0 &&
-                                                                <TableRow css={tableContent} >
+                                                                <TableRow css={tableContent} key={index}>
                                                                     <TableCell colSpan={valFlag ? 7 : 6} css={tableData}>
                                                                         <Infeed />
                                                                     </TableCell>
@@ -337,7 +338,7 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearch
                                                             }
                                                             <SearchListBody enchant={enchant} valFlg={valFlag} key={enchant.enchant_id} />
                                                             {index == rowData.length -1 &&
-                                                                <TableRow css={tableContent}>
+                                                                <TableRow css={tableContent} key={'lastPc'}>
                                                                     <TableCell colSpan={valFlag ? 7 : 6} css={tableData}>
                                                                         <Infeed />
                                                                     </TableCell>
@@ -359,19 +360,23 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearch
                                             <>
                                                 {index != 0 && index % 5 == 0 &&
                                                     <Card sx={{ backgroundColor: '#3C3B40',
-                                                    padding: '8px',
-                                                    margin: '8px',
-                                                    boxSizing: 'border-box' }}>
-                                                        <Infeed />
+                                                        padding: '8px',
+                                                        margin: '8px',
+                                                        boxSizing: 'border-box' }}
+                                                        key={index}
+                                                    >
+                                                        <DisplayWide />
                                                     </Card>
                                                 }
                                                 <EnchantCard enchant={enchant} valFlag={valFlag} key={enchant.enchant_id} />
                                                 {index == rowData.length -1 &&
                                                     <Card sx={{ backgroundColor: '#3C3B40',
-                                                    padding: '8px',
-                                                    margin: '8px',
-                                                    boxSizing: 'border-box' }}>
-                                                        <Infeed />
+                                                        padding: '8px',
+                                                        margin: '8px',
+                                                        boxSizing: 'border-box' }}
+                                                        key={'lastSp'}
+                                                    >
+                                                        <DisplayWide />
                                                     </Card>
                                                 }
                                             </>
