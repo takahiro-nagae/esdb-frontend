@@ -365,7 +365,7 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearch
                                                         boxSizing: 'border-box' }}
                                                         key={index}
                                                     >
-                                                        <DisplayWide />
+                                                        <Infeed />
                                                     </Card>
                                                 }
                                                 <EnchantCard enchant={enchant} valFlag={valFlag} key={enchant.enchant_id} />
@@ -376,7 +376,7 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearch
                                                         boxSizing: 'border-box' }}
                                                         key={'lastSp'}
                                                     >
-                                                        <DisplayWide />
+                                                        <Infeed />
                                                     </Card>
                                                 }
                                             </>
