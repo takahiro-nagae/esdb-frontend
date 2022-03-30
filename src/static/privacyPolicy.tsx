@@ -13,7 +13,7 @@ export const PrivacyPolicy = () => {
             <Grid container justifyContent="center">
                 <Grid item xs={11}>
                     <DisplayWide />
-                    <Paper>
+                    <Paper style={{marginTop: '15px'}}>
                         <Box sx={{ p: 2}}>
                             <h2>プライバシーポリシー</h2>
                             <Box sx={{ p: 2}}>
