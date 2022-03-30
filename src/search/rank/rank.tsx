@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { css } from '@emotion/react';
 import axios from 'axios';
 import { Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
+import { DisplayWide } from '../../adsense/displayWide';
 
 /**
  * ランク表示部の共通項目
@@ -98,6 +99,7 @@ export const Rank = (props: {rank: any}) => {
                     </TableRow>
                 </TableBody>
             </Table>
+            <DisplayWide />
         </>
     );
 }

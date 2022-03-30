@@ -12,6 +12,7 @@ import { Box, Button } from "@mui/material";
 /** ローカルライブラリ */
 import { createEnchantName, createEnchantNameEn } from "../enchantNameFunction";
 import { RankModal } from "../rank/rankModal";
+import { DisplayWide } from "../../adsense/displayWide";
 
 /**
  * 下地一覧
@@ -118,6 +119,7 @@ export const GroundList = (props: {enchant_id: string}) => {
                                 </Box>
                         </Card>
                     ))}
+                    <DisplayWide />
                 </>
             }
         </>
