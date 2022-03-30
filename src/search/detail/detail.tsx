@@ -13,6 +13,7 @@ import effectColor from "../effectColor";
 import { createEnchantName, createEnchantNameEn, subTitleStyle } from "../enchantNameFunction";
 import { positionColor, positionName } from "../positionFunction";
 import { RankModal } from "../rank/rankModal";
+import { DisplayWide } from "../../adsense/displayWide";
 
 export const Detail = (props: {enchant_id: any}) => {
 
@@ -86,50 +87,53 @@ export const Detail = (props: {enchant_id: any}) => {
                     <ReactLoading type="bubbles" css={verticalCenter} />
             }
             { loadingFlag &&
-                <Table size="small" aria-label="purchases">
-                    <TableBody>
-                        {/* エンチャント名 */}
-                        <TableRow>
-                            <TableCell css={head}>名称</TableCell>
-                            <TableCell css={body}>
-                                <span css={detailBase}>{createEnchantName(enchantData.enchant_name, enchantData.enchant_name_2)}</span><br />
-                                <small css={subTitleStyle}>{createEnchantNameEn(enchantData.enchant_name_en, enchantData.position_id)}</small>
-                            </TableCell>
-                        </TableRow>
-                        { /** 位置 */}
-                        <TableRow>
-                            <TableCell css={head}>位置</TableCell>
-                            <TableCell css={body}>
-                                <span css={positionColor(enchantData.position_id)}>{positionName(enchantData.position_id)}</span><br />
-                            </TableCell>
-                        </TableRow>
-                        {/** ランク */}
-                        <TableRow>
-                            <TableCell css={head}>ランク</TableCell>
-                            <TableCell css={body}>
-                                <RankModal rank={enchantData.rank} />
-                            </TableCell>
-                        </TableRow>
-                        {/* 効果 */}
-                        <TableRow>
-                            <TableCell css={head}>効果</TableCell>
-                            <TableCell css={body}>
-                                { effectKbnArray && effectKbnArray.map((effectKbn, index) =>
-                                    <p css={effectColor(effectKbn)} key={index} >{effectNameArray[index]}</p>
-                                )}
-                            </TableCell>
-                        </TableRow>
-                        {/* 入手先 */}
-                        <TableRow>
-                            <TableCell css={head}>入手先</TableCell>
-                            <TableCell css={body}>
-                                {routeNameArray && routeNameArray.map((route, index) => (
-                                    <p dangerouslySetInnerHTML={{ __html: route }} key={index} css={detailBase}></p>
-                                ))}
-                            </TableCell>
-                        </TableRow>
-                    </TableBody>
-                </Table>
+                <>
+                    <Table size="small" aria-label="purchases">
+                        <TableBody>
+                            {/* エンチャント名 */}
+                            <TableRow>
+                                <TableCell css={head}>名称</TableCell>
+                                <TableCell css={body}>
+                                    <span css={detailBase}>{createEnchantName(enchantData.enchant_name, enchantData.enchant_name_2)}</span><br />
+                                    <small css={subTitleStyle}>{createEnchantNameEn(enchantData.enchant_name_en, enchantData.position_id)}</small>
+                                </TableCell>
+                            </TableRow>
+                            { /** 位置 */}
+                            <TableRow>
+                                <TableCell css={head}>位置</TableCell>
+                                <TableCell css={body}>
+                                    <span css={positionColor(enchantData.position_id)}>{positionName(enchantData.position_id)}</span><br />
+                                </TableCell>
+                            </TableRow>
+                            {/** ランク */}
+                            <TableRow>
+                                <TableCell css={head}>ランク</TableCell>
+                                <TableCell css={body}>
+                                    <RankModal rank={enchantData.rank} />
+                                </TableCell>
+                            </TableRow>
+                            {/* 効果 */}
+                            <TableRow>
+                                <TableCell css={head}>効果</TableCell>
+                                <TableCell css={body}>
+                                    { effectKbnArray && effectKbnArray.map((effectKbn, index) =>
+                                        <p css={effectColor(effectKbn)} key={index} >{effectNameArray[index]}</p>
+                                    )}
+                                </TableCell>
+                            </TableRow>
+                            {/* 入手先 */}
+                            <TableRow>
+                                <TableCell css={head}>入手先</TableCell>
+                                <TableCell css={body}>
+                                    {routeNameArray && routeNameArray.map((route, index) => (
+                                        <p dangerouslySetInnerHTML={{ __html: route }} key={index} css={detailBase}></p>
+                                    ))}
+                                </TableCell>
+                            </TableRow>
+                        </TableBody>
+                    </Table>
+                    <DisplayWide />
+                </>
             }
         </>
     );

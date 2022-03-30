@@ -1,4 +1,5 @@
 /** ローカルライブラリ */
+import { Multiplex } from '../adsense/multiplex';
 import { SearchFormContainer } from '../form/searchFormContainer';
 
 /**
@@ -6,6 +7,9 @@ import { SearchFormContainer } from '../form/searchFormContainer';
  */
 export const Home = (props: {mq: any, maxWidth: any}) => {
     return(
-        <SearchFormContainer mq={props.mq} maxWidth={props.maxWidth} />
+        <>
+            <SearchFormContainer mq={props.mq} maxWidth={props.maxWidth} />
+              <Multiplex />
+        </>
     )
 }

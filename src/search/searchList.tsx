@@ -26,7 +26,6 @@ import { SearchListHead } from './pc/searchListHead';
 import { Pagination } from './pc/pagination';
 import { positionName } from './positionFunction';
 import { Infeed } from '../adsense/infeed';
-import { DisplayWide } from '../adsense/displayWide';
 
 
 
