@@ -76,6 +76,10 @@ ReactDOM.render(
         paddingTop: '60px',
         paddingBottom: '60px',
       },
+      '.adsbygoogle': {
+        textAlign: 'center',
+        marginTop: "20px"
+      },
       '.MuiFilledInput-underline:after': {
         borderBottomColor: myTheme.palette.primary.light,  // ホバー時のボーダー色
       },
