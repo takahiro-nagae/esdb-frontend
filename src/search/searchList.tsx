@@ -11,7 +11,7 @@ import MediaQuery from "react-responsive";
 import { Box, Grid } from '@material-ui/core';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import { TableRow } from '@mui/material';
+import { TableCell, TableRow } from '@mui/material';
 import TableContainer from '@mui/material/TableContainer';
 import IconButton from '@mui/material/IconButton';
 import { KeyboardDoubleArrowUp } from '@mui/icons-material';
@@ -115,6 +115,14 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearch
         position: 'fixed',
         right: '20px',
         color: '#fff',
+    });
+
+    /** コンテント各行の基本スタイル */
+    const tableContent = css ({
+        backgroundColor: '#3C3B40',
+        '.css-1ex1afd-MuiTableCell-root': {
+            borderBottom: '1px solid rgba(81, 81, 81, 1)',
+        }
     });
 
     /** 遷移元からのデータ */
@@ -318,15 +326,19 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearch
                                                 <TableBody>
                                                     {stableSort(rowData, getComparator(order, orderBy)).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((enchant, index) => (
                                                         <>
-                                                            {index % 5 == 0 &&
-                                                                <TableRow>
-                                                                    <Infeed />
+                                                            {index != 0 && index % 5 == 0 &&
+                                                                <TableRow css={tableContent} >
+                                                                    <TableCell colSpan={valFlag ? 7 : 6}>
+                                                                        <Infeed />
+                                                                    </TableCell>
                                                                 </TableRow>
                                                             }
                                                             <SearchListBody enchant={enchant} valFlg={valFlag} key={enchant.enchant_id} />
-                                                            {index == rowData.length &&
-                                                                <TableRow>
-                                                                    <Infeed />
+                                                            {index == rowData.length -1 &&
+                                                                <TableRow css={tableContent}>
+                                                                    <TableCell colSpan={valFlag ? 7 : 6}>
+                                                                        <Infeed />
+                                                                    </TableCell>
                                                                 </TableRow>
                                                             }
                                                         </>
@@ -343,11 +355,11 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearch
                                     <Box sx={{ p: 1}}>
                                         {rowData.map((enchant, index) => (
                                             <>
-                                                {index % 5 == 0 &&
+                                                {index != 0 && index % 5 == 0 &&
                                                     <Infeed />
                                                 }
                                                 <EnchantCard enchant={enchant} valFlag={valFlag} key={enchant.enchant_id} />
-                                                {index == rowData.length &&
+                                                {index == rowData.length -1 &&
                                                     <Infeed />
                                                 }
                                             </>
