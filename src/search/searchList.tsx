@@ -11,7 +11,7 @@ import MediaQuery from "react-responsive";
 import { Box, Grid } from '@material-ui/core';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import { TableCell, TableRow } from '@mui/material';
+import { Card, TableCell, TableRow } from '@mui/material';
 import TableContainer from '@mui/material/TableContainer';
 import IconButton from '@mui/material/IconButton';
 import { KeyboardDoubleArrowUp } from '@mui/icons-material';
@@ -358,11 +358,21 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearch
                                         {rowData.map((enchant, index) => (
                                             <>
                                                 {index != 0 && index % 5 == 0 &&
-                                                    <Infeed />
+                                                    <Card sx={{ backgroundColor: '#3C3B40',
+                                                    padding: '8px',
+                                                    margin: '8px',
+                                                    boxSizing: 'border-box' }}>
+                                                        <Infeed />
+                                                    </Card>
                                                 }
                                                 <EnchantCard enchant={enchant} valFlag={valFlag} key={enchant.enchant_id} />
                                                 {index == rowData.length -1 &&
-                                                    <Infeed />
+                                                    <Card sx={{ backgroundColor: '#3C3B40',
+                                                    padding: '8px',
+                                                    margin: '8px',
+                                                    boxSizing: 'border-box' }}>
+                                                        <Infeed />
+                                                    </Card>
                                                 }
                                             </>
                                         ))}
