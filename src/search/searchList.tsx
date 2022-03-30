@@ -120,11 +120,12 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearch
     /** コンテント各行の基本スタイル */
     const tableContent = css ({
         backgroundColor: '#3C3B40',
-        padding: '0',
-        '.css-1ex1afd-MuiTableCell-root': {
-            borderBottom: '1px solid rgba(81, 81, 81, 1)',
-        }
     });
+
+    const tableData = css({
+        borderBottom: '1px solid rgba(81, 81, 81, 1)',
+        paddingTop: '0'
+    })
 
     /** 遷移元からのデータ */
     const [searchParams] = useSearchParams();
@@ -329,7 +330,7 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearch
                                                         <>
                                                             {index != 0 && index % 5 == 0 &&
                                                                 <TableRow css={tableContent} >
-                                                                    <TableCell colSpan={valFlag ? 7 : 6}>
+                                                                    <TableCell colSpan={valFlag ? 7 : 6} css={tableData}>
                                                                         <Infeed />
                                                                     </TableCell>
                                                                 </TableRow>
@@ -337,7 +338,7 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearch
                                                             <SearchListBody enchant={enchant} valFlg={valFlag} key={enchant.enchant_id} />
                                                             {index == rowData.length -1 &&
                                                                 <TableRow css={tableContent}>
-                                                                    <TableCell colSpan={valFlag ? 7 : 6}>
+                                                                    <TableCell colSpan={valFlag ? 7 : 6} css={tableData}>
                                                                         <Infeed />
                                                                     </TableCell>
                                                                 </TableRow>
