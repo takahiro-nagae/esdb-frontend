@@ -120,6 +120,7 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearch
     /** コンテント各行の基本スタイル */
     const tableContent = css ({
         backgroundColor: '#3C3B40',
+        padding: '0',
         '.css-1ex1afd-MuiTableCell-root': {
             borderBottom: '1px solid rgba(81, 81, 81, 1)',
         }
