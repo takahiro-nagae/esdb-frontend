@@ -1,8 +1,8 @@
-/** 標準ライブラリ */
 import { useEffect } from "react";
 
 /**
  * ディスプレイ広告（横長）コンポーネント
+ * @returns DisplayWide { JSX.Element }
  */
 export const DisplayWide = () => {
 

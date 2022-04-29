@@ -1,9 +1,9 @@
 
-/** 標準ライブラリ */
 import { useEffect } from "react";
 
 /**
- * Multiplexコンポーネント
+ * 関連広告系コンポーネント
+ * @returns Multiplex { JSX.Element }
  */
 export const Multiplex = () => {
 
