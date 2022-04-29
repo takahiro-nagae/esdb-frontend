@@ -5,7 +5,7 @@ import { useEffect } from "react";
  * 関連広告系コンポーネント
  * @returns Multiplex { JSX.Element }
  */
-export const Multiplex = () => {
+export const MultiplexAd = () => {
 
     useEffect(() => {
         window.adsbygoogle = window.adsbygoogle || []
