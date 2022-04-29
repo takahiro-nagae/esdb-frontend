@@ -1,8 +1,8 @@
-/** 標準ライブラリ */
 import { useEffect } from "react";
 
 /**
  * インフィード広告コンポーネント
+ * @returns Infeed { JSX.Element }
  */
 export const Infeed = () => {
 
