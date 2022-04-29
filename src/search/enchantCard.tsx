@@ -4,7 +4,8 @@ import { useState } from "react";
 /** サードパーティーライブラリ */
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { Box, Collapse, Table, TableBody, TableCell, TableRow } from "@material-ui/core";
+import { Collapse, Table, TableBody, TableCell, TableRow } from "@material-ui/core";
+import Box from '@mui/material/Box';
 import { IconButton } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';

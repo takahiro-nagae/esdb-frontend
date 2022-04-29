@@ -2,7 +2,8 @@
 import { useParams } from "react-router-dom";
 
 /** サードパーティーライブラリ */
-import { Box, Grid } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
+import Box from '@mui/material/Box';
 
 /** ローカルライブラリ */
 import { Detail } from "../detail/detail";

@@ -2,7 +2,8 @@
 import { useEffect } from "react";
 
 /** サードパーティーライブラリ */
-import { Box, Grid, Paper } from "@material-ui/core"
+import { Grid, Paper } from "@material-ui/core"
+import Box from '@mui/material/Box';
 
 /** ローカルライブラリ */
 import { DisplayWide } from '../adsense/displayWide';
