@@ -4,7 +4,7 @@ import { useEffect } from "react";
  * インフィード広告コンポーネント
  * @returns Infeed { JSX.Element }
  */
-export const Infeed = () => {
+export const InfeedAd = () => {
 
     useEffect(() => {
         window.adsbygoogle = window.adsbygoogle || []

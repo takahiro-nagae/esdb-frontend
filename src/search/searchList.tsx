@@ -26,7 +26,7 @@ import { HeadData } from './pc/headData';
 import { SearchListHead } from './pc/searchListHead';
 import { Pagination } from './pc/pagination';
 import { positionName } from './positionFunction';
-import { Infeed } from '../adsense/infeed';
+import { InfeedAd } from '../adsense/infeedAd';
 
 
 
@@ -332,7 +332,7 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearch
                                                             {index != 0 && index % 5 == 0 &&
                                                                 <TableRow css={tableContent} key={index}>
                                                                     <TableCell colSpan={valFlag ? 7 : 6} css={tableData}>
-                                                                        <Infeed />
+                                                                        <InfeedAd />
                                                                     </TableCell>
                                                                 </TableRow>
                                                             }
@@ -340,7 +340,7 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearch
                                                             {index == rowData.length -1 &&
                                                                 <TableRow css={tableContent} key={'lastPc'}>
                                                                     <TableCell colSpan={valFlag ? 7 : 6} css={tableData}>
-                                                                        <Infeed />
+                                                                        <InfeedAd />
                                                                     </TableCell>
                                                                 </TableRow>
                                                             }
@@ -365,7 +365,7 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearch
                                                         boxSizing: 'border-box' }}
                                                         key={index}
                                                     >
-                                                        <Infeed />
+                                                        <InfeedAd />
                                                     </Card>
                                                 }
                                                 <EnchantCard enchant={enchant} valFlag={valFlag} key={enchant.enchant_id} />
@@ -376,7 +376,7 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearch
                                                         boxSizing: 'border-box' }}
                                                         key={'lastSp'}
                                                     >
-                                                        <Infeed />
+                                                        <InfeedAd />
                                                     </Card>
                                                 }
                                             </>
