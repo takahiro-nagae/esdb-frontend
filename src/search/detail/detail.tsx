@@ -84,7 +84,7 @@ export const Detail = (props: {enchant_id: any}) => {
     return(
         <>
             { !loadingFlag &&
-                    <ReactLoading type="bubbles" css={verticalCenter} />
+                <ReactLoading type="bubbles" css={verticalCenter} />
             }
             { loadingFlag &&
                 <>
