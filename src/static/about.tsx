@@ -9,7 +9,7 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 
 /** ローカルライブラリ */
-import { DisplayWide } from '../adsense/displayWide';
+import { DisplayWideAd } from '../adsense/displayWideAd';
 
 /**
  * 当サイトについてコンポーネント
@@ -34,7 +34,7 @@ export const About = () => {
         <Box sx={{ mt: 3}}>
             <Grid container justifyContent="center">
                 <Grid item xs={11}>
-                    <DisplayWide />
+                    <DisplayWideAd />
                     <Paper style={{marginTop: '15px'}}>
                         <Box sx={{ p: 2}}>
                             <h2>当サイトについて</h2>
@@ -106,7 +106,7 @@ export const About = () => {
                             </Box>
                         </Box>
                     </Paper>
-                    <DisplayWide />
+                    <DisplayWideAd />
                 </Grid>
             </Grid>
         </Box>

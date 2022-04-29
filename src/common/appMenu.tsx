@@ -1,4 +1,3 @@
-/** サードパーティーライブラリ */
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import {  NavLink } from 'react-router-dom'
@@ -12,6 +11,7 @@ import { usePopupState, bindTrigger, bindMenu } from 'material-ui-popup-state/ho
 
 /**
  * アプリケーションのメニューコンポーネント
+ * @returns AppMenu { EmotionJSX.Element }
  */
 export const AppMenu = () => {
 
