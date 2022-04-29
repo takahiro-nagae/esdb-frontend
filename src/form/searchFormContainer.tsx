@@ -1,5 +1,6 @@
 /** サードパーティーライブラリ */
-import { Box, Grid, Paper } from "@material-ui/core";
+import { Grid, Paper } from "@material-ui/core";
+import Box from '@mui/material/Box';
 
 /** ローカルライブラリ */
 import { FreeSearch } from "./component/freeSearch";
