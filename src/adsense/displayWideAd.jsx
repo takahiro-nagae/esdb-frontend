@@ -4,7 +4,7 @@ import { useEffect } from "react";
  * ディスプレイ広告（横長）コンポーネント
  * @returns DisplayWide { JSX.Element }
  */
-export const DisplayWide = () => {
+export const DisplayWideAd = () => {
 
     useEffect(() => {
         window.adsbygoogle = window.adsbygoogle || []

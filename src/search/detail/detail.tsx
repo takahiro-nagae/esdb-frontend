@@ -13,7 +13,7 @@ import effectColor from "../effectColor";
 import { createEnchantName, createEnchantNameEn, subTitleStyle } from "../enchantNameFunction";
 import { positionColor, positionName } from "../positionFunction";
 import { RankModal } from "../rank/rankModal";
-import { DisplayWide } from "../../adsense/displayWide";
+import { DisplayWideAd } from "../../adsense/displayWideAd";
 
 export const Detail = (props: {enchant_id: any}) => {
 
@@ -132,7 +132,7 @@ export const Detail = (props: {enchant_id: any}) => {
                             </TableRow>
                         </TableBody>
                     </Table>
-                    <DisplayWide />
+                    <DisplayWideAd />
                 </>
             }
         </>
