@@ -13,7 +13,7 @@ import Box from '@mui/material/Box';
 /** ローカルライブラリ */
 import { createEnchantName, createEnchantNameEn } from "../enchantNameFunction";
 import { RankModal } from "../rank/rankModal";
-import { DisplayWide } from "../../adsense/displayWide";
+import { DisplayWide } from "../../adsense/displayWideAd";
 
 /**
  * 下地一覧
