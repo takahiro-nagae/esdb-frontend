@@ -10,7 +10,7 @@ import { FreeSearch } from '../form/component/freeSearch';
 /**
  *  ヘッダーコンポーネント
  * @param props { string[], number }
- * @returns Header { EmotionJSX.Element}
+ * @returns Header { EmotionJSX.Element }
  */
 export const Header = (props: {mq: string[], breakPoint: number}) => {
     /** ヘッダーリンクのスタイル */

@@ -4,7 +4,7 @@ import {  NavLink } from 'react-router-dom'
 import { IconButton, Menu, MenuItem } from '@material-ui/core'
 import MenuIcon from "@material-ui/icons/Menu";
 import { usePopupState, bindTrigger, bindMenu } from 'material-ui-popup-state/hooks'
-import { AppMenuRow } from './appMenuRow';
+import { AppMenuData } from './data/appMenuData';
 
 /**
  * アプリケーションのメニューコンポーネント
@@ -37,7 +37,7 @@ export const AppMenu = () => {
                 <MenuIcon />
             </ IconButton>
             <Menu {...bindMenu(popupState)}>
-                { AppMenuRow.map(appMenu  => (
+                { AppMenuData.map(appMenu  => (
                     <NavLink to={ appMenu.url! } style={({ isActive }) => isActive ? activedStyle : inactivedStyle } >
                         <MenuItem onClick={popupState.close}>
                             { appMenu.icon }

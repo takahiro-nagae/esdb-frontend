@@ -1,21 +1,23 @@
-/** サードパーティーライブラリ */
 /** @jsxImportSource @emotion/react */
 import { UseFormRegister } from "react-hook-form";
 import { Grid, MenuItem, TextField } from "@material-ui/core";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
-
-/** ローカルライブラリ */
-import { formMargin, labelStyle, selectBox } from "../common/formStyle";
-import { FormData } from './../common/formData';
+import { formMarginStyle, labelStyle, selectBoxStyle } from "../common/style/formStyle";
+import { FormType } from '../common/type/formType';
+import { RankType } from "../common/type/rankType";
+import { Dispatch, SetStateAction } from "react";
 
 /**
  * ランクのコンポーネント
+ * @param props { UseFormRegister<FormType>, string, Dispatch<SetStateAction<string>> }
+ * @returns Rank { EmotionJSX.Element }
  */
-export const Rank = (props: {register: UseFormRegister<FormData>
-    , rankList: Array<any>, rankRange: string, setRankRange: any}) => {
+export const Rank = (props: {register: UseFormRegister<FormType>
+    , rankList: Array<RankType>, rankRange: string, setRankRange: Dispatch<SetStateAction<string>>}) => {
 
     /** ランクの現在値変更 */
-    const handleRank = (
+    // TODO: formのonChangeを共通化する
+    const onChange = (
         _event: React.MouseEvent<HTMLElement>,
         newRankValue: string | null,
         ) => {
@@ -27,7 +29,7 @@ export const Rank = (props: {register: UseFormRegister<FormData>
     return(
         <>
            <label css={labelStyle} ><small>ランク</small></label>
-            <Grid container css={formMargin}>
+            <Grid container css={formMarginStyle}>
                 {/* ランクセレクトボックス */}
                 <Grid item xs={4}>
                     <TextField
@@ -35,18 +37,19 @@ export const Rank = (props: {register: UseFormRegister<FormData>
                         select
                         size='small'
                         variant='outlined'
-                        css={formMargin}
+                        css={formMarginStyle}
                         id='rank'
                         defaultValue=''
                         {...props.register('rank')}
                     >
                         <MenuItem value=''>指定無し</MenuItem>
                         {props.rankList.map(rank => (
-                            /**
-                             * ランクを追加
-                             * 0 : ランク
-                             */
-                            <MenuItem value={rank['rank']} key={rank['rank']}>{rank['rank']}</MenuItem>
+                            <MenuItem
+                                key={rank['rank']}
+                                value={rank['rank']}
+                            >
+                                {rank['rank']}
+                            </MenuItem>
                         ))}
                     </TextField>
                 </Grid>
@@ -58,26 +61,26 @@ export const Rank = (props: {register: UseFormRegister<FormData>
                         fullWidth
                         exclusive
                         size='small'
-                        css={formMargin}
-                        onChange={handleRank}
+                        css={formMarginStyle}
+                        onChange={onChange}
                         value={props.rankRange}
                     >
                         <ToggleButton
-                            css={selectBox}
+                            css={selectBoxStyle}
                             value='1'
                             aria-label='1'
                         >
                             <span>一致</span>
                         </ToggleButton>
                         <ToggleButton
-                            css={selectBox}
+                            css={selectBoxStyle}
                             value='2'
                             aria-label='2'
                         >
                             <span>以上</span>
                         </ToggleButton>
                         <ToggleButton
-                            css={selectBox}
+                            css={selectBoxStyle}
                             value='3'
                             aria-label='3'
                         >

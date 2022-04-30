@@ -1,35 +1,37 @@
-/** サードパーティーライブラリ */
 /** @jsxImportSource @emotion/react */
 import { MenuItem, TextField } from "@material-ui/core";
-
-/** ローカルライブラリ */
-import { formMargin } from "../common/formStyle";
+import { UseFormRegister } from "react-hook-form";
+import { formMarginStyle } from "../common/style/formStyle";
+import { FormType } from "../common/type/formType";
+import { TargetType } from "../common/type/targetType";
 
 /**
  * 対象コンポーネント
+ * @param props { UseFormRegister<FormType>,  }
+ * @returns
  */
-export const Target = (props: {register: any, targetList: Array<any>}) => {
+export const Target = (props: {register: UseFormRegister<FormType>, targetList: Array<TargetType>}) => {
     return(
         <TextField
+            css={formMarginStyle}
+            defaultValue=''
             fullWidth
+            helperText='対象を指定してください'
+            id='target'
+            label='対象'
             select
             size='small'
             variant='outlined'
-            label='対象'
-            css={formMargin}
-            id='target'
-            helperText='対象を指定してください'
-            defaultValue=''
             {...props.register('target')}
         >
             <MenuItem value=''>指定無し</MenuItem>
             {props.targetList.map(target => (
-                /**
-                 * 対象を追加
-                 * 0 : 対象コード
-                 * 1 : 対象名
-                 */
-                <MenuItem value={target['target_code']} key={target['target_code']}>{target['target_name']}</MenuItem>
+                <MenuItem
+                    key={target['target_code']}
+                    value={target['target_code']}
+                >
+                    {target['target_name']}
+                </MenuItem>
             ))}
         </TextField>
     );
