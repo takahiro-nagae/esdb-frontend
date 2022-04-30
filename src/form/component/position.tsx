@@ -1,18 +1,18 @@
-/** サードパーティーライブラリ */
 /** @jsxImportSource @emotion/react */
 import { UseFormRegister } from "react-hook-form";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
-
-/** ローカルライブラリ */
-import { formMargin, labelStyle, selectBox } from "../common/formStyle";
-import { FormData } from './../common/formData';
+import { formMarginStyle, labelStyle, selectBoxStyle } from "../common/style/formStyle";
+import { FormType } from '../common/type/formType';
 
 /**
- * 位置のコンポーネント
+ * 位置コンポーネント
+ * @param props { UseFormRegister<FormType>, string, any }
+ * @returns Position { EmotionJSX.Element }
  */
-export const Position = (props: { register: UseFormRegister<FormData>, potision: string, setPosition: any }) => {
+export const Position = (props: { register: UseFormRegister<FormType>, potision: string, setPosition: any }) => {
 
-    /** 位置の選択変更 */
+    /** 位置の値変更時のハンドラ */
+    // TODO: formのonChangeを共通化する
     const handlePosition = (
         _event: React.MouseEvent<HTMLElement>,
         newAlignment: string | null,
@@ -24,32 +24,34 @@ export const Position = (props: { register: UseFormRegister<FormData>, potision:
 
     return(
         <>
-            <label css={labelStyle}><small>位置</small></label>
+            <label css={labelStyle}>
+                <small>位置</small>
+            </label>
             <ToggleButtonGroup
-                fullWidth
+                css={formMarginStyle}
                 exclusive
-                size='small'
-                css={formMargin}
-                onChange={handlePosition}
-                value={props.potision}
+                fullWidth
                 id='position'
+                onChange={handlePosition}
+                size='small'
+                value={props.potision}
             >
                 <ToggleButton
-                    css={selectBox}
-                    value='0'
                     aria-label='0'
+                    css={selectBoxStyle}
+                    value='0'
                 >
                     <span>指定無し</span>
                 </ToggleButton>
                 <ToggleButton
-                    css={selectBox}
+                    css={selectBoxStyle}
                     value='1'
                     aria-label='1'
                 >
                     <span>接頭</span>
                 </ToggleButton>
                 <ToggleButton
-                    css={selectBox}
+                    css={selectBoxStyle}
                     value='2'
                     aria-label='2'
                 >

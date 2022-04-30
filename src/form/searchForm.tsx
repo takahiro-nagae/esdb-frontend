@@ -1,8 +1,5 @@
-/** 標準ライブラリ */
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-
-/** サードパーティーライブラリ */
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { useNavigate, createSearchParams } from 'react-router-dom';
@@ -10,78 +7,55 @@ import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import { Grid } from '@material-ui/core';
 import Button from '@mui/material/Button';
 import SearchIcon from '@mui/icons-material/Search';
-
-/** ローカルライブラリ */
 import { EnchantName } from './component/enchantName';
 import { Effect } from './component/effect';
 import { Position } from './component/position';
 import { Rank } from './component/rank';
 import { Target } from './component/target';
-import { FormData } from './common/formData';
+import { FormType } from './common/type/formType';
+import { EffectType } from './common/type/effectType';
+import { RankType } from './common/type/rankType';
+import { TargetType } from './common/type/targetType';
 
 /**
- * 検索フォーム
+ * 検索フォームの詳細コンポーネント
+ * @returns SearchForm { JSX.Element }
  */
 export const SearchForm = () => {
+    /** 効果 */
+    const [effectList, setEffectList] = useState<Array<EffectType>>([]);
+    /** 位置の現在地：初期値は指定無し */
+    const [potision, setPosition] = useState('0');
+    /** ランク */
+    const [rankList, setRankList] = useState<Array<RankType>>([]);
+    /** ランクの現在値:初期値は一致 */
+    const [rankRange, setRankRange] = useState('1');
+    /**　対象 */
+    const [targetList, setTargetList] =  useState<Array<TargetType>>([]);
+
+    const navigate = useNavigate();
+    const { register, handleSubmit } = useForm<FormType>({});
+
     /** 検索ボタン */
-    const searchBtn = css ({
+    const searchBtnStyle = css ({
         width: '100%'
     });
 
-    /** キャンセルボタン */
-    const cancelStyle = css({
-        color: '#fff',
-    });
-
-    /** キャンセルボタン右よせ */
-    const rightCanlcel = css({
-        textAlign: 'right'
-    });
-
-    // ********************
-    // state
-    // ********************
-    /** 効果 */
-    const [effectList, setEffectList] = useState([]);
-    /** ランク */
-    const [rankList, setRankList] = useState([]);
-    /**　対象 */
-    const [targetList, setTargetList] =  useState([]);
-    /** ランクの現在値:初期値は一致 */
-    const [rankRange, setRankRange] = useState('1');
-    /** 位置の現在地：初期値は指定無し */
-    const [potision, setPosition] = useState('0');
-
-    const navigate = useNavigate();
-
-    // ********************
-    // 初期表示
-    // ********************
     useEffect(() => {
-        // フォームデータ
         axios.get('https://wd5zeazzd9.execute-api.ap-northeast-1.amazonaws.com/Prod/')
         .then((res) => {
             if(res.data != undefined) {
-                // 効果
                 setEffectList(res.data.effect);
-                // ランク
                 setRankList(res.data.rank);
-                // 対象
                 setTargetList(res.data.target);
             }
         });
     }, []);
 
-    // ********************
-    // フォームの設定
-    // ********************
-    /** 初期設定 */
-    const { register, handleSubmit } = useForm<FormData>({});
-
-    /** フォームの処理成功 */
-    const handleOnSubmit: SubmitHandler<FormData> = (values) => {
-        values.position = potision;
+    /** フォームの送信処理ハンドラ */
+    const handleOnSubmit: SubmitHandler<FormType> = (values) => {
         values.rankRange = rankRange;
+        values.position = potision;
 
         navigate({
             pathname: '/detail',
@@ -89,27 +63,42 @@ export const SearchForm = () => {
           });
     }
 
-    /** フォームの処理失敗 */
-    const handleOnError: SubmitErrorHandler<FormData> = (errors) => {
+    /** フォームのエラーハンドラ */
+    const handleOnError: SubmitErrorHandler<FormType> = (errors) => {
         console.log(errors)
     }
 
     return(
         <form onSubmit={handleSubmit(handleOnSubmit, handleOnError)}>
-            {/* エンチャント名 */}
             <EnchantName register={register} />
-            {/* 効果 */}
-            <Effect register={register} effectList={effectList} />
-            {/* 位置 */}
-            <Position register={register} potision={potision} setPosition={setPosition} />
-            {/* ランク */}
-            <Rank register={register} rankList={rankList} rankRange={rankRange} setRankRange={setRankRange} />
-            {/* 対象 */}
-            <Target register={register} targetList={targetList} />
-            {/* ボタン部 */}
+            <Effect
+                effectList={effectList}
+                register={register}
+            />
+            <Position
+                register={register}
+                setPosition={setPosition}
+                potision={potision}
+            />
+            <Rank
+                rankList={rankList}
+                rankRange={rankRange}
+                register={register}
+                setRankRange={setRankRange} />
+            <Target
+                register={register}
+                targetList={targetList}
+            />
             <Grid container alignItems='center'>
                 <Grid item xs={12}>
-                    <Button variant='contained' type='submit' css={searchBtn} endIcon={<SearchIcon />}>検索</Button>
+                    <Button
+                        css={searchBtnStyle}
+                        endIcon={<SearchIcon />}
+                        type='submit'
+                        variant='contained'
+                    >
+                        検索
+                    </Button>
                 </Grid>
             </Grid>
         </form>

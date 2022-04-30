@@ -1,44 +1,61 @@
-/** サードパーティーライブラリ */
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import { createSearchParams, useNavigate } from 'react-router-dom';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
-
-/** ローカルライブラリ */
-import { FreeFormData } from '../common/freeFormData';
+import { FreeFormType } from '../common/type/freeFormType';
 
 /**
  * 自由検索のコンポーネント
+ * @param props { string[] }
+ * @returns FreeSearch { EmotionJSX.Element }
  */
-export const FreeSearch = (props: {mq: any}) => {
+export const FreeSearch = (props: {mq: string[]}) => {
 
-    /** 検索の枠 */
-    const search = css({
-        display: 'flex',
-        justifyContent: 'center',
-    });
+    const { register, handleSubmit } = useForm<FreeFormType>({});
+    const navigate = useNavigate();
 
-    const searchForm = css({
-        display: 'inline-block',
-        width: '100%'
+    /** ボタン */
+    const buttonStyle = css({
+        background: '#424242',
+        '&:hover': {
+            background: '#424242'
+        },
+        borderRadius: '0',
+        color: '#fff',
     });
 
     /** 検索バー */
-    const searchBar = css({
+    const searchBarStyle = css({
+        backgroundColor: '#191919',
+        border: '1px solid #424242',
         display: 'flex',
         justifyContent: 'space-between',
         width:'50%',
         [props.mq[0]]: {
             width: '100%'
         },
-        border: '1px solid #424242',
-        backgroundColor: '#191919',
+    });
+
+    /** 検索フォーム内ブロック */
+    const searchBarDisplayStyle = css({
+        display: 'flex',
+        justifyContent: 'center',
+    });
+
+    /** 検索フォームのフレーム */
+    const searchFormStyle = css({
+        display: 'inline-block',
+        width: '100%'
     });
 
     /** 検索入力欄 */
-    const searchBarInput = css({
+    const searchBarInputStyle = css({
+        backgroundColor: '#191919',
+        border: 'none !important',
+        color: '#fff',
+        paddingLeft: '10px',
         width:'100%',
         '&:focus': {
             outlineWidth: '0'
@@ -46,54 +63,46 @@ export const FreeSearch = (props: {mq: any}) => {
         [props.mq[0]]: {
             width: '100%'
         },
-        border: 'none !important',
-        paddingLeft: '10px',
-        backgroundColor: '#191919',
-        color: '#fff',
     });
 
-    /** ボタン */
-    const buttonStyle = css({
-        color: '#fff',
-        borderRadius: '0',
-        background: '#424242',
-        '&:hover': {
-            background: '#424242'
-        }
-    });
-
-    // ********************
-    // フォームの設定
-    // ********************
-    /** 初期設定 */
-    const { register, handleSubmit } = useForm<FreeFormData>({});
-    const navigate = useNavigate();
-
-    /** フォームの処理成功 */
-    const handleOnSubmit: SubmitHandler<FreeFormData> = (values) => {
+    /**
+     * フォーム送信時のハンドラ
+     * @param values { React.BaseSyntheticEvent<object, any, any> }
+     */
+    const handleOnSubmit: SubmitHandler<FreeFormType> = (values) => {
         navigate({
             pathname: '/search',
             search: `?${createSearchParams(values)}`,
           });
     }
 
-    /** フォームの処理失敗 */
-    const handleOnError: SubmitErrorHandler<FreeFormData> = (errors) => {
+    /**
+     * フォームのエラーハンドラ
+     * @param errors　{ FieldErrors<TFieldValues> }
+     */
+    const handleOnError: SubmitErrorHandler<FreeFormType> = (errors) => {
         console.log(errors)
     }
 
     return(
         <>
-            <form onSubmit={handleSubmit(handleOnSubmit, handleOnError)} css={searchForm} >
-                <div css={search}>
-                    <div css={searchBar}>
+            <form
+                css={searchFormStyle}
+                onSubmit={handleSubmit(handleOnSubmit, handleOnError)}
+            >
+                <div css={searchBarDisplayStyle}>
+                    <div css={searchBarStyle}>
                         <input
-                            css={searchBarInput}
+                            css={searchBarInputStyle}
                             id='search'
                             placeholder="検索"
                             {...register('search')}
                         />
-                        <IconButton aria-label="search" type='submit' css={buttonStyle}>
+                        <IconButton
+                             aria-label="search"
+                             css={buttonStyle}
+                             type='submit'
+                        >
                             <SearchIcon />
                         </IconButton>
                     </div>
