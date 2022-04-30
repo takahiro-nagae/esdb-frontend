@@ -7,10 +7,10 @@ import { EffectType } from '../common/type/effectType';
 
 /**
  * 効果と効果詳細のコンポーネント
- * @param props { UseFormRegister<FormType>, Array<EffectType> }
+ * @param props { Array<EffectType>, UseFormRegister<FormType> }
  * @returns Effect { EmotionJSX.Element }
  */
-export const Effect = (props: {register: UseFormRegister<FormType>, effectList: Array<EffectType> }) => {
+export const Effect = (props: { effectList: Array<EffectType>, register: UseFormRegister<FormType> }) => {
     return(
         <>
             <TextField

@@ -3,13 +3,18 @@ import { UseFormRegister } from "react-hook-form";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { formMarginStyle, labelStyle, selectBoxStyle } from "../common/style/formStyle";
 import { FormType } from '../common/type/formType';
+import { Dispatch, SetStateAction } from "react";
 
 /**
  * 位置コンポーネント
- * @param props { UseFormRegister<FormType>, string, any }
+ * @param props { string, UseFormRegister<FormType>, Dispatch<SetStateAction<string>> }
  * @returns Position { EmotionJSX.Element }
  */
-export const Position = (props: { register: UseFormRegister<FormType>, potision: string, setPosition: any }) => {
+export const Position = (props: {
+        potision: string,
+        register: UseFormRegister<FormType>,
+        setPosition: Dispatch<SetStateAction<string>>
+    }) => {
 
     /** 位置の値変更時のハンドラ */
     // TODO: formのonChangeを共通化する

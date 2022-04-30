@@ -9,11 +9,15 @@ import { Dispatch, SetStateAction } from "react";
 
 /**
  * ランクのコンポーネント
- * @param props { UseFormRegister<FormType>, string, Dispatch<SetStateAction<string>> }
+ * @param props { Array<RankType>, string, UseFormRegister<FormType>, Dispatch<SetStateAction<string>> }
  * @returns Rank { EmotionJSX.Element }
  */
-export const Rank = (props: {register: UseFormRegister<FormType>
-    , rankList: Array<RankType>, rankRange: string, setRankRange: Dispatch<SetStateAction<string>>}) => {
+export const Rank = (props: {
+        rankList: Array<RankType>,
+        rankRange: string,
+        register: UseFormRegister<FormType>
+        setRankRange: Dispatch<SetStateAction<string>>,
+    }) => {
 
     /** ランクの現在値変更 */
     // TODO: formのonChangeを共通化する
