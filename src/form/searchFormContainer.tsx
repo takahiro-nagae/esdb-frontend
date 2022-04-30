@@ -4,10 +4,10 @@ import { SearchForm } from "./searchForm";
 
 /**
  * 検索フォームコンテナコンポーネント
- * @param props { string[], any } TODO:any型を変更する
+ * @param props { any, string[] } TODO:any型を変更する
  * @returns SearchFormContainer { JSX.Element }
  */
-export const SearchFormContainer = (props: {mq: string[], maxWidth: any}) => {
+export const SearchFormContainer = (props: {maxWidth: any, mq: string[]}) => {
     return(
         <Box sx={{ mt: 3}}>
             <Grid

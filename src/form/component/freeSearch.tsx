@@ -11,7 +11,7 @@ import { FreeFormType } from '../common/type/freeFormType';
  * @param props { string[] }
  * @returns FreeSearch { EmotionJSX.Element }
  */
-export const FreeSearch = (props: {mq: string[]}) => {
+export const FreeSearch = (props: { mq: string[] }) => {
 
     const { register, handleSubmit } = useForm<FreeFormType>({});
     const navigate = useNavigate();

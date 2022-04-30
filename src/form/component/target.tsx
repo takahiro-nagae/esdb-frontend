@@ -10,8 +10,12 @@ import { TargetType } from "../common/type/targetType";
  * @param props { UseFormRegister<FormType>,  }
  * @returns
  */
-export const Target = (props: {register: UseFormRegister<FormType>, targetList: Array<TargetType>}) => {
-    return(
+export const Target = (props: {
+        register: UseFormRegister<FormType>,
+        targetList: Array<TargetType>
+    }) => {
+
+        return(
         <TextField
             css={formMarginStyle}
             defaultValue=''
