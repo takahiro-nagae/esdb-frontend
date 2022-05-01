@@ -1,19 +1,19 @@
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
+import {css} from '@emotion/react';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
-import { createSearchParams, useNavigate } from 'react-router-dom';
-import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
-import { FreeFormType } from '../common/type/freeFormType';
+import {createSearchParams, useNavigate} from 'react-router-dom';
+import {SubmitErrorHandler, SubmitHandler, useForm} from 'react-hook-form';
+import {FreeFormType} from '../common/type/freeFormType';
+import {maxQueryProperty} from "../../common/theme/layout";
 
 /**
  * 自由検索のコンポーネント
- * @param props { string[] }
  * @returns FreeSearch { EmotionJSX.Element }
  */
-export const FreeSearch = (props: { mq: string[] }) => {
+export const FreeSearch = () => {
 
-    const { register, handleSubmit } = useForm<FreeFormType>({});
+    const {register, handleSubmit} = useForm<FreeFormType>({});
     const navigate = useNavigate();
 
     /** ボタン */
@@ -32,8 +32,8 @@ export const FreeSearch = (props: { mq: string[] }) => {
         border: '1px solid #424242',
         display: 'flex',
         justifyContent: 'space-between',
-        width:'50%',
-        [props.mq[0]]: {
+        width: '50%',
+        [maxQueryProperty]: {
             width: '100%'
         },
     });
@@ -56,11 +56,11 @@ export const FreeSearch = (props: { mq: string[] }) => {
         border: 'none !important',
         color: '#fff',
         paddingLeft: '10px',
-        width:'100%',
+        width: '100%',
         '&:focus': {
             outlineWidth: '0'
         },
-        [props.mq[0]]: {
+        [maxQueryProperty]: {
             width: '100%'
         },
     });
@@ -73,18 +73,18 @@ export const FreeSearch = (props: { mq: string[] }) => {
         navigate({
             pathname: '/search',
             search: `?${createSearchParams(values)}`,
-          });
+        });
     }
 
     /**
      * フォームのエラーハンドラ
-     * @param errors　{ FieldErrors<TFieldValues> }
+     * @param errors { FieldErrors<TFieldValues> }
      */
     const handleOnError: SubmitErrorHandler<FreeFormType> = (errors) => {
         console.log(errors)
     }
 
-    return(
+    return (
         <>
             <form
                 css={searchFormStyle}
@@ -99,11 +99,11 @@ export const FreeSearch = (props: { mq: string[] }) => {
                             {...register('search')}
                         />
                         <IconButton
-                             aria-label="search"
-                             css={buttonStyle}
-                             type='submit'
+                            aria-label="search"
+                            css={buttonStyle}
+                            type='submit'
                         >
-                            <SearchIcon />
+                            <SearchIcon/>
                         </IconButton>
                     </div>
                 </div>
