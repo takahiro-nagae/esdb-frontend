@@ -1,15 +1,10 @@
-/** 標準ライブラリ */
 import ReactDOM from 'react-dom';
-
-/** サードパーティーライブラリ */
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { createTheme } from '@material-ui/core/styles'
 import { ThemeProvider } from '@material-ui/core';
 import GlobalStyles from "@mui/material/GlobalStyles";
-
-/** ローカルライブラリ */
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { Home } from './home/home';

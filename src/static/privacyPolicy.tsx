@@ -1,17 +1,18 @@
-/** サードパーティーライブラリ */
 import { Grid, Paper } from '@material-ui/core';
 import Box from '@mui/material/Box';
-
-/** ローカルライブラリ */
 import { DisplayWideAd } from '../adsense/displayWideAd';
 
 /**
  * プライバシーポリシーコンポーネント
+ * @returns PrivacyPolicy { JSX.Element }
  */
 export const PrivacyPolicy = () => {
     return(
         <Box sx={{ mt: 3}}>
-            <Grid container justifyContent="center">
+            <Grid
+                container
+                justifyContent="center"
+            >
                 <Grid item xs={11}>
                     <DisplayWideAd />
                     <Paper style={{marginTop: '15px'}}>
