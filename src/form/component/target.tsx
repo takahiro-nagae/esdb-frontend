@@ -11,11 +11,10 @@ import { TargetType } from "../common/type/targetType";
  * @returns
  */
 export const Target = (props: {
-        register: UseFormRegister<FormType>,
-        targetList: Array<TargetType>
-    }) => {
-
-        return(
+    register: UseFormRegister<FormType>,
+    targetList: Array<TargetType>
+}) => {
+    return(
         <TextField
             css={formMarginStyle}
             defaultValue=''

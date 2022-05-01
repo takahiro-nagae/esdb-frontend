@@ -12,8 +12,8 @@ import { FormType } from '../common/type/formType';
 export const EnchantName = (props: { register: UseFormRegister<FormType> }) => {
     return(
         <TextField
-            fullWidth
             css={formMarginStyle}
+            fullWidth
             helperText='エンチャント名を入力してください'
             id='enchantName'
             label='エンチャント名'

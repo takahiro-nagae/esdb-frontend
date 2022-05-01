@@ -13,11 +13,11 @@ import { Dispatch, SetStateAction } from "react";
  * @returns Rank { EmotionJSX.Element }
  */
 export const Rank = (props: {
-        rankList: Array<RankType>,
-        rankRange: string,
-        register: UseFormRegister<FormType>
-        setRankRange: Dispatch<SetStateAction<string>>,
-    }) => {
+    rankList: Array<RankType>,
+    rankRange: string,
+    register: UseFormRegister<FormType>
+    setRankRange: Dispatch<SetStateAction<string>>,
+}) => {
 
     /** ランクの現在値変更 */
     // TODO: formのonChangeを共通化する
@@ -37,13 +37,13 @@ export const Rank = (props: {
                 {/* ランクセレクトボックス */}
                 <Grid item xs={4}>
                     <TextField
+                        css={formMarginStyle}
+                        defaultValue=''
                         fullWidth
+                        id='rank'
                         select
                         size='small'
                         variant='outlined'
-                        css={formMarginStyle}
-                        id='rank'
-                        defaultValue=''
                         {...props.register('rank')}
                     >
                         <MenuItem value=''>指定無し</MenuItem>
@@ -62,31 +62,31 @@ export const Rank = (props: {
                 {/* ランク一致 */}
                 <Grid item xs={7}>
                     <ToggleButtonGroup
+                        css={formMarginStyle}
                         fullWidth
                         exclusive
                         size='small'
-                        css={formMarginStyle}
                         onChange={onChange}
                         value={props.rankRange}
                     >
                         <ToggleButton
+                            aria-label='1'
                             css={selectBoxStyle}
                             value='1'
-                            aria-label='1'
                         >
                             <span>一致</span>
                         </ToggleButton>
                         <ToggleButton
+                            aria-label='2'
                             css={selectBoxStyle}
                             value='2'
-                            aria-label='2'
                         >
                             <span>以上</span>
                         </ToggleButton>
                         <ToggleButton
+                            aria-label='3'
                             css={selectBoxStyle}
                             value='3'
-                            aria-label='3'
                         >
                             <span>以下</span>
                         </ToggleButton>

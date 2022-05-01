@@ -11,10 +11,10 @@ import { Dispatch, SetStateAction } from "react";
  * @returns Position { EmotionJSX.Element }
  */
 export const Position = (props: {
-        potision: string,
-        register: UseFormRegister<FormType>,
-        setPosition: Dispatch<SetStateAction<string>>
-    }) => {
+    potision: string,
+    register: UseFormRegister<FormType>,
+    setPosition: Dispatch<SetStateAction<string>>
+}) => {
 
     /** 位置の値変更時のハンドラ */
     // TODO: formのonChangeを共通化する
@@ -49,16 +49,16 @@ export const Position = (props: {
                     <span>指定無し</span>
                 </ToggleButton>
                 <ToggleButton
+                    aria-label='1'
                     css={selectBoxStyle}
                     value='1'
-                    aria-label='1'
                 >
                     <span>接頭</span>
                 </ToggleButton>
                 <ToggleButton
+                    aria-label='2'
                     css={selectBoxStyle}
                     value='2'
-                    aria-label='2'
                 >
                     <span>接尾</span>
                 </ToggleButton>
