@@ -1,22 +1,15 @@
-import { MultiplexAd } from '../adsense/multiplexAd';
-import { SearchFormContainer } from '../form/searchFormContainer';
+import {MultiplexAd} from '../adsense/multiplexAd';
+import {SearchFormContainer} from '../form/searchFormContainer';
 
 /**
  * トップ画面コンポーネント
- * @param props { any, any } // TODO: anyの型付けを変更
- * @returns Home　{ JSX.Element }
+ * @returns Home { JSX.Element }
  */
-export const Home = (props: {
-    mq: any,
-    maxWidth: any
-}) => {
-    return(
+export const Home = () => {
+    return (
         <>
-            <SearchFormContainer
-                maxWidth={props.maxWidth}
-                mq={props.mq}
-            />
-            <MultiplexAd />
+            <SearchFormContainer/>
+            <MultiplexAd/>
         </>
     )
 }
