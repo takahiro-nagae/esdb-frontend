@@ -46,7 +46,7 @@ export const Detail = (props: { enchant_id: string }) => {
     });
 
     /** ローディングや検索結果なしの表示 */
-    const verticalCenter = css ({
+    const verticalCenterStyle = css ({
         position: 'absolute',
         top: '50%',
         left:'50%'
@@ -72,7 +72,7 @@ export const Detail = (props: { enchant_id: string }) => {
         <>
             { !isLoading &&
                 <ReactLoading
-                    css={verticalCenter}
+                    css={verticalCenterStyle}
                     type="bubbles"
                 />
             }
