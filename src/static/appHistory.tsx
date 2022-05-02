@@ -1,22 +1,17 @@
-/** 標準ライブラリ */
 import { useEffect } from "react";
-
-/** サードパーティーライブラリ */
 import { Grid, Paper } from "@material-ui/core"
 import Box from '@mui/material/Box';
-
-/** ローカルライブラリ */
 import { DisplayWideAd } from '../adsense/displayWideAd';
 
 /**
- * 更新履歴
+ * 更新履歴コンポーネント
+ * @returns AppHistory { JSX.Element }
  */
 export const AppHistory = () => {
 
     /** widgetロード可否 */
     let isLoadwidgets = false;
 
-    /** 初期表示 */
     useEffect(() => {
         if (!isLoadwidgets) {
           const s = document.createElement("script");
@@ -28,7 +23,10 @@ export const AppHistory = () => {
 
     return(
         <Box sx={{ mt: 3}}>
-            <Grid container justifyContent="center">
+            <Grid
+                container
+                justifyContent="center"
+            >
                 <Grid item xs={11}>
                     <DisplayWideAd />
                     <Paper style={{marginTop: '15px'}}>

@@ -1,18 +1,18 @@
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react'
-import { Link } from 'react-router-dom'
-import { AppBar, Toolbar, Typography } from '@material-ui/core'
+import {css} from '@emotion/react'
+import {Link} from 'react-router-dom'
+import {AppBar, Toolbar, Typography} from '@material-ui/core'
 import MediaQuery from 'react-responsive';
-import { AppMenu } from './appMenu';
-import { FreeSearch } from '../form/component/freeSearch';
+import {AppMenu} from './appMenu';
+import {FreeSearch} from '../form/component/freeSearch';
+import {pcDisplayQuery, spDisplayQuery} from "./theme/layout";
 
 
 /**
  *  ヘッダーコンポーネント
- * @param props { number, string[] }
  * @returns Header { EmotionJSX.Element }
  */
-export const Header = (props: { breakPoint: number, mq: string[] }) => {
+export const Header = () => {
     /** ヘッダーリンクのスタイル */
     const headerLinkStyle = css({
         color: '#fff',
@@ -25,11 +25,6 @@ export const Header = (props: { breakPoint: number, mq: string[] }) => {
         whiteSpace: 'nowrap',
     });
 
-    /** pc版ブレークポイント */
-    const pcDisplayQuery = "(min-width:" + props.breakPoint + "px)";
-    /** スマホ版ブレークポイント */
-    const spDisplayQuery = "(max-width:" + props.breakPoint + "px)";
-
     return (
         <>
             <AppBar position="fixed">
@@ -40,12 +35,17 @@ export const Header = (props: { breakPoint: number, mq: string[] }) => {
                         </Typography>
                     </MediaQuery>
                     <MediaQuery query={spDisplayQuery}>
-                        <Link to="/" css={headerLinkStyle} style={{ marginRight: '12px'}}>
-                            <img src='/icon.png' width="32px" height="32px" />
+                        <Link to="/" css={headerLinkStyle} style={{marginRight: '12px'}}>
+                            <img
+                                alt='header'
+                                src='/icon.png'
+                                width='32px'
+                                height='32px'
+                            />
                         </Link>
                     </MediaQuery>
-                    <FreeSearch mq={props.mq} />
-                    <AppMenu />
+                    <FreeSearch/>
+                    <AppMenu/>
                 </Toolbar>
             </AppBar>
         </>

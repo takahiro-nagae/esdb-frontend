@@ -1,4 +1,3 @@
-/** サードパーティーライブラリ */
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { NavLink } from "react-router-dom";
@@ -7,32 +6,36 @@ import Box from '@mui/material/Box';
 import FeedIcon from '@mui/icons-material/Feed';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import YouTubeIcon from '@mui/icons-material/YouTube';
-
-/** ローカルライブラリ */
 import { DisplayWideAd } from '../adsense/displayWideAd';
 
 /**
  * 当サイトについてコンポーネント
+ * @returns About { EmotionJSX.Element }
  */
 export const About = () => {
 
-    /** テキストのスタイル */
-    const menuBase = css({
+    /** アイコン */
+    const iconStyle = css({
         verticalAlign: 'middle'
     });
 
-    const menuText = css({
+    /** アイコンのテキスト説明 */
+    const iconTextStyle = css({
         verticalAlign: 'middle',
         marginLeft: '5px'
     });
 
-    const menuSpace = css({
+    /** メニューの幅調整 */
+    const menuSpaceStyle = css({
         marginTop: '8px'
     });
 
     return(
         <Box sx={{ mt: 3}}>
-            <Grid container justifyContent="center">
+            <Grid
+                container
+                justifyContent="center"
+            >
                 <Grid item xs={11}>
                     <DisplayWideAd />
                     <Paper style={{marginTop: '15px'}}>
@@ -55,8 +58,10 @@ export const About = () => {
                                         当サイトについてお問合せございましたらDMでご連絡いただけますと幸いです。
                                     </p>
                                     <NavLink to="https://twitter.com/mabiesdb">
-                                        <TwitterIcon css={menuBase} />
-                                        <span css={menuText}>公式Twitter</span>
+                                        <TwitterIcon css={iconStyle} />
+                                        <span css={iconTextStyle}>
+                                            公式Twitter
+                                        </span>
                                     </NavLink>
 
                                 </Box>
@@ -69,20 +74,26 @@ export const About = () => {
                                     </p>
                                     <div>
                                         <NavLink to="https://twitter.com/jackumagic">
-                                            <TwitterIcon css={menuBase} />
-                                            <span css={menuText}>Twitter</span>
+                                            <TwitterIcon css={iconStyle} />
+                                            <span css={iconTextStyle}>
+                                                Twitter
+                                            </span>
                                         </NavLink>
                                     </div>
-                                    <div css ={menuSpace}>
+                                    <div css ={menuSpaceStyle}>
                                         <NavLink to="https://jackumagic.com">
-                                            <FeedIcon css={menuBase} />
-                                            <span css={menuText}>ブログ</span>
+                                            <FeedIcon css={iconStyle} />
+                                            <span css={iconTextStyle}>
+                                                ブログ
+                                            </span>
                                         </NavLink>
                                     </div>
-                                    <div css={menuSpace}>
+                                    <div css={menuSpaceStyle}>
                                         <NavLink to="https://www.youtube.com/channel/UCXBUjcXZta7-zKA-qSj-zFw/featured">
-                                                <YouTubeIcon css={menuBase} />
-                                                <span css={menuText}>YouTubeチャンネル</span>
+                                                <YouTubeIcon css={iconStyle} />
+                                                <span css={iconTextStyle}>
+                                                    YouTubeチャンネル
+                                                </span>
                                         </NavLink>
                                     </div>
                                 </Box>
