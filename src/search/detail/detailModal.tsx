@@ -31,7 +31,7 @@ export const DetailModal = (props: {enchant_id: string, count: number}) => {
     };
 
     /** モーダルの外枠 */
-    const modalBox = css({
+    const modalBoxStyle = css({
         position: 'absolute',
         top: '50%',
         left: '50%',
@@ -52,7 +52,7 @@ export const DetailModal = (props: {enchant_id: string, count: number}) => {
                 onClose={ handleClose }
                 open={ open }
             >
-                <Box css={modalBox}>
+                <Box css={modalBoxStyle}>
                     <Detail enchant_id={ props.enchant_id } /> // TODO: 変数になりそう
                 </Box>
             </Modal>
