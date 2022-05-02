@@ -1,43 +1,39 @@
 /** 標準ライブラリ */
-import { useEffect, useState } from 'react';
+import {useEffect, useState} from 'react';
 
 /** サードパーティーライブラリ */
 /** @jsxImportSource @emotion/react */
 import ReactLoading from 'react-loading';
 import axios from 'axios';
-import { css } from '@emotion/react';
-import { useSearchParams } from 'react-router-dom';
+import {css} from '@emotion/react';
+import {useSearchParams} from 'react-router-dom';
 import MediaQuery from "react-responsive";
-import { Grid } from '@material-ui/core';
+import {Grid} from '@material-ui/core';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import { Card, TableCell, TableRow } from '@mui/material';
+import {Card, TableCell, TableRow} from '@mui/material';
 import TableContainer from '@mui/material/TableContainer';
 import IconButton from '@mui/material/IconButton';
-import { KeyboardDoubleArrowUp } from '@mui/icons-material';
-import { animateScroll as scroll } from "react-scroll";
+import {KeyboardDoubleArrowUp} from '@mui/icons-material';
+import {animateScroll as scroll} from "react-scroll";
 
 /** ローカルライブラリ */
-import { SearchListBody } from './pc/searchListBody';
-import { EnchantCard } from './enchantCard';
-import { Order } from './pc/order';
-import { HeadData } from './pc/headData';
-import { SearchListHead } from './pc/searchListHead';
-import { Pagination } from './pc/pagination';
-import { positionName } from './positionFunction';
-import { InfeedAd } from '../adsense/infeedAd';
-
+import {SearchListBody} from './pc/searchListBody';
+import {EnchantCard} from './enchantCard';
+import {Order} from './pc/order';
+import {HeadData} from './pc/headData';
+import {SearchListHead} from './pc/searchListHead';
+import {Pagination} from './pc/pagination';
+import {positionName} from './positionFunction';
+import {InfeedAd} from '../adsense/infeedAd';
+import {pcDisplayQuery, spDisplayQuery} from "../common/theme/layout";
 
 
 /**
  * 検索結果一覧
  */
-export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearchFlg: boolean}) => {
-
-    /** ブレークポイントクエリ */
-    const minQuery = "(min-width:" + props.breakPoint + "px)";
-    const maxQuery = "(max-width:" + props.breakPoint + "px)";
+export const SearchList = (props: { freeSearchFlg: boolean }) => {
 
     /** 検索結果の文字列 */
     const result = css({
@@ -53,8 +49,8 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearch
     });
 
     /** スマホの横幅指定 */
-    const dataWidth = css ({
-       width: '100%'
+    const dataWidth = css({
+        width: '100%'
     });
 
     /** フリー検索の外枠 */
@@ -106,7 +102,7 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearch
     });
 
     /** ローディングや検索結果なしの表示 */
-    const verticalCenter = css ({
+    const verticalCenter = css({
         position: 'absolute',
         top: '50%'
     });
@@ -119,7 +115,7 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearch
     });
 
     /** コンテント各行の基本スタイル */
-    const tableContent = css ({
+    const tableContent = css({
         backgroundColor: '#3C3B40',
     });
 
@@ -160,10 +156,10 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearch
 
     function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
         if (b[orderBy] < a[orderBy]) {
-          return -1;
+            return -1;
         }
         if (b[orderBy] > a[orderBy]) {
-          return 1;
+            return 1;
         }
         return 0;
     }
@@ -171,31 +167,31 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearch
     function getComparator<Key extends keyof any>(
         order: Order,
         orderBy: Key,
-      ): (
+    ): (
         a: { [key in Key]: number | string },
         b: { [key in Key]: number | string },
-      ) => number {
+    ) => number {
         return order === 'desc'
-          ? (a, b) => descendingComparator(a, b, orderBy)
-          : (a, b) => -descendingComparator(a, b, orderBy);
+            ? (a, b) => descendingComparator(a, b, orderBy)
+            : (a, b) => -descendingComparator(a, b, orderBy);
     }
 
     function stableSort<T>(array: readonly T[], comparator: (a: T, b: T) => number) {
         const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
         stabilizedThis.sort((a, b) => {
-          const order = comparator(a[0], b[0]);
-          if (order !== 0) {
-            return order;
-          }
-          return a[1] - b[1];
+            const order = comparator(a[0], b[0]);
+            if (order !== 0) {
+                return order;
+            }
+            return a[1] - b[1];
         });
         return stabilizedThis.map((el) => el[0]);
-      }
+    }
 
     const handleRequestSort = (
         event: React.MouseEvent<unknown>,
         property: keyof HeadData,
-      ) => {
+    ) => {
         const isAsc = orderBy === property && order === 'asc';
         setOrder(isAsc ? 'desc' : 'asc');
         setOrderBy(property);
@@ -217,14 +213,14 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearch
     /** 検索用パラメータ */
     let requestParams = '';
 
-    if(props.freeSearchFlg) {
+    if (props.freeSearchFlg) {
         path = '/search'
         requestParams = '?search=' + searchParams.get('search');
     } else {
         path = '/detail'
         requestParams = '?enchantName=' + searchParams.get('enchantName') + '&effect=' + searchParams.get('effect') + '&effectVal=' + searchParams.get('effectVal')
-        + '&range=' + searchParams.get('range') + '&rank=' + searchParams.get('rank') + '&target=' + searchParams.get('target')
-        + '&position=' + searchParams.get('position') + '&rankRange=' + searchParams.get('rankRange') ;
+            + '&range=' + searchParams.get('range') + '&rank=' + searchParams.get('rank') + '&target=' + searchParams.get('target')
+            + '&position=' + searchParams.get('position') + '&rankRange=' + searchParams.get('rankRange');
     }
 
     // ********************
@@ -232,28 +228,28 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearch
     // ********************
     useEffect(() => {
         axios.get('https://wd5zeazzd9.execute-api.ap-northeast-1.amazonaws.com/Prod' + path + requestParams)
-        .then((res) => {
-            if(res.data != undefined) {
-                // エンチャント一覧
-                setEnchantList(res.data.enchant_list);
-                setRowData(res.data.enchant_list);
-                // 件数
-                setcount(res.data.enchant_list.length);
-                // 表示用の件数
-                setDispCount(res.data.enchant_list.length);
-                // 値の表示フラグ
-                if(res.data.enchant_list.length > 0) {
-                    setValFlag(res.data.enchant_list[0].disp_val != undefined)
-                    setOrderBy('disp_val')
-                    setOrder('desc')
+            .then((res) => {
+                if (res.data != undefined) {
+                    // エンチャント一覧
+                    setEnchantList(res.data.enchant_list);
+                    setRowData(res.data.enchant_list);
+                    // 件数
+                    setcount(res.data.enchant_list.length);
+                    // 表示用の件数
+                    setDispCount(res.data.enchant_list.length);
+                    // 値の表示フラグ
+                    if (res.data.enchant_list.length > 0) {
+                        setValFlag(res.data.enchant_list[0].disp_val != undefined)
+                        setOrderBy('disp_val')
+                        setOrder('desc')
+                    }
+                    if (res.data.effect_name != undefined) {
+                        setEffectName(res.data.effect_name.effect);
+                    }
+                    // ローディング完了
+                    setLoadingFlag(true);
                 }
-                if(res.data.effect_name != undefined) {
-                    setEffectName(res.data.effect_name.effect);
-                }
-                // ローディング完了
-                setLoadingFlag(true);
-            }
-        }).catch((error) => {
+            }).catch((error) => {
             console.log(error)
         });
     }, [requestParams]);
@@ -272,11 +268,11 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearch
             let enchant_name: string = enchant.enchant_name;
             let position: string = positionName(enchant.position_id);
             let rank: string = enchant.rank;
-            let target_name:string = enchant.target_name;
+            let target_name: string = enchant.target_name;
             let effect_name: string = enchant.effect_name;
             let route_name: string = enchant.route_name != undefined ? enchant.route_name : '';
 
-          return  enchant_name.match(value) || position.match(value) || rank.match(value) || target_name.match(value) || effect_name.match(value) || route_name.match(value);
+            return enchant_name.match(value) || position.match(value) || rank.match(value) || target_name.match(value) || effect_name.match(value) || route_name.match(value);
         });
 
         // 検索用のデータ
@@ -287,60 +283,66 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearch
         setPage(0);
     }
 
-    return(
+    return (
         <>
-            <MediaQuery query={maxQuery}>
+            <MediaQuery query={pcDisplayQuery}>
                 <Grid item xs={12} css={freeSearchBoxSp}>
-                    <input css={freeSearchInputSp} placeholder='絞り込む' value={searchWord} onChange={(e) => searchItems(e.target.value)} />
+                    <input css={freeSearchInputSp} placeholder='絞り込む' value={searchWord}
+                           onChange={(e) => searchItems(e.target.value)}/>
                 </Grid>
             </MediaQuery>
-            <Box sx={{ mt: 3}}>
+            <Box sx={{mt: 3}}>
                 <Grid container alignItems='center' direction='column' css={verticalCenter}>
-                    { !loadingFlag && <ReactLoading type="bubbles" /> }
-                    { loadingFlag && dispCount == 0 &&
+                    {!loadingFlag && <ReactLoading type="bubbles"/>}
+                    {loadingFlag && dispCount == 0 &&
                         <>
                             <p css={result}>検索結果は0件です</p>
                         </>
                     }
                 </Grid>
                 <Grid container alignItems='center' direction='column'>
-                    { loadingFlag && dispCount > 0 &&
+                    {loadingFlag && dispCount > 0 &&
                         <>
                             <p css={result}>
                                 <span css={hitCount}>{count}</span>件ヒットしました
-                                { effectName != '' &&
+                                {effectName != '' &&
                                     <>
-                                        <br />
+                                        <br/>
                                         <span>値：{effectName}</span>
                                     </>
                                 }
                             </p>
-                            <MediaQuery query={minQuery}>
+                            <MediaQuery query={spDisplayQuery}>
                                 <Grid item xs={11} css={freeSearchBox}>
-                                    <input css={freeSearchInput} placeholder='絞り込む' value={searchWord} onChange={(e) => searchItems(e.target.value)} />
+                                    <input css={freeSearchInput} placeholder='絞り込む' value={searchWord}
+                                           onChange={(e) => searchItems(e.target.value)}/>
                                 </Grid>
                                 <Grid item xs={11} css={dataWidth}>
                                     <Box>
-                                        <TableContainer style={{ overflow: 'visible' }}>
-                                            <Table style={{ borderCollapse:'separate' }}>
+                                        <TableContainer style={{overflow: 'visible'}}>
+                                            <Table style={{borderCollapse: 'separate'}}>
                                                 {/* ヘッダー */}
-                                                <SearchListHead onRequestSort={handleRequestSort} order={order} orderBy={orderBy} valFlg={valFlag} />
+                                                <SearchListHead onRequestSort={handleRequestSort} order={order}
+                                                                orderBy={orderBy} valFlg={valFlag}/>
                                                 {/* ボディ */}
                                                 <TableBody>
                                                     {stableSort(rowData, getComparator(order, orderBy)).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((enchant, index) => (
                                                         <>
                                                             {index != 0 && index % 5 == 0 &&
                                                                 <TableRow css={tableContent} key={index}>
-                                                                    <TableCell colSpan={valFlag ? 7 : 6} css={tableData}>
-                                                                        <InfeedAd />
+                                                                    <TableCell colSpan={valFlag ? 7 : 6}
+                                                                               css={tableData}>
+                                                                        <InfeedAd/>
                                                                     </TableCell>
                                                                 </TableRow>
                                                             }
-                                                            <SearchListBody enchant={enchant} valFlg={valFlag} key={enchant.enchant_id} />
-                                                            {index == rowData.length -1 &&
+                                                            <SearchListBody enchant={enchant} valFlg={valFlag}
+                                                                            key={enchant.enchant_id}/>
+                                                            {index == rowData.length - 1 &&
                                                                 <TableRow css={tableContent} key={'lastPc'}>
-                                                                    <TableCell colSpan={valFlag ? 7 : 6} css={tableData}>
-                                                                        <InfeedAd />
+                                                                    <TableCell colSpan={valFlag ? 7 : 6}
+                                                                               css={tableData}>
+                                                                        <InfeedAd/>
                                                                     </TableCell>
                                                                 </TableRow>
                                                             }
@@ -349,42 +351,51 @@ export const SearchList = (props: {maxWidth: any, breakPoint: number, freeSearch
                                                 </TableBody>
                                             </Table>
                                         </TableContainer>
-                                        <Pagination count={count} page={page} rowsPerPage={rowsPerPage} handleChangePage={handleChangePage} handleChangeRowsPerPage={handleChangeRowsPerPage} />
+                                        <Pagination count={count} page={page} rowsPerPage={rowsPerPage}
+                                                    handleChangePage={handleChangePage}
+                                                    handleChangeRowsPerPage={handleChangeRowsPerPage}/>
                                     </Box>
                                 </Grid>
                             </MediaQuery>
-                            <MediaQuery query={maxQuery}>
+                            <MediaQuery query={pcDisplayQuery}>
                                 <Grid item xs={12} css={dataWidth}>
-                                    <Box sx={{ p: 1}}>
+                                    <Box sx={{p: 1}}>
                                         {rowData.map((enchant, index) => (
                                             <>
                                                 {index != 0 && index % 5 == 0 &&
-                                                    <Card sx={{ backgroundColor: '#3C3B40',
+                                                    <Card sx={{
+                                                        backgroundColor: '#3C3B40',
                                                         padding: '8px',
                                                         margin: '8px',
-                                                        boxSizing: 'border-box' }}
-                                                        key={index}
+                                                        boxSizing: 'border-box'
+                                                    }}
+                                                          key={index}
                                                     >
-                                                        <InfeedAd />
+                                                        <InfeedAd/>
                                                     </Card>
                                                 }
-                                                <EnchantCard enchant={enchant} valFlag={valFlag} key={enchant.enchant_id} />
-                                                {index == rowData.length -1 &&
-                                                    <Card sx={{ backgroundColor: '#3C3B40',
+                                                <EnchantCard enchant={enchant} valFlag={valFlag}
+                                                             key={enchant.enchant_id}/>
+                                                {index == rowData.length - 1 &&
+                                                    <Card sx={{
+                                                        backgroundColor: '#3C3B40',
                                                         padding: '8px',
                                                         margin: '8px',
-                                                        boxSizing: 'border-box' }}
-                                                        key={'lastSp'}
+                                                        boxSizing: 'border-box'
+                                                    }}
+                                                          key={'lastSp'}
                                                     >
-                                                        <InfeedAd />
+                                                        <InfeedAd/>
                                                     </Card>
                                                 }
                                             </>
                                         ))}
                                     </Box>
                                 </Grid>
-                                <IconButton color="secondary" aria-label="add an alarm" css={topIcon} onClick={scrollToTop} style={{ position: 'fixed', bottom: '48px', background: '#282828' }}>
-                                    <KeyboardDoubleArrowUp sx={{ fontSize: 40 }} />
+                                <IconButton color="secondary" aria-label="add an alarm" css={topIcon}
+                                            onClick={scrollToTop}
+                                            style={{position: 'fixed', bottom: '48px', background: '#282828'}}>
+                                    <KeyboardDoubleArrowUp sx={{fontSize: 40}}/>
                                 </IconButton>
                             </MediaQuery>
                         </>
