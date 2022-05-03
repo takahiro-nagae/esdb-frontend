@@ -285,7 +285,7 @@ export const SearchList = (props: { freeSearchFlg: boolean }) => {
 
     return (
         <>
-            <MediaQuery query={pcDisplayQuery}>
+            <MediaQuery query={spDisplayQuery}>
                 <Grid item xs={12} css={freeSearchBoxSp}>
                     <input css={freeSearchInputSp} placeholder='絞り込む' value={searchWord}
                            onChange={(e) => searchItems(e.target.value)}/>
@@ -312,7 +312,7 @@ export const SearchList = (props: { freeSearchFlg: boolean }) => {
                                     </>
                                 }
                             </p>
-                            <MediaQuery query={spDisplayQuery}>
+                            <MediaQuery query={pcDisplayQuery}>
                                 <Grid item xs={11} css={freeSearchBox}>
                                     <input css={freeSearchInput} placeholder='絞り込む' value={searchWord}
                                            onChange={(e) => searchItems(e.target.value)}/>
@@ -357,7 +357,7 @@ export const SearchList = (props: { freeSearchFlg: boolean }) => {
                                     </Box>
                                 </Grid>
                             </MediaQuery>
-                            <MediaQuery query={pcDisplayQuery}>
+                            <MediaQuery query={spDisplayQuery}>
                                 <Grid item xs={12} css={dataWidth}>
                                     <Box sx={{p: 1}}>
                                         {rowData.map((enchant, index) => (
