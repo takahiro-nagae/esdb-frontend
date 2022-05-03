@@ -1,7 +1,4 @@
-/** 標準ライブラリ */
 import { useState } from 'react';
-
-/** サードパーティーライブラリ */
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { Button } from "@mui/material";
@@ -10,31 +7,38 @@ import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import { GroundList } from './groundList';
 
-/**
- * 下地検索ボタン
+/***
+ * 下地検索ボタンコンポーネント
+ * @param props { string, string, number }
+ * @returns GroundButton { JSX.Element}
  */
-export const GroundButton = (props: { enchant_id: string, rank_ignore_flg: string, rank_seq: number }) => {
+export const GroundButton = (props: {
+    enchant_id: string,
+    rank_ignore_flg: string,
+    rank_seq: number
+}) => {
 
     /** ボタンのスタイル */
-    const groundButton = css({
+    const groundButtonStyle = css({
         height: '24px',
         width:'88px',
     });
 
     /** モーダルの外枠 */
-    const modalBox = css({
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        width: '95%',
-        height: '80%',
-        transform: 'translate(-50%, -50%)',
+    const modalBoxStyle = css({
         backgroundColor: '#27292D',
+        height: '80%',
+        left: '50%',
+        overflow: 'scroll',
         padding: '16px',
-        overflow: 'scroll'
+        position: 'absolute',
+        transform: 'translate(-50%, -50%)',
+        top: '50%',
+        width: '95%',
     });
 
-    const [open, setOpen] = useState(false);
+    /** モーダルオープン */
+    const [ open, setOpen ] = useState(false);
 
     /**  モーダルオープン処理 */
     const handleOpen = () => {
@@ -49,16 +53,22 @@ export const GroundButton = (props: { enchant_id: string, rank_ignore_flg: strin
         <>
             { props.rank_ignore_flg == '0' && props.rank_seq >= 7 &&
                 <>
-                    <Button variant='contained' onClick={handleOpen} size="small" endIcon={<CopyAllIcon />} css={groundButton} >
+                    <Button
+                        css={groundButtonStyle}
+                        endIcon={ <CopyAllIcon /> }
+                        onClick={handleOpen}
+                        size="small"
+                        variant='contained'
+                    >
                         <span>下地</span>
                     </Button>
                     <Modal
-                            open={open}
-                            onClose={handleClose}
-                            aria-labelledby="modal-modal-title"
-                            aria-describedby="modal-modal-description"
-                        >
-                        <Box css={modalBox}>
+                        aria-describedby="modal-modal-description"
+                        aria-labelledby="modal-modal-title"
+                        onClose={handleClose}
+                        open={open}
+                    >
+                        <Box css={modalBoxStyle}>
                             <GroundList enchant_id={props.enchant_id} />
                         </Box>
                     </Modal>
