@@ -5,11 +5,11 @@ export interface GroundEnchant {
     /** エンチャントID */
     enchant_id: string;
     /** エンチャント名 */
-    enchant_name: string,
+    enchant_name: string;
     /** エンチャント別名 */
-    enchant_name_2: string,
+    enchant_name_2: string;
     /** エンチャント英名 */
-    enchant_name_en: string,
+    enchant_name_en: string;
     /** 位置ID */
-    position_id: string
+    position_id: string;
 }
