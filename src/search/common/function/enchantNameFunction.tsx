@@ -5,7 +5,7 @@ import { css } from "@emotion/react";
  * エンチャント名を設定
  * @param enchantName エンチャント名
  * @param enchantName2 エンチャント別名
- * @returns
+ * @returns エンチャント名 { string }
  */
 export function createEnchantName( enchantName: string, enchantName2: string ) {
     if ( enchantName2 == '' ) return enchantName;
@@ -18,7 +18,7 @@ export function createEnchantName( enchantName: string, enchantName2: string ) {
  * エンチャントの英名を加工し返却
  * @param enchantNameEn エンチャント英名
  * @param positionCode 位置コード
- * @returns エンチャント英名
+ * @returns エンチャント英名 { string }
  */
 export function createEnchantNameEn( enchantNameEn: string, positionCode: string ) {
     if ( enchantNameEn == '' ) return ''
@@ -38,6 +38,7 @@ export function createEnchantNameEn( enchantNameEn: string, positionCode: string
 
 /**
  * サブタイトルのスタイル
+ * @returns { SerializedStyles }
  */
 export function subTitleStyle() {
     return css( {
