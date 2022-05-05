@@ -10,7 +10,7 @@ export const ImpText = (props: { impFlg: string }) => {
     return (
         <>
             {
-                props.impFlg == '1' &&
+                props.impFlg != '1' &&
                 <small css={ red }>
                     　未実装
                 </small>
