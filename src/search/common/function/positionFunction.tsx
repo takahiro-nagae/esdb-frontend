@@ -4,7 +4,7 @@ import { css } from "@emotion/react";
 /**
  * 位置コードの値で設定する色を変更する
  * @param positionCode 位置コード
- * @returns 位置コードの値による色
+ * @returns 位置コードの値による色 { SerializedStyles }
  */
 export function positionColor( positionCode: string ) {
     switch ( positionCode ) {
@@ -28,7 +28,7 @@ export function positionColor( positionCode: string ) {
 /**
  * 位置コードの値で名称を取得する
  * @param positionCode 位置コード
- * @returns 位置コードの名称
+ * @returns 位置コードの名称 { SerializedStyles }
  */
 export function positionName( positionCode: string ) {
     switch ( positionCode ) {
