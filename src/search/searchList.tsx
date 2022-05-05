@@ -20,7 +20,7 @@ import {animateScroll as scroll} from "react-scroll";
 
 /** ローカルライブラリ */
 import {SearchListBody} from './pc/searchListBody';
-import {EnchantCard} from './enchantCard';
+import {EnchantCard} from './sp/enchantCard';
 import {Order} from './pc/order';
 import {HeadData} from './pc/headData';
 import {SearchListHead} from './pc/searchListHead';

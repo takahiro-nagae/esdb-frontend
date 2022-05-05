@@ -4,12 +4,14 @@ import { css } from '@emotion/react';
 import { TableCell, TableRow } from "@material-ui/core";
 
 /** ローカルライブラリ */
-import effectColor from "../effectColor";
 import { RankModal } from "../rank/rankModal";
 import { positionColor, positionName } from "../positionFunction";
 import { createEnchantName, createEnchantNameEn, subTitleStyle } from '../enchantNameFunction';
-import { DetailModal } from '../detail/detailModal';
 import { GroundButton } from '../ground/groundButton';
+import { EffectList } from "../common/compornent/effectList";
+import { RouteList } from "../common/compornent/routeList";
+import {InvalidText} from "../common/compornent/invalidText";
+import {ImpText} from "../common/compornent/impText";
 
 /**
  * PCの検索一覧
@@ -26,31 +28,15 @@ export const SearchListBody = (props: {enchant: any, valFlg: boolean}) => {
         }
     });
 
-    const red = css({
-        color: '#f00',
-        fontWeight: 'bold'
-    })
-
-    /** 効果区分を配列化 */
-    const effectKbnArray:Array<any> = props.enchant.effect_kbn && props.enchant.effect_kbn.split('@');
-    /** 効果名を配列化 */
-    const effectNameArray:Array<any> = props.enchant.effect_name && props.enchant.effect_name.split('@');
-    /** 入手先を配列化 */
-    const routeNameArray:Array<any> = props.enchant.route_name && props.enchant.route_name.split('@');
-
-    /** 省略までの件数 */
-    const omtCount = 3;
-
     return(
         <TableRow css={tableContent}>
             {/* 名称 */}
             <TableCell>
                 <span>{createEnchantName(props.enchant.enchant_name, props.enchant.enchant_name_2)}</span>
-                {props.enchant.invalid_target_flg == '1' && <small css={red}>　貼付不可</small>}
-                {props.enchant.imp_flg == '0' && <small css={red}>　未実装</small>}
+                <InvalidText  invalidTargetFlg={props.enchant.invalid_target_flg} />
+                <ImpText impFlg={ props.enchant.imp_flg } />
                 <br />
                 <small css={subTitleStyle}>{createEnchantNameEn(props.enchant.enchant_name_en, props.enchant.position_id)}</small>
-
             </TableCell>
             {/* 位置 */}
             <TableCell css={positionColor(props.enchant.position_id)} >{positionName(props.enchant.position_id)}</TableCell>
@@ -63,18 +49,17 @@ export const SearchListBody = (props: {enchant: any, valFlg: boolean}) => {
             <TableCell>{props.enchant.target_name}</TableCell>
             {/* 値 */}
             {props.valFlg && <TableCell>{props.enchant.disp_val}</TableCell>}
-            {/* 効果 */}
             <TableCell>
-                { effectKbnArray && effectKbnArray.map((effectKbn, index) =>
-                    <p css={effectColor(effectKbn)} key={index} >{effectNameArray[index]}</p>
-                )}
+                <EffectList
+                    effectKbn={ props.enchant.effect_kbn }
+                    effectName={ props.enchant.effect_name }
+                />
             </TableCell>
-            {/* 入手先 */}
             <TableCell>
-                {routeNameArray && routeNameArray.slice(0, omtCount).map((route, index) => (
-                    <p dangerouslySetInnerHTML={{ __html: route }} key={index}></p>
-                ))}
-                {routeNameArray != undefined && routeNameArray.length > omtCount && <DetailModal enchant_id={props.enchant.enchant_id} count={routeNameArray.length - omtCount} />}
+                <RouteList
+                    enchantId={ props.enchant.enchant_id }
+                    routeName={ props.enchant.route_name }
+                />
             </TableCell>
         </TableRow>
     );

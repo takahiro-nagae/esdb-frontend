@@ -1,10 +1,9 @@
-/** サードパーティーライブラリ */
 import { css } from "@emotion/react";
 
 /**
  * 効果の値で設定する色を変更する
- * @param effectStr 効果の値
- * @returns 効果の値による色
+ * @param effectStr { string } 効果の値
+ * @returns 効果の値による色 {  SerializedStyles }
  */
 export default function effectColor (effectStr: string) {
     switch(effectStr) {
