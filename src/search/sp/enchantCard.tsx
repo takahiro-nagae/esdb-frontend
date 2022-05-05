@@ -22,73 +22,73 @@ import { ImpText } from "../common/compornent/impText";
  * @param props { any, boolean } // TODO:ここのanyを排除する
  * @returns { JSX.Element }
  */
-export const EnchantCard = (props: {
+export const EnchantCard = ( props: {
     enchant: any,
     valFlag: boolean
-}) => {
+} ) => {
 
     /** オープン状態 */
-    const [ open, setOpen ] = useState(false);
+    const [ open, setOpen ] = useState( false );
 
     /** インライン */
-    const inlineStyle = css({
+    const inlineStyle = css( {
         color: '#fff',
         display: 'inline',
         marginLeft: '16px',
         marginRight: '-24px',
         verticalAlign: 'middle'
-    });
+    } );
 
     /**タイトル（エンチャント名） */
-    const titleStyle = css({
+    const titleStyle = css( {
         color: '#fff',
         fontWeight: 'bold'
-    });
+    } );
 
     /** 対象の見た目 */
-    const targetStyle = css({
+    const targetStyle = css( {
         borderLeft: '4px solid #0886a3',
         color: '#fff',
         paddingLeft: '16px',
-    });
+    } );
 
     /** 値 */
-    const valueStyle = css({
+    const valueStyle = css( {
         color: '#fff'
-    });
+    } );
 
     /** アコーディオンのヘッダー */
-    const acoHeadStyle = css({
+    const acoHeadStyle = css( {
         backgroundColor: '#2f2f2f',
         color: '#fff'
-    });
+    } );
 
     /** アコーディオンのボディ */
-    const acoBodyStyle = css({
+    const acoBodyStyle = css( {
         backgroundColor: '#fff'
-    });
+    } );
 
     /** アコーディオンのアイコン */
-    const accIconStyle = css({
+    const accIconStyle = css( {
         color: '#fff'
-    });
+    } );
 
-    return(
+    return (
         <Card
-            sx= {{
+            sx={ {
                 backgroundColor: '#3C3B40',
                 boxSizing: 'border-box',
                 margin: '8px',
                 padding: '8px',
-            }}
+            } }
         >
             <Box
-                sx= {{
+                sx={ {
                     alignItems: 'center',
                     display: 'flex',
                     flexDirection: 'row',
                     justifyContent: 'space-around',
-                }}
+                } }
             >
                 <Box>
                     <Typography
@@ -96,20 +96,20 @@ export const EnchantCard = (props: {
                         variant="subtitle1"
                     >
                         {
-                            createEnchantName (
+                            createEnchantName(
                                 props.enchant.enchant_name,
                                 props.enchant.enchant_name_2
                             )
                         }
-                        <InvalidText  invalidTargetFlg={props.enchant.invalid_target_flg} />
-                        <ImpText impFlg={ props.enchant.imp_flg } />
+                        <InvalidText invalidTargetFlg={ props.enchant.invalid_target_flg }/>
+                        <ImpText impFlg={ props.enchant.imp_flg }/>
                     </Typography>
                     <Typography
                         css={ subTitleStyle }
                         variant="subtitle2"
                     >
                         {
-                            createEnchantNameEn (
+                            createEnchantNameEn(
                                 props.enchant.enchant_name_en,
                                 props.enchant.position_id
                             )
@@ -117,19 +117,19 @@ export const EnchantCard = (props: {
 
                     </Typography>
                     <div>
-                        <Typography style={{ display: 'inline' }}
-                            css={ positionColor(props.enchant.position_id) }
-                            variant="subtitle2"
+                        <Typography style={ { display: 'inline' } }
+                                    css={ positionColor( props.enchant.position_id ) }
+                                    variant="subtitle2"
                         >
-                            { positionName(props.enchant.position_id) }
+                            { positionName( props.enchant.position_id ) }
                         </Typography>
                         <Typography
-                            css={inlineStyle}
+                            css={ inlineStyle }
                             variant='body1'
                         >
                             <small>ランク</small>
                         </Typography>
-                        <RankModal rank={ props.enchant.rank } />
+                        <RankModal rank={ props.enchant.rank }/>
                         <GroundButton
                             enchant_id={ props.enchant.enchant_id }
                             rank_ignore_flg={ props.enchant.rank_ignore_flg }
@@ -149,47 +149,47 @@ export const EnchantCard = (props: {
                     <IconButton
                         aria-label="expand row"
                         css={ accIconStyle }
-                        onClick={ () => setOpen(!open) }
+                        onClick={ () => setOpen( !open ) }
                     >
-                        { open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon /> }
+                        { open ? <KeyboardArrowUpIcon/> : <KeyboardArrowDownIcon/> }
                     </IconButton>
                 </Box>
             </Box>
             <Collapse
-                in={open}
+                in={ open }
                 timeout="auto"
                 unmountOnExit
             >
-                    <Box sx={{ paddingBottom: 10 }}>
-                        <p css={ targetStyle }>
-                            対象：{ props.enchant.target_name }
-                        </p>
-                        <Table
-                            aria-label="purchases"
-                            size="small"
-                        >
-                            <TableBody>
-                                <TableRow>
-                                    <TableCell css={ acoHeadStyle }>効果</TableCell>
-                                    <TableCell css={ acoBodyStyle }>
-                                        <EffectList
-                                            effectKbn={ props.enchant.effect_kbn }
-                                            effectName={ props.enchant.effect_name }
-                                        />
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell css={ acoHeadStyle }>入手先</TableCell>
-                                    <TableCell css={ acoBodyStyle }>
-                                        <RouteList
-                                            enchantId={ props.enchant.enchant_id }
-                                            routeName={ props.enchant.route_name }
-                                        />
-                                    </TableCell>
-                                </TableRow>
-                            </TableBody>
-                        </Table>
-                    </Box>
+                <Box sx={ { paddingBottom: 10 } }>
+                    <p css={ targetStyle }>
+                        対象：{ props.enchant.target_name }
+                    </p>
+                    <Table
+                        aria-label="purchases"
+                        size="small"
+                    >
+                        <TableBody>
+                            <TableRow>
+                                <TableCell css={ acoHeadStyle }>効果</TableCell>
+                                <TableCell css={ acoBodyStyle }>
+                                    <EffectList
+                                        effectKbn={ props.enchant.effect_kbn }
+                                        effectName={ props.enchant.effect_name }
+                                    />
+                                </TableCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell css={ acoHeadStyle }>入手先</TableCell>
+                                <TableCell css={ acoBodyStyle }>
+                                    <RouteList
+                                        enchantId={ props.enchant.enchant_id }
+                                        routeName={ props.enchant.route_name }
+                                    />
+                                </TableCell>
+                            </TableRow>
+                        </TableBody>
+                    </Table>
+                </Box>
             </Collapse>
         </Card>
     );
