@@ -6,7 +6,7 @@ import ReactLoading from "react-loading";
 import Card from '@mui/material/Card';
 import { Button } from "@mui/material";
 import Box from '@mui/material/Box';
-import { createEnchantName, createEnchantNameEn } from "../enchantNameFunction";
+import { createEnchantName, createEnchantNameEn } from "../common/function/enchantNameFunction";
 import { RankModal } from "../rank/rankModal";
 import { DisplayWideAd } from "../../adsense/displayWideAd";
 import {GroundEnchantImpl} from "./impl/groundEnchantImpl";

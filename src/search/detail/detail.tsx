@@ -4,9 +4,9 @@ import { css } from '@emotion/react';
 import axios from "axios";
 import { Table, TableBody, TableCell, TableRow } from "@mui/material";
 import ReactLoading from 'react-loading';
-import effectColor from "../effectColor";
-import { createEnchantName, createEnchantNameEn, subTitleStyle } from "../enchantNameFunction";
-import { positionColor, positionName } from "../positionFunction";
+import effectColorFunction from "../common/function/effectColorFunction";
+import { createEnchantName, createEnchantNameEn, subTitleStyle } from "../common/function/enchantNameFunction";
+import { positionColor, positionName } from "../common/function/positionFunction";
 import { RankModal } from "../rank/rankModal";
 import { DisplayWideAd } from "../../adsense/displayWideAd";
 import { EnchantDataImpl } from "./impl/enchantDataImpl";
@@ -124,7 +124,7 @@ export const Detail = (props: { enchant_id: string }) => {
                                 <TableCell css={bodyStyle}>
                                     { effectKbnArray && effectKbnArray.map((effectKbn, index) =>
                                         <p
-                                            css={ effectColor(effectKbn) }
+                                            css={ effectColorFunction(effectKbn) }
                                             key={ index }
                                         >
                                             { effectNameArray[index] }

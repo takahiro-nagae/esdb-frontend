@@ -6,22 +6,22 @@ import { css } from "@emotion/react";
  * @param positionCode 位置コード
  * @returns 位置コードの値による色
  */
-export function positionColor (positionCode: string) {
-    switch(positionCode) {
+export function positionColor( positionCode: string ) {
+    switch ( positionCode ) {
         case '1':
             // 接頭
-            return css({
+            return css( {
                 color: '#71a0ff!important'
-            });
+            } );
         case '2':
             // 接尾
-            return css({
+            return css( {
                 color: '#ff7575!important'
-            });
+            } );
         default:
-            return css({
+            return css( {
                 color: '#fff'
-            });
+            } );
     }
 }
 
@@ -30,8 +30,8 @@ export function positionColor (positionCode: string) {
  * @param positionCode 位置コード
  * @returns 位置コードの名称
  */
-export function positionName(positionCode: string) {
-    switch(positionCode) {
+export function positionName( positionCode: string ) {
+    switch ( positionCode ) {
         case '1':
             // 接頭
             return '接頭(prefix)';
