@@ -5,8 +5,8 @@ import { TableCell, TableRow } from "@material-ui/core";
 
 /** ローカルライブラリ */
 import { RankModal } from "../rank/rankModal";
-import { positionColor, positionName } from "../positionFunction";
-import { createEnchantName, createEnchantNameEn, subTitleStyle } from '../enchantNameFunction';
+import { positionColor, positionName } from "../common/function/positionFunction";
+import { createEnchantName, createEnchantNameEn, subTitleStyle } from '../common/function/enchantNameFunction';
 import { GroundButton } from '../ground/groundButton';
 import { EffectList } from "../common/compornent/effectList";
 import { RouteList } from "../common/compornent/routeList";

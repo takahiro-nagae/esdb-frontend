@@ -1,4 +1,4 @@
-import effectColor from "../../effectColor";
+import effectColorFunction from "../function/effectColorFunction";
 /** @jsxImportSource @emotion/react */
 
 /**
@@ -19,7 +19,7 @@ export const EffectList = (props: {
       <>
           { effectKbnArray && effectKbnArray.map((effectKbn, index) =>
               <p
-                  css={ effectColor(effectKbn) }
+                  css={ effectColorFunction(effectKbn) }
                   key={ index }
               >
                   { effectNameArray[index] }

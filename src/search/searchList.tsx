@@ -25,7 +25,7 @@ import {Order} from './pc/order';
 import {HeadData} from './pc/headData';
 import {SearchListHead} from './pc/searchListHead';
 import {Pagination} from './pc/pagination';
-import {positionName} from './positionFunction';
+import {positionName} from './common/function/positionFunction';
 import {InfeedAd} from '../adsense/infeedAd';
 import {pcDisplayQuery, spDisplayQuery} from "../common/theme/layout";
 
