@@ -1,81 +1,126 @@
-/** サードパーティーライブラリ */
+import TableBody from "@mui/material/TableBody";
+import { TableCell, TableRow } from "@mui/material";
+import { InfeedAd } from "../../adsense/infeedAd";
+import { SearchListRow } from "./searchListRow";
+import { EnchantData } from "../common/interface/enchantData";
+import { Order } from "./type/order";
+import { HeadData } from "./interface/headData";
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
-import { TableCell, TableRow } from "@material-ui/core";
-
-/** ローカルライブラリ */
-import effectColor from "../effectColor";
-import { RankModal } from "../rank/rankModal";
-import { positionColor, positionName } from "../positionFunction";
-import { createEnchantName, createEnchantNameEn, subTitleStyle } from '../enchantNameFunction';
-import { DetailModal } from '../detail/detailModal';
-import { GroundButton } from '../ground/groundButton';
+import { css } from "@emotion/react";
 
 /**
- * PCの検索一覧
+ * PC版検索一覧の本体部分コンテナ
+ * @param props { Order, keyof HeadData, number, Array<EnchantData>, number, boolean }
+ * @returns { JSX.Element }
  */
-export const SearchListBody = (props: {enchant: any, valFlg: boolean}) => {
+export const SearchListBody = ( props: {
+    order: Order,
+    orderBy: keyof HeadData,
+    page: number,
+    rowData: Array<EnchantData>,
+    rowsPerPage: number,
+    valFlag: boolean,
+} ) => {
+
     /** コンテント各行の基本スタイル */
-    const tableContent = css ({
+    const tableContentStyle = css( {
         backgroundColor: '#3C3B40',
-        'td': {
-            color: '#fff'
-        },
-        'svg': {
-            color: '#fff'
+    } );
+
+    /** データ行のスタイル */
+    const tableDataStyle = css( {
+        borderBottom: '1px solid rgba(81, 81, 81, 1)',
+        paddingTop: '0'
+    } );
+
+    /**
+     * @param array { readonly T[] }
+     * @param comparator { (a: T, b: T) => number }
+     */
+    function stableSort<T>(
+        array: readonly T[],
+        comparator: ( a: T, b: T ) => number ) {
+        const stabilizedThis = array.map( ( el, index ) => [ el, index ] as [ T, number ] );
+        stabilizedThis.sort( ( a, b ) => {
+            const order = comparator( a[0], b[0] );
+            if ( order !== 0 ) {
+                return order;
+            }
+            return a[1] - b[1];
+        } );
+        return stabilizedThis.map( ( el ) => el[0] );
+    }
+
+    /**
+     * @param a { T }
+     * @param b { T }
+     * @param orderBy { keyof T }
+     */
+    function descendingComparator<T>( a: T, b: T, orderBy: keyof T ) {
+        if ( b[orderBy] < a[orderBy] ) {
+            return -1;
         }
-    });
+        if ( b[orderBy] > a[orderBy] ) {
+            return 1;
+        }
+        return 0;
+    }
 
-    const red = css({
-        color: '#f00',
-        fontWeight: 'bold'
-    })
+    /**
+     * @param order { Order }
+     * @param orderBy { Key }
+     */
+    function getComparator<Key extends keyof any>(
+        order: Order,
+        orderBy: Key,
+    ): (
+        a: { [key in Key]: number | string },
+        b: { [key in Key]: number | string },
+    ) => number {
+        return order === 'desc'
+            ? ( a, b ) => descendingComparator( a, b, orderBy )
+            : ( a, b ) => -descendingComparator( a, b, orderBy );
+    }
 
-    /** 効果区分を配列化 */
-    const effectKbnArray:Array<any> = props.enchant.effect_kbn && props.enchant.effect_kbn.split('@');
-    /** 効果名を配列化 */
-    const effectNameArray:Array<any> = props.enchant.effect_name && props.enchant.effect_name.split('@');
-    /** 入手先を配列化 */
-    const routeNameArray:Array<any> = props.enchant.route_name && props.enchant.route_name.split('@');
-
-    /** 省略までの件数 */
-    const omtCount = 3;
-
-    return(
-        <TableRow css={tableContent}>
-            {/* 名称 */}
-            <TableCell>
-                <span>{createEnchantName(props.enchant.enchant_name, props.enchant.enchant_name_2)}</span>
-                {props.enchant.invalid_target_flg == '1' && <small css={red}>　貼付不可</small>}
-                {props.enchant.imp_flg == '0' && <small css={red}>　未実装</small>}
-                <br />
-                <small css={subTitleStyle}>{createEnchantNameEn(props.enchant.enchant_name_en, props.enchant.position_id)}</small>
-
-            </TableCell>
-            {/* 位置 */}
-            <TableCell css={positionColor(props.enchant.position_id)} >{positionName(props.enchant.position_id)}</TableCell>
-            {/* ランク */}
-            <TableCell>
-                <RankModal rank={props.enchant.rank} /><br />
-                <GroundButton enchant_id={props.enchant.enchant_id} rank_ignore_flg={props.enchant.rank_ignore_flg} rank_seq={props.enchant.rank_seq} />
-            </TableCell>
-            {/* 対象 */}
-            <TableCell>{props.enchant.target_name}</TableCell>
-            {/* 値 */}
-            {props.valFlg && <TableCell>{props.enchant.disp_val}</TableCell>}
-            {/* 効果 */}
-            <TableCell>
-                { effectKbnArray && effectKbnArray.map((effectKbn, index) =>
-                    <p css={effectColor(effectKbn)} key={index} >{effectNameArray[index]}</p>
-                )}
-            </TableCell>
-            {/* 入手先 */}
-            <TableCell>
-                {routeNameArray && routeNameArray.slice(0, omtCount).map((route, index) => (
-                    <p dangerouslySetInnerHTML={{ __html: route }} key={index}></p>
-                ))}
-                {routeNameArray != undefined && routeNameArray.length > omtCount && <DetailModal enchant_id={props.enchant.enchant_id} count={routeNameArray.length - omtCount} />}
-            </TableCell>
-        </TableRow>
+    return (
+        <TableBody>
+            { stableSort( props.rowData, getComparator( props.order, props.orderBy ) )
+                .slice( props.page * props.rowsPerPage, props.page * props.rowsPerPage + props.rowsPerPage )
+                .map( ( enchant, index ) => (
+                    <>
+                        { index != 0 && index % 5 == 0 &&
+                            <TableRow
+                                css={ tableContentStyle }
+                                key={ index }
+                            >
+                                <TableCell
+                                    colSpan={ props.valFlag ? 7 : 6 }
+                                    css={ tableDataStyle }
+                                >
+                                    <InfeedAd/>
+                                </TableCell>
+                            </TableRow>
+                        }
+                        <SearchListRow
+                            enchant={ enchant }
+                            key={ enchant.enchant_id }
+                            valFlg={ props.valFlag }
+                        />
+                        { index == props.rowData.length - 1 &&
+                            <TableRow
+                                css={ tableContentStyle }
+                                key={ 'lastPc' }
+                            >
+                                <TableCell
+                                    colSpan={ props.valFlag ? 7 : 6 }
+                                    css={ tableDataStyle }
+                                >
+                                    <InfeedAd/>
+                                </TableCell>
+                            </TableRow>
+                        }
+                    </>
+                ) ) }
+        </TableBody>
     );
 }
