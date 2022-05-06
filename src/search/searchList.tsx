@@ -1,7 +1,4 @@
-/** 標準ライブラリ */
 import { useEffect, useState } from 'react';
-
-/** サードパーティーライブラリ */
 /** @jsxImportSource @emotion/react */
 import ReactLoading from 'react-loading';
 import axios from 'axios';
@@ -17,109 +14,61 @@ import TableContainer from '@mui/material/TableContainer';
 import IconButton from '@mui/material/IconButton';
 import { KeyboardDoubleArrowUp } from '@mui/icons-material';
 import { animateScroll as scroll } from "react-scroll";
-
-/** ローカルライブラリ */
 import { SearchListBody } from './pc/searchListBody';
 import { EnchantCard } from './sp/enchantCard';
 import { Order } from './pc/order';
 import { HeadData } from './pc/headData';
 import { SearchListHead } from './pc/searchListHead';
 import { Pagination } from './pc/pagination';
-import { positionName } from './common/function/positionFunction';
 import { InfeedAd } from '../adsense/infeedAd';
 import { pcDisplayQuery, spDisplayQuery } from "../common/theme/layout";
-
+import { SearchFilter } from "./common/compornent/searchFilter";
+import { EnchantData } from "./common/interface/enchantData";
 
 /**
- * 検索結果一覧
+ * 検索結果一覧のコンテナコンポーネント
+ * @param props { boolean }
+ * @returns SearchList { JSX.Element }
  */
 export const SearchList = ( props: { freeSearchFlg: boolean } ) => {
 
     /** 検索結果の文字列 */
-    const result = css( {
-        fontWeight: 'bold',
+    const resultStyle = css( {
         color: '#fff',
+        fontWeight: 'bold',
         textAlign: 'center'
     } );
 
     /** 件数文字列 */
-    const hitCount = css( {
+    const hitCountStyle = css( {
         color: '#f00',
         fontSize: '18px'
     } );
 
     /** スマホの横幅指定 */
-    const dataWidth = css( {
+    const dataWidthStyle = css( {
         width: '100%'
     } );
 
-    /** フリー検索の外枠 */
-    const freeSearchBox = css( {
-        width: '100%',
-        height: '44px',
-        boxSizing: 'border-box',
-        textAlign: 'right',
-        backgroundColor: '#1F2023',
-        paddingTop: '8px',
-        paddingRight: '8px',
-        position: 'sticky',
-        top: '64px',
-        zIndex: '3'
-    } )
-
-    const freeSearchBoxSp = css( {
-        width: '100%',
-        height: '56px',
-        boxSizing: 'border-box',
-        textAlign: 'right',
-        backgroundColor: '#1F2023',
-        marginTop: '-3px',
-        paddingTop: '8px',
-        paddingRight: '8px',
-        position: 'sticky',
-        top: '56px',
-        zIndex: '3'
-    } );
-
-    /** 検索インプットのスタイル */
-    const freeSearchInput = css( {
-        border: '1px solid #424242',
-        backgroundColor: '#191919',
-        paddingLeft: '8px',
-        width: '99%',
-        height: '32px',
-        color: '#fff'
-    } );
-
-    /** 検索インプットのスタイル */
-    const freeSearchInputSp = css( {
-        border: '1px solid #424242',
-        backgroundColor: '#191919',
-        paddingLeft: '8px',
-        width: '95%',
-        height: '32px',
-        color: '#fff'
-    } );
-
     /** ローディングや検索結果なしの表示 */
-    const verticalCenter = css( {
+    const verticalCenterStyle = css( {
         position: 'absolute',
         top: '50%'
     } );
 
     /**  トップに戻るアイコンの設定 */
-    const topIcon = css( {
-        position: 'fixed',
-        right: '20px',
+    const topIconStyle = css( {
         color: '#fff',
+        right: '20px',
+        position: 'fixed',
     } );
 
     /** コンテント各行の基本スタイル */
-    const tableContent = css( {
+    const tableContentStyle = css( {
         backgroundColor: '#3C3B40',
     } );
 
-    const tableData = css( {
+    const tableDataStyle = css( {
         borderBottom: '1px solid rgba(81, 81, 81, 1)',
         paddingTop: '0'
     } )
@@ -127,15 +76,12 @@ export const SearchList = ( props: { freeSearchFlg: boolean } ) => {
     /** 遷移元からのデータ */
     const [ searchParams ] = useSearchParams();
 
-    // ********************
-    // state
-    // ********************
     /** エンチャント一覧 */
-    const [ enchantList, setEnchantList ] = useState( Array( 0 ) );
+    const [ enchantList, setEnchantList ] = useState<Array<EnchantData>>( [] );
     /** 表示する一覧 */
     const [ rowData, setRowData ] = useState( Array( 0 ) );
     /** 件数 */
-    const [ count, setcount ] = useState( 0 );
+    const [ count, setCount ] = useState( 0 );
     /** 表示用件数 */
     const [ dispCount, setDispCount ] = useState( 0 );
     /** 値表示のフラグ */
@@ -223,9 +169,6 @@ export const SearchList = ( props: { freeSearchFlg: boolean } ) => {
             + '&position=' + searchParams.get( 'position' ) + '&rankRange=' + searchParams.get( 'rankRange' );
     }
 
-    // ********************
-    // 初期表示
-    // ********************
     useEffect( () => {
         axios.get( 'https://wd5zeazzd9.execute-api.ap-northeast-1.amazonaws.com/Prod' + path + requestParams )
             .then( ( res ) => {
@@ -234,7 +177,7 @@ export const SearchList = ( props: { freeSearchFlg: boolean } ) => {
                     setEnchantList( res.data.enchant_list );
                     setRowData( res.data.enchant_list );
                     // 件数
-                    setcount( res.data.enchant_list.length );
+                    setCount( res.data.enchant_list.length );
                     // 表示用の件数
                     setDispCount( res.data.enchant_list.length );
                     // 値の表示フラグ
@@ -258,53 +201,31 @@ export const SearchList = ( props: { freeSearchFlg: boolean } ) => {
         scroll.scrollToTop();
     };
 
-    /**
-     * フィルターロジック
-     */
-    function searchItems( value: any ) {
-        setSearchWord( value );
-        let listData = enchantList.filter( ( enchant ) => {
-            // 検索用に各値を設定
-            let enchant_name: string = enchant.enchant_name;
-            let position: string = positionName( enchant.position_id );
-            let rank: string = enchant.rank;
-            let target_name: string = enchant.target_name;
-            let effect_name: string = enchant.effect_name;
-            let route_name: string = enchant.route_name != undefined ? enchant.route_name : '';
-
-            return enchant_name.match( value ) || position.match( value ) || rank.match( value ) || target_name.match( value ) || effect_name.match( value ) || route_name.match( value );
-        } );
-
-        // 検索用のデータ
-        setRowData( listData );
-        // 件数
-        setcount( listData.length );
-        // ページ初期化
-        setPage( 0 );
-    }
-
     return (
         <>
             <MediaQuery query={ spDisplayQuery }>
-                <Grid item xs={ 12 } css={ freeSearchBoxSp }>
-                    <input css={ freeSearchInputSp } placeholder='絞り込む' value={ searchWord }
-                           onChange={ ( e ) => searchItems( e.target.value ) }/>
-                </Grid>
+                <SearchFilter
+                    enchantList={ enchantList }
+                    setCount={ setCount }
+                    setPage={ setPage }
+                    setRowData={ setRowData }
+                    xs={ 12 }
+                />
             </MediaQuery>
             <Box sx={ { mt: 3 } }>
-                <Grid container alignItems='center' direction='column' css={ verticalCenter }>
+                <Grid container alignItems='center' direction='column' css={ verticalCenterStyle }>
                     { !loadingFlag && <ReactLoading type="bubbles"/> }
                     { loadingFlag && dispCount == 0 &&
                         <>
-                            <p css={ result }>検索結果は0件です</p>
+                            <p css={ resultStyle }>検索結果は0件です</p>
                         </>
                     }
                 </Grid>
                 <Grid container alignItems='center' direction='column'>
                     { loadingFlag && dispCount > 0 &&
                         <>
-                            <p css={ result }>
-                                <span css={ hitCount }>{ count }</span>件ヒットしました
+                            <p css={ resultStyle }>
+                                <span css={ hitCountStyle }>{ count }</span>件ヒットしました
                                 { effectName != '' &&
                                     <>
                                         <br/>
@@ -313,11 +234,14 @@ export const SearchList = ( props: { freeSearchFlg: boolean } ) => {
                                 }
                             </p>
                             <MediaQuery query={ pcDisplayQuery }>
-                                <Grid item xs={ 11 } css={ freeSearchBox }>
-                                    <input css={ freeSearchInput } placeholder='絞り込む' value={ searchWord }
-                                           onChange={ ( e ) => searchItems( e.target.value ) }/>
-                                </Grid>
-                                <Grid item xs={ 11 } css={ dataWidth }>
+                                <SearchFilter
+                                    enchantList={ enchantList }
+                                    setCount={ setCount }
+                                    setPage={ setPage }
+                                    setRowData={ setRowData }
+                                    xs={ 11 }
+                                />
+                                <Grid item xs={ 11 } css={ dataWidthStyle }>
                                     <Box>
                                         <TableContainer style={ { overflow: 'visible' } }>
                                             <Table style={ { borderCollapse: 'separate' } }>
@@ -329,9 +253,9 @@ export const SearchList = ( props: { freeSearchFlg: boolean } ) => {
                                                     { stableSort( rowData, getComparator( order, orderBy ) ).slice( page * rowsPerPage, page * rowsPerPage + rowsPerPage ).map( ( enchant, index ) => (
                                                         <>
                                                             { index != 0 && index % 5 == 0 &&
-                                                                <TableRow css={ tableContent } key={ index }>
+                                                                <TableRow css={ tableContentStyle } key={ index }>
                                                                     <TableCell colSpan={ valFlag ? 7 : 6 }
-                                                                               css={ tableData }>
+                                                                               css={ tableDataStyle }>
                                                                         <InfeedAd/>
                                                                     </TableCell>
                                                                 </TableRow>
@@ -339,9 +263,9 @@ export const SearchList = ( props: { freeSearchFlg: boolean } ) => {
                                                             <SearchListBody enchant={ enchant } valFlg={ valFlag }
                                                                             key={ enchant.enchant_id }/>
                                                             { index == rowData.length - 1 &&
-                                                                <TableRow css={ tableContent } key={ 'lastPc' }>
+                                                                <TableRow css={ tableContentStyle } key={ 'lastPc' }>
                                                                     <TableCell colSpan={ valFlag ? 7 : 6 }
-                                                                               css={ tableData }>
+                                                                               css={ tableDataStyle }>
                                                                         <InfeedAd/>
                                                                     </TableCell>
                                                                 </TableRow>
@@ -358,7 +282,7 @@ export const SearchList = ( props: { freeSearchFlg: boolean } ) => {
                                 </Grid>
                             </MediaQuery>
                             <MediaQuery query={ spDisplayQuery }>
-                                <Grid item xs={ 12 } css={ dataWidth }>
+                                <Grid item xs={ 12 } css={ dataWidthStyle }>
                                     <Box sx={ { p: 1 } }>
                                         { rowData.map( ( enchant, index ) => (
                                             <>
@@ -392,7 +316,7 @@ export const SearchList = ( props: { freeSearchFlg: boolean } ) => {
                                         ) ) }
                                     </Box>
                                 </Grid>
-                                <IconButton color="secondary" aria-label="add an alarm" css={ topIcon }
+                                <IconButton color="secondary" aria-label="add an alarm" css={ topIconStyle }
                                             onClick={ scrollToTop }
                                             style={ { position: 'fixed', bottom: '48px', background: '#282828' } }>
                                     <KeyboardDoubleArrowUp sx={ { fontSize: 40 } }/>
