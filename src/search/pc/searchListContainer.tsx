@@ -7,8 +7,8 @@ import { SearchListHead } from "./searchListHead";
 import { Pagination } from "./pagination";
 import { EnchantData } from "../common/interface/enchantData";
 import React, { Dispatch, SetStateAction, useState } from "react";
-import { Order } from "./order";
-import { HeadData } from "./headData";
+import { Order } from "./type/order";
+import { HeadData } from "./interface/headData";
 import { SearchListBody } from "./searchListBody";
 
 /**

@@ -1,24 +1,33 @@
-/** 標準ライブラリ */
-import React from 'react';
-
-/** サードパーティーライブラリ */
+import React, { Dispatch, SetStateAction } from 'react';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { TablePagination } from '@mui/material';
 
 /**
  * 検索結果のページネーション
+ * @param props {
+ *                  number,
+ *                  number,
+ *                  number,
+ *                  Dispatch<SetStateAction<number>>,
+ *                  Dispatch<React.SetStateAction<number>>
+ *               }
+ * @returns { JSX.Element }
  */
 export const Pagination = ( props: {
-    count: number, page: number, rowsPerPage: number, setPage: any, setRowsPerPage: any
+    count: number,
+    page: number,
+    rowsPerPage: number,
+    setPage: Dispatch<SetStateAction<number>>,
+    setRowsPerPage: Dispatch<React.SetStateAction<number>>,
 } ) => {
 
     /** ページネーション */
     const pagination = css( {
         backgroundColor: '#3C3B40',
-        color: '#ccc',
-        borderTop: '1px solid rgba(81, 81, 81, 1)',
         borderBottom: '1px solid rgba(81, 81, 81, 1)',
+        borderTop: '1px solid rgba(81, 81, 81, 1)',
+        color: '#ccc',
         '.css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon': {
             color: '#fff'
         }
@@ -37,14 +46,14 @@ export const Pagination = ( props: {
 
     return (
         <TablePagination
-            rowsPerPageOptions={ [ 30, 60, 100 ] }
             component="div"
             count={ props.count }
-            rowsPerPage={ props.rowsPerPage }
-            page={ props.page }
+            css={ pagination }
             onPageChange={ handleChangePage }
             onRowsPerPageChange={ handleChangeRowsPerPage }
-            css={ pagination }
+            page={ props.page }
+            rowsPerPage={ props.rowsPerPage }
+            rowsPerPageOptions={ [ 30, 60, 100 ] }
         />
     )
 

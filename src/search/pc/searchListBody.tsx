@@ -3,8 +3,8 @@ import { TableCell, TableRow } from "@mui/material";
 import { InfeedAd } from "../../adsense/infeedAd";
 import { SearchListRow } from "./searchListRow";
 import { EnchantData } from "../common/interface/enchantData";
-import { Order } from "./order";
-import { HeadData } from "./headData";
+import { Order } from "./type/order";
+import { HeadData } from "./interface/headData";
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 
