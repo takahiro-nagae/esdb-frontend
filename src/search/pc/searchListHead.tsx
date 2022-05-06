@@ -1,5 +1,5 @@
 /** 標準ライブラリ */
-import { useState } from "react";
+import React from "react";
 
 /** サードパーティーライブラリ */
 /** @jsxImportSource @emotion/react */
@@ -15,24 +15,24 @@ import { visuallyHidden } from '@mui/utils';
 import { HeadData } from "./headData";
 import { Order } from "./order";
 
-
-
-
-interface EnhancedTableProps {
-    onRequestSort: (event: React.MouseEvent<unknown>, property: keyof HeadData) => void;
-    order: Order;
-    orderBy: string;
-    valFlg: boolean;
-}
-
 /**
  * 検索結果一覧のヘッダー
  */
-export const SearchListHead = (props: EnhancedTableProps) => {
-    const { order, orderBy, onRequestSort, valFlg } =props;
+export const SearchListHead = ( props: {
+    order: Order, setOrder: any, orderBy: string, setOrderBy: any, valFlg: boolean
+} ) => {
     const createSortHandler =
-    (property: keyof HeadData) => (event: React.MouseEvent<unknown>) => {
-    onRequestSort(event, property);
+              ( property: keyof HeadData ) => ( event: React.MouseEvent<unknown> ) => {
+                  handleRequestSort( event, property );
+              };
+
+    const handleRequestSort = (
+        event: React.MouseEvent<unknown>,
+        property: keyof HeadData,
+    ) => {
+        const isAsc = props.orderBy === property && props.order === 'asc';
+        props.setOrder( isAsc ? 'desc' : 'asc' );
+        props.setOrderBy( property );
     };
 
     interface HeadCell {
@@ -41,7 +41,7 @@ export const SearchListHead = (props: EnhancedTableProps) => {
     }
 
     /** テーブルヘッダー */
-    const tableHeader = css ({
+    const tableHeader = css( {
         backgroundColor: '#1F2023',
         color: '#fff',
         border: 'none',
@@ -49,10 +49,10 @@ export const SearchListHead = (props: EnhancedTableProps) => {
         position: 'sticky',
         top: '108px',
         zIndex: '3',
-        'path' : {
+        'path': {
             color: '#fff'
         }
-    });
+    } );
 
     const headCells: readonly HeadCell[] = [
         {
@@ -77,34 +77,34 @@ export const SearchListHead = (props: EnhancedTableProps) => {
         },
     ];
 
-      return(
+    return (
         <TableHead>
             <TableRow>
-                {headCells.map((headCell) => (
-                    (headCell.id != 'disp_val' || valFlg) &&
-                        <TableCell
-                            key={headCell.id}
-                            sortDirection={orderBy === headCell.id ? order : false}
-                            css={tableHeader}
+                { headCells.map( ( headCell ) => (
+                    ( headCell.id != 'disp_val' || props.valFlg ) &&
+                    <TableCell
+                        key={ headCell.id }
+                        sortDirection={ props.orderBy === headCell.id ? props.order : false }
+                        css={ tableHeader }
+                    >
+                        <TableSortLabel
+                            active={ props.orderBy === headCell.id }
+                            direction={ props.orderBy === headCell.id ? props.order : 'asc' }
+                            onClick={ createSortHandler( headCell.id ) }
+                            style={ { color: '#fff' } }
                         >
-                            <TableSortLabel
-                                active={orderBy === headCell.id}
-                                direction={orderBy === headCell.id ? order : 'asc'}
-                                onClick={createSortHandler(headCell.id)}
-                                style={{color: '#fff'}}
-                            >
-                                {headCell.label}
-                                {orderBy === headCell.id ? (
-                                <Box component="span" sx={visuallyHidden}>
-                                    {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+                            { headCell.label }
+                            { props.orderBy === headCell.id ? (
+                                <Box component="span" sx={ visuallyHidden }>
+                                    { props.order === 'desc' ? 'sorted descending' : 'sorted ascending' }
                                 </Box>
-                                ) : null}
-                            </TableSortLabel>
-                        </TableCell>
-                ))}
-                <TableCell css={tableHeader}>効果</TableCell>
-                <TableCell css={tableHeader}>入手先</TableCell>
+                            ) : null }
+                        </TableSortLabel>
+                    </TableCell>
+                ) ) }
+                <TableCell css={ tableHeader }>効果</TableCell>
+                <TableCell css={ tableHeader }>入手先</TableCell>
             </TableRow>
         </TableHead>
-      );
+    );
 }
