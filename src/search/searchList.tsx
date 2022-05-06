@@ -7,18 +7,13 @@ import { useSearchParams } from 'react-router-dom';
 import MediaQuery from "react-responsive";
 import { Grid } from '@material-ui/core';
 import Box from '@mui/material/Box';
-import { Card } from '@mui/material';
-import IconButton from '@mui/material/IconButton';
-import { KeyboardDoubleArrowUp } from '@mui/icons-material';
-import { animateScroll as scroll } from "react-scroll";
-import { EnchantCard } from './sp/enchantCard';
 import { Order } from './pc/order';
 import { HeadData } from './pc/headData';
-import { InfeedAd } from '../adsense/infeedAd';
 import { pcDisplayQuery, spDisplayQuery } from "../common/theme/layout";
 import { SearchFilter } from "./common/compornent/searchFilter";
 import { EnchantData } from "./common/interface/enchantData";
 import { SearchListContainer } from "./pc/searchListContainer";
+import { SpSearchContainer } from "./sp/spSearchContainer";
 
 /**
  * 検索結果一覧のコンテナコンポーネント
@@ -40,22 +35,10 @@ export const SearchList = ( props: { freeSearchFlg: boolean } ) => {
         fontSize: '18px'
     } );
 
-    /** 横幅指定 */
-    const dataWidthStyle = css( {
-        width: '100%'
-    } );
-
     /** ローディングや検索結果なしの表示 */
     const verticalCenterStyle = css( {
         position: 'absolute',
         top: '50%'
-    } );
-
-    /**  トップに戻るアイコンの設定 */
-    const topIconStyle = css( {
-        color: '#fff',
-        right: '20px',
-        position: 'fixed',
     } );
 
     /** 遷移元からのデータ */
@@ -92,15 +75,20 @@ export const SearchList = ( props: { freeSearchFlg: boolean } ) => {
         requestParams = '?search=' + searchParams.get( 'search' );
     } else {
         path = '/detail'
-        requestParams = '?enchantName=' + searchParams.get( 'enchantName' ) + '&effect=' + searchParams.get( 'effect' ) + '&effectVal=' + searchParams.get( 'effectVal' )
-            + '&range=' + searchParams.get( 'range' ) + '&rank=' + searchParams.get( 'rank' ) + '&target=' + searchParams.get( 'target' )
-            + '&position=' + searchParams.get( 'position' ) + '&rankRange=' + searchParams.get( 'rankRange' );
+        requestParams = '?enchantName=' + searchParams.get( 'enchantName' );
+        requestParams += '&effect=' + searchParams.get( 'effect' );
+        requestParams += '&effectVal=' + searchParams.get( 'effectVal' );
+        requestParams += '&range=' + searchParams.get( 'range' );
+        requestParams += '&rank=' + searchParams.get( 'rank' );
+        requestParams += '&target=' + searchParams.get( 'target' );
+        requestParams += '&position=' + searchParams.get( 'position' );
+        requestParams += '&rankRange=' + searchParams.get( 'rankRange' );
     }
 
     useEffect( () => {
         axios.get( 'https://wd5zeazzd9.execute-api.ap-northeast-1.amazonaws.com/Prod' + path + requestParams )
             .then( ( res ) => {
-                if ( res.data != undefined ) {
+                if ( res.data ) {
                     // エンチャント一覧
                     setEnchantList( res.data.enchant_list );
                     setRowData( res.data.enchant_list );
@@ -114,7 +102,7 @@ export const SearchList = ( props: { freeSearchFlg: boolean } ) => {
                         setOrderBy( 'disp_val' )
                         setOrder( 'desc' )
                     }
-                    if ( res.data.effect_name != undefined ) {
+                    if ( res.data.effect_name ) {
                         setEffectName( res.data.effect_name.effect );
                     }
                     // ローディング完了
@@ -124,10 +112,6 @@ export const SearchList = ( props: { freeSearchFlg: boolean } ) => {
             console.log( error )
         } );
     }, [ requestParams ] );
-
-    const scrollToTop = () => {
-        scroll.scrollToTop();
-    };
 
     return (
         <>
@@ -182,45 +166,10 @@ export const SearchList = ( props: { freeSearchFlg: boolean } ) => {
                                 />
                             </MediaQuery>
                             <MediaQuery query={ spDisplayQuery }>
-                                <Grid item xs={ 12 } css={ dataWidthStyle }>
-                                    <Box sx={ { p: 1 } }>
-                                        { rowData.map( ( enchant, index ) => (
-                                            <>
-                                                { index != 0 && index % 5 == 0 &&
-                                                    <Card sx={ {
-                                                        backgroundColor: '#3C3B40',
-                                                        padding: '8px',
-                                                        margin: '8px',
-                                                        boxSizing: 'border-box'
-                                                    } }
-                                                          key={ index }
-                                                    >
-                                                        <InfeedAd/>
-                                                    </Card>
-                                                }
-                                                <EnchantCard enchant={ enchant } valFlag={ valFlag }
-                                                             key={ enchant.enchant_id }/>
-                                                { index == rowData.length - 1 &&
-                                                    <Card sx={ {
-                                                        backgroundColor: '#3C3B40',
-                                                        padding: '8px',
-                                                        margin: '8px',
-                                                        boxSizing: 'border-box'
-                                                    } }
-                                                          key={ 'lastSp' }
-                                                    >
-                                                        <InfeedAd/>
-                                                    </Card>
-                                                }
-                                            </>
-                                        ) ) }
-                                    </Box>
-                                </Grid>
-                                <IconButton color="secondary" aria-label="add an alarm" css={ topIconStyle }
-                                            onClick={ scrollToTop }
-                                            style={ { position: 'fixed', bottom: '48px', background: '#282828' } }>
-                                    <KeyboardDoubleArrowUp sx={ { fontSize: 40 } }/>
-                                </IconButton>
+                                <SpSearchContainer
+                                    rowData={ rowData }
+                                    valFlag={ valFlag }
+                                />
                             </MediaQuery>
                         </>
                     }
