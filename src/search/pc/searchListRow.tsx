@@ -16,6 +16,8 @@ import { EnchantData } from "../common/interface/enchantData";
 
 /**
  * PCの検索一覧
+ * @param props { EnchantData, boolean }
+ * @returns SearchListRow { JSX.Element }
  */
 export const SearchListRow = ( props: { enchant: EnchantData, valFlg: boolean } ) => {
     /** コンテント各行の基本スタイル */
@@ -31,28 +33,32 @@ export const SearchListRow = ( props: { enchant: EnchantData, valFlg: boolean } 
 
     return (
         <TableRow css={ tableContent }>
-            {/* 名称 */ }
             <TableCell>
                 <span>{ createEnchantName( props.enchant.enchant_name, props.enchant.enchant_name_2 ) }</span>
                 <InvalidText invalidTargetFlg={ props.enchant.invalid_target_flg }/>
                 <ImpText impFlg={ props.enchant.imp_flg }/>
                 <br/>
-                <small
-                    css={ subTitleStyle }>{ createEnchantNameEn( props.enchant.enchant_name_en, props.enchant.position_id ) }</small>
+                <small css={ subTitleStyle }>
+                    { createEnchantNameEn( props.enchant.enchant_name_en, props.enchant.position_id ) }
+                </small>
             </TableCell>
-            {/* 位置 */ }
-            <TableCell
-                css={ positionColor( props.enchant.position_id ) }>{ positionName( props.enchant.position_id ) }</TableCell>
-            {/* ランク */ }
+            <TableCell css={ positionColor( props.enchant.position_id ) }>
+                { positionName( props.enchant.position_id ) }
+            </TableCell>
             <TableCell>
-                <RankModal rank={ props.enchant.rank }/><br/>
-                <GroundButton enchant_id={ props.enchant.enchant_id } rank_ignore_flg={ props.enchant.rank_ignore_flg }
-                              rank_seq={ props.enchant.rank_seq }/>
+                <RankModal rank={ props.enchant.rank }/>
+                <br/>
+                <GroundButton
+                    enchant_id={ props.enchant.enchant_id }
+                    rank_ignore_flg={ props.enchant.rank_ignore_flg }
+                    rank_seq={ props.enchant.rank_seq }
+                />
             </TableCell>
-            {/* 対象 */ }
             <TableCell>{ props.enchant.target_name }</TableCell>
-            {/* 値 */ }
-            { props.valFlg && <TableCell>{ props.enchant.disp_val }</TableCell> }
+            {
+                props.valFlg &&
+                <TableCell>{ props.enchant.disp_val }</TableCell>
+            }
             <TableCell>
                 <EffectList
                     effectKbn={ props.enchant.effect_kbn }
