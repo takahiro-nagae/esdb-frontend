@@ -16,14 +16,15 @@ import { EffectList } from "../common/compornent/effectList";
 import { RouteList } from "../common/compornent/routeList";
 import { InvalidText } from "../common/compornent/invalidText";
 import { ImpText } from "../common/compornent/impText";
+import { EnchantData } from "../common/interface/enchantData";
 
 /**
  * エンチャントカードコンポーネント
- * @param props { any, boolean } // TODO:ここのanyを排除する
+ * @param props { EnchantData, boolean }
  * @returns { JSX.Element }
  */
 export const EnchantCard = ( props: {
-    enchant: any,
+    enchant: EnchantData,
     valFlag: boolean
 } ) => {
 
