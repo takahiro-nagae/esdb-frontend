@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 /** @jsxImportSource @emotion/react */
-import ReactLoading from 'react-loading';
 import axios from 'axios';
 import { css } from '@emotion/react';
 import { useSearchParams } from 'react-router-dom';
@@ -14,6 +13,7 @@ import { SearchFilter } from "./common/compornent/searchFilter";
 import { EnchantData } from "./common/interface/enchantData";
 import { SearchListContainer } from "./pc/searchListContainer";
 import { SpSearchContainer } from "./sp/spSearchContainer";
+import { Loading } from "./common/compornent/loading";
 
 /**
  * 検索結果一覧のコンテナコンポーネント
@@ -35,7 +35,7 @@ export const SearchList = ( props: { freeSearchFlg: boolean } ) => {
         fontSize: '18px'
     } );
 
-    /** ローディングや検索結果なしの表示 */
+    /** 検索結果なしの表示 */
     const verticalCenterStyle = css( {
         position: 'absolute',
         top: '50%'
@@ -115,6 +115,7 @@ export const SearchList = ( props: { freeSearchFlg: boolean } ) => {
 
     return (
         <>
+            <Loading isLoading={ loadingFlag }/>
             <MediaQuery query={ spDisplayQuery }>
                 <SearchFilter
                     enchantList={ enchantList }
@@ -131,8 +132,7 @@ export const SearchList = ( props: { freeSearchFlg: boolean } ) => {
                     css={ verticalCenterStyle }
                     direction='column'
                 >
-                    { !loadingFlag && <ReactLoading type="bubbles"/> }
-                    { loadingFlag && dispCount == 0 &&
+                    { dispCount == 0 &&
                         <>
                             <p css={ resultStyle }>検索結果は0件です</p>
                         </>
@@ -143,7 +143,7 @@ export const SearchList = ( props: { freeSearchFlg: boolean } ) => {
                     container
                     direction='column'
                 >
-                    { loadingFlag && dispCount > 0 &&
+                    { dispCount > 0 &&
                         <>
                             <p css={ resultStyle }>
                                 <span css={ hitCountStyle }>{ count }</span>件ヒットしました
