@@ -89,14 +89,10 @@ export const SearchList = ( props: { freeSearchFlg: boolean } ) => {
         axios.get( 'https://wd5zeazzd9.execute-api.ap-northeast-1.amazonaws.com/Prod' + path + requestParams )
             .then( ( res ) => {
                 if ( res.data ) {
-                    // エンチャント一覧
                     setEnchantList( res.data.enchant_list );
                     setRowData( res.data.enchant_list );
-                    // 件数
                     setCount( res.data.enchant_list.length );
-                    // 表示用の件数
                     setDispCount( res.data.enchant_list.length );
-                    // 値の表示フラグ
                     if ( res.data.enchant_list.length > 0 ) {
                         setValFlag( res.data.enchant_list[0].disp_val != undefined )
                         setOrderBy( 'disp_val' )
@@ -129,23 +125,18 @@ export const SearchList = ( props: { freeSearchFlg: boolean } ) => {
                 <Grid
                     alignItems='center'
                     container
-                    css={ verticalCenterStyle }
+                    css={ dispCount < 1 ? verticalCenterStyle : '' }
                     direction='column'
                 >
-                    { dispCount == 0 &&
+                    { dispCount < 1 &&
                         <>
                             <p css={ resultStyle }>検索結果は0件です</p>
                         </>
                     }
-                </Grid>
-                <Grid
-                    alignItems='center'
-                    container
-                    direction='column'
-                >
-                    { dispCount > 0 &&
+                    { dispCount >= 1 &&
                         <>
                             <p css={ resultStyle }>
+
                                 <span css={ hitCountStyle }>{ count }</span>件ヒットしました
                                 { effectName != '' &&
                                     <>

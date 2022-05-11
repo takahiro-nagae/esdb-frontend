@@ -5,6 +5,7 @@ import { InfeedAd } from "../../adsense/infeedAd";
 import { EnchantCard } from "./enchantCard";
 import IconButton from "@mui/material/IconButton";
 import { KeyboardDoubleArrowUp } from "@mui/icons-material";
+/** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { animateScroll as scroll } from "react-scroll/modules";
 import { EnchantData } from "../common/interface/enchantData";

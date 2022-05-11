@@ -50,6 +50,7 @@ export const SearchListContainer = ( props: {
             />
             <Grid
                 item
+                style={ { width: '100%' } }
                 xs={ xs }
             >
                 <Box>
