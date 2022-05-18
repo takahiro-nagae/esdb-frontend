@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 /** @jsxImportSource @emotion/react */
-import ReactLoading from 'react-loading';
 import axios from 'axios';
 import { css } from '@emotion/react';
 import { useSearchParams } from 'react-router-dom';
@@ -14,6 +13,7 @@ import { SearchFilter } from "./common/compornent/searchFilter";
 import { EnchantData } from "./common/interface/enchantData";
 import { SearchListContainer } from "./pc/searchListContainer";
 import { SpSearchContainer } from "./sp/spSearchContainer";
+import { Loading } from "./common/compornent/loading";
 
 /**
  * 検索結果一覧のコンテナコンポーネント
@@ -35,7 +35,7 @@ export const SearchList = ( props: { freeSearchFlg: boolean } ) => {
         fontSize: '18px'
     } );
 
-    /** ローディングや検索結果なしの表示 */
+    /** 検索結果なしの表示 */
     const verticalCenterStyle = css( {
         position: 'absolute',
         top: '50%'
@@ -89,14 +89,10 @@ export const SearchList = ( props: { freeSearchFlg: boolean } ) => {
         axios.get( 'https://wd5zeazzd9.execute-api.ap-northeast-1.amazonaws.com/Prod' + path + requestParams )
             .then( ( res ) => {
                 if ( res.data ) {
-                    // エンチャント一覧
                     setEnchantList( res.data.enchant_list );
                     setRowData( res.data.enchant_list );
-                    // 件数
                     setCount( res.data.enchant_list.length );
-                    // 表示用の件数
                     setDispCount( res.data.enchant_list.length );
-                    // 値の表示フラグ
                     if ( res.data.enchant_list.length > 0 ) {
                         setValFlag( res.data.enchant_list[0].disp_val != undefined )
                         setOrderBy( 'disp_val' )
@@ -115,6 +111,7 @@ export const SearchList = ( props: { freeSearchFlg: boolean } ) => {
 
     return (
         <>
+            <Loading isLoading={ loadingFlag }/>
             <MediaQuery query={ spDisplayQuery }>
                 <SearchFilter
                     enchantList={ enchantList }
@@ -128,24 +125,18 @@ export const SearchList = ( props: { freeSearchFlg: boolean } ) => {
                 <Grid
                     alignItems='center'
                     container
-                    css={ verticalCenterStyle }
+                    css={ dispCount < 1 ? verticalCenterStyle : '' }
                     direction='column'
                 >
-                    { !loadingFlag && <ReactLoading type="bubbles"/> }
-                    { loadingFlag && dispCount == 0 &&
+                    { dispCount < 1 &&
                         <>
                             <p css={ resultStyle }>検索結果は0件です</p>
                         </>
                     }
-                </Grid>
-                <Grid
-                    alignItems='center'
-                    container
-                    direction='column'
-                >
-                    { loadingFlag && dispCount > 0 &&
+                    { dispCount >= 1 &&
                         <>
                             <p css={ resultStyle }>
+
                                 <span css={ hitCountStyle }>{ count }</span>件ヒットしました
                                 { effectName != '' &&
                                     <>
