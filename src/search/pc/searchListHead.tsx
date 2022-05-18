@@ -26,7 +26,7 @@ export const SearchListHead = ( props: {
     order: Order,
     setOrder: Dispatch<SetStateAction<Order>>,
     orderBy: string,
-    setOrderBy: Dispatch<SetStateAction<string>>,
+    setOrderBy: Dispatch<SetStateAction<keyof HeadData>>,
     valFlg: boolean
 } ) => {
     const createSortHandler =
