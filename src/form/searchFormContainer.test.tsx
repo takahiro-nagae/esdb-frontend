@@ -20,6 +20,7 @@ const rendering = () => {
  * @param expected { string }
  */
 const testingInputInitialValForGetByLabelText = (labelText: string, expected: string) => {
+    rendering();
     const input: HTMLInputElement = screen.getByLabelText(labelText);
     expect(input.value).toBe(expected);
 }
@@ -30,6 +31,7 @@ const testingInputInitialValForGetByLabelText = (labelText: string, expected: st
  * @param expected { string }
  */
 const testingInputValForGetByLabelText = async (labelText: string, types: string, expected: string) => {
+    rendering();
     const input: HTMLInputElement = screen.getByLabelText(labelText);
     userEvent.type(input, types);
     expect(input.value).toBe(expected);
