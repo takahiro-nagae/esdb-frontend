@@ -1,7 +1,7 @@
 /**
- * エンチャントフォームの各データ
+ * エンチャントフォームの型定義
  */
-export type FormData = {
+export type FormType = {
     /** エンチャント名 */
     enchantName: string,
     /** 効果 */

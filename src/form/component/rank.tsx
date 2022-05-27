@@ -1,85 +1,91 @@
-/** サードパーティーライブラリ */
 /** @jsxImportSource @emotion/react */
 import { UseFormRegister } from "react-hook-form";
 import { Grid, MenuItem, TextField } from "@material-ui/core";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
-
-/** ローカルライブラリ */
-import { formMargin, labelStyle, selectBox } from "../common/formStyle";
-import { FormData } from './../common/formData';
+import { formMarginStyle, labelStyle, selectBoxStyle } from "../common/style/formStyle";
+import { FormType } from '../common/type/formType';
+import { RankType } from "../common/type/rankType";
+import { Dispatch, SetStateAction } from "react";
 
 /**
  * ランクのコンポーネント
+ * @param props { Array<RankType>, string, UseFormRegister<FormType>, Dispatch<SetStateAction<string>> }
+ * @returns Rank { EmotionJSX.Element }
  */
-export const Rank = (props: {register: UseFormRegister<FormData>
-    , rankList: Array<any>, rankRange: string, setRankRange: any}) => {
+export const Rank = ( props: {
+    rankList: Array<RankType>,
+    rankRange: string,
+    register: UseFormRegister<FormType>
+    setRankRange: Dispatch<SetStateAction<string>>,
+} ) => {
 
     /** ランクの現在値変更 */
-    const handleRank = (
+    const onChange = (
         _event: React.MouseEvent<HTMLElement>,
         newRankValue: string | null,
-        ) => {
-        if (newRankValue !== null) {
-            props.setRankRange(newRankValue);
+    ) => {
+        if ( newRankValue !== null ) {
+            props.setRankRange( newRankValue );
         }
     };
 
-    return(
+    return (
         <>
-           <label css={labelStyle} ><small>ランク</small></label>
-            <Grid container css={formMargin}>
-                {/* ランクセレクトボックス */}
-                <Grid item xs={4}>
+            <label css={ labelStyle }><small>ランク</small></label>
+            <Grid container css={ formMarginStyle }>
+                {/* ランクセレクトボックス */ }
+                <Grid item xs={ 4 }>
                     <TextField
+                        css={ formMarginStyle }
+                        defaultValue=''
                         fullWidth
+                        id='rank'
                         select
                         size='small'
                         variant='outlined'
-                        css={formMargin}
-                        id='rank'
-                        defaultValue=''
-                        {...props.register('rank')}
+                        { ...props.register( 'rank' ) }
                     >
                         <MenuItem value=''>指定無し</MenuItem>
-                        {props.rankList.map(rank => (
-                            /**
-                             * ランクを追加
-                             * 0 : ランク
-                             */
-                            <MenuItem value={rank['rank']} key={rank['rank']}>{rank['rank']}</MenuItem>
-                        ))}
+                        { props.rankList.map( rank => (
+                            <MenuItem
+                                key={ rank['rank'] }
+                                value={ rank['rank'] }
+                            >
+                                { rank['rank'] }
+                            </MenuItem>
+                        ) ) }
                     </TextField>
                 </Grid>
-                {/* 余白 */}
-                <Grid item xs={1} />
-                {/* ランク一致 */}
-                <Grid item xs={7}>
+                {/* 余白 */ }
+                <Grid item xs={ 1 }/>
+                {/* ランク一致 */ }
+                <Grid item xs={ 7 }>
                     <ToggleButtonGroup
+                        css={ formMarginStyle }
                         fullWidth
                         exclusive
                         size='small'
-                        css={formMargin}
-                        onChange={handleRank}
-                        value={props.rankRange}
+                        onChange={ onChange }
+                        value={ props.rankRange }
                     >
                         <ToggleButton
-                            css={selectBox}
-                            value='1'
                             aria-label='1'
+                            css={ selectBoxStyle }
+                            value='1'
                         >
                             <span>一致</span>
                         </ToggleButton>
                         <ToggleButton
-                            css={selectBox}
-                            value='2'
                             aria-label='2'
+                            css={ selectBoxStyle }
+                            value='2'
                         >
                             <span>以上</span>
                         </ToggleButton>
                         <ToggleButton
-                            css={selectBox}
-                            value='3'
                             aria-label='3'
+                            css={ selectBoxStyle }
+                            value='3'
                         >
                             <span>以下</span>
                         </ToggleButton>

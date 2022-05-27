@@ -1,26 +1,27 @@
-/** サードパーティーライブラリ */
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import Box from '@mui/material/Box';
 
 /**
  * フッターコンポーネント
+ * @returns Footer { EmotionJSX.Element }
  */
 export const Footer = () => {
-    /** footerStyle */
-    const footer = css({
-        boxSizing: 'border-box',
-        width: "100%",
-        position: "fixed",
-        color: '#fff',
+    const footerStyle = css({
         bottom: 0,
+        boxSizing: 'border-box',
+        color: '#fff',
+        textAlign: 'right',
+        position: "fixed",
         padding: '10px',
-        textAlign: 'right'
+        width: "100%",
     });
 
     return(
         <Box>
-            <footer css={footer} ><small>&copy; 2022Kumario All rights reserved</small></footer>
+            <footer css={footerStyle} >
+                <small>&copy; 2022Kumario All rights reserved</small>
+            </footer>
         </Box>
     );
 }
