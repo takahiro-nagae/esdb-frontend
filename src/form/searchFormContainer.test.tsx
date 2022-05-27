@@ -2,50 +2,67 @@ import React from "react";
 import TestRenderer from 'react-test-renderer';
 import { SearchFormContainer } from "./searchFormContainer";
 import { BrowserRouter } from "react-router-dom";
-import { screen } from "@testing-library/react";
 import renderComponent from "../tesetLib/render";
-import userEvent from "@testing-library/user-event";
+import { testingInputInitialValForGetByLabelText, testingInputValForGetByLabelText } from "../tesetLib/commonTesting";
+import { screen } from "@testing-library/react";
+
+const rendering = () => {
+    renderComponent(<BrowserRouter><SearchFormContainer/></BrowserRouter>);
+};
 
 test('snapshot test', () => {
     const ss = TestRenderer.create(<BrowserRouter><SearchFormContainer/></BrowserRouter>).toJSON();
     expect(ss).toMatchSnapshot();
 });
 
-const rendering = () => {
-    renderComponent(<BrowserRouter><SearchFormContainer/></BrowserRouter>);
-};
+describe('component test', () => {
+    describe('エンチャント名', () => {
+        const labelName = 'エンチャント名';
 
-/**
- * @param labelText { string }
- * @param expected { string }
- */
-const testingInputInitialValForGetByLabelText = (labelText: string, expected: string) => {
-    rendering();
-    const input: HTMLInputElement = screen.getByLabelText(labelText);
-    expect(input.value).toBe(expected);
-}
+        test('初期値の確認', () => {
+            rendering();
+            testingInputInitialValForGetByLabelText(labelName, '');
+        });
 
-/**
- * @param labelText { string }
- * @param types { string }
- * @param expected { string }
- */
-const testingInputValForGetByLabelText = async (labelText: string, types: string, expected: string) => {
-    rendering();
-    const input: HTMLInputElement = screen.getByLabelText(labelText);
-    userEvent.type(input, types);
-    expect(input.value).toBe(expected);
-}
+        test('なんでも入力できるか確認', () => {
+            rendering();
+            testingInputValForGetByLabelText(
+                labelName,
+                '1１@＃Qdあイｳ江🌍',
+                '1１@＃Qdあイｳ江🌍'
+            );
+        });
+    });
 
-test('エンチャント名', () => {
-    testingInputInitialValForGetByLabelText('エンチャント名', '');
+    describe('効果', () => {
+        // 通信していないので値の変更確認が行えない
+        // 将来的にはテストしたいが値が入ってるかどうかは手動でもよさそう
+        const testID = 'effect';
 
+        test('初期値の確認', () => {
+            rendering();
+            const sourceInput = screen.getByTestId(testID).childNodes[0].childNodes[0];
+            expect(sourceInput.textContent).toBe('効果');
+        });
+    });
+
+    describe('値', () => {
+        const labelName = '値';
+
+        test('初期値の確認', () => {
+            rendering();
+            testingInputInitialValForGetByLabelText(labelName, '');
+        });
+
+        test('入力は数値のみ可能であるか確認', () => {
+            rendering();
+            testingInputValForGetByLabelText(
+                labelName,
+                '1１@＃Qdあイｳ江🌍',
+                '1'
+            );
+        });
+    });
 });
 
-test('aa', () => {
-    testingInputValForGetByLabelText(
-        'エンチャント名',
-        '1１@＃Qdあイｳ江🌍',
-        '1１@＃Qdあイｳ江🌍'
-    );
-});
+
