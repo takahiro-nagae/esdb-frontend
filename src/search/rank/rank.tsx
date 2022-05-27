@@ -1,40 +1,26 @@
-/** 標準ライブラリ */
 import { useEffect, useState } from 'react';
-
-/** サードパーティーライブラリ */
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import axios from 'axios';
 import { Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
-import { DisplayWide } from '../../adsense/displayWide';
+import { DisplayWideAd } from '../../adsense/displayWideAd';
+import {SearchRankImpl} from "./impl/searchRankImpl";
 
 /**
  * ランク表示部の共通項目
  */
 export const Rank = (props: {rank: any}) => {
     /** ランクの取得データ */
-    const [rankData, setRankData] = useState({
-        rank: '-',
-        normal_rate: '-',
-        elite_rate: '-',
-        elf_rate: '-',
-        ancient_rate: '-',
-        rare_holy_rate: '-',
-        normal_rate_thu: '-',
-        elite_rate_thu: '-',
-        elf_rate_thu: '-',
-        ancient_rate_thu: '-',
-        rare_holy_rate_thu: '-'
-    });
+    const [rankData, setRankData] = useState(new SearchRankImpl());
 
     /** 説明文 */
-    const description = css ({
+    const descriptionStyle = css ({
+        color: '#fff',
         paddingLeft: '20px',
-        color: '#fff'
     });
 
-    /** ランク表示 */
-    const dispRank = css ({
+    /** 動的ランク表示部分 */
+    const rankStyle = css ({
         color: '#f00',
         fontSize: '18px',
         fontWeight: 'bold'
@@ -45,21 +31,15 @@ export const Rank = (props: {rank: any}) => {
         backgroundColor: '#0854a3',
     });
 
-    const row = css({
+    const rowStyle = css({
         backgroundColor: '#3C3B40'
     });
 
-
-    // ********************
-    // 初期表示
-    // ********************
     useEffect(() => {
-        axios.get('https://wd5zeazzd9.execute-api.ap-northeast-1.amazonaws.com/Prod/rank/' + props.rank)
+        const getRankApiUrl = 'https://wd5zeazzd9.execute-api.ap-northeast-1.amazonaws.com/Prod/rank/'
+        axios.get(getRankApiUrl + props.rank)
         .then((res) => {
-            if(res.data != undefined) {
-                // ランクデータをセット
-                setRankData(res.data);
-            }
+            res.data && setRankData(res.data);
         }).catch((error) => {
             console.log(error)
         });
@@ -67,39 +47,42 @@ export const Rank = (props: {rank: any}) => {
 
     return(
         <>
-            <p css={description}>ランク：<span css={dispRank}>{rankData.rank}</span></p>
-            <p css={description}>INT:200時　単位：%</p>
+            <p css={ descriptionStyle }>
+                <span>ランク：</span>
+                <span css={ rankStyle }>{ rankData.rank }</span>
+            </p>
+            <p css={ descriptionStyle }>INT:200時　単位：%</p>
             <Table>
                 <TableHead>
                     <TableRow>
-                        <TableCell css={tableHeader}>曜日</TableCell>
-                        <TableCell css={tableHeader}>通常</TableCell>
-                        <TableCell css={tableHeader}>エリート</TableCell>
-                        <TableCell css={tableHeader}>エルフ</TableCell>
-                        <TableCell css={tableHeader}>古代</TableCell>
-                        <TableCell css={tableHeader}>稀代</TableCell>
+                        <TableCell css={ tableHeader }>曜日</TableCell>
+                        <TableCell css={ tableHeader }>通常</TableCell>
+                        <TableCell css={ tableHeader }>エリート</TableCell>
+                        <TableCell css={ tableHeader }>エルフ</TableCell>
+                        <TableCell css={ tableHeader }>古代</TableCell>
+                        <TableCell css={ tableHeader }>稀代</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    <TableRow css={row}>
+                    <TableRow css={ rowStyle }>
                         <TableCell>木曜日以外</TableCell>
-                        <TableCell>{rankData.normal_rate}</TableCell>
-                        <TableCell>{rankData.elite_rate}</TableCell>
-                        <TableCell>{rankData.elf_rate}</TableCell>
-                        <TableCell>{rankData.ancient_rate}</TableCell>
-                        <TableCell>{rankData.rare_holy_rate}</TableCell>
+                        <TableCell>{ rankData.normal_rate }</TableCell>
+                        <TableCell>{ rankData.elite_rate }</TableCell>
+                        <TableCell>{ rankData.elf_rate }</TableCell>
+                        <TableCell>{ rankData.ancient_rate }</TableCell>
+                        <TableCell>{ rankData.rare_holy_rate }</TableCell>
                     </TableRow>
-                    <TableRow css={row}>
+                    <TableRow css={ rowStyle }>
                         <TableCell>木曜日</TableCell>
-                        <TableCell>{rankData.normal_rate_thu}</TableCell>
-                        <TableCell>{rankData.elite_rate_thu}</TableCell>
-                        <TableCell>{rankData.elf_rate_thu}</TableCell>
-                        <TableCell>{rankData.ancient_rate_thu}</TableCell>
-                        <TableCell>{rankData.rare_holy_rate_thu}</TableCell>
+                        <TableCell>{ rankData.normal_rate_thu }</TableCell>
+                        <TableCell>{ rankData.elite_rate_thu }</TableCell>
+                        <TableCell>{ rankData.elf_rate_thu }</TableCell>
+                        <TableCell>{ rankData.ancient_rate_thu }</TableCell>
+                        <TableCell>{ rankData.rare_holy_rate_thu }</TableCell>
                     </TableRow>
                 </TableBody>
             </Table>
-            <DisplayWide />
+            <DisplayWideAd />
         </>
     );
 }
