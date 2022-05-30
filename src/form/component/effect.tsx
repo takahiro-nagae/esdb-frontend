@@ -55,6 +55,7 @@ export const Effect = (props: {
                 <Grid item xs={2}></Grid>
                 <Grid item xs={5}>
                     <TextField
+                        data-testid='range'
                         defaultValue=''
                         fullWidth
                         helperText='以上 or 以下'
@@ -62,6 +63,9 @@ export const Effect = (props: {
                         select
                         size='small'
                         variant='outlined'
+                        inputProps={{
+                            'data-testid': 'rangeInput',
+                        }}
                         {...props.register('range')}
                     >
                         <MenuItem value=''>指定なし</MenuItem>

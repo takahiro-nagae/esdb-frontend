@@ -5,9 +5,10 @@ import { BrowserRouter } from "react-router-dom";
 import renderComponent from "../tesetLib/render";
 import { testingInputInitialValForGetByLabelText, testingInputValForGetByLabelText } from "../tesetLib/commonTesting";
 import { screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 const rendering = () => {
-    renderComponent(<BrowserRouter><SearchFormContainer/></BrowserRouter>);
+    return renderComponent(<BrowserRouter><SearchFormContainer/></BrowserRouter>);
 };
 
 test('snapshot test', () => {
@@ -61,6 +62,71 @@ describe('component test', () => {
                 '1１@＃Qdあイｳ江🌍',
                 '1'
             );
+        });
+    });
+
+    describe('効果の範囲', () => {
+        const testID = 'range';
+
+        test('初期値の確認', () => {
+            rendering();
+            const sourceInput = screen.getByTestId(testID).childNodes[0].childNodes[0];
+            // ゼロ幅スペースを消したい・・・
+            expect(sourceInput.textContent).toBe('​');
+        });
+
+        test('1番目の値を選択', async () => {
+            rendering();
+
+            const vatSelectTextField = screen.getAllByRole('button')[1] as HTMLDivElement;
+
+            setTimeout(async () => {
+                userEvent.click(vatSelectTextField);
+                const options = await screen.findAllByRole('option');
+                userEvent.click(options[0]);
+
+                const vatSelectInput = screen.getByTestId('rangeInput') as HTMLInputElement;
+                const sourceInput = screen.getByTestId(testID).childNodes[0].childNodes[0];
+
+                expect(vatSelectInput.value).toEqual('');
+                expect(sourceInput.textContent).toBe('指定なし');
+            }, 10);
+        });
+
+        test('2番目の値を選択', async () => {
+            rendering();
+
+            const vatSelectTextField = screen.getAllByRole('button')[1] as HTMLDivElement;
+
+            setTimeout(async () => {
+                userEvent.click(vatSelectTextField);
+                const options = await screen.findAllByRole('option');
+                userEvent.click(options[1]);
+
+                const vatSelectInput = screen.getByTestId('rangeInput') as HTMLInputElement;
+                const sourceInput = screen.getByTestId(testID).childNodes[0].childNodes[0];
+
+                expect(vatSelectInput.value).toEqual('1');
+                expect(sourceInput.textContent).toBe('以上');
+            }, 10);
+        });
+
+        test('3番目の値を選択', async () => {
+            rendering();
+
+            const vatSelectTextField = screen.getAllByRole('button')[1] as HTMLDivElement;
+
+            setTimeout(async () => {
+                userEvent.click(vatSelectTextField);
+                const options = await screen.findAllByRole('option');
+                userEvent.click(options[2]);
+
+                const vatSelectInput = screen.getByTestId('rangeInput') as HTMLInputElement;
+                const sourceInput = screen.getByTestId(testID).childNodes[0].childNodes[0];
+
+                expect(vatSelectInput.value).toEqual('2');
+                expect(sourceInput.textContent).toBe('以下');
+            }, 10);
         });
     });
 });
