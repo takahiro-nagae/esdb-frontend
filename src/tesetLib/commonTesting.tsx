@@ -16,9 +16,9 @@ export const testingInputInitialValForGetByLabelText = (labelText: string, expec
  * @param types { string }
  * @param expected { string }
  */
-export const testingInputValForGetByLabelText = (labelText: string, types: string, expected: string) => {
+export const testingInputValForGetByLabelText = async (labelText: string, types: string, expected: string) => {
     const input: HTMLInputElement = screen.getByLabelText(labelText);
-    userEvent.type(input, types);
+    await userEvent.type(input, types);
     expect(input.value).toBe(expected);
 }
 
