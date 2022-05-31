@@ -3,9 +3,11 @@ import TestRenderer from 'react-test-renderer';
 import { SearchFormContainer } from "./searchFormContainer";
 import { BrowserRouter } from "react-router-dom";
 import renderComponent from "../tesetLib/render";
-import { testingInputInitialValForGetByLabelText, testingInputValForGetByLabelText } from "../tesetLib/commonTesting";
-import { screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import {
+    selectValName,
+    testingInputInitialValForGetByLabelText,
+    testingInputValForGetByLabelText
+} from "../tesetLib/commonTesting";
 
 const rendering = () => {
     return renderComponent(<BrowserRouter><SearchFormContainer/></BrowserRouter>);
@@ -51,12 +53,18 @@ describe('component test', () => {
     describe('効果', () => {
         // 通信していないので値の変更確認が行えない
         // 将来的にはテストしたいが値が入ってるかどうかは手動でもよさそう
-        const testID = 'effect';
+        const buttonTestID = 'effect';
+        const inputTestId = 'effectInput';
 
-        test('初期値の確認', () => {
+        test('初期値の確認', async () => {
             rendering();
-            const sourceInput = screen.getByTestId(testID).childNodes[0].childNodes[0];
-            expect(sourceInput.textContent).toBe('効果');
+            await selectValName(
+                BUTTON_INDEX.Effect,
+                inputTestId,
+                buttonTestID,
+                '',
+                '効果',
+            );
         });
     });
 
@@ -84,7 +92,7 @@ describe('component test', () => {
 
         test('初期値の確認', async () => {
             rendering();
-            await SelectClickTest(
+            await selectValName(
                 BUTTON_INDEX.Range,
                 inputTestId,
                 buttonTestID,
@@ -96,7 +104,7 @@ describe('component test', () => {
         test('1番目の値を選択', async () => {
             rendering();
 
-            await SelectClickTest(
+            await selectValName(
                 BUTTON_INDEX.Range,
                 inputTestId,
                 buttonTestID,
@@ -109,7 +117,7 @@ describe('component test', () => {
         test('2番目の値を選択', async () => {
             rendering();
 
-            await SelectClickTest(
+            await selectValName(
                 BUTTON_INDEX.Range,
                 inputTestId,
                 buttonTestID,
@@ -122,7 +130,7 @@ describe('component test', () => {
         test('3番目の値を選択', async () => {
             rendering();
 
-            await SelectClickTest(
+            await selectValName(
                 BUTTON_INDEX.Range,
                 inputTestId,
                 buttonTestID,
@@ -131,29 +139,6 @@ describe('component test', () => {
                 2
             );
         });
-
-        const SelectClickTest = async (
-            buttonIndex: number,
-            inputTestId: string,
-            buttonTestID: string,
-            expectedVal: string,
-            expectedName: string,
-            opt_clickOptionIndex?: number
-        ) => {
-            screen.findAllByRole('button').then((callback) => userEvent.click(callback[buttonIndex]));
-
-            if ( opt_clickOptionIndex ) {
-                const options = await screen.findAllByRole('option');
-                await userEvent.click(options[opt_clickOptionIndex]);
-            }
-
-            const vatSelectInput = screen.getByTestId(inputTestId) as HTMLInputElement;
-            const sourceInput = screen.getByTestId(buttonTestID).childNodes[0].childNodes[0];
-
-            expect(vatSelectInput.value).toEqual(expectedVal);
-            expect(sourceInput.textContent).toBe(expectedName);
-
-        }
     });
 });
 
