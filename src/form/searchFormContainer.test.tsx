@@ -11,6 +11,19 @@ const rendering = () => {
     return renderComponent(<BrowserRouter><SearchFormContainer/></BrowserRouter>);
 };
 
+const BUTTON_INDEX = {
+    Effect: 0,
+    Range: 1,
+    PositionNone: 2,
+    PositionPrefix: 3,
+    PositionSuffix: 4,
+    Rank: 5,
+    RankEqual: 6,
+    RankGreaterThan: 7,
+    RankLessThan: 8,
+    Target: 9
+} as const;
+
 test('snapshot test', () => {
     const ss = TestRenderer.create(<BrowserRouter><SearchFormContainer/></BrowserRouter>).toJSON();
     expect(ss).toMatchSnapshot();
@@ -25,9 +38,9 @@ describe('component test', () => {
             testingInputInitialValForGetByLabelText(labelName, '');
         });
 
-        test('なんでも入力できるか確認', () => {
+        test('なんでも入力できるか確認', async () => {
             rendering();
-            testingInputValForGetByLabelText(
+            await testingInputValForGetByLabelText(
                 labelName,
                 '1１@＃Qdあイｳ江🌍',
                 '1１@＃Qdあイｳ江🌍'
@@ -55,9 +68,9 @@ describe('component test', () => {
             testingInputInitialValForGetByLabelText(labelName, '');
         });
 
-        test('入力は数値のみ可能であるか確認', () => {
+        test('入力は数値のみ可能であるか確認', async () => {
             rendering();
-            testingInputValForGetByLabelText(
+            await testingInputValForGetByLabelText(
                 labelName,
                 '1１@＃Qdあイｳ江🌍',
                 '1'
@@ -66,68 +79,81 @@ describe('component test', () => {
     });
 
     describe('効果の範囲', () => {
-        const testID = 'range';
+        const buttonTestID = 'range';
+        const inputTestId = 'rangeInput'
 
-        test('初期値の確認', () => {
+        test('初期値の確認', async () => {
             rendering();
-            const sourceInput = screen.getByTestId(testID).childNodes[0].childNodes[0];
-            // ゼロ幅スペースを消したい・・・
-            expect(sourceInput.textContent).toBe('​');
+            await SelectClickTest(
+                BUTTON_INDEX.Range,
+                inputTestId,
+                buttonTestID,
+                '',
+                '​',
+            );
         });
 
         test('1番目の値を選択', async () => {
             rendering();
 
-            const vatSelectTextField = screen.getAllByRole('button')[1] as HTMLDivElement;
-
-            setTimeout(async () => {
-                userEvent.click(vatSelectTextField);
-                const options = await screen.findAllByRole('option');
-                userEvent.click(options[0]);
-
-                const vatSelectInput = screen.getByTestId('rangeInput') as HTMLInputElement;
-                const sourceInput = screen.getByTestId(testID).childNodes[0].childNodes[0];
-
-                expect(vatSelectInput.value).toEqual('');
-                expect(sourceInput.textContent).toBe('指定なし');
-            }, 10);
+            await SelectClickTest(
+                BUTTON_INDEX.Range,
+                inputTestId,
+                buttonTestID,
+                '',
+                '​',
+                0
+            );
         });
 
         test('2番目の値を選択', async () => {
             rendering();
 
-            const vatSelectTextField = screen.getAllByRole('button')[1] as HTMLDivElement;
-
-            setTimeout(async () => {
-                userEvent.click(vatSelectTextField);
-                const options = await screen.findAllByRole('option');
-                userEvent.click(options[1]);
-
-                const vatSelectInput = screen.getByTestId('rangeInput') as HTMLInputElement;
-                const sourceInput = screen.getByTestId(testID).childNodes[0].childNodes[0];
-
-                expect(vatSelectInput.value).toEqual('1');
-                expect(sourceInput.textContent).toBe('以上');
-            }, 10);
+            await SelectClickTest(
+                BUTTON_INDEX.Range,
+                inputTestId,
+                buttonTestID,
+                '1',
+                '以上',
+                1
+            );
         });
 
         test('3番目の値を選択', async () => {
             rendering();
 
-            const vatSelectTextField = screen.getAllByRole('button')[1] as HTMLDivElement;
-
-            setTimeout(async () => {
-                userEvent.click(vatSelectTextField);
-                const options = await screen.findAllByRole('option');
-                userEvent.click(options[2]);
-
-                const vatSelectInput = screen.getByTestId('rangeInput') as HTMLInputElement;
-                const sourceInput = screen.getByTestId(testID).childNodes[0].childNodes[0];
-
-                expect(vatSelectInput.value).toEqual('2');
-                expect(sourceInput.textContent).toBe('以下');
-            }, 10);
+            await SelectClickTest(
+                BUTTON_INDEX.Range,
+                inputTestId,
+                buttonTestID,
+                '2',
+                '以下',
+                2
+            );
         });
+
+        const SelectClickTest = async (
+            buttonIndex: number,
+            inputTestId: string,
+            buttonTestID: string,
+            expectedVal: string,
+            expectedName: string,
+            opt_clickOptionIndex?: number
+        ) => {
+            screen.findAllByRole('button').then((callback) => userEvent.click(callback[buttonIndex]));
+
+            if ( opt_clickOptionIndex ) {
+                const options = await screen.findAllByRole('option');
+                await userEvent.click(options[opt_clickOptionIndex]);
+            }
+
+            const vatSelectInput = screen.getByTestId(inputTestId) as HTMLInputElement;
+            const sourceInput = screen.getByTestId(buttonTestID).childNodes[0].childNodes[0];
+
+            expect(vatSelectInput.value).toEqual(expectedVal);
+            expect(sourceInput.textContent).toBe(expectedName);
+
+        }
     });
 });
 
