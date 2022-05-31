@@ -24,6 +24,9 @@ export const Effect = (props: {
                 helperText='効果を指定してください'
                 label='効果'
                 id='effect'
+                inputProps={{
+                    'data-testid': 'effectInput',
+                }}
                 select
                 size='small'
                 {...props.register('effect')}
