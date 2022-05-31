@@ -3,11 +3,7 @@ import TestRenderer from 'react-test-renderer';
 import { SearchFormContainer } from "./searchFormContainer";
 import { BrowserRouter } from "react-router-dom";
 import renderComponent from "../tesetLib/render";
-import {
-    selectValName,
-    testingInputInitialValForGetByLabelText,
-    testingInputValForGetByLabelText
-} from "../tesetLib/commonTesting";
+import { selectValName, testingInputValForGetByLabelText } from "../tesetLib/commonTesting";
 
 const rendering = () => {
     return renderComponent(<BrowserRouter><SearchFormContainer/></BrowserRouter>);
@@ -35,11 +31,6 @@ describe('component test', () => {
     describe('エンチャント名', () => {
         const labelName = 'エンチャント名';
 
-        test('初期値の確認', () => {
-            rendering();
-            testingInputInitialValForGetByLabelText(labelName, '');
-        });
-
         test('なんでも入力できるか確認', async () => {
             rendering();
             await testingInputValForGetByLabelText(
@@ -50,31 +41,8 @@ describe('component test', () => {
         });
     });
 
-    describe('効果', () => {
-        // 通信していないので値の変更確認が行えない
-        // 将来的にはテストしたいが値が入ってるかどうかは手動でもよさそう
-        const buttonTestID = 'effect';
-        const inputTestId = 'effectInput';
-
-        test('初期値の確認', async () => {
-            rendering();
-            await selectValName(
-                BUTTON_INDEX.Effect,
-                inputTestId,
-                buttonTestID,
-                '',
-                '効果',
-            );
-        });
-    });
-
     describe('値', () => {
         const labelName = '値';
-
-        test('初期値の確認', () => {
-            rendering();
-            testingInputInitialValForGetByLabelText(labelName, '');
-        });
 
         test('入力は数値のみ可能であるか確認', async () => {
             rendering();
@@ -89,17 +57,6 @@ describe('component test', () => {
     describe('効果の範囲', () => {
         const buttonTestID = 'range';
         const inputTestId = 'rangeInput'
-
-        test('初期値の確認', async () => {
-            rendering();
-            await selectValName(
-                BUTTON_INDEX.Range,
-                inputTestId,
-                buttonTestID,
-                '',
-                '​',
-            );
-        });
 
         test('1番目の値を選択', async () => {
             rendering();
