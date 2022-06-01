@@ -1,21 +1,25 @@
-import ReactDOM from 'react-dom';
-import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
-import {ThemeProvider} from '@material-ui/core'
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { ThemeProvider } from '@material-ui/core'
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import {Home} from './home/home';
-import {Header} from './common/header';
-import {Footer} from './common/footer';
-import {About} from './static/about';
-import {AppHistory} from './static/appHistory';
-import {SearchList} from './search/searchList';
-import {PrivacyPolicy} from './static/privacyPolicy';
-import {RankIndex} from './search/rank/rankIndex';
-import {DetailIndex} from './search/detail/detailIndex';
-import {Theme} from './common/theme/theme';
-import {DefaultGlobalStyles} from './common/theme/defaultGlobalStyles';
+import { Home } from './home/home';
+import { Header } from './common/header';
+import { Footer } from './common/footer';
+import { About } from './static/about';
+import { AppHistory } from './static/appHistory';
+import { SearchList } from './search/searchList';
+import { PrivacyPolicy } from './static/privacyPolicy';
+import { RankIndex } from './search/rank/rankIndex';
+import { DetailIndex } from './search/detail/detailIndex';
+import { Theme } from './common/theme/theme';
+import { DefaultGlobalStyles } from './common/theme/defaultGlobalStyles';
+import { createRoot } from "react-dom/client";
 
-ReactDOM.render(
+const rootElement = document.getElementById('root');
+// @ts-ignore
+const root = createRoot(rootElement);
+
+root.render(
     <ThemeProvider theme={Theme}>
         <DefaultGlobalStyles/>
         <Router>
@@ -57,7 +61,6 @@ ReactDOM.render(
             <Footer/>
         </Router>
     </ThemeProvider>,
-    document.getElementById('root')
 );
 
 reportWebVitals();
