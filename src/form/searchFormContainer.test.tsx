@@ -106,17 +106,17 @@ describe('component test', () => {
 
         test('1番目の値を選択', async () => {
             rendering();
-            await initialPressedAndAfterClickPressed(BUTTON_INDEX.PositionNone, true);
+            await initialPressedAndAfterClickPressed(BUTTON_INDEX.PositionNone, true, '指定無し');
         });
 
         test('2番目の値を選択', async () => {
             rendering();
-            await initialPressedAndAfterClickPressed(BUTTON_INDEX.PositionPrefix, false);
+            await initialPressedAndAfterClickPressed(BUTTON_INDEX.PositionPrefix, false, '接頭');
         });
 
         test('3番目の値を選択', async () => {
             rendering();
-            await initialPressedAndAfterClickPressed(BUTTON_INDEX.PositionSuffix, false);
+            await initialPressedAndAfterClickPressed(BUTTON_INDEX.PositionSuffix, false, '接尾');
         });
     });
 });

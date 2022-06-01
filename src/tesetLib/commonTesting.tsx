@@ -57,11 +57,13 @@ export const selectValName = async (
  * 初期の押されているか判定及び、クリック後正常に押された判定が動作していることを確認
  * @param buttonIndex { string }
  * @param initialPressed { boolean }
+ * @param labelText { string }
  */
-export const initialPressedAndAfterClickPressed = async (buttonIndex: number, initialPressed: boolean) => {
+export const initialPressedAndAfterClickPressed = async (buttonIndex: number, initialPressed: boolean, labelText: string) => {
     const button = screen.getAllByRole('button')[buttonIndex];
 
     expect(button.getAttribute('aria-pressed')).toBe(initialPressed.toString());
+    expect(button.textContent).toBe(labelText)
 
     await userEvent.click(button);
 
