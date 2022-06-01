@@ -119,6 +119,24 @@ describe('component test', () => {
             await initialPressedAndAfterClickPressed(BUTTON_INDEX.PositionSuffix, false, '接尾');
         });
     });
+
+    describe('ランクの範囲', () => {
+
+        test('1番目の値を選択', async () => {
+            rendering();
+            await initialPressedAndAfterClickPressed(BUTTON_INDEX.RankEqual, true, '一致');
+        });
+
+        test('2番目の値を選択', async () => {
+            rendering();
+            await initialPressedAndAfterClickPressed(BUTTON_INDEX.RankGreaterThan, false, '以上');
+        });
+
+        test('3番目の値を選択', async () => {
+            rendering();
+            await initialPressedAndAfterClickPressed(BUTTON_INDEX.RankLessThan, false, '以下');
+        });
+    });
 });
 
 
