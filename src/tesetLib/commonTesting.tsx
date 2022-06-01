@@ -54,6 +54,21 @@ export const selectValName = async (
 }
 
 /**
+ * 初期の押されているか判定及び、クリック後正常に押された判定が動作していることを確認
+ * @param buttonIndex { string }
+ * @param initialPressed { boolean }
+ */
+export const initialPressedAndAfterClickPressed = async (buttonIndex: number, initialPressed: boolean) => {
+    const button = screen.getAllByRole('button')[buttonIndex];
+
+    expect(button.getAttribute('aria-pressed')).toBe(initialPressed.toString());
+
+    await userEvent.click(button);
+
+    expect(button.getAttribute('aria-pressed')).toBe('true');
+}
+
+/**
  * セレクトボックスに設定されている表示値を確認
  * @param testId { string }
  * @param expected { string }
@@ -62,3 +77,4 @@ const selectedName_ = (testId: string, expected: string) => {
     const sourceInput = screen.getByTestId(testId).childNodes[0].childNodes[0];
     expect(sourceInput.textContent).toBe(expected);
 }
+
