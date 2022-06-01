@@ -3,7 +3,11 @@ import TestRenderer from 'react-test-renderer';
 import { SearchFormContainer } from "./searchFormContainer";
 import { BrowserRouter } from "react-router-dom";
 import renderComponent from "../tesetLib/render";
-import { selectValName, testingInputValForGetByLabelText } from "../tesetLib/commonTesting";
+import {
+    initialPressedAndAfterClickPressed,
+    selectValName,
+    testingInputValForGetByLabelText
+} from "../tesetLib/commonTesting";
 
 const rendering = () => {
     return renderComponent(<BrowserRouter><SearchFormContainer/></BrowserRouter>);
@@ -95,6 +99,24 @@ describe('component test', () => {
                 '以下',
                 2
             );
+        });
+    });
+
+    describe('位置', () => {
+
+        test('1番目の値を選択', async () => {
+            rendering();
+            await initialPressedAndAfterClickPressed(BUTTON_INDEX.PositionNone, true);
+        });
+
+        test('2番目の値を選択', async () => {
+            rendering();
+            await initialPressedAndAfterClickPressed(BUTTON_INDEX.PositionPrefix, false);
+        });
+
+        test('3番目の値を選択', async () => {
+            rendering();
+            await initialPressedAndAfterClickPressed(BUTTON_INDEX.PositionSuffix, false);
         });
     });
 });
