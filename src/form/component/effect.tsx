@@ -14,18 +14,21 @@ export const Effect = (props: {
     effectList: Array<EffectType>,
     register: UseFormRegister<FormType>
 }) => {
-    return(
+    return (
         <>
             <TextField
                 css={formMarginStyle}
+                data-testid="effect"
                 defaultValue=''
                 fullWidth
                 helperText='効果を指定してください'
                 label='効果'
                 id='effect'
+                inputProps={{
+                    'data-testid': 'effectInput',
+                }}
                 select
                 size='small'
-                variant='outlined'
                 {...props.register('effect')}
             >
                 <MenuItem value=''>指定無し</MenuItem>
@@ -53,21 +56,25 @@ export const Effect = (props: {
                     />
                 </Grid>
                 <Grid item xs={2}></Grid>
-                    <Grid item xs={5}>
-                        <TextField
-                            defaultValue=''
-                            fullWidth
-                            helperText='以上 or 以下'
-                            id='range'
-                            select
-                            size='small'
-                            variant='outlined'
-                            {...props.register('range')}
-                        >
-                            <MenuItem value=''>指定なし</MenuItem>
-                            <MenuItem value='1'>以上</MenuItem>
-                            <MenuItem value='2'>以下</MenuItem>
-                        </TextField>
+                <Grid item xs={5}>
+                    <TextField
+                        data-testid='range'
+                        defaultValue=''
+                        fullWidth
+                        helperText='以上 or 以下'
+                        id='range'
+                        select
+                        size='small'
+                        variant='outlined'
+                        inputProps={{
+                            'data-testid': 'rangeInput',
+                        }}
+                        {...props.register('range')}
+                    >
+                        <MenuItem value=''>指定なし</MenuItem>
+                        <MenuItem value='1'>以上</MenuItem>
+                        <MenuItem value='2'>以下</MenuItem>
+                    </TextField>
                 </Grid>
             </Grid>
         </>
