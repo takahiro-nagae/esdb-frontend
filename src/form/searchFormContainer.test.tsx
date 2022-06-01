@@ -13,17 +13,17 @@ const rendering = () => {
     return renderComponent(<BrowserRouter><SearchFormContainer/></BrowserRouter>);
 };
 
+/**
+ * テストに使用するボタンのインデックス番号のみ記載
+ */
 const BUTTON_INDEX = {
-    Effect: 0,
     Range: 1,
     PositionNone: 2,
     PositionPrefix: 3,
     PositionSuffix: 4,
-    Rank: 5,
     RankEqual: 6,
     RankGreaterThan: 7,
     RankLessThan: 8,
-    Target: 9
 } as const;
 
 test('snapshot test', () => {
