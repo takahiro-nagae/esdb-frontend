@@ -1,0 +1,709 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot test 1`] = `
+<div
+  className="MuiBox-root css-178yklu"
+>
+  <div
+    className="MuiGrid-root MuiGrid-container MuiGrid-justify-content-xs-center"
+    css={
+      Object {
+        "map": undefined,
+        "name": "194k3rb",
+        "next": undefined,
+        "styles": "max-width:1200px;margin:auto;",
+        "toString": [Function],
+      }
+    }
+  >
+    <div
+      className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-11"
+    >
+      <div
+        className="MuiPaper-root MuiPaper-elevation1 MuiPaper-rounded"
+      >
+        <div
+          className="MuiBox-root css-19midj6"
+        >
+          <h3>
+            検索条件
+          </h3>
+          <div
+            className="MuiBox-root css-hw6t4k"
+          >
+            <form
+              onSubmit={[Function]}
+            >
+              <div
+                className="MuiFormControl-root MuiTextField-root css-1wavz5f-EnchantName MuiFormControl-fullWidth"
+              >
+                <label
+                  className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-marginDense MuiInputLabel-outlined"
+                  data-shrink={false}
+                  htmlFor="enchantName"
+                  id="enchantName-label"
+                >
+                  エンチャント名
+                </label>
+                <div
+                  className="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-marginDense MuiOutlinedInput-marginDense"
+                  onClick={[Function]}
+                >
+                  <input
+                    aria-describedby="enchantName-helper-text"
+                    aria-invalid={false}
+                    autoFocus={false}
+                    className="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMarginDense MuiOutlinedInput-inputMarginDense"
+                    disabled={false}
+                    id="enchantName"
+                    name="enchantName"
+                    onAnimationStart={[Function]}
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    required={false}
+                    type="text"
+                  />
+                  <fieldset
+                    aria-hidden={true}
+                    className="PrivateNotchedOutline-root-1 MuiOutlinedInput-notchedOutline"
+                  >
+                    <legend
+                      className="PrivateNotchedOutline-legendLabelled-3"
+                    >
+                      <span>
+                        エンチャント名
+                      </span>
+                    </legend>
+                  </fieldset>
+                </div>
+                <p
+                  className="MuiFormHelperText-root MuiFormHelperText-contained MuiFormHelperText-marginDense"
+                  id="enchantName-helper-text"
+                >
+                  エンチャント名を入力してください
+                </p>
+              </div>
+              <div
+                className="MuiFormControl-root MuiTextField-root css-1aiykw3-Effect MuiFormControl-fullWidth"
+                data-testid="effect"
+              >
+                <label
+                  className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-marginDense"
+                  data-shrink={false}
+                  htmlFor="effect"
+                  id="effect-label"
+                >
+                  効果
+                </label>
+                <div
+                  className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl MuiInputBase-marginDense MuiInput-marginDense"
+                  onClick={[Function]}
+                >
+                  <div
+                    aria-haspopup="listbox"
+                    aria-labelledby="effect-label effect"
+                    className="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input MuiInputBase-inputMarginDense MuiInput-inputMarginDense"
+                    id="effect"
+                    onBlur={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    onMouseDown={[Function]}
+                    role="button"
+                    tabIndex={0}
+                  >
+                    <span
+                      dangerouslySetInnerHTML={
+                        Object {
+                          "__html": "&#8203;",
+                        }
+                      }
+                    />
+                  </div>
+                  <input
+                    aria-describedby="effect-helper-text"
+                    aria-hidden={true}
+                    autoFocus={false}
+                    className="MuiSelect-nativeInput"
+                    data-testid="effectInput"
+                    name="effect"
+                    onAnimationStart={[Function]}
+                    onChange={[Function]}
+                    required={false}
+                    tabIndex={-1}
+                    value=""
+                  />
+                  <svg
+                    aria-hidden={true}
+                    className="MuiSvgIcon-root MuiSelect-icon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7 10l5 5 5-5z"
+                    />
+                  </svg>
+                </div>
+                <p
+                  className="MuiFormHelperText-root MuiFormHelperText-marginDense"
+                  id="effect-helper-text"
+                >
+                  効果を指定してください
+                </p>
+              </div>
+              <div
+                className="MuiGrid-root css-1aiykw3-Effect MuiGrid-container"
+              >
+                <div
+                  className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-5"
+                >
+                  <div
+                    className="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                  >
+                    <label
+                      className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-marginDense MuiInputLabel-outlined"
+                      data-shrink={false}
+                      htmlFor="effectVal"
+                      id="effectVal-label"
+                    >
+                      値
+                    </label>
+                    <div
+                      className="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-marginDense MuiOutlinedInput-marginDense"
+                      onClick={[Function]}
+                    >
+                      <input
+                        aria-describedby="effectVal-helper-text"
+                        aria-invalid={false}
+                        autoFocus={false}
+                        className="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMarginDense MuiOutlinedInput-inputMarginDense"
+                        disabled={false}
+                        id="effectVal"
+                        name="effectVal"
+                        onAnimationStart={[Function]}
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onFocus={[Function]}
+                        required={false}
+                        type="number"
+                      />
+                      <fieldset
+                        aria-hidden={true}
+                        className="PrivateNotchedOutline-root-1 MuiOutlinedInput-notchedOutline"
+                      >
+                        <legend
+                          className="PrivateNotchedOutline-legendLabelled-3"
+                        >
+                          <span>
+                            値
+                          </span>
+                        </legend>
+                      </fieldset>
+                    </div>
+                    <p
+                      className="MuiFormHelperText-root MuiFormHelperText-contained MuiFormHelperText-marginDense"
+                      id="effectVal-helper-text"
+                    >
+                      効果の値
+                    </p>
+                  </div>
+                </div>
+                <div
+                  className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-2"
+                />
+                <div
+                  className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-5"
+                >
+                  <div
+                    className="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                    data-testid="range"
+                  >
+                    <div
+                      className="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-marginDense MuiOutlinedInput-marginDense"
+                      onClick={[Function]}
+                    >
+                      <div
+                        aria-haspopup="listbox"
+                        aria-labelledby="range"
+                        className="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMarginDense MuiOutlinedInput-inputMarginDense"
+                        id="range"
+                        onBlur={[Function]}
+                        onFocus={[Function]}
+                        onKeyDown={[Function]}
+                        onMouseDown={[Function]}
+                        role="button"
+                        tabIndex={0}
+                      >
+                        <span
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "&#8203;",
+                            }
+                          }
+                        />
+                      </div>
+                      <input
+                        aria-describedby="range-helper-text"
+                        aria-hidden={true}
+                        autoFocus={false}
+                        className="MuiSelect-nativeInput"
+                        data-testid="rangeInput"
+                        name="range"
+                        onAnimationStart={[Function]}
+                        onChange={[Function]}
+                        required={false}
+                        tabIndex={-1}
+                        value=""
+                      />
+                      <svg
+                        aria-hidden={true}
+                        className="MuiSvgIcon-root MuiSelect-icon MuiSelect-iconOutlined"
+                        focusable="false"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M7 10l5 5 5-5z"
+                        />
+                      </svg>
+                      <fieldset
+                        aria-hidden={true}
+                        className="PrivateNotchedOutline-root-1 MuiOutlinedInput-notchedOutline"
+                        style={
+                          Object {
+                            "paddingLeft": 8,
+                          }
+                        }
+                      >
+                        <legend
+                          className="PrivateNotchedOutline-legend-2"
+                          style={
+                            Object {
+                              "width": 0.01,
+                            }
+                          }
+                        >
+                          <span
+                            dangerouslySetInnerHTML={
+                              Object {
+                                "__html": "&#8203;",
+                              }
+                            }
+                          />
+                        </legend>
+                      </fieldset>
+                    </div>
+                    <p
+                      className="MuiFormHelperText-root MuiFormHelperText-contained MuiFormHelperText-marginDense"
+                      id="range-helper-text"
+                    >
+                      以上 or 以下
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <label
+                className="css-x1shsd-Position"
+              >
+                <small>
+                  位置
+                </small>
+              </label>
+              <div
+                className="MuiToggleButtonGroup-root MuiToggleButtonGroup-fullWidth css-w6qmpt-MuiToggleButtonGroup-root-Position"
+                id="position"
+                role="group"
+              >
+                <button
+                  aria-label="0"
+                  aria-pressed={true}
+                  className="MuiButtonBase-root MuiToggleButton-root Mui-selected MuiToggleButton-fullWidth MuiToggleButton-sizeSmall MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal css-u52p9z-MuiButtonBase-root-MuiToggleButton-root-Position"
+                  disabled={false}
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onContextMenu={[Function]}
+                  onDragLeave={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onKeyUp={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseUp={[Function]}
+                  onTouchEnd={[Function]}
+                  onTouchMove={[Function]}
+                  onTouchStart={[Function]}
+                  tabIndex={0}
+                  type="button"
+                  value="0"
+                >
+                  <span>
+                    指定無し
+                  </span>
+                </button>
+                <button
+                  aria-label="1"
+                  aria-pressed={false}
+                  className="MuiButtonBase-root MuiToggleButton-root MuiToggleButton-fullWidth MuiToggleButton-sizeSmall MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal css-u52p9z-MuiButtonBase-root-MuiToggleButton-root-Position"
+                  disabled={false}
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onContextMenu={[Function]}
+                  onDragLeave={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onKeyUp={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseUp={[Function]}
+                  onTouchEnd={[Function]}
+                  onTouchMove={[Function]}
+                  onTouchStart={[Function]}
+                  tabIndex={0}
+                  type="button"
+                  value="1"
+                >
+                  <span>
+                    接頭
+                  </span>
+                </button>
+                <button
+                  aria-label="2"
+                  aria-pressed={false}
+                  className="MuiButtonBase-root MuiToggleButton-root MuiToggleButton-fullWidth MuiToggleButton-sizeSmall MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal css-u52p9z-MuiButtonBase-root-MuiToggleButton-root-Position"
+                  disabled={false}
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onContextMenu={[Function]}
+                  onDragLeave={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onKeyUp={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseUp={[Function]}
+                  onTouchEnd={[Function]}
+                  onTouchMove={[Function]}
+                  onTouchStart={[Function]}
+                  tabIndex={0}
+                  type="button"
+                  value="2"
+                >
+                  <span>
+                    接尾
+                  </span>
+                </button>
+              </div>
+              <label
+                className="css-hwdxo9-Rank"
+              >
+                <small>
+                  ランク
+                </small>
+              </label>
+              <div
+                className="MuiGrid-root css-avb8cg-Rank MuiGrid-container"
+              >
+                <div
+                  className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4"
+                >
+                  <div
+                    className="MuiFormControl-root MuiTextField-root css-avb8cg-Rank MuiFormControl-fullWidth"
+                  >
+                    <div
+                      className="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-marginDense MuiOutlinedInput-marginDense"
+                      onClick={[Function]}
+                    >
+                      <div
+                        aria-haspopup="listbox"
+                        aria-labelledby="rank"
+                        className="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMarginDense MuiOutlinedInput-inputMarginDense"
+                        id="rank"
+                        onBlur={[Function]}
+                        onFocus={[Function]}
+                        onKeyDown={[Function]}
+                        onMouseDown={[Function]}
+                        role="button"
+                        tabIndex={0}
+                      >
+                        <span
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "&#8203;",
+                            }
+                          }
+                        />
+                      </div>
+                      <input
+                        aria-hidden={true}
+                        autoFocus={false}
+                        className="MuiSelect-nativeInput"
+                        name="rank"
+                        onAnimationStart={[Function]}
+                        onChange={[Function]}
+                        required={false}
+                        tabIndex={-1}
+                        value=""
+                      />
+                      <svg
+                        aria-hidden={true}
+                        className="MuiSvgIcon-root MuiSelect-icon MuiSelect-iconOutlined"
+                        focusable="false"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M7 10l5 5 5-5z"
+                        />
+                      </svg>
+                      <fieldset
+                        aria-hidden={true}
+                        className="PrivateNotchedOutline-root-1 MuiOutlinedInput-notchedOutline"
+                        style={
+                          Object {
+                            "paddingLeft": 8,
+                          }
+                        }
+                      >
+                        <legend
+                          className="PrivateNotchedOutline-legend-2"
+                          style={
+                            Object {
+                              "width": 0.01,
+                            }
+                          }
+                        >
+                          <span
+                            dangerouslySetInnerHTML={
+                              Object {
+                                "__html": "&#8203;",
+                              }
+                            }
+                          />
+                        </legend>
+                      </fieldset>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-1"
+                />
+                <div
+                  className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-7"
+                >
+                  <div
+                    className="MuiToggleButtonGroup-root MuiToggleButtonGroup-fullWidth css-1dyvoru-MuiToggleButtonGroup-root-Rank"
+                    role="group"
+                  >
+                    <button
+                      aria-label="1"
+                      aria-pressed={true}
+                      className="MuiButtonBase-root MuiToggleButton-root Mui-selected MuiToggleButton-fullWidth MuiToggleButton-sizeSmall MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal css-d260ev-MuiButtonBase-root-MuiToggleButton-root-Rank"
+                      disabled={false}
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onContextMenu={[Function]}
+                      onDragLeave={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      onKeyUp={[Function]}
+                      onMouseDown={[Function]}
+                      onMouseLeave={[Function]}
+                      onMouseUp={[Function]}
+                      onTouchEnd={[Function]}
+                      onTouchMove={[Function]}
+                      onTouchStart={[Function]}
+                      tabIndex={0}
+                      type="button"
+                      value="1"
+                    >
+                      <span>
+                        一致
+                      </span>
+                    </button>
+                    <button
+                      aria-label="2"
+                      aria-pressed={false}
+                      className="MuiButtonBase-root MuiToggleButton-root MuiToggleButton-fullWidth MuiToggleButton-sizeSmall MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal css-d260ev-MuiButtonBase-root-MuiToggleButton-root-Rank"
+                      disabled={false}
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onContextMenu={[Function]}
+                      onDragLeave={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      onKeyUp={[Function]}
+                      onMouseDown={[Function]}
+                      onMouseLeave={[Function]}
+                      onMouseUp={[Function]}
+                      onTouchEnd={[Function]}
+                      onTouchMove={[Function]}
+                      onTouchStart={[Function]}
+                      tabIndex={0}
+                      type="button"
+                      value="2"
+                    >
+                      <span>
+                        以上
+                      </span>
+                    </button>
+                    <button
+                      aria-label="3"
+                      aria-pressed={false}
+                      className="MuiButtonBase-root MuiToggleButton-root MuiToggleButton-fullWidth MuiToggleButton-sizeSmall MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal css-d260ev-MuiButtonBase-root-MuiToggleButton-root-Rank"
+                      disabled={false}
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onContextMenu={[Function]}
+                      onDragLeave={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      onKeyUp={[Function]}
+                      onMouseDown={[Function]}
+                      onMouseLeave={[Function]}
+                      onMouseUp={[Function]}
+                      onTouchEnd={[Function]}
+                      onTouchMove={[Function]}
+                      onTouchStart={[Function]}
+                      tabIndex={0}
+                      type="button"
+                      value="3"
+                    >
+                      <span>
+                        以下
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div
+                className="MuiFormControl-root MuiTextField-root css-1982664-Target MuiFormControl-fullWidth"
+              >
+                <label
+                  className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-marginDense MuiInputLabel-outlined"
+                  data-shrink={false}
+                  htmlFor="target"
+                  id="target-label"
+                >
+                  対象
+                </label>
+                <div
+                  className="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-marginDense MuiOutlinedInput-marginDense"
+                  onClick={[Function]}
+                >
+                  <div
+                    aria-haspopup="listbox"
+                    aria-labelledby="target-label target"
+                    className="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMarginDense MuiOutlinedInput-inputMarginDense"
+                    id="target"
+                    onBlur={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    onMouseDown={[Function]}
+                    role="button"
+                    tabIndex={0}
+                  >
+                    <span
+                      dangerouslySetInnerHTML={
+                        Object {
+                          "__html": "&#8203;",
+                        }
+                      }
+                    />
+                  </div>
+                  <input
+                    aria-describedby="target-helper-text"
+                    aria-hidden={true}
+                    autoFocus={false}
+                    className="MuiSelect-nativeInput"
+                    name="target"
+                    onAnimationStart={[Function]}
+                    onChange={[Function]}
+                    required={false}
+                    tabIndex={-1}
+                    value=""
+                  />
+                  <svg
+                    aria-hidden={true}
+                    className="MuiSvgIcon-root MuiSelect-icon MuiSelect-iconOutlined"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7 10l5 5 5-5z"
+                    />
+                  </svg>
+                  <fieldset
+                    aria-hidden={true}
+                    className="PrivateNotchedOutline-root-1 MuiOutlinedInput-notchedOutline"
+                  >
+                    <legend
+                      className="PrivateNotchedOutline-legendLabelled-3"
+                    >
+                      <span>
+                        対象
+                      </span>
+                    </legend>
+                  </fieldset>
+                </div>
+                <p
+                  className="MuiFormHelperText-root MuiFormHelperText-contained MuiFormHelperText-marginDense"
+                  id="target-helper-text"
+                >
+                  対象を指定してください
+                </p>
+              </div>
+              <div
+                className="MuiGrid-root MuiGrid-container MuiGrid-align-items-xs-center"
+              >
+                <div
+                  className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
+                >
+                  <button
+                    className="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root css-xeim5k-MuiButtonBase-root-MuiButton-root-SearchForm"
+                    disabled={false}
+                    onBlur={[Function]}
+                    onContextMenu={[Function]}
+                    onDragLeave={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    onKeyUp={[Function]}
+                    onMouseDown={[Function]}
+                    onMouseLeave={[Function]}
+                    onMouseUp={[Function]}
+                    onTouchEnd={[Function]}
+                    onTouchMove={[Function]}
+                    onTouchStart={[Function]}
+                    tabIndex={0}
+                    type="submit"
+                  >
+                    検索
+                    <span
+                      className="MuiButton-endIcon MuiButton-iconSizeMedium css-9tj150-MuiButton-endIcon"
+                    >
+                      <svg
+                        aria-hidden={true}
+                        className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                        data-testid="SearchIcon"
+                        focusable="false"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                        />
+                      </svg>
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
