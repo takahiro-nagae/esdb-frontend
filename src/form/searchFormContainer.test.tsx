@@ -58,7 +58,6 @@ describe('component test', () => {
         });
     });
 
-
     describe('効果の範囲', () => {
         const buttonTestID = 'range';
         const inputTestId = 'rangeInput'
