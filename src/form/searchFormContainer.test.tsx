@@ -35,9 +35,9 @@ describe('component test', () => {
     describe('エンチャント名', () => {
         const labelName = 'エンチャント名';
 
-        test('なんでも入力できるか確認', async () => {
+        test('なんでも入力できるか確認', () => {
             rendering();
-            await testingInputValForGetByLabelText(
+            testingInputValForGetByLabelText(
                 labelName,
                 '1１@＃Qdあイｳ江🌍',
                 '1１@＃Qdあイｳ江🌍'
@@ -48,9 +48,9 @@ describe('component test', () => {
     describe('値', () => {
         const labelName = '値';
 
-        test('入力は数値のみ可能であるか確認', async () => {
+        test('入力は数値のみ可能であるか確認', () => {
             rendering();
-            await testingInputValForGetByLabelText(
+            testingInputValForGetByLabelText(
                 labelName,
                 '1１@＃Qdあイｳ江🌍',
                 '1'
@@ -58,14 +58,15 @@ describe('component test', () => {
         });
     });
 
+
     describe('効果の範囲', () => {
         const buttonTestID = 'range';
         const inputTestId = 'rangeInput'
 
-        test('1番目の値を選択', async () => {
+        test('1番目の値を選択', () => {
             rendering();
 
-            await selectValName(
+            selectValName(
                 BUTTON_INDEX.Range,
                 inputTestId,
                 buttonTestID,
@@ -75,10 +76,10 @@ describe('component test', () => {
             );
         });
 
-        test('2番目の値を選択', async () => {
+        test('2番目の値を選択', () => {
             rendering();
 
-            await selectValName(
+            selectValName(
                 BUTTON_INDEX.Range,
                 inputTestId,
                 buttonTestID,
@@ -88,10 +89,10 @@ describe('component test', () => {
             );
         });
 
-        test('3番目の値を選択', async () => {
+        test('3番目の値を選択', () => {
             rendering();
 
-            await selectValName(
+            selectValName(
                 BUTTON_INDEX.Range,
                 inputTestId,
                 buttonTestID,
@@ -104,37 +105,37 @@ describe('component test', () => {
 
     describe('位置', () => {
 
-        test('1番目の値を選択', async () => {
+        test('1番目の値を選択', () => {
             rendering();
-            await initialPressedAndAfterClickPressed(BUTTON_INDEX.PositionNone, true, '指定無し');
+            initialPressedAndAfterClickPressed(BUTTON_INDEX.PositionNone, true, '指定無し');
         });
 
-        test('2番目の値を選択', async () => {
+        test('2番目の値を選択', () => {
             rendering();
-            await initialPressedAndAfterClickPressed(BUTTON_INDEX.PositionPrefix, false, '接頭');
+            initialPressedAndAfterClickPressed(BUTTON_INDEX.PositionPrefix, false, '接頭');
         });
 
-        test('3番目の値を選択', async () => {
+        test('3番目の値を選択', () => {
             rendering();
-            await initialPressedAndAfterClickPressed(BUTTON_INDEX.PositionSuffix, false, '接尾');
+            initialPressedAndAfterClickPressed(BUTTON_INDEX.PositionSuffix, false, '接尾');
         });
     });
 
     describe('ランクの範囲', () => {
 
-        test('1番目の値を選択', async () => {
+        test('1番目の値を選択', () => {
             rendering();
-            await initialPressedAndAfterClickPressed(BUTTON_INDEX.RankEqual, true, '一致');
+            initialPressedAndAfterClickPressed(BUTTON_INDEX.RankEqual, true, '一致');
         });
 
-        test('2番目の値を選択', async () => {
+        test('2番目の値を選択', () => {
             rendering();
-            await initialPressedAndAfterClickPressed(BUTTON_INDEX.RankGreaterThan, false, '以上');
+            initialPressedAndAfterClickPressed(BUTTON_INDEX.RankGreaterThan, false, '以上');
         });
 
-        test('3番目の値を選択', async () => {
+        test('3番目の値を選択', () => {
             rendering();
-            await initialPressedAndAfterClickPressed(BUTTON_INDEX.RankLessThan, false, '以下');
+            initialPressedAndAfterClickPressed(BUTTON_INDEX.RankLessThan, false, '以下');
         });
     });
 });
