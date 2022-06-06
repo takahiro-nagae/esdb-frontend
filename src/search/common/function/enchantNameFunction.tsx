@@ -7,9 +7,9 @@ import { css } from "@emotion/react";
  * @param enchantName2 エンチャント別名
  * @returns エンチャント名 { string }
  */
-export function createEnchantName( enchantName: string, enchantName2: string ) {
+export function createEnchantName(enchantName: string, enchantName2: string) {
     if ( enchantName2 == '' ) return enchantName;
-
+    
     return enchantName + ' / ' + enchantName2
 }
 
@@ -20,7 +20,7 @@ export function createEnchantName( enchantName: string, enchantName2: string ) {
  * @param positionCode 位置コード
  * @returns エンチャント英名 { string }
  */
-export function createEnchantNameEn( enchantNameEn: string, positionCode: string ) {
+export function createEnchantNameEn(enchantNameEn: string, positionCode: string) {
     if ( enchantNameEn == '' ) return ''
 
     switch ( positionCode ) {
@@ -41,7 +41,7 @@ export function createEnchantNameEn( enchantNameEn: string, positionCode: string
  * @returns { SerializedStyles }
  */
 export function subTitleStyle() {
-    return css( {
+    return css({
         color: '#aaa'
-    } );
+    });
 }
