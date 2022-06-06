@@ -19,12 +19,12 @@ export const AppMenu = () => {
     });
 
     /** メニューのactiveStyle */
-    const activedStyle = {
+    const activatedStyle = {
         color: "#007DFF"
     };
 
     /** メニューnonactive */
-    const inactivedStyle = {
+    const inactivatedStyle = {
         color: "#fff"
     };
 
@@ -41,7 +41,7 @@ export const AppMenu = () => {
                     <NavLink
                         key={appMenu.text}
                         to={appMenu.url!}
-                        style={({ isActive }) => isActive ? activedStyle : inactivedStyle}>
+                        style={({ isActive }) => isActive ? activatedStyle : inactivatedStyle}>
                         <MenuItem onClick={popupState.close}>
                             {appMenu.icon}
                             <span css={textStyle}>{appMenu.text}</span>
