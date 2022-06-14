@@ -14,7 +14,11 @@ describe('impText', () => {
 
     test('エンチャントが実装されていない', () => {
         rendering(notImpVal);
-        expect(screen.getByText(expectMessage)).toBeInTheDocument();
+
+        const result = screen.getByText(expectMessage);
+
+        expect(result).toBeInTheDocument();
+        expect(result).toHaveStyle('color:#f00;fontWeight:bold');
     });
 
     test('エンチャントが実装されている', () => {
