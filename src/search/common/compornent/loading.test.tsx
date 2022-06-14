@@ -2,6 +2,7 @@ import renderComponent from "../../../tesetLib/render";
 import React from "react";
 import { Loading } from "./loading";
 import { screen } from "@testing-library/react";
+import { loadingCheck, notExistTestForTestId } from "../../../tesetLib/commonTesting";
 
 
 const rendering = (isLoading: boolean, backGroundColorStr?: string) => {
@@ -14,7 +15,7 @@ describe('loading', () => {
 
     test('ローディング完了時の確認', () => {
         rendering(true, undefined);
-        expect(screen.queryByTestId('loading')).toBeNull();
+        notExistTestForTestId(testId);
     });
 
     test('デフォルトスタイルのローディング', () => {
@@ -22,8 +23,7 @@ describe('loading', () => {
 
         const result = screen.getByTestId(testId);
 
-        expect(result).toBeInTheDocument();
-        expect(result).toHaveStyle('background-color:#27292D;');
+        loadingCheck(testId, '#27292D');
     });
 
 
@@ -32,10 +32,7 @@ describe('loading', () => {
 
         rendering(false, colorCode);
 
-        const result = screen.getByTestId(testId);
-
-        expect(result).toBeInTheDocument();
-        expect(result).toHaveStyle(`background-color:${colorCode};`);
+        loadingCheck(testId, colorCode);
     });
 });
 

@@ -1,7 +1,7 @@
 import renderComponent from "../../../tesetLib/render";
 import React from "react";
 import { InvalidText } from "./invalidText";
-import { screen } from "@testing-library/react";
+import { dispRedBoldMessage, notExistTestForText } from "../../../tesetLib/commonTesting";
 
 const rendering = (invalidTargetFlg: string) => renderComponent(<InvalidText invalidTargetFlg={invalidTargetFlg}/>);
 
@@ -14,15 +14,12 @@ describe('invalidText', () => {
 
     test('貼付可能', () => {
         rendering(nonInvalid);
-        expect(screen.queryByText(expectMessage)).toBeNull();
+        notExistTestForText(expectMessage);
     });
 
     test('貼付不可', () => {
         rendering(invalid);
 
-        const result = screen.getByText(expectMessage);
-
-        expect(result).toBeInTheDocument();
-        expect(result).toHaveStyle('color:#f00;fontWeight:bold');
+        dispRedBoldMessage(expectMessage);
     });
 });

@@ -2,16 +2,19 @@ import renderComponent from "../../../tesetLib/render";
 import React from "react";
 import { EffectList } from "./effectList";
 import { screen } from "@testing-library/react";
+import { notExistTestForTestId } from "../../../tesetLib/commonTesting";
 
 const rendering = (effectKbn: string, effectName: string) => {
     renderComponent(<EffectList effectKbn={effectKbn} effectName={effectName}/>);
 }
 
 describe('effectList', () => {
+
+    const testId = 'effect';
+
     test('値が全て空', () => {
         rendering('', '');
-
-        expect(screen.queryByTestId('effect')).toBeNull();
+        notExistTestForTestId(testId);
     });
 
     test('値を渡した時の表示及び表示順確認', async () => {
@@ -24,7 +27,7 @@ describe('effectList', () => {
 
         const effectNameArray = effectName.split('@');
 
-        screen.getAllByTestId('effect').map((screenEffect, index) => {
+        screen.getAllByTestId(testId).map((screenEffect, index) => {
             expect(screenEffect.textContent).toBe(effectNameArray[index]);
         });
     });

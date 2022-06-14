@@ -1,7 +1,7 @@
 import renderComponent from "../../../tesetLib/render";
 import React from "react";
 import { ImpText } from "./impText";
-import { screen } from "@testing-library/react";
+import { dispRedBoldMessage, notExistTestForText } from "../../../tesetLib/commonTesting";
 
 const rendering = (impFlg: string) => renderComponent(<ImpText impFlg={impFlg}/>);
 
@@ -15,14 +15,11 @@ describe('impText', () => {
     test('エンチャントが実装されていない', () => {
         rendering(notImpVal);
 
-        const result = screen.getByText(expectMessage);
-
-        expect(result).toBeInTheDocument();
-        expect(result).toHaveStyle('color:#f00;fontWeight:bold');
+        dispRedBoldMessage(expectMessage);
     });
 
     test('エンチャントが実装されている', () => {
         rendering(impVal);
-        expect(screen.queryByText(expectMessage)).toBeNull();
+        notExistTestForText(expectMessage);
     });
 });
