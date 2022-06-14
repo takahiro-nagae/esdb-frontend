@@ -2,6 +2,10 @@ import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 /**
+ * 各コンポーネントからtesting-libraryの依存度を下げるためのヘルパークラス
+ */
+
+/**
  * @param labelText { string }
  * @param types { string }
  * @param expected { string }
@@ -59,6 +63,40 @@ export const initialPressedAndAfterClickPressed = async (buttonIndex: number, in
 
     expect(button.getAttribute('aria-pressed')).toBe('true');
 }
+
+/**
+ * 要素が存在しないことをtestIdで確認
+ * @param testId { string }
+ */
+export const notExistTestForTestId = (testId: string) => {
+    expect(screen.queryByTestId(testId)).toBeNull();
+}
+
+/**
+ * 要素が存在しないことをテキストで確認
+ * @param text { string }
+ */
+export const notExistTestForText = (text: string) => {
+    expect(screen.queryByText(text)).toBeNull();
+}
+
+/**
+ * 赤太文字のメッセージの表示確認
+ * @param text { string }
+ */
+export const dispRedBoldMessage = (text: string) => {
+    const result = screen.getByText(text);
+
+    expect(result).toBeInTheDocument();
+    expect(result).toHaveStyle('color:#f00;fontWeight:bold');
+}
+
+export const loadingCheck = (testId: string, colorCode: string) => {
+    const result = screen.getByTestId(testId);
+
+    expect(result).toBeInTheDocument();
+    expect(result).toHaveStyle(`background-color:${colorCode};`);
+};
 
 /**
  * セレクトボックスに設定されている表示値を確認
