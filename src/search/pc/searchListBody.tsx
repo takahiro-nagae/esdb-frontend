@@ -13,7 +13,7 @@ import { css } from "@emotion/react";
  * @param props { Order, keyof HeadData, number, Array<EnchantData>, number, boolean }
  * @returns { JSX.Element }
  */
-export const tiSearchListBody = (props: {
+export const SearchListBody = (props: {
     order: Order,
     orderBy: keyof HeadData,
     page: number,
