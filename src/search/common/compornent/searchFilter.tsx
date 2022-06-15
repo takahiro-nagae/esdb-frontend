@@ -61,14 +61,18 @@ export const SearchFilter = (props: {
         setSearchWord(value);
         let listData = props.enchantList.filter((enchant) => {
             // 検索用に各値を設定
-            let enchant_name: string = enchant.enchant_name;
-            let position: string = positionName(enchant.position_id);
-            let rank: string = enchant.rank;
-            let target_name: string = enchant.target_name;
-            let effect_name: string = enchant.effect_name;
-            let route_name: string = enchant.route_name ? enchant.route_name : '';
+            const enchant_name: string = enchant.enchant_name;
+            const enchant_name_2: string = enchant.enchant_name_2;
+            const enchant_name_en: string = enchant.enchant_name_en;
+            const position: string = positionName(enchant.position_id);
+            const rank: string = enchant.rank;
+            const target_name: string = enchant.target_name;
+            const effect_name: string = enchant.effect_name;
+            const route_name: string = enchant.route_name ? enchant.route_name : '';
 
             return enchant_name.match(value)
+                || enchant_name_2.match(value)
+                || enchant_name_en.match(value)
                 || position.match(value)
                 || rank.match(value)
                 || target_name.match(value)
