@@ -7,16 +7,16 @@ import { css } from "@emotion/react";
 import { pcQueryProperty, spQueryProperty } from "../../../common/theme/layout";
 import { EnchantData } from "../interface/enchantData";
 
-export const SearchFilter = ( props: {
+export const SearchFilter = (props: {
     enchantList: Array<EnchantData>,
     setCount: Dispatch<SetStateAction<number>>,
     setRowData: any,
     setPage: Dispatch<SetStateAction<number>>,
     xs: GridSize,
-} ) => {
+}) => {
 
     /** フリー検索の外枠 */
-    const freeSearchBoxStyle = css( {
+    const freeSearchBoxStyle = css({
         backgroundColor: '#1F2023',
         boxSizing: 'border-box',
         paddingRight: '8px',
@@ -34,10 +34,10 @@ export const SearchFilter = ( props: {
             height: '44px',
             top: '64px',
         },
-    } );
+    });
 
     /** 検索インプットのスタイル */
-    const freeSearchInputStyle = css( {
+    const freeSearchInputStyle = css({
         backgroundColor: '#191919',
         border: '1px solid #424242',
         color: '#fff',
@@ -49,45 +49,45 @@ export const SearchFilter = ( props: {
         [pcQueryProperty]: {
             width: '99%',
         },
-    } );
+    });
 
     /** 検索ワード */
-    const [ searchWord, setSearchWord ] = useState( '' );
+    const [ searchWord, setSearchWord ] = useState('');
 
     /**
      * フィルターロジック
      */
-    function searchItems( value: any ) {
-        setSearchWord( value );
-        let listData = props.enchantList.filter( ( enchant ) => {
+    function searchItems(value: any) {
+        setSearchWord(value);
+        let listData = props.enchantList.filter((enchant) => {
             // 検索用に各値を設定
             let enchant_name: string = enchant.enchant_name;
-            let position: string = positionName( enchant.position_id );
+            let position: string = positionName(enchant.position_id);
             let rank: string = enchant.rank;
             let target_name: string = enchant.target_name;
             let effect_name: string = enchant.effect_name;
             let route_name: string = enchant.route_name ? enchant.route_name : '';
 
-            return enchant_name.match( value )
-                || position.match( value )
-                || rank.match( value )
-                || target_name.match( value )
-                || effect_name.match( value )
-                || route_name.match( value );
-        } );
+            return enchant_name.match(value)
+                || position.match(value)
+                || rank.match(value)
+                || target_name.match(value)
+                || effect_name.match(value)
+                || route_name.match(value);
+        });
 
         // 検索用のデータ
-        props.setRowData( listData );
+        props.setRowData(listData);
         // 件数
-        props.setCount( listData.length );
+        props.setCount(listData.length);
         // ページ初期化
-        props.setPage( 0 );
+        props.setPage(0);
     }
 
     return (
-        <Grid item xs={ props.xs } css={ freeSearchBoxStyle }>
-            <input css={ freeSearchInputStyle } placeholder='絞り込む' value={ searchWord }
-                   onChange={ ( e ) => searchItems( e.target.value ) }/>
+        <Grid item xs={props.xs} css={freeSearchBoxStyle}>
+            <input css={freeSearchInputStyle} placeholder='絞り込む' value={searchWord}
+                   onChange={(e) => searchItems(e.target.value)}/>
         </Grid>
     );
 }
