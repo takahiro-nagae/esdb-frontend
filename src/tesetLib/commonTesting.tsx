@@ -85,9 +85,9 @@ export const notExistTestForText = (text: string) => {
  * @param text { string }
  */
 export const dispRedBoldMessage = (text: string) => {
-    const result = screen.getByText(text);
+    dispMessage(text);
 
-    expect(result).toBeInTheDocument();
+    const result = screen.getByText(text);
     expect(result).toHaveStyle('color:#f00;fontWeight:bold');
 }
 
@@ -97,6 +97,12 @@ export const loadingCheck = (testId: string, colorCode: string) => {
     expect(result).toBeInTheDocument();
     expect(result).toHaveStyle(`background-color:${colorCode};`);
 };
+
+export const dispMessage = (text: string) => {
+    const result = screen.getByText(text);
+
+    expect(result).toBeInTheDocument();
+}
 
 /**
  * セレクトボックスに設定されている表示値を確認
