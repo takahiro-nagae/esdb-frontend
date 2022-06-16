@@ -103,7 +103,6 @@ export const SearchListBody = (props: {
                         <SearchListRow
                             enchant={enchant}
                             key={enchant.enchant_id}
-                            valFlg={Boolean(enchant.disp_val)}
                         />
                         {index == props.rowData.length - 1 &&
                             <TableRow
