@@ -1,4 +1,5 @@
 import { css } from "@emotion/react";
+
 /** @jsxImportSource @emotion/react */
 
 export const ImpText = (props: { impFlg: string }) => {
@@ -10,9 +11,9 @@ export const ImpText = (props: { impFlg: string }) => {
     return (
         <>
             {
-                props.impFlg != '1' &&
-                <small css={ red }>
-                    　未実装
+                props.impFlg == '0' &&
+                <small css={red}>
+                    未実装
                 </small>
             }
         </>

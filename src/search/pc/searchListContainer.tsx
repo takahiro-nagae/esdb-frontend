@@ -24,61 +24,59 @@ import { SearchListBody } from "./searchListBody";
  *              }
  * @returns SearchListContainer { JSX.Element }
  */
-export const SearchListContainer = ( props: {
+export const SearchListContainer = (props: {
     count: number, setCount: Dispatch<SetStateAction<number>>,
     enchantList: Array<EnchantData>,
     order: Order, setOrder: Dispatch<SetStateAction<Order>>,
     orderBy: keyof HeadData, setOrderBy: Dispatch<SetStateAction<keyof HeadData>>,
     page: number, setPage: Dispatch<SetStateAction<number>>,
     rowData: Array<EnchantData>, setRowData: Dispatch<SetStateAction<Array<EnchantData>>>,
-    valFlag: boolean,
-} ) => {
+}) => {
 
     /** 現在のページ */
-    const [ rowsPerPage, setRowsPerPage ] = useState( 30 );
+    const [ rowsPerPage, setRowsPerPage ] = useState(30);
     /** グリッドのサイズ */
     const xs = 11;
 
     return (
         <>
             <SearchFilter
-                enchantList={ props.enchantList }
-                setCount={ props.setCount }
-                setPage={ props.setPage }
-                setRowData={ props.setRowData }
-                xs={ xs }
+                enchantList={props.enchantList}
+                setCount={props.setCount}
+                setPage={props.setPage}
+                setRowData={props.setRowData}
+                xs={xs}
             />
             <Grid
                 item
-                style={ { width: '100%' } }
-                xs={ xs }
+                style={{ width: '100%' }}
+                xs={xs}
             >
                 <Box>
-                    <TableContainer style={ { overflow: 'visible' } }>
-                        <Table style={ { borderCollapse: 'separate' } }>
+                    <TableContainer style={{ overflow: 'visible' }}>
+                        <Table style={{ borderCollapse: 'separate' }}>
                             <SearchListHead
-                                order={ props.order }
-                                setOrder={ props.setOrder }
-                                orderBy={ props.orderBy }
-                                setOrderBy={ props.setOrderBy }
-                                valFlg={ props.valFlag }
+                                order={props.order}
+                                setOrder={props.setOrder}
+                                orderBy={props.orderBy}
+                                setOrderBy={props.setOrderBy}
+                                valFlg={Boolean(props.enchantList[0].disp_val)}
                             />
                             <SearchListBody
-                                order={ props.order }
-                                orderBy={ props.orderBy }
-                                page={ props.page }
-                                rowData={ props.rowData }
-                                rowsPerPage={ rowsPerPage }
-                                valFlag={ props.valFlag }
+                                order={props.order}
+                                orderBy={props.orderBy}
+                                page={props.page}
+                                rowData={props.rowData}
+                                rowsPerPage={rowsPerPage}
                             />
                         </Table>
                     </TableContainer>
                     <Pagination
-                        count={ props.count }
-                        page={ props.page }
-                        setPage={ props.setPage }
-                        rowsPerPage={ rowsPerPage }
-                        setRowsPerPage={ setRowsPerPage }
+                        count={props.count}
+                        page={props.page}
+                        setPage={props.setPage}
+                        rowsPerPage={rowsPerPage}
+                        setRowsPerPage={setRowsPerPage}
                     />
                 </Box>
             </Grid>

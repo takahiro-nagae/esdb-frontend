@@ -20,12 +20,11 @@ import { EnchantData } from "../common/interface/enchantData";
 
 /**
  * エンチャントカードコンポーネント
- * @param props { EnchantData, boolean }
+ * @param props { EnchantData }
  * @returns { JSX.Element }
  */
 export const EnchantCard = (props: {
-    enchant: EnchantData,
-    valFlag: boolean
+    enchant: EnchantData
 }) => {
 
     /** オープン状態 */
@@ -94,21 +93,22 @@ export const EnchantCard = (props: {
                 <Box>
                     <Typography
                         css={titleStyle}
-                        data-testId='enchantName'
                         variant="subtitle1"
                     >
-                        {
-                            createEnchantName(
-                                props.enchant.enchant_name,
-                                props.enchant.enchant_name_2
-                            )
-                        }
+                        <span data-testid='enchantName'>
+                            {
+                                createEnchantName(
+                                    props.enchant.enchant_name,
+                                    props.enchant.enchant_name_2
+                                )
+                            }
+                        </span>
                         <InvalidText invalidTargetFlg={props.enchant.invalid_target_flg}/>
                         <ImpText impFlg={props.enchant.imp_flg}/>
                     </Typography>
                     <Typography
                         css={subTitleStyle}
-                        data-testId='enchantNameEn'
+                        data-testid='enchantNameEn'
                         variant="subtitle2"
                     >
                         {
@@ -117,12 +117,11 @@ export const EnchantCard = (props: {
                                 props.enchant.position_id
                             )
                         }
-
                     </Typography>
                     <div>
                         <Typography
                             css={positionColor(props.enchant.position_id)}
-                            data-testId='position'
+                            data-testid='position'
                             style={{ display: 'inline' }}
                             variant="subtitle2"
                         >
@@ -134,7 +133,7 @@ export const EnchantCard = (props: {
                         >
                             <small>ランク</small>
                         </Typography>
-                        <RankModal data-testId='rank' rank={props.enchant.rank}/>
+                        <RankModal rank={props.enchant.rank}/>
                         <GroundButton
                             data-testId='ground'
                             enchant_id={props.enchant.enchant_id}
@@ -145,8 +144,8 @@ export const EnchantCard = (props: {
                 </Box>
                 <Box>
                     {
-                        props.valFlag &&
-                        <p css={valueStyle} data-testId='dispVal'>
+                        props.enchant.disp_val &&
+                        <p css={valueStyle} data-testid='dispVal'>
                             {props.enchant.disp_val}
                         </p>
                     }
@@ -155,7 +154,6 @@ export const EnchantCard = (props: {
                     <IconButton
                         aria-label="expand row"
                         css={accIconStyle}
-                        data-testId='toggleIcon'
                         onClick={() => setOpen(!open)}
                     >
                         {open ? <KeyboardArrowUpIcon/> : <KeyboardArrowDownIcon/>}
@@ -180,7 +178,6 @@ export const EnchantCard = (props: {
                                 <TableCell css={acoHeadStyle}>効果</TableCell>
                                 <TableCell css={acoBodyStyle}>
                                     <EffectList
-                                        data-testId='effectList'
                                         effectKbn={props.enchant.effect_kbn}
                                         effectName={props.enchant.effect_name}
                                     />
@@ -190,7 +187,6 @@ export const EnchantCard = (props: {
                                 <TableCell css={acoHeadStyle}>入手先</TableCell>
                                 <TableCell css={acoBodyStyle}>
                                     <RouteList
-                                        data-testId='routeList'
                                         enchantId={props.enchant.enchant_id}
                                         routeName={props.enchant.route_name}
                                     />

@@ -15,29 +15,28 @@ import { EnchantData } from "../common/interface/enchantData";
  * @param props { Array<EnchantData>, boolean }
  * @returns SpSearchContainer { JSX.Element }
  */
-export const SpSearchContainer = ( props: {
-    rowData: Array<EnchantData>,
-    valFlag: boolean
-} ) => {
+export const SpSearchContainer = (props: {
+    rowData: Array<EnchantData>
+}) => {
 
     /** 横幅指定 */
-    const dataWidthStyle = css( {
+    const dataWidthStyle = css({
         width: '100%'
-    } );
+    });
 
     /**  トップに戻るアイコンの設定 */
-    const topIconStyle = css( {
+    const topIconStyle = css({
         color: '#fff',
         right: '20px',
         position: 'fixed',
-    } );
+    });
 
-    const cardStyle = css( {
+    const cardStyle = css({
         backgroundColor: '#3C3B40',
         boxSizing: 'border-box',
         padding: '8px',
         margin: '8px',
-    } );
+    });
 
     /**
      * トップにスクロール
@@ -49,46 +48,45 @@ export const SpSearchContainer = ( props: {
     return (
         <>
             <Grid
-                css={ dataWidthStyle }
+                css={dataWidthStyle}
                 item
-                xs={ 12 }
+                xs={12}
             >
-                <Box sx={ { p: 1 } }>
-                    { props.rowData.map( ( enchant, index ) => (
+                <Box sx={{ p: 1 }}>
+                    {props.rowData.map((enchant, index) => (
                         <>
-                            { index != 0 && index % 5 == 0 &&
+                            {index != 0 && index % 5 == 0 &&
                                 <Card
-                                    css={ cardStyle }
-                                    key={ index }
+                                    css={cardStyle}
+                                    key={index}
                                 >
                                     <InfeedAd/>
                                 </Card>
                             }
                             <EnchantCard
-                                enchant={ enchant }
-                                key={ enchant.enchant_id }
-                                valFlag={ props.valFlag }
+                                enchant={enchant}
+                                key={enchant.enchant_id}
                             />
-                            { index == props.rowData.length - 1 &&
+                            {index == props.rowData.length - 1 &&
                                 <Card
-                                    css={ cardStyle }
-                                    key={ 'lastSp' }
+                                    css={cardStyle}
+                                    key={'lastSp'}
                                 >
                                     <InfeedAd/>
                                 </Card>
                             }
                         </>
-                    ) ) }
+                    ))}
                 </Box>
             </Grid>
             <IconButton
                 aria-label="add an alarm"
                 color="secondary"
-                css={ topIconStyle }
-                onClick={ scrollToTop }
-                style={ { position: 'fixed', bottom: '48px', background: '#282828' } }
+                css={topIconStyle}
+                onClick={scrollToTop}
+                style={{ position: 'fixed', bottom: '48px', background: '#282828' }}
             >
-                <KeyboardDoubleArrowUp sx={ { fontSize: 40 } }/>
+                <KeyboardDoubleArrowUp sx={{ fontSize: 40 }}/>
             </IconButton>
         </>
     );
