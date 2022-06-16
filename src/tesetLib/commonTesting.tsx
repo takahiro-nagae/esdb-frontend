@@ -98,10 +98,16 @@ export const loadingCheck = (testId: string, colorCode: string) => {
     expect(result).toHaveStyle(`background-color:${colorCode};`);
 };
 
-export const dispMessage = (text: string) => {
-    const result = screen.getByText(text);
+export const dispTestId = (testID: string) => {
+    expect(screen.getByTestId(testID)).toBeInTheDocument();
+}
 
-    expect(result).toBeInTheDocument();
+export const dispTestIdExpectText = (testId: string, expected: string) => {
+    expect(screen.getByTestId(testId).textContent).toBe(expected);
+}
+
+export const dispMessage = (text: string) => {
+    expect(screen.getByText(text)).toBeInTheDocument();
 }
 
 /**
