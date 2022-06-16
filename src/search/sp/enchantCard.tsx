@@ -135,7 +135,6 @@ export const EnchantCard = (props: {
                         </Typography>
                         <RankModal rank={props.enchant.rank}/>
                         <GroundButton
-                            data-testId='ground'
                             enchant_id={props.enchant.enchant_id}
                             rank_ignore_flg={props.enchant.rank_ignore_flg}
                             rank_seq={props.enchant.rank_seq}
