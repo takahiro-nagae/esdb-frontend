@@ -63,7 +63,6 @@ describe('enchantCard', () => {
     const impText = '未実装';
     const invalidText = '貼付不可';
     const positionId = 'position';
-    const groundId = 'ground';
     const dispValId = 'dispVal';
     const KeyboardArrowDownIcon = 'KeyboardArrowDownIcon';
     const KeyboardArrowUpIcon = 'KeyboardArrowUpIcon';
@@ -75,7 +74,6 @@ describe('enchantCard', () => {
         notExistTestForText(impText);
         dispTestIdExpectText(enchantNameEnId, '');
         dispTestIdExpectText(positionId, '');
-        notExistTestForTestId(groundId);
         notExistTestForTestId(dispValId);
     });
 
