@@ -133,7 +133,6 @@ export const SearchList = (props: { freeSearchFlg: boolean }) => {
                     {dispCount >= 1 &&
                         <>
                             <p css={resultStyle}>
-
                                 <span css={hitCountStyle}>{count}</span>件ヒットしました
                                 {effectName != '' &&
                                     <>
