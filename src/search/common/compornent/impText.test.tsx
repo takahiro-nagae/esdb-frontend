@@ -10,7 +10,7 @@ describe('impText', () => {
     const notImpVal = '0';
     const impVal = '1';
 
-    const expectMessage = '未実装'
+    const expectMessage = '未実装';
 
     test('エンチャントが実装されていない', () => {
         rendering(notImpVal);
