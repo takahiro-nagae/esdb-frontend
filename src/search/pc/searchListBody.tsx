@@ -19,7 +19,6 @@ export const SearchListBody = (props: {
     page: number,
     rowData: Array<EnchantData>,
     rowsPerPage: number,
-    valFlag: boolean,
 }) => {
 
     /** コンテント各行の基本スタイル */
@@ -94,7 +93,7 @@ export const SearchListBody = (props: {
                                 key={index}
                             >
                                 <TableCell
-                                    colSpan={props.valFlag ? 7 : 6}
+                                    colSpan={enchant.disp_val ? 7 : 6}
                                     css={tableDataStyle}
                                 >
                                     <InfeedAd/>
@@ -104,7 +103,7 @@ export const SearchListBody = (props: {
                         <SearchListRow
                             enchant={enchant}
                             key={enchant.enchant_id}
-                            valFlg={props.valFlag}
+                            valFlg={Boolean(enchant.disp_val)}
                         />
                         {index == props.rowData.length - 1 &&
                             <TableRow
@@ -112,7 +111,7 @@ export const SearchListBody = (props: {
                                 key={'lastPc'}
                             >
                                 <TableCell
-                                    colSpan={props.valFlag ? 7 : 6}
+                                    colSpan={enchant.disp_val ? 7 : 6}
                                     css={tableDataStyle}
                                 >
                                     <InfeedAd/>
