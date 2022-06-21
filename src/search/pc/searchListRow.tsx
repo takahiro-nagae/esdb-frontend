@@ -34,11 +34,15 @@ export const SearchListRow = (props: { enchant: EnchantData }) => {
     return (
         <TableRow css={tableContent}>
             <TableCell>
-                <span>{createEnchantName(props.enchant.enchant_name, props.enchant.enchant_name_2)}</span>
+                <span
+                    data-testid='enchantName'
+                >
+                    {createEnchantName(props.enchant.enchant_name, props.enchant.enchant_name_2)}
+                </span>
                 <InvalidText invalidTargetFlg={props.enchant.invalid_target_flg}/>
                 <ImpText impFlg={props.enchant.imp_flg}/>
                 <br/>
-                <small css={subTitleStyle}>
+                <small css={subTitleStyle} data-testid='enchantNameEn'>
                     {createEnchantNameEn(props.enchant.enchant_name_en, props.enchant.position_id)}
                 </small>
             </TableCell>
@@ -57,7 +61,7 @@ export const SearchListRow = (props: { enchant: EnchantData }) => {
             <TableCell>{props.enchant.target_name}</TableCell>
             {
                 props.enchant.disp_val &&
-                <TableCell>{props.enchant.disp_val}</TableCell>
+                <TableCell data-testid='dispVal'>{props.enchant.disp_val}</TableCell>
             }
             <TableCell>
                 <EffectList
