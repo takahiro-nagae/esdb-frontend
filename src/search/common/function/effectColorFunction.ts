@@ -10,7 +10,7 @@ export default function effectColorFunction(effectStr: string) {
         case 'increase':
             // 増加
             return css({
-                color: '#7070ff',
+                color: '#8989ff',
                 margin: '2px'
             });
         case 'decrease':
