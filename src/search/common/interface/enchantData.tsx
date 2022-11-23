@@ -30,8 +30,6 @@ export interface EnchantData {
     imp_flg: string;
     /** 貼付フラグ */
     invalid_target_flg: string;
-    /** ランクに関係なく貼付可能フラグ */
-    rank_ignore_flg: string;
     /** 表示値 */
     disp_val: string;
 }
