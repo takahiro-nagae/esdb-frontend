@@ -13,7 +13,6 @@ export class EnchantDataTestImpl implements EnchantData {
     position: string;
     position_id: string;
     rank: string;
-    rank_ignore_flg: string;
     rank_seq: number;
     route_name: string;
     target_name: string;
@@ -33,7 +32,6 @@ export class EnchantDataTestImpl implements EnchantData {
         this.route_name = '';
         this.imp_flg = '';
         this.invalid_target_flg = '';
-        this.rank_ignore_flg = '';
         this.disp_val = '';
     }
 }

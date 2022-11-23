@@ -11,7 +11,6 @@ import Typography from '@mui/material/Typography';
 import { positionColor, positionName } from '../common/function/positionFunction';
 import { RankModal } from '../rank/rankModal';
 import { createEnchantName, createEnchantNameEn, subTitleStyle } from "../common/function/enchantNameFunction";
-import { GroundButton } from "../ground/groundButton";
 import { EffectList } from "../common/compornent/effectList";
 import { RouteList } from "../common/compornent/routeList";
 import { InvalidText } from "../common/compornent/invalidText";
@@ -134,11 +133,6 @@ export const EnchantCard = (props: {
                             <small>ランク</small>
                         </Typography>
                         <RankModal rank={props.enchant.rank}/>
-                        <GroundButton
-                            enchant_id={props.enchant.enchant_id}
-                            rank_ignore_flg={props.enchant.rank_ignore_flg}
-                            rank_seq={props.enchant.rank_seq}
-                        />
                     </div>
                 </Box>
                 <Box>
