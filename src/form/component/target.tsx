@@ -2,8 +2,8 @@
 import { MenuItem, TextField } from "@material-ui/core";
 import { UseFormRegister } from "react-hook-form";
 import { formMarginStyle } from "../common/style/formStyle";
-import { FormType } from "../common/type/formType";
-import { TargetType } from "../common/type/targetType";
+import { SearchFormInterface } from "../common/interface/searchFormInterface";
+import { TargetInterFace } from "../common/interface/targetInterFace";
 
 /**
  * 対象コンポーネント
@@ -11,10 +11,10 @@ import { TargetType } from "../common/type/targetType";
  * @returns
  */
 export const Target = (props: {
-    register: UseFormRegister<FormType>,
-    targetList: Array<TargetType>
+    register: UseFormRegister<SearchFormInterface>,
+    targetList: Array<TargetInterFace>
 }) => {
-    return(
+    return (
         <TextField
             css={formMarginStyle}
             defaultValue=''

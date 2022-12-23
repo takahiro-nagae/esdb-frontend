@@ -4,7 +4,7 @@ import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import { createSearchParams, useNavigate } from 'react-router-dom';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
-import { FreeFormType } from '../common/type/freeFormType';
+import { FreeFormInterFace } from '../common/interface/freeFormInterFace';
 import { spQueryProperty } from "../../common/theme/layout";
 
 /**
@@ -13,21 +13,21 @@ import { spQueryProperty } from "../../common/theme/layout";
  */
 export const FreeSearch = () => {
 
-    const { register, handleSubmit } = useForm<FreeFormType>( {} );
+    const { register, handleSubmit } = useForm<FreeFormInterFace>({});
     const navigate = useNavigate();
 
     /** ボタン */
-    const buttonStyle = css( {
+    const buttonStyle = css({
         background: '#424242',
         '&:hover': {
             background: '#424242'
         },
         borderRadius: '0',
         color: '#fff',
-    } );
+    });
 
     /** 検索バー */
-    const searchBarStyle = css( {
+    const searchBarStyle = css({
         backgroundColor: '#191919',
         border: '1px solid #424242',
         display: 'flex',
@@ -36,22 +36,22 @@ export const FreeSearch = () => {
         [spQueryProperty]: {
             width: '100%'
         },
-    } );
+    });
 
     /** 検索フォーム内ブロック */
-    const searchBarDisplayStyle = css( {
+    const searchBarDisplayStyle = css({
         display: 'flex',
         justifyContent: 'center',
-    } );
+    });
 
     /** 検索フォームのフレーム */
-    const searchFormStyle = css( {
+    const searchFormStyle = css({
         display: 'inline-block',
         width: '100%'
-    } );
+    });
 
     /** 検索入力欄 */
-    const searchBarInputStyle = css( {
+    const searchBarInputStyle = css({
         backgroundColor: '#191919',
         border: 'none !important',
         color: '#fff',
@@ -63,44 +63,44 @@ export const FreeSearch = () => {
         [spQueryProperty]: {
             width: '100%'
         },
-    } );
+    });
 
     /**
      * フォーム送信時のハンドラ
      * @param values { React.BaseSyntheticEvent<object, any, any> }
      */
-    const handleOnSubmit: SubmitHandler<FreeFormType> = ( values ) => {
-        navigate( {
+    const handleOnSubmit: SubmitHandler<FreeFormInterFace> = (values) => {
+        navigate({
             pathname: '/search',
-            search: `?${ createSearchParams( values ) }`,
-        } );
+            search: `?${createSearchParams(values)}`,
+        });
     }
 
     /**
      * フォームのエラーハンドラ
      * @param errors { FieldErrors<TFieldValues> }
      */
-    const handleOnError: SubmitErrorHandler<FreeFormType> = ( errors ) => {
-        console.log( errors )
+    const handleOnError: SubmitErrorHandler<FreeFormInterFace> = (errors) => {
+        console.log(errors)
     }
 
     return (
         <>
             <form
-                css={ searchFormStyle }
-                onSubmit={ handleSubmit( handleOnSubmit, handleOnError ) }
+                css={searchFormStyle}
+                onSubmit={handleSubmit(handleOnSubmit, handleOnError)}
             >
-                <div css={ searchBarDisplayStyle }>
-                    <div css={ searchBarStyle }>
+                <div css={searchBarDisplayStyle}>
+                    <div css={searchBarStyle}>
                         <input
-                            css={ searchBarInputStyle }
+                            css={searchBarInputStyle}
                             id='search'
                             placeholder="検索"
-                            { ...register( 'search' ) }
+                            {...register('search')}
                         />
                         <IconButton
                             aria-label="search"
-                            css={ buttonStyle }
+                            css={buttonStyle}
                             type='submit'
                         >
                             <SearchIcon/>

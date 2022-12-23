@@ -1,8 +1,8 @@
 import axios from "axios";
-import { EffectType } from "../form/common/type/effectType";
+import { EffectInterface } from "../form/common/interface/effectInterface";
 import { FormInit } from "./responseDefinition/formInit";
-import { RankType } from "../form/common/type/rankType";
-import { TargetType } from "../form/common/type/targetType";
+import { RankInterFace } from "../form/common/interface/rankInterFace";
+import { TargetInterFace } from "../form/common/interface/targetInterFace";
 import { EnchantDataImpl } from "../search/detail/impl/enchantDataImpl";
 import { EnchantDetail } from "./responseDefinition/enchantDetail";
 import { searchRank } from "../search/rank/interface/searchRank";
@@ -13,9 +13,9 @@ const END_POINT = 'https://wd5zeazzd9.execute-api.ap-northeast-1.amazonaws.com/P
 
 export async function getInitData() {
     let response: FormInit = {
-        effect: new Array<EffectType>(),
-        rank: new Array<RankType>(),
-        target: new Array<TargetType>(),
+        effect: new Array<EffectInterface>(),
+        rank: new Array<RankInterFace>(),
+        target: new Array<TargetInterFace>(),
     };
 
     await axios.get(END_POINT).then((res) => {

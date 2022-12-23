@@ -7,15 +7,15 @@ import { Grid } from '@material-ui/core';
 import Button from '@mui/material/Button';
 import SearchIcon from '@mui/icons-material/Search';
 import { EnchantName } from './component/enchantName';
-import { Effect } from './component/effect';
 import { Position } from './component/position';
-import { Rank } from './component/rank';
-import { Target } from './component/target';
-import { FormType } from './common/type/formType';
-import { EffectType } from './common/type/effectType';
-import { RankType } from './common/type/rankType';
-import { TargetType } from './common/type/targetType';
+import { SearchFormInterface } from './common/interface/searchFormInterface';
+import { EffectInterface } from './common/interface/effectInterface';
+import { RankInterFace } from './common/interface/rankInterFace';
+import { TargetInterFace } from './common/interface/targetInterFace';
 import { getInitData } from "../api/backendApi";
+import { Effect } from "./component/effect";
+import { Rank } from "./component/rank";
+import { Target } from "./component/target";
 
 /**
  * 検索フォームの詳細コンポーネント
@@ -23,18 +23,18 @@ import { getInitData } from "../api/backendApi";
  */
 export const SearchForm = () => {
     /** 効果 */
-    const [ effectList, setEffectList ] = useState<Array<EffectType>>([]);
+    const [ effectList, setEffectList ] = useState<Array<EffectInterface>>([]);
     /** 位置の現在地：初期値は指定無し */
     const [ potision, setPosition ] = useState('0');
     /** ランク */
-    const [ rankList, setRankList ] = useState<Array<RankType>>([]);
+    const [ rankList, setRankList ] = useState<Array<RankInterFace>>([]);
     /** ランクの現在値:初期値は一致 */
     const [ rankRange, setRankRange ] = useState('1');
     /**　対象 */
-    const [ targetList, setTargetList ] = useState<Array<TargetType>>([]);
+    const [ targetList, setTargetList ] = useState<Array<TargetInterFace>>([]);
 
     const navigate = useNavigate();
-    const { register, handleSubmit } = useForm<FormType>({});
+    const { register, handleSubmit } = useForm<SearchFormInterface>({});
 
     /** 検索ボタン */
     const searchBtnStyle = css({
@@ -52,7 +52,7 @@ export const SearchForm = () => {
     }, []);
 
     /** フォームの送信処理ハンドラ */
-    const handleOnSubmit: SubmitHandler<FormType> = (values) => {
+    const handleOnSubmit: SubmitHandler<SearchFormInterface> = (values) => {
         values.rankRange = rankRange;
         values.position = potision;
 
@@ -63,7 +63,7 @@ export const SearchForm = () => {
     }
 
     /** フォームのエラーハンドラ */
-    const handleOnError: SubmitErrorHandler<FormType> = (errors) => {
+    const handleOnError: SubmitErrorHandler<SearchFormInterface> = (errors) => {
         console.log(errors)
     }
 
