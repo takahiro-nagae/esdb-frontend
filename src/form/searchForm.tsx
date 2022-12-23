@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { useNavigate, createSearchParams } from 'react-router-dom';
+import { createSearchParams, useNavigate } from 'react-router-dom';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import { Grid } from '@material-ui/core';
 import Button from '@mui/material/Button';
@@ -16,6 +15,7 @@ import { FormType } from './common/type/formType';
 import { EffectType } from './common/type/effectType';
 import { RankType } from './common/type/rankType';
 import { TargetType } from './common/type/targetType';
+import { getInitData } from "../api/backendApi";
 
 /**
  * 検索フォームの詳細コンポーネント
@@ -23,32 +23,31 @@ import { TargetType } from './common/type/targetType';
  */
 export const SearchForm = () => {
     /** 効果 */
-    const [effectList, setEffectList] = useState<Array<EffectType>>([]);
+    const [ effectList, setEffectList ] = useState<Array<EffectType>>([]);
     /** 位置の現在地：初期値は指定無し */
-    const [potision, setPosition] = useState('0');
+    const [ potision, setPosition ] = useState('0');
     /** ランク */
-    const [rankList, setRankList] = useState<Array<RankType>>([]);
+    const [ rankList, setRankList ] = useState<Array<RankType>>([]);
     /** ランクの現在値:初期値は一致 */
-    const [rankRange, setRankRange] = useState('1');
+    const [ rankRange, setRankRange ] = useState('1');
     /**　対象 */
-    const [targetList, setTargetList] =  useState<Array<TargetType>>([]);
+    const [ targetList, setTargetList ] = useState<Array<TargetType>>([]);
 
     const navigate = useNavigate();
     const { register, handleSubmit } = useForm<FormType>({});
 
     /** 検索ボタン */
-    const searchBtnStyle = css ({
+    const searchBtnStyle = css({
         width: '100%'
     });
 
     useEffect(() => {
-        axios.get('https://wd5zeazzd9.execute-api.ap-northeast-1.amazonaws.com/Prod/')
-        .then((res) => {
-            if(res.data != undefined) {
-                setEffectList(res.data.effect);
-                setRankList(res.data.rank);
-                setTargetList(res.data.target);
-            }
+        const res = async () => getInitData();
+
+        res().then((res) => {
+            setEffectList(res.effect);
+            setRankList(res.rank);
+            setTargetList(res.target);
         });
     }, []);
 
@@ -60,7 +59,7 @@ export const SearchForm = () => {
         navigate({
             pathname: '/detail',
             search: `?${createSearchParams(values)}`,
-          });
+        });
     }
 
     /** フォームのエラーハンドラ */
@@ -68,9 +67,9 @@ export const SearchForm = () => {
         console.log(errors)
     }
 
-    return(
+    return (
         <form onSubmit={handleSubmit(handleOnSubmit, handleOnError)}>
-            <EnchantName register={register} />
+            <EnchantName register={register}/>
             <Effect
                 effectList={effectList}
                 register={register}
@@ -84,7 +83,7 @@ export const SearchForm = () => {
                 rankList={rankList}
                 rankRange={rankRange}
                 register={register}
-                setRankRange={setRankRange} />
+                setRankRange={setRankRange}/>
             <Target
                 register={register}
                 targetList={targetList}
@@ -93,7 +92,7 @@ export const SearchForm = () => {
                 <Grid item xs={12}>
                     <Button
                         css={searchBtnStyle}
-                        endIcon={<SearchIcon />}
+                        endIcon={<SearchIcon/>}
                         type='submit'
                         variant='contained'
                     >
