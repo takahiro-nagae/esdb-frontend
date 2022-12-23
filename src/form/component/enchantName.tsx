@@ -2,15 +2,15 @@
 import { TextField } from '@material-ui/core';
 import { UseFormRegister } from 'react-hook-form';
 import { formMarginStyle } from '../common/style/formStyle';
-import { FormType } from '../common/type/formType';
+import { SearchFormInterface } from '../common/interface/searchFormInterface';
 
 /**
  * エンチャント名のコンポーネント
- * @param props { UseFormRegister<FormType> }
+ * @param props { UseFormRegister<SearchFormInterface> }
  * @returns EnchantName { EmotionJSX.Element }
  */
-export const EnchantName = (props: { register: UseFormRegister<FormType> }) => {
-    return(
+export const EnchantName = (props: { register: UseFormRegister<SearchFormInterface> }) => {
+    return (
         <TextField
             css={formMarginStyle}
             fullWidth

@@ -1,9 +1,9 @@
-import { EffectType } from "../../form/common/type/effectType";
-import { RankType } from "../../form/common/type/rankType";
-import { TargetType } from "../../form/common/type/targetType";
+import { EffectInterface } from "../../form/common/interface/effectInterface";
+import { RankInterFace } from "../../form/common/interface/rankInterFace";
+import { TargetInterFace } from "../../form/common/interface/targetInterFace";
 
 export interface FormInit {
-    effect: Array<EffectType>;
-    rank: Array<RankType>;
-    target: Array<TargetType>;
+    effect: Array<EffectInterface>;
+    rank: Array<RankInterFace>;
+    target: Array<TargetInterFace>;
 }

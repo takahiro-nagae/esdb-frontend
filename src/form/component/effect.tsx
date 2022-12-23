@@ -2,17 +2,17 @@
 import { Grid, MenuItem, TextField } from '@material-ui/core';
 import { UseFormRegister } from 'react-hook-form';
 import { formMarginStyle } from '../common/style/formStyle';
-import { FormType } from '../common/type/formType';
-import { EffectType } from '../common/type/effectType';
+import { SearchFormInterface } from '../common/interface/searchFormInterface';
+import { EffectInterface } from '../common/interface/effectInterface';
 
 /**
  * 効果と効果詳細のコンポーネント
- * @param props { Array<EffectType>, UseFormRegister<FormType> }
+ * @param props { Array<EffectInterface>, UseFormRegister<SearchFormInterface> }
  * @returns Effect { EmotionJSX.Element }
  */
 export const Effect = (props: {
-    effectList: Array<EffectType>,
-    register: UseFormRegister<FormType>
+    effectList: Array<EffectInterface>,
+    register: UseFormRegister<SearchFormInterface>
 }) => {
     return (
         <>
