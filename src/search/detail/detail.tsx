@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import axios from "axios";
 import { Table, TableBody, TableCell, TableRow } from "@mui/material";
 import effectColorFunction from "../common/function/effectColorFunction";
 import { createEnchantName, createEnchantNameEn, subTitleStyle } from "../common/function/enchantNameFunction";
@@ -10,6 +9,7 @@ import { RankModal } from "../rank/rankModal";
 import { DisplayWideAd } from "../../adsense/displayWideAd";
 import { EnchantDataImpl } from "./impl/enchantDataImpl";
 import { Loading } from "../common/compornent/loading";
+import { getEnchantDetailData } from "../../api/backendApi";
 
 /**
  * エンチャント詳細表示のコンポーネント
@@ -24,11 +24,11 @@ export const Detail = (props: { enchant_id: string }) => {
     /** エンチャントデータ */
     const [ enchantData, setEnchantData ] = useState(new EnchantDataImpl());
     /** 効果区分 */
-    const [ effectKbnArray, setEffectKbnArray ] = useState([]);
+    const [ effectKbnArray, setEffectKbnArray ] = useState<string[]>([]);
     /** 効果名 */
-    const [ effectNameArray, setEffectNameArray ] = useState([]);
+    const [ effectNameArray, setEffectNameArray ] = useState<string[]>([]);
     /** 入手先 */
-    const [ routeNameArray, setRouteNameArray ] = useState([]);
+    const [ routeNameArray, setRouteNameArray ] = useState<string[]>([]);
 
     /** ヘッダー適用スタイル */
     const headerStyle = css({
@@ -52,19 +52,16 @@ export const Detail = (props: { enchant_id: string }) => {
     });
 
     useEffect(() => {
-        const detailApiUrl = 'https://wd5zeazzd9.execute-api.ap-northeast-1.amazonaws.com/Prod/detail/';
-        axios.get(detailApiUrl + props.enchant_id)
-            .then((res) => {
-                if ( res.data ) {
-                    setEnchantData(res.data);
-                    setEffectKbnArray(res.data.effect_kbn.split('@'));
-                    setEffectNameArray(res.data.effect_name.split('@'));
-                    setRouteNameArray(res.data.route_name.split('@'));
-                }
-                setIsLoading(true);
-            }).catch((error) => {
-            console.log(error)
+        const res = async () => getEnchantDetailData(props.enchant_id);
+
+        res().then((res) => {
+            setEnchantData(res.enchantData);
+            setEffectKbnArray(res.effectKbn.split('@'));
+            setEffectNameArray(res.effectName.split('@'));
+            setRouteNameArray(res.routeName.split('@'));
         });
+
+        setIsLoading(true);
     }, []);
 
     return (

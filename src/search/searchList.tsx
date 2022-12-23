@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 /** @jsxImportSource @emotion/react */
-import axios from 'axios';
 import { css } from '@emotion/react';
 import { useSearchParams } from 'react-router-dom';
 import MediaQuery from "react-responsive";
@@ -14,6 +13,7 @@ import { EnchantData } from "./common/interface/enchantData";
 import { SearchListContainer } from "./pc/searchListContainer";
 import { SpSearchContainer } from "./sp/spSearchContainer";
 import { Loading } from "./common/compornent/loading";
+import { getSearchEnchantData } from "../api/backendApi";
 
 /**
  * 検索結果一覧のコンテナコンポーネント
@@ -84,26 +84,26 @@ export const SearchList = (props: { freeSearchFlg: boolean }) => {
     }
 
     useEffect(() => {
-        axios.get('https://wd5zeazzd9.execute-api.ap-northeast-1.amazonaws.com/Prod' + path + requestParams)
-            .then((res) => {
-                if ( res.data ) {
-                    setEnchantList(res.data.enchant_list);
-                    setRowData(res.data.enchant_list);
-                    setCount(res.data.enchant_list.length);
-                    setDispCount(res.data.enchant_list.length);
-                    if ( res.data.enchant_list.length > 0 ) {
-                        setOrderBy('disp_val')
-                        setOrder('desc')
-                    }
-                    if ( res.data.effect_name ) {
-                        setEffectName(res.data.effect_name.effect);
-                    }
-                    // ローディング完了
-                    setLoadingFlag(true);
-                }
-            }).catch((error) => {
-            console.log(error)
-        });
+        const res = async () => getSearchEnchantData(path, requestParams);
+
+        res().then((res) => {
+            const enchantList = res.enchantList;
+            setEnchantList(enchantList);
+            setRowData(enchantList);
+
+            const dataLength = enchantList.length;
+            setCount(dataLength);
+            setDispCount(dataLength);
+            if ( dataLength > 0 ) {
+                setOrderBy('disp_val')
+                setOrder('desc')
+            }
+
+            res.effectName && setEffectName(res.effectName);
+
+            setLoadingFlag(true);
+        })
+
     }, [ requestParams ]);
 
     return (
