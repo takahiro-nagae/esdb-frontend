@@ -14,6 +14,7 @@ import { SearchListContainer } from "./pc/searchListContainer";
 import { SpSearchContainer } from "./sp/spSearchContainer";
 import { Loading } from "./common/compornent/loading";
 import { getSearchEnchantData } from "../api/backendApi";
+import { SearchParamsBuilder } from "./searchRequestParamsBuilder";
 
 /**
  * 検索結果一覧のコンテナコンポーネント
@@ -41,9 +42,6 @@ export const SearchList = (props: { isFreeSearch: boolean }) => {
         top: '50%'
     });
 
-    /** 遷移元からのデータ */
-    const [ searchParams ] = useSearchParams();
-
     /** エンチャント一覧(取得した全件) */
     const [ enchantList, setEnchantList ] = useState<Array<EnchantData>>([]);
     /** 表示する一覧 */
@@ -63,25 +61,12 @@ export const SearchList = (props: { isFreeSearch: boolean }) => {
     /** 表示用の値 */
     const [ effectName, setEffectName ] = useState('');
 
-    /** 初期表示検索用パス */
     let path = '';
-    /** 検索用パラメータ */
     let requestParams = '';
 
-    if ( props.isFreeSearch ) {
-        path = '/search'
-        requestParams = '?search=' + searchParams.get('search');
-    } else {
-        path = '/detail'
-        requestParams = '?enchantName=' + searchParams.get('enchantName');
-        requestParams += '&effect=' + searchParams.get('effect');
-        requestParams += '&effectVal=' + searchParams.get('effectVal');
-        requestParams += '&range=' + searchParams.get('range');
-        requestParams += '&rank=' + searchParams.get('rank');
-        requestParams += '&target=' + searchParams.get('target');
-        requestParams += '&position=' + searchParams.get('position');
-        requestParams += '&rankRange=' + searchParams.get('rankRange');
-    }
+    const requestParamsBuilder = new SearchParamsBuilder(useSearchParams());
+    path = props.isFreeSearch ? '/search' : '/detail';
+    requestParams = props.isFreeSearch ? requestParamsBuilder.buildFreeSearchParams() : requestParamsBuilder.buildDefaultSearchParams();
 
     useEffect(() => {
         const res = async () => getSearchEnchantData(path, requestParams);
