@@ -20,7 +20,7 @@ import { getSearchEnchantData } from "../api/backendApi";
  * @param props { boolean }
  * @returns SearchList { JSX.Element }
  */
-export const SearchList = (props: { freeSearchFlg: boolean }) => {
+export const SearchList = (props: { isFreeSearch: boolean }) => {
 
     /** 検索結果の文字列 */
     const resultStyle = css({
@@ -53,7 +53,7 @@ export const SearchList = (props: { freeSearchFlg: boolean }) => {
     /** 表示用件数 */
     const [ dispCount, setDispCount ] = useState(0);
     /** ローディングフラグ */
-    const [ loadingFlag, setLoadingFlag ] = useState(false);
+    const [ isLoading, setIsLoading ] = useState(false);
     /** 並び順 */
     const [ order, setOrder ] = useState<Order>('asc');
     /** 並び替えのプロパティ */
@@ -68,7 +68,7 @@ export const SearchList = (props: { freeSearchFlg: boolean }) => {
     /** 検索用パラメータ */
     let requestParams = '';
 
-    if ( props.freeSearchFlg ) {
+    if ( props.isFreeSearch ) {
         path = '/search'
         requestParams = '?search=' + searchParams.get('search');
     } else {
@@ -101,14 +101,14 @@ export const SearchList = (props: { freeSearchFlg: boolean }) => {
 
             res.effectName && setEffectName(res.effectName);
 
-            setLoadingFlag(true);
+            setIsLoading(true);
         })
 
     }, [ requestParams ]);
 
     return (
         <>
-            <Loading isLoading={loadingFlag}/>
+            <Loading isLoading={isLoading}/>
             <MediaQuery query={spDisplayQuery}>
                 <SearchFilter
                     enchantList={enchantList}
