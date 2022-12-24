@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
 import { createSearchParams, useNavigate } from 'react-router-dom';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import { Grid } from '@material-ui/core';
@@ -16,6 +15,7 @@ import { getInitData } from "../api/backendApi";
 import { Effect } from "./component/effect";
 import { Rank } from "./component/rank";
 import { Target } from "./component/target";
+import { searchBtn } from "./style/searchFormStyle";
 
 /**
  * 検索フォームの詳細コンポーネント
@@ -35,11 +35,6 @@ export const SearchForm = () => {
 
     const navigate = useNavigate();
     const { register, handleSubmit } = useForm<SearchFormInterface>({});
-
-    /** 検索ボタン */
-    const searchBtnStyle = css({
-        width: '100%'
-    });
 
     useEffect(() => {
         const res = async () => getInitData();
@@ -91,7 +86,7 @@ export const SearchForm = () => {
             <Grid container alignItems='center'>
                 <Grid item xs={12}>
                     <Button
-                        css={searchBtnStyle}
+                        css={searchBtn}
                         endIcon={<SearchIcon/>}
                         type='submit'
                         variant='contained'
