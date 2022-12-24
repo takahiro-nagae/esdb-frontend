@@ -6,7 +6,7 @@ import { EnchantData } from "../common/interface/enchantData";
 import { Order } from "./type/order";
 import { HeadData } from "./interface/headData";
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
+import { tableContentStyle, tableDataStyle } from "./style/searchListBodyStyle";
 
 /**
  * PC版検索一覧の本体部分コンテナ
@@ -20,18 +20,6 @@ export const SearchListBody = (props: {
     rowData: Array<EnchantData>,
     rowsPerPage: number,
 }) => {
-
-    /** コンテント各行の基本スタイル */
-    const tableContentStyle = css({
-        backgroundColor: '#3C3B40',
-    });
-
-    /** データ行のスタイル */
-    const tableDataStyle = css({
-        borderBottom: '1px solid rgba(81, 81, 81, 1)',
-        paddingTop: '0'
-    });
-
     /**
      * @param array { readonly T[] }
      * @param comparator { (a: T, b: T) => number }
