@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
 import { useSearchParams } from 'react-router-dom';
 import MediaQuery from "react-responsive";
 import { Grid } from '@material-ui/core';
@@ -15,6 +14,7 @@ import { SpSearchContainer } from "./sp/spSearchContainer";
 import { Loading } from "./common/compornent/loading";
 import { getSearchEnchantData } from "../api/backendApi";
 import { SearchParamsBuilder } from "./searchRequestParamsBuilder";
+import { hitCount, result, verticalCenter } from "./searchListStyle";
 
 /**
  * 検索結果一覧のコンテナコンポーネント
@@ -22,26 +22,6 @@ import { SearchParamsBuilder } from "./searchRequestParamsBuilder";
  * @returns SearchList { JSX.Element }
  */
 export const SearchList = (props: { isFreeSearch: boolean }) => {
-
-    /** 検索結果の文字列 */
-    const resultStyle = css({
-        color: '#fff',
-        fontWeight: 'bold',
-        textAlign: 'center'
-    });
-
-    /** 件数文字列 */
-    const hitCountStyle = css({
-        color: '#f00',
-        fontSize: '18px'
-    });
-
-    /** 検索結果なしの表示 */
-    const verticalCenterStyle = css({
-        position: 'absolute',
-        top: '50%'
-    });
-
     /** エンチャント一覧(取得した全件) */
     const [ enchantList, setEnchantList ] = useState<Array<EnchantData>>([]);
     /** 表示する一覧 */
@@ -108,18 +88,18 @@ export const SearchList = (props: { isFreeSearch: boolean }) => {
                 <Grid
                     alignItems='center'
                     container
-                    css={dispCount < 1 ? verticalCenterStyle : ''}
+                    css={dispCount < 1 ? verticalCenter : ''}
                     direction='column'
                 >
                     {dispCount < 1 &&
                         <>
-                            <p css={resultStyle}>検索結果は0件です</p>
+                            <p css={result}>検索結果は0件です</p>
                         </>
                     }
                     {dispCount >= 1 &&
                         <>
-                            <p css={resultStyle}>
-                                <span css={hitCountStyle}>{count}</span>件ヒットしました
+                            <p css={result}>
+                                <span css={hitCount}>{count}</span>件ヒットしました
                                 {effectName != '' &&
                                     <>
                                         <br/>
