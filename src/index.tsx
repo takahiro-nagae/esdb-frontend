@@ -42,11 +42,11 @@ root.render(
                     path='privacyPolicy'
                 />
                 <Route
-                    element={<SearchList freeSearchFlg={false}/>}
+                    element={<SearchList isFreeSearch={false}/>}
                     path='detail'
                 />
                 <Route
-                    element={<SearchList freeSearchFlg={true}/>}
+                    element={<SearchList isFreeSearch={true}/>}
                     path='search'
                 />
                 <Route
