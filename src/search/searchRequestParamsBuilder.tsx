@@ -1,7 +1,7 @@
 export class SearchParamsBuilder {
-    private searchParams: any;
+    private searchParams: URLSearchParams;
 
-    constructor(searchParams: any) {
+    constructor(searchParams: URLSearchParams) {
         this.searchParams = searchParams;
     }
 

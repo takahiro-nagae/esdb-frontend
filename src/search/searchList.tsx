@@ -64,7 +64,8 @@ export const SearchList = (props: { isFreeSearch: boolean }) => {
     let path = '';
     let requestParams = '';
 
-    const requestParamsBuilder = new SearchParamsBuilder(useSearchParams());
+    const [ inputParams ] = useSearchParams();
+    const requestParamsBuilder = new SearchParamsBuilder(inputParams);
     path = props.isFreeSearch ? '/search' : '/detail';
     requestParams = props.isFreeSearch ? requestParamsBuilder.buildFreeSearchParams() : requestParamsBuilder.buildDefaultSearchParams();
 
