@@ -1,6 +1,5 @@
 /** サードパーティーライブラリ */
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
 import { TableCell, TableRow } from "@material-ui/core";
 
 /** ローカルライブラリ */
@@ -12,6 +11,7 @@ import { RouteList } from "../common/compornent/routeList";
 import { InvalidText } from "../common/compornent/invalidText";
 import { ImpText } from "../common/compornent/impText";
 import { EnchantData } from "../common/interface/enchantData";
+import { tableContent } from "./style/searchListRowStyle";
 
 /**
  * PCの検索一覧
@@ -19,17 +19,6 @@ import { EnchantData } from "../common/interface/enchantData";
  * @returns SearchListRow { JSX.Element }
  */
 export const SearchListRow = (props: { enchant: EnchantData }) => {
-    /** コンテント各行の基本スタイル */
-    const tableContent = css({
-        backgroundColor: '#3C3B40',
-        'td': {
-            color: '#fff'
-        },
-        'svg': {
-            color: '#fff'
-        }
-    });
-
     return (
         <TableRow css={tableContent}>
             <TableCell>
