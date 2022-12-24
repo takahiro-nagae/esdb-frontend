@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
 import { Table, TableBody, TableCell, TableRow } from "@mui/material";
 import effectColorFunction from "../common/function/effectColorFunction";
 import { createEnchantName, createEnchantNameEn, subTitleStyle } from "../common/function/enchantNameFunction";
@@ -10,6 +9,7 @@ import { DisplayWideAd } from "../../adsense/displayWideAd";
 import { EnchantDataImpl } from "./impl/enchantDataImpl";
 import { Loading } from "../common/compornent/loading";
 import { getEnchantDetailData } from "../../api/backendApi";
+import { body, header } from "./style/detailStyle";
 
 /**
  * エンチャント詳細表示のコンポーネント
@@ -20,7 +20,6 @@ export const Detail = (props: { enchant_id: string }) => {
 
     /** ローディング可否 */
     const [ isLoading, setIsLoading ] = useState(false);
-
     /** エンチャントデータ */
     const [ enchantData, setEnchantData ] = useState(new EnchantDataImpl());
     /** 効果区分 */
@@ -29,27 +28,6 @@ export const Detail = (props: { enchant_id: string }) => {
     const [ effectNameArray, setEffectNameArray ] = useState<string[]>([]);
     /** 入手先 */
     const [ routeNameArray, setRouteNameArray ] = useState<string[]>([]);
-
-    /** ヘッダー適用スタイル */
-    const headerStyle = css({
-        color: '#fff',
-        backgroundColor: '#2f2f2f',
-        borderBottom: '1px solid rgba(81, 81, 81, 1)'
-    });
-
-    /** 本文適用スタイル */
-    const bodyStyle = css({
-        color: '#fff',
-        backgroundColor: '#3C3B40',
-        borderBottom: '1px solid rgba(81, 81, 81, 1)'
-    });
-
-    /** ローディングや検索結果なしの表示 */
-    const verticalCenterStyle = css({
-        position: 'absolute',
-        top: '50%',
-        left: '50%'
-    });
 
     useEffect(() => {
         const res = async () => getEnchantDetailData(props.enchant_id);
@@ -74,8 +52,8 @@ export const Detail = (props: { enchant_id: string }) => {
                 >
                     <TableBody>
                         <TableRow>
-                            <TableCell css={headerStyle}>名称</TableCell>
-                            <TableCell css={bodyStyle}>
+                            <TableCell css={header}>名称</TableCell>
+                            <TableCell css={body}>
                                     <span>
                                         {
                                             createEnchantName(
@@ -96,22 +74,22 @@ export const Detail = (props: { enchant_id: string }) => {
                             </TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell css={headerStyle}>位置</TableCell>
-                            <TableCell css={bodyStyle}>
+                            <TableCell css={header}>位置</TableCell>
+                            <TableCell css={body}>
                                     <span css={positionColor(enchantData.position_id)}>
                                         {positionName(enchantData.position_id)}
                                     </span>
                             </TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell css={headerStyle}>ランク</TableCell>
-                            <TableCell css={bodyStyle}>
+                            <TableCell css={header}>ランク</TableCell>
+                            <TableCell css={body}>
                                 <RankModal rank={enchantData.rank}/>
                             </TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell css={headerStyle}>効果</TableCell>
-                            <TableCell css={bodyStyle}>
+                            <TableCell css={header}>効果</TableCell>
+                            <TableCell css={body}>
                                 {effectKbnArray && effectKbnArray.map((effectKbn, index) =>
                                     <p
                                         css={effectColorFunction(effectKbn)}
@@ -123,8 +101,8 @@ export const Detail = (props: { enchant_id: string }) => {
                             </TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell css={headerStyle}>入手先</TableCell>
-                            <TableCell css={bodyStyle}>
+                            <TableCell css={header}>入手先</TableCell>
+                            <TableCell css={body}>
                                 {routeNameArray && routeNameArray.map((route, index) =>
                                     <p
                                         dangerouslySetInnerHTML={{ __html: route }}
