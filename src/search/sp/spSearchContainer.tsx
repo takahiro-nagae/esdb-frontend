@@ -6,9 +6,9 @@ import { EnchantCard } from "./enchantCard";
 import IconButton from "@mui/material/IconButton";
 import { KeyboardDoubleArrowUp } from "@mui/icons-material";
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
 import { animateScroll as scroll } from "react-scroll/modules";
 import { EnchantData } from "../common/interface/enchantData";
+import { card, dataWidth, topIcon } from "./style/spSearchContainerStyle";
 
 /**
  * SPの検索結果コンテナ
@@ -18,25 +18,6 @@ import { EnchantData } from "../common/interface/enchantData";
 export const SpSearchContainer = (props: {
     rowData: Array<EnchantData>
 }) => {
-
-    /** 横幅指定 */
-    const dataWidthStyle = css({
-        width: '100%'
-    });
-
-    /**  トップに戻るアイコンの設定 */
-    const topIconStyle = css({
-        color: '#fff',
-        right: '20px',
-        position: 'fixed',
-    });
-
-    const cardStyle = css({
-        backgroundColor: '#3C3B40',
-        boxSizing: 'border-box',
-        padding: '8px',
-        margin: '8px',
-    });
 
     /**
      * トップにスクロール
@@ -48,7 +29,7 @@ export const SpSearchContainer = (props: {
     return (
         <>
             <Grid
-                css={dataWidthStyle}
+                css={dataWidth}
                 item
                 xs={12}
             >
@@ -57,7 +38,7 @@ export const SpSearchContainer = (props: {
                         <>
                             {index != 0 && index % 5 == 0 &&
                                 <Card
-                                    css={cardStyle}
+                                    css={card}
                                     key={index}
                                 >
                                     <InfeedAd/>
@@ -69,7 +50,7 @@ export const SpSearchContainer = (props: {
                             />
                             {index == props.rowData.length - 1 &&
                                 <Card
-                                    css={cardStyle}
+                                    css={card}
                                     key={'lastSp'}
                                 >
                                     <InfeedAd/>
@@ -82,7 +63,7 @@ export const SpSearchContainer = (props: {
             <IconButton
                 aria-label="add an alarm"
                 color="secondary"
-                css={topIconStyle}
+                css={topIcon}
                 onClick={scrollToTop}
                 style={{ position: 'fixed', bottom: '48px', background: '#282828' }}
             >
