@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
+import { useEffect, useState } from 'react';
 import { Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
 import { DisplayWideAd } from '../../adsense/displayWideAd';
 import { searchRank } from "./interface/searchRank";
 import { SearchRankImpl } from "./impl/searchRankImpl";
 import { getRankData } from "../../api/backendApi";
+import { descriptionStyle, rankStyle, rowStyle, tableHeader } from "./style/rankStyle";
 
 /**
  * ランク表示部の共通項目
@@ -13,28 +13,6 @@ import { getRankData } from "../../api/backendApi";
 export const Rank = (props: { rank: any }) => {
     /** ランクの取得データ */
     const [ rankData, setRankData ] = useState<searchRank>(new SearchRankImpl());
-
-    /** 説明文 */
-    const descriptionStyle = css({
-        color: '#fff',
-        paddingLeft: '20px',
-    });
-
-    /** 動的ランク表示部分 */
-    const rankStyle = css({
-        color: '#f00',
-        fontSize: '18px',
-        fontWeight: 'bold'
-    });
-
-    /** テーブルヘッダー */
-    const tableHeader = css({
-        backgroundColor: '#0854a3',
-    });
-
-    const rowStyle = css({
-        backgroundColor: '#3C3B40'
-    });
 
     useEffect(() => {
         const res = async () => getRankData(props.rank);
