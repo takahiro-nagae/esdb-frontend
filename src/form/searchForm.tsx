@@ -11,11 +11,11 @@ import { SearchFormInterface } from './common/interface/searchFormInterface';
 import { EffectInterface } from './common/interface/effectInterface';
 import { RankInterFace } from './common/interface/rankInterFace';
 import { TargetInterFace } from './common/interface/targetInterFace';
-import { getInitData } from "../api/backendApi";
-import { Effect } from "./component/effect";
-import { Rank } from "./component/rank";
-import { Target } from "./component/target";
-import { searchBtn } from "./style/searchFormStyle";
+import { getInitData } from '../api/backendApi';
+import { Effect } from './component/effect';
+import { Rank } from './component/rank';
+import { Target } from './component/target';
+import { searchBtn } from './style/searchFormStyle';
 
 /**
  * 検索フォームの詳細コンポーネント
@@ -23,15 +23,15 @@ import { searchBtn } from "./style/searchFormStyle";
  */
 export const SearchForm = () => {
     /** 効果 */
-    const [ effectList, setEffectList ] = useState<Array<EffectInterface>>([]);
+    const [effectList, setEffectList] = useState<Array<EffectInterface>>([]);
     /** 位置の現在地：初期値は指定無し */
-    const [ potision, setPosition ] = useState('0');
+    const [potision, setPosition] = useState('0');
     /** ランク */
-    const [ rankList, setRankList ] = useState<Array<RankInterFace>>([]);
+    const [rankList, setRankList] = useState<Array<RankInterFace>>([]);
     /** ランクの現在値:初期値は一致 */
-    const [ rankRange, setRankRange ] = useState('1');
+    const [rankRange, setRankRange] = useState('1');
     /**　対象 */
-    const [ targetList, setTargetList ] = useState<Array<TargetInterFace>>([]);
+    const [targetList, setTargetList] = useState<Array<TargetInterFace>>([]);
 
     const navigate = useNavigate();
     const { register, handleSubmit } = useForm<SearchFormInterface>({});
@@ -39,7 +39,7 @@ export const SearchForm = () => {
     useEffect(() => {
         const res = async () => getInitData();
 
-        res().then((res) => {
+        res().then(res => {
             setEffectList(res.effect);
             setRankList(res.rank);
             setTargetList(res.target);
@@ -47,7 +47,7 @@ export const SearchForm = () => {
     }, []);
 
     /** フォームの送信処理ハンドラ */
-    const handleOnSubmit: SubmitHandler<SearchFormInterface> = (values) => {
+    const handleOnSubmit: SubmitHandler<SearchFormInterface> = values => {
         values.rankRange = rankRange;
         values.position = potision;
 
@@ -55,46 +55,27 @@ export const SearchForm = () => {
             pathname: '/detail',
             search: `?${createSearchParams(values)}`,
         });
-    }
+    };
 
     /** フォームのエラーハンドラ */
-    const handleOnError: SubmitErrorHandler<SearchFormInterface> = (errors) => {
-        console.log(errors)
-    }
+    const handleOnError: SubmitErrorHandler<SearchFormInterface> = errors => {
+        console.log(errors);
+    };
 
     return (
         <form onSubmit={handleSubmit(handleOnSubmit, handleOnError)}>
-            <EnchantName register={register}/>
-            <Effect
-                effectList={effectList}
-                register={register}
-            />
-            <Position
-                register={register}
-                setPosition={setPosition}
-                potision={potision}
-            />
-            <Rank
-                rankList={rankList}
-                rankRange={rankRange}
-                register={register}
-                setRankRange={setRankRange}/>
-            <Target
-                register={register}
-                targetList={targetList}
-            />
+            <EnchantName register={register} />
+            <Effect effectList={effectList} register={register} />
+            <Position register={register} setPosition={setPosition} potision={potision} />
+            <Rank rankList={rankList} rankRange={rankRange} register={register} setRankRange={setRankRange} />
+            <Target register={register} targetList={targetList} />
             <Grid container alignItems='center'>
                 <Grid item xs={12}>
-                    <Button
-                        css={searchBtn}
-                        endIcon={<SearchIcon/>}
-                        type='submit'
-                        variant='contained'
-                    >
+                    <Button css={searchBtn} endIcon={<SearchIcon />} type='submit' variant='contained'>
                         検索
                     </Button>
                 </Grid>
             </Grid>
         </form>
     );
-}
+};

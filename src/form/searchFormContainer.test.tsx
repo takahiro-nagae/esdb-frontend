@@ -1,16 +1,16 @@
-import React from "react";
+import React from 'react';
 import TestRenderer from 'react-test-renderer';
-import { SearchFormContainer } from "./searchFormContainer";
-import { BrowserRouter } from "react-router-dom";
-import renderComponent from "../tesetLib/render";
-import {
-    initialPressedAndAfterClickPressed,
-    selectValName,
-    testingInputValForGetByLabelText
-} from "../tesetLib/commonTesting";
+import { SearchFormContainer } from './searchFormContainer';
+import { BrowserRouter } from 'react-router-dom';
+import renderComponent from '../tesetLib/render';
+import { initialPressedAndAfterClickPressed, selectValName, testingInputValForGetByLabelText } from '../tesetLib/commonTesting';
 
 const rendering = () => {
-    return renderComponent(<BrowserRouter><SearchFormContainer/></BrowserRouter>);
+    return renderComponent(
+        <BrowserRouter>
+            <SearchFormContainer />
+        </BrowserRouter>
+    );
 };
 
 /**
@@ -27,7 +27,11 @@ const BUTTON_INDEX = {
 } as const;
 
 test('snapshot test', () => {
-    const ss = TestRenderer.create(<BrowserRouter><SearchFormContainer/></BrowserRouter>).toJSON();
+    const ss = TestRenderer.create(
+        <BrowserRouter>
+            <SearchFormContainer />
+        </BrowserRouter>
+    ).toJSON();
     expect(ss).toMatchSnapshot();
 });
 
@@ -37,11 +41,7 @@ describe('component test', () => {
 
         test('なんでも入力できるか確認', () => {
             rendering();
-            testingInputValForGetByLabelText(
-                labelName,
-                '1１@＃Qdあイｳ江🌍',
-                '1１@＃Qdあイｳ江🌍'
-            );
+            testingInputValForGetByLabelText(labelName, '1１@＃Qdあイｳ江🌍', '1１@＃Qdあイｳ江🌍');
         });
     });
 
@@ -50,60 +50,34 @@ describe('component test', () => {
 
         test('入力は数値のみ可能であるか確認', () => {
             rendering();
-            testingInputValForGetByLabelText(
-                labelName,
-                '1１@＃Qdあイｳ江🌍',
-                '1'
-            );
+            testingInputValForGetByLabelText(labelName, '1１@＃Qdあイｳ江🌍', '1');
         });
     });
 
     describe('効果の範囲', () => {
         const buttonTestID = 'range';
-        const inputTestId = 'rangeInput'
+        const inputTestId = 'rangeInput';
 
         test('1番目の値を選択', () => {
             rendering();
 
-            selectValName(
-                BUTTON_INDEX.Range,
-                inputTestId,
-                buttonTestID,
-                '',
-                '​',
-                0
-            );
+            selectValName(BUTTON_INDEX.Range, inputTestId, buttonTestID, '', '​', 0);
         });
 
         test('2番目の値を選択', () => {
             rendering();
 
-            selectValName(
-                BUTTON_INDEX.Range,
-                inputTestId,
-                buttonTestID,
-                '1',
-                '以上',
-                1
-            );
+            selectValName(BUTTON_INDEX.Range, inputTestId, buttonTestID, '1', '以上', 1);
         });
 
         test('3番目の値を選択', () => {
             rendering();
 
-            selectValName(
-                BUTTON_INDEX.Range,
-                inputTestId,
-                buttonTestID,
-                '2',
-                '以下',
-                2
-            );
+            selectValName(BUTTON_INDEX.Range, inputTestId, buttonTestID, '2', '以下', 2);
         });
     });
 
     describe('位置', () => {
-
         test('1番目の値を選択', () => {
             rendering();
             initialPressedAndAfterClickPressed(BUTTON_INDEX.PositionNone, true, '指定無し');
@@ -121,7 +95,6 @@ describe('component test', () => {
     });
 
     describe('ランクの範囲', () => {
-
         test('1番目の値を選択', () => {
             rendering();
             initialPressedAndAfterClickPressed(BUTTON_INDEX.RankEqual, true, '一致');
@@ -138,5 +111,3 @@ describe('component test', () => {
         });
     });
 });
-
-

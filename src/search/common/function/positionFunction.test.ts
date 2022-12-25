@@ -1,4 +1,4 @@
-import { positionColor, positionName } from "./positionFunction";
+import { positionColor, positionName } from './positionFunction';
 
 describe('positionColor', () => {
     test('接頭', () => {

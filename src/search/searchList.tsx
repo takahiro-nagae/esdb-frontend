@@ -1,20 +1,20 @@
 import { useEffect, useState } from 'react';
 /** @jsxImportSource @emotion/react */
 import { useSearchParams } from 'react-router-dom';
-import MediaQuery from "react-responsive";
+import MediaQuery from 'react-responsive';
 import { Grid } from '@material-ui/core';
 import Box from '@mui/material/Box';
 import { Order } from './pc/type/order';
 import { HeadData } from './pc/interface/headData';
-import { pcDisplayQuery, spDisplayQuery } from "../common/theme/layout";
-import { SearchFilter } from "./common/compornent/searchFilter";
-import { EnchantData } from "./common/interface/enchantData";
-import { SearchListContainer } from "./pc/searchListContainer";
-import { SpSearchContainer } from "./sp/spSearchContainer";
-import { Loading } from "./common/compornent/loading";
-import { getSearchEnchantData } from "../api/backendApi";
-import { SearchParamsBuilder } from "./searchRequestParamsBuilder";
-import { hitCount, result, verticalCenter } from "./searchListStyle";
+import { pcDisplayQuery, spDisplayQuery } from '../common/theme/layout';
+import { SearchFilter } from './common/compornent/searchFilter';
+import { EnchantData } from './common/interface/enchantData';
+import { SearchListContainer } from './pc/searchListContainer';
+import { SpSearchContainer } from './sp/spSearchContainer';
+import { Loading } from './common/compornent/loading';
+import { getSearchEnchantData } from '../api/backendApi';
+import { SearchParamsBuilder } from './searchRequestParamsBuilder';
+import { hitCount, result, verticalCenter } from './searchListStyle';
 
 /**
  * 検索結果一覧のコンテナコンポーネント
@@ -23,28 +23,28 @@ import { hitCount, result, verticalCenter } from "./searchListStyle";
  */
 export const SearchList = (props: { isFreeSearch: boolean }) => {
     /** エンチャント一覧(取得した全件) */
-    const [ enchantList, setEnchantList ] = useState<Array<EnchantData>>([]);
+    const [enchantList, setEnchantList] = useState<Array<EnchantData>>([]);
     /** 表示する一覧 */
-    const [ rowData, setRowData ] = useState<Array<EnchantData>>([]);
+    const [rowData, setRowData] = useState<Array<EnchantData>>([]);
     /** 件数 */
-    const [ count, setCount ] = useState(0);
+    const [count, setCount] = useState(0);
     /** 表示用件数 */
-    const [ dispCount, setDispCount ] = useState(0);
+    const [dispCount, setDispCount] = useState(0);
     /** ローディングフラグ */
-    const [ isLoading, setIsLoading ] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     /** 並び順 */
-    const [ order, setOrder ] = useState<Order>('asc');
+    const [order, setOrder] = useState<Order>('asc');
     /** 並び替えのプロパティ */
-    const [ orderBy, setOrderBy ] = useState<keyof HeadData>('enchant_id');
+    const [orderBy, setOrderBy] = useState<keyof HeadData>('enchant_id');
     /** ページ */
-    const [ page, setPage ] = useState(0);
+    const [page, setPage] = useState(0);
     /** 表示用の値 */
-    const [ effectName, setEffectName ] = useState('');
+    const [effectName, setEffectName] = useState('');
 
     let path = '';
     let requestParams = '';
 
-    const [ inputParams ] = useSearchParams();
+    const [inputParams] = useSearchParams();
     const requestParamsBuilder = new SearchParamsBuilder(inputParams);
     path = props.isFreeSearch ? '/search' : '/detail';
     requestParams = props.isFreeSearch ? requestParamsBuilder.buildFreeSearchParams() : requestParamsBuilder.buildDefaultSearchParams();
@@ -52,7 +52,7 @@ export const SearchList = (props: { isFreeSearch: boolean }) => {
     useEffect(() => {
         const res = async () => getSearchEnchantData(path, requestParams);
 
-        res().then((res) => {
+        res().then(res => {
             const enchantList = res.enchantList;
             setEnchantList(enchantList);
             setRowData(enchantList);
@@ -60,72 +60,63 @@ export const SearchList = (props: { isFreeSearch: boolean }) => {
             const dataLength = enchantList.length;
             setCount(dataLength);
             setDispCount(dataLength);
-            if ( dataLength > 0 ) {
-                setOrderBy('disp_val')
-                setOrder('desc')
+            if (dataLength > 0) {
+                setOrderBy('disp_val');
+                setOrder('desc');
             }
 
             res.effectName && setEffectName(res.effectName);
 
             setIsLoading(true);
-        })
-
-    }, [ requestParams ]);
+        });
+    }, [requestParams]);
 
     return (
         <>
-            <Loading isLoading={isLoading}/>
+            <Loading isLoading={isLoading} />
             <MediaQuery query={spDisplayQuery}>
-                <SearchFilter
-                    enchantList={enchantList}
-                    setCount={setCount}
-                    setPage={setPage}
-                    setRowData={setRowData}
-                    xs={12}
-                />
+                <SearchFilter enchantList={enchantList} setCount={setCount} setPage={setPage} setRowData={setRowData} xs={12} />
             </MediaQuery>
             <Box sx={{ mt: 3 }}>
-                <Grid
-                    alignItems='center'
-                    container
-                    css={dispCount < 1 ? verticalCenter : ''}
-                    direction='column'
-                >
-                    {dispCount < 1 &&
+                <Grid alignItems='center' container css={dispCount < 1 ? verticalCenter : ''} direction='column'>
+                    {dispCount < 1 && (
                         <>
                             <p css={result}>検索結果は0件です</p>
                         </>
-                    }
-                    {dispCount >= 1 &&
+                    )}
+                    {dispCount >= 1 && (
                         <>
                             <p css={result}>
                                 <span css={hitCount}>{count}</span>件ヒットしました
-                                {effectName != '' &&
+                                {effectName != '' && (
                                     <>
-                                        <br/>
+                                        <br />
                                         <span>値：{effectName}</span>
                                     </>
-                                }
+                                )}
                             </p>
                             <MediaQuery query={pcDisplayQuery}>
                                 <SearchListContainer
-                                    count={count} setCount={setCount}
+                                    count={count}
+                                    setCount={setCount}
                                     enchantList={enchantList}
-                                    order={order} setOrder={setOrder}
-                                    orderBy={orderBy} setOrderBy={setOrderBy}
-                                    page={page} setPage={setPage}
-                                    rowData={rowData} setRowData={setRowData}
+                                    order={order}
+                                    setOrder={setOrder}
+                                    orderBy={orderBy}
+                                    setOrderBy={setOrderBy}
+                                    page={page}
+                                    setPage={setPage}
+                                    rowData={rowData}
+                                    setRowData={setRowData}
                                 />
                             </MediaQuery>
                             <MediaQuery query={spDisplayQuery}>
-                                <SpSearchContainer
-                                    rowData={rowData}
-                                />
+                                <SpSearchContainer rowData={rowData} />
                             </MediaQuery>
                         </>
-                    }
+                    )}
                 </Grid>
             </Box>
         </>
     );
-}
+};

@@ -1,8 +1,7 @@
-import { createEnchantName, createEnchantNameEn } from "./enchantNameFunction";
-
+import { createEnchantName, createEnchantNameEn } from './enchantNameFunction';
 
 describe('createEnchantName', () => {
-    const enchantName = 'テスト'
+    const enchantName = 'テスト';
     const enchantName2 = '別名';
 
     test('別名あり', () => {
@@ -15,7 +14,7 @@ describe('createEnchantName', () => {
 });
 
 describe('createEnchantNameEn', () => {
-    const enchantNameEn = 'テスト'
+    const enchantNameEn = 'テスト';
 
     test('別名あり', () => {
         expect(createEnchantNameEn(enchantNameEn, '1')).toBe(enchantNameEn);

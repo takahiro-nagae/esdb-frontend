@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react'
+import { css } from '@emotion/react';
 import Box from '@mui/material/Box';
 
 /**
@@ -12,16 +12,16 @@ export const Footer = () => {
         boxSizing: 'border-box',
         color: '#fff',
         textAlign: 'right',
-        position: "fixed",
+        position: 'fixed',
         padding: '10px',
-        width: "100%",
+        width: '100%',
     });
 
-    return(
+    return (
         <Box>
-            <footer css={footerStyle} >
+            <footer css={footerStyle}>
                 <small>&copy; 2022Kumario All rights reserved</small>
             </footer>
         </Box>
     );
-}
+};
