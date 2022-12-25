@@ -1,5 +1,5 @@
 /** サードパーティーライブラリ */
-import { css } from "@emotion/react";
+import { css } from '@emotion/react';
 
 /**
  * エンチャント名を設定
@@ -8,11 +8,10 @@ import { css } from "@emotion/react";
  * @returns エンチャント名 { string }
  */
 export function createEnchantName(enchantName: string, enchantName2: string) {
-    if ( enchantName2 == '' ) return enchantName;
-    
-    return enchantName + ' / ' + enchantName2
-}
+    if (enchantName2 == '') return enchantName;
 
+    return enchantName + ' / ' + enchantName2;
+}
 
 /**
  * エンチャントの英名を加工し返却
@@ -21,9 +20,9 @@ export function createEnchantName(enchantName: string, enchantName2: string) {
  * @returns エンチャント英名 { string }
  */
 export function createEnchantNameEn(enchantNameEn: string, positionCode: string) {
-    if ( enchantNameEn == '' ) return ''
+    if (enchantNameEn == '') return '';
 
-    switch ( positionCode ) {
+    switch (positionCode) {
         case '1':
             // 接頭
             return enchantNameEn;
@@ -42,6 +41,6 @@ export function createEnchantNameEn(enchantNameEn: string, positionCode: string)
  */
 export function subTitleStyle() {
     return css({
-        color: '#aaa'
+        color: '#aaa',
     });
 }

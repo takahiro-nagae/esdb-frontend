@@ -1,7 +1,6 @@
-import effectColorFunction from "./effectColorFunction";
+import effectColorFunction from './effectColorFunction';
 
 describe('createEnchantName', () => {
-
     test('increase', () => {
         expect(effectColorFunction('increase').styles).toBe('color:#8989ff;margin:2px;');
     });

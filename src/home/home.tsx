@@ -1,5 +1,5 @@
-import {MultiplexAd} from '../adsense/multiplexAd';
-import {SearchFormContainer} from '../form/searchFormContainer';
+import { MultiplexAd } from '../adsense/multiplexAd';
+import { SearchFormContainer } from '../form/searchFormContainer';
 
 /**
  * トップ画面コンポーネント
@@ -8,8 +8,8 @@ import {SearchFormContainer} from '../form/searchFormContainer';
 export const Home = () => {
     return (
         <>
-            <SearchFormContainer/>
-            <MultiplexAd/>
+            <SearchFormContainer />
+            <MultiplexAd />
         </>
-    )
-}
+    );
+};
