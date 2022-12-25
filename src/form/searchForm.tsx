@@ -51,9 +51,19 @@ export const SearchForm = () => {
         values.rankRange = rankRange;
         values.position = potision;
 
+        let params = new URLSearchParams();
+        params.append('enchantName', values.enchantName);
+        params.append('effect', values.effect);
+        params.append('effectVal', values.effectVal);
+        params.append('range', values.range);
+        params.append('position', values.position);
+        params.append('rank', values.rank);
+        params.append('rankRange', values.rankRange);
+        params.append('target', values.target);
+
         navigate({
             pathname: '/detail',
-            search: `?${createSearchParams(values)}`,
+            search: `?${createSearchParams(params)}`,
         });
     };
 
