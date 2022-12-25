@@ -72,7 +72,7 @@ export const FreeSearch = () => {
     const handleOnSubmit: SubmitHandler<FreeFormInterFace> = (values) => {
         navigate({
             pathname: '/search',
-            search: `?${createSearchParams(values)}`,
+            search: `?${createSearchParams(values.search)}`,
         });
     }
 
