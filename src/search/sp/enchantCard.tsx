@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import { useState } from "react";
-import { Collapse, Table, TableBody, TableCell, TableRow } from "@material-ui/core";
+import { useState } from 'react';
+import { Collapse, Table, TableBody, TableCell, TableRow } from '@material-ui/core';
 import Box from '@mui/material/Box';
 import { IconButton } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
@@ -9,12 +9,12 @@ import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import { positionColor, positionName } from '../common/function/positionFunction';
 import { RankModal } from '../rank/rankModal';
-import { createEnchantName, createEnchantNameEn, subTitleStyle } from "../common/function/enchantNameFunction";
-import { EffectList } from "../common/compornent/effectList";
-import { RouteList } from "../common/compornent/routeList";
-import { InvalidText } from "../common/compornent/invalidText";
-import { ImpText } from "../common/compornent/impText";
-import { EnchantData } from "../common/interface/enchantData";
+import { createEnchantName, createEnchantNameEn, subTitleStyle } from '../common/function/enchantNameFunction';
+import { EffectList } from '../common/compornent/effectList';
+import { RouteList } from '../common/compornent/routeList';
+import { InvalidText } from '../common/compornent/invalidText';
+import { ImpText } from '../common/compornent/impText';
+import { EnchantData } from '../common/interface/enchantData';
 import {
     accIcon,
     acoBody,
@@ -25,7 +25,7 @@ import {
     target,
     title,
     value
-} from "./style/enchantCardStyle";
+} from './style/enchantCardStyle';
 
 /**
  * エンチャントカードコンポーネント
@@ -35,8 +35,6 @@ import {
 export const EnchantCard = (props: {
     enchant: EnchantData
 }) => {
-
-    /** オープン状態 */
     const [ open, setOpen ] = useState(false);
 
     return (
@@ -49,7 +47,7 @@ export const EnchantCard = (props: {
                 <Box>
                     <Typography
                         css={title}
-                        variant="subtitle1"
+                        variant='subtitle1'
                     >
                         <span data-testid='enchantName'>
                             {
@@ -59,13 +57,13 @@ export const EnchantCard = (props: {
                                 )
                             }
                         </span>
-                        <InvalidText invalidTargetFlg={props.enchant.invalid_target_flg}/>
-                        <ImpText impFlg={props.enchant.imp_flg}/>
+                        <InvalidText invalidTargetFlg={props.enchant.invalid_target_flg} />
+                        <ImpText impFlg={props.enchant.imp_flg} />
                     </Typography>
                     <Typography
                         css={subTitleStyle}
                         data-testid='enchantNameEn'
-                        variant="subtitle2"
+                        variant='subtitle2'
                     >
                         {
                             createEnchantNameEn(
@@ -79,7 +77,7 @@ export const EnchantCard = (props: {
                             css={positionColor(props.enchant.position_id)}
                             data-testid='position'
                             style={{ display: 'inline' }}
-                            variant="subtitle2"
+                            variant='subtitle2'
                         >
                             {positionName(props.enchant.position_id)}
                         </Typography>
@@ -89,7 +87,7 @@ export const EnchantCard = (props: {
                         >
                             <small>ランク</small>
                         </Typography>
-                        <RankModal rank={props.enchant.rank}/>
+                        <RankModal rank={props.enchant.rank} />
                     </div>
                 </Box>
                 <Box>
@@ -102,17 +100,17 @@ export const EnchantCard = (props: {
                 </Box>
                 <Box>
                     <IconButton
-                        aria-label="expand row"
+                        aria-label='expand row'
                         css={accIcon}
                         onClick={() => setOpen(!open)}
                     >
-                        {open ? <KeyboardArrowUpIcon/> : <KeyboardArrowDownIcon/>}
+                        {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
                     </IconButton>
                 </Box>
             </Box>
             <Collapse
                 in={open}
-                timeout="auto"
+                timeout='auto'
                 unmountOnExit
             >
                 <Box sx={{ paddingBottom: 10 }}>
@@ -120,8 +118,8 @@ export const EnchantCard = (props: {
                         対象：{props.enchant.target_name}
                     </p>
                     <Table
-                        aria-label="purchases"
-                        size="small"
+                        aria-label='purchases'
+                        size='small'
                     >
                         <TableBody>
                             <TableRow>
@@ -148,4 +146,4 @@ export const EnchantCard = (props: {
             </Collapse>
         </Card>
     );
-}
+};
