@@ -23,15 +23,15 @@ import { searchBtn } from './style/searchFormStyle';
  */
 export const SearchForm = () => {
     /** 効果 */
-    const [effectList, setEffectList] = useState<Array<EffectInterface>>([]);
+    const [ effectList, setEffectList ] = useState<Array<EffectInterface>>([]);
     /** 位置の現在地：初期値は指定無し */
-    const [potision, setPosition] = useState('0');
+    const [ position, setPosition ] = useState('0');
     /** ランク */
-    const [rankList, setRankList] = useState<Array<RankInterFace>>([]);
+    const [ rankList, setRankList ] = useState<Array<RankInterFace>>([]);
     /** ランクの現在値:初期値は一致 */
-    const [rankRange, setRankRange] = useState('1');
+    const [ rankRange, setRankRange ] = useState('1');
     /**　対象 */
-    const [targetList, setTargetList] = useState<Array<TargetInterFace>>([]);
+    const [ targetList, setTargetList ] = useState<Array<TargetInterFace>>([]);
 
     const navigate = useNavigate();
     const { register, handleSubmit } = useForm<SearchFormInterface>({});
@@ -49,11 +49,11 @@ export const SearchForm = () => {
     /** フォームの送信処理ハンドラ */
     const handleOnSubmit: SubmitHandler<SearchFormInterface> = values => {
         values.rankRange = rankRange;
-        values.position = potision;
+        values.position = position;
 
         navigate({
             pathname: '/detail',
-            search: `?${createSearchParams(values)}`,
+            search: `?${createSearchParams(values)}`
         });
     };
 
@@ -66,7 +66,7 @@ export const SearchForm = () => {
         <form onSubmit={handleSubmit(handleOnSubmit, handleOnError)}>
             <EnchantName register={register} />
             <Effect effectList={effectList} register={register} />
-            <Position register={register} setPosition={setPosition} potision={potision} />
+            <Position register={register} setPosition={setPosition} position={position} />
             <Rank rankList={rankList} rankRange={rankRange} register={register} setRankRange={setRankRange} />
             <Target register={register} targetList={targetList} />
             <Grid container alignItems='center'>

@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
-import { UseFormRegister } from "react-hook-form";
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
-import { formMarginStyle, labelStyle, selectBoxStyle } from "../common/style/formStyle";
+import { UseFormRegister } from 'react-hook-form';
+import { ToggleButton, ToggleButtonGroup } from '@mui/material';
+import { formMarginStyle, labelStyle, selectBoxStyle } from '../common/style/formStyle';
 import { SearchFormInterface } from '../common/interface/searchFormInterface';
-import React, { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction } from 'react';
 
 /**
  * 位置コンポーネント
@@ -11,7 +11,7 @@ import React, { Dispatch, SetStateAction } from "react";
  * @returns Position { EmotionJSX.Element }
  */
 export const Position = (props: {
-    potision: string,
+    position: string,
     register: UseFormRegister<SearchFormInterface>,
     setPosition: Dispatch<SetStateAction<string>>
 }) => {
@@ -19,7 +19,7 @@ export const Position = (props: {
     /** 位置の値変更時のハンドラ */
     const handlePosition = (
         _event: React.MouseEvent<HTMLElement>,
-        newAlignment: string | null,
+        newAlignment: string | null
     ) => {
         if ( newAlignment !== null ) {
             props.setPosition(newAlignment);
@@ -38,7 +38,7 @@ export const Position = (props: {
                 id='position'
                 onChange={handlePosition}
                 size='small'
-                value={props.potision}
+                value={props.position}
             >
                 <ToggleButton
                     aria-label='0'
@@ -64,4 +64,4 @@ export const Position = (props: {
             </ToggleButtonGroup>
         </>
     );
-}
+};
