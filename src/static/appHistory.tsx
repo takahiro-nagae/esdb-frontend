@@ -9,14 +9,14 @@ import { DisplayWideAd } from '../adsense/displayWideAd';
  */
 export const AppHistory = () => {
     /** widgetロード可否 */
-    let isLoadwidgets = false;
+    let isLoadWidgets = false;
 
     useEffect(() => {
-        if (!isLoadwidgets) {
+        if ( !isLoadWidgets ) {
             const s = document.createElement('script');
             s.setAttribute('src', 'https://platform.twitter.com/widgets.js');
             document.body.appendChild(s);
-            isLoadwidgets = true;
+            isLoadWidgets = true;
         }
     }, []);
 
