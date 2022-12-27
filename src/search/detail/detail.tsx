@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 /** @jsxImportSource @emotion/react */
-import { Table, TableBody, TableCell, TableRow } from "@mui/material";
-import effectColorFunction from "../common/function/effectColorFunction";
-import { createEnchantName, createEnchantNameEn, subTitleStyle } from "../common/function/enchantNameFunction";
-import { positionColor, positionName } from "../common/function/positionFunction";
-import { RankModal } from "../rank/rankModal";
-import { DisplayWideAd } from "../../adsense/displayWideAd";
-import { EnchantDataImpl } from "./impl/enchantDataImpl";
-import { Loading } from "../common/compornent/loading";
-import { getEnchantDetailData } from "../../api/backendApi";
-import { body, header } from "./style/detailStyle";
+import { Table, TableBody, TableCell, TableRow } from '@mui/material';
+import effectColorFunction from '../common/function/effectColorFunction';
+import { createEnchantName, createEnchantNameEn, subTitleStyle } from '../common/function/enchantNameFunction';
+import { positionColor, positionName } from '../common/function/positionFunction';
+import { RankModal } from '../rank/rankModal';
+import { DisplayWideAd } from '../../adsense/displayWideAd';
+import { EnchantDataImpl } from './impl/enchantDataImpl';
+import { Loading } from '../common/compornent/loading';
+import { getEnchantDetailData } from '../../api/backendApi';
+import { body, header } from './style/detailStyle';
 
 /**
  * エンチャント詳細表示のコンポーネント
@@ -17,16 +17,10 @@ import { body, header } from "./style/detailStyle";
  * @returns Detail { JSX.Element }
  */
 export const Detail = (props: { enchant_id: string }) => {
-
-    /** ローディング可否 */
     const [ isLoading, setIsLoading ] = useState(false);
-    /** エンチャントデータ */
     const [ enchantData, setEnchantData ] = useState(new EnchantDataImpl());
-    /** 効果区分 */
     const [ effectKbnArray, setEffectKbnArray ] = useState<string[]>([]);
-    /** 効果名 */
     const [ effectNameArray, setEffectNameArray ] = useState<string[]>([]);
-    /** 入手先 */
     const [ routeNameArray, setRouteNameArray ] = useState<string[]>([]);
 
     useEffect(() => {
@@ -44,11 +38,11 @@ export const Detail = (props: { enchant_id: string }) => {
 
     return (
         <>
-            <Loading isLoading={isLoading}/>
+            <Loading isLoading={isLoading} />
             <>
                 <Table
-                    aria-label="purchases"
-                    size="small"
+                    aria-label='purchases'
+                    size='small'
                 >
                     <TableBody>
                         <TableRow>
@@ -62,7 +56,7 @@ export const Detail = (props: { enchant_id: string }) => {
                                             )
                                         }
                                     </span>
-                                <br/>
+                                <br />
                                 <small css={subTitleStyle}>
                                     {
                                         createEnchantNameEn(
@@ -84,7 +78,7 @@ export const Detail = (props: { enchant_id: string }) => {
                         <TableRow>
                             <TableCell css={header}>ランク</TableCell>
                             <TableCell css={body}>
-                                <RankModal rank={enchantData.rank}/>
+                                <RankModal rank={enchantData.rank} />
                             </TableCell>
                         </TableRow>
                         <TableRow>
@@ -113,8 +107,8 @@ export const Detail = (props: { enchant_id: string }) => {
                         </TableRow>
                     </TableBody>
                 </Table>
-                <DisplayWideAd/>
+                <DisplayWideAd />
             </>
         </>
     );
-}
+};

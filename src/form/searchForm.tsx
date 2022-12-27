@@ -22,15 +22,10 @@ import { searchBtn } from './style/searchFormStyle';
  * @returns SearchForm { JSX.Element }
  */
 export const SearchForm = () => {
-    /** 効果 */
     const [ effectList, setEffectList ] = useState<Array<EffectInterface>>([]);
-    /** 位置の現在地：初期値は指定無し */
     const [ position, setPosition ] = useState('0');
-    /** ランク */
     const [ rankList, setRankList ] = useState<Array<RankInterFace>>([]);
-    /** ランクの現在値:初期値は一致 */
     const [ rankRange, setRankRange ] = useState('1');
-    /**　対象 */
     const [ targetList, setTargetList ] = useState<Array<TargetInterFace>>([]);
 
     const navigate = useNavigate();
