@@ -22,20 +22,20 @@ import { hitCount, result, verticalCenter } from './searchListStyle';
  * @returns SearchList { JSX.Element }
  */
 export const SearchList = (props: { isFreeSearch: boolean }) => {
-    const [ enchantList, setEnchantList ] = useState<Array<EnchantData>>([]);
-    const [ rowData, setRowData ] = useState<Array<EnchantData>>([]);
-    const [ count, setCount ] = useState(0);
-    const [ dispCount, setDispCount ] = useState(0);
-    const [ isLoading, setIsLoading ] = useState(false);
-    const [ order, setOrder ] = useState<Order>('asc');
-    const [ orderBy, setOrderBy ] = useState<keyof HeadData>('enchant_id');
-    const [ page, setPage ] = useState(0);
-    const [ effectName, setEffectName ] = useState('');
+    const [enchantList, setEnchantList] = useState<Array<EnchantData>>([]);
+    const [rowData, setRowData] = useState<Array<EnchantData>>([]);
+    const [count, setCount] = useState(0);
+    const [dispCount, setDispCount] = useState(0);
+    const [isLoading, setIsLoading] = useState(false);
+    const [order, setOrder] = useState<Order>('asc');
+    const [orderBy, setOrderBy] = useState<keyof HeadData>('enchant_id');
+    const [page, setPage] = useState(0);
+    const [effectName, setEffectName] = useState('');
 
     let path = '';
     let requestParams = '';
 
-    const [ inputParams ] = useSearchParams();
+    const [inputParams] = useSearchParams();
     const requestParamsBuilder = new SearchParamsBuilder(inputParams);
     path = props.isFreeSearch ? '/search' : '/detail';
     requestParams = props.isFreeSearch ? requestParamsBuilder.buildFreeSearchParams() : requestParamsBuilder.buildDefaultSearchParams();
@@ -51,7 +51,7 @@ export const SearchList = (props: { isFreeSearch: boolean }) => {
             const dataLength = enchantList.length;
             setCount(dataLength);
             setDispCount(dataLength);
-            if ( dataLength > 0 ) {
+            if (dataLength > 0) {
                 setOrderBy('disp_val');
                 setOrder('desc');
             }
@@ -60,14 +60,13 @@ export const SearchList = (props: { isFreeSearch: boolean }) => {
 
             setIsLoading(true);
         });
-    }, [ requestParams ]);
+    }, [requestParams]);
 
     return (
         <>
             <Loading isLoading={isLoading} />
             <MediaQuery query={spDisplayQuery}>
-                <SearchFilter enchantList={enchantList} setCount={setCount} setPage={setPage} setRowData={setRowData}
-                              xs={12} />
+                <SearchFilter enchantList={enchantList} setCount={setCount} setPage={setPage} setRowData={setRowData} xs={12} />
             </MediaQuery>
             <Box sx={{ mt: 3 }}>
                 <Grid alignItems='center' container css={dispCount < 1 ? verticalCenter : ''} direction='column'>
