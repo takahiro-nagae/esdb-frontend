@@ -22,11 +22,11 @@ import { searchBtn } from './style/searchFormStyle';
  * @returns SearchForm { JSX.Element }
  */
 export const SearchForm = () => {
-    const [effectList, setEffectList] = useState<Array<EffectInterface>>([]);
-    const [position, setPosition] = useState('0');
-    const [rankList, setRankList] = useState<Array<RankInterFace>>([]);
-    const [rankRange, setRankRange] = useState('1');
-    const [targetList, setTargetList] = useState<Array<TargetInterFace>>([]);
+    const [ effectList, setEffectList ] = useState<Array<EffectInterface>>([]);
+    const [ position, setPosition ] = useState('0');
+    const [ rankList, setRankList ] = useState<Array<RankInterFace>>([]);
+    const [ rankRange, setRankRange ] = useState('1');
+    const [ targetList, setTargetList ] = useState<Array<TargetInterFace>>([]);
 
     const navigate = useNavigate();
     const { register, handleSubmit } = useForm<SearchFormInterface>({});
@@ -58,7 +58,7 @@ export const SearchForm = () => {
 
         navigate({
             pathname: '/detail',
-            search: `?${createSearchParams(values)}`,
+            search: `?${createSearchParams(params)}`
         });
     };
 
