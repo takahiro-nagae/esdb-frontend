@@ -3,33 +3,30 @@ import { css } from '@emotion/react';
 import { NavLink } from 'react-router-dom';
 import { IconButton, Menu, MenuItem } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
-import { bindMenu, bindTrigger, usePopupState } from 'material-ui-popup-state/hooks';
+import {bindMenu, bindTrigger, usePopupState} from 'material-ui-popup-state/hooks';
 import { AppMenuData } from './data/appMenuData';
+
+/** メニューのテキスト */
+const textStyle = css({
+    verticalAlign: 'middle',
+    marginLeft: '10px',
+});
+
+/** メニューのactiveStyle */
+const activatedStyle = {
+    color: '#007DFF',
+};
+
+/** メニューnonactive */
+const inactivatedStyle = {
+    color: '#fff',
+};
 
 /**
  * アプリケーションのメニューコンポーネント
- * @returns AppMenu { EmotionJSX.Element }
  */
-export const AppMenu = () => {
-    /** メニューのテキスト */
-    const textStyle = css({
-        verticalAlign: 'middle',
-        marginLeft: '10px',
-    });
-
-    /** メニューのactiveStyle */
-    const activatedStyle = {
-        color: '#007DFF',
-    };
-
-    /** メニューnonactive */
-    const inactivatedStyle = {
-        color: '#fff',
-    };
-
-    /** ポップの状態 */
+const Component = () => {
     const popupState = usePopupState({ variant: 'popover', popupId: '' });
-
     return (
         <>
             <IconButton {...bindTrigger(popupState)}>
@@ -48,3 +45,5 @@ export const AppMenu = () => {
         </>
     );
 };
+
+export const AppMenu = Component;

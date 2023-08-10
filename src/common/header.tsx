@@ -7,23 +7,22 @@ import { AppMenu } from './appMenu';
 import { FreeSearch } from '../form/component/freeSearch';
 import { pcDisplayQuery, spDisplayQuery } from './theme/layout';
 
+/** ヘッダーリンクのスタイル */
+const headerLinkStyle = css({
+    color: '#fff',
+    height: '32px',
+    '&:hover': {
+        opacity: '0.8',
+        transitionDuration: '0.5s',
+    },
+    textDecoration: 'none',
+    whiteSpace: 'nowrap',
+});
+
 /**
  *  ヘッダーコンポーネント
- * @returns Header { EmotionJSX.Element }
  */
-export const Header = () => {
-    /** ヘッダーリンクのスタイル */
-    const headerLinkStyle = css({
-        color: '#fff',
-        height: '32px',
-        '&:hover': {
-            opacity: '0.8',
-            transitionDuration: '0.5s',
-        },
-        textDecoration: 'none',
-        whiteSpace: 'nowrap',
-    });
-
+const Component = () => {
     return (
         <>
             <AppBar position='fixed'>
@@ -47,3 +46,5 @@ export const Header = () => {
         </>
     );
 };
+
+export const Header = Component;
