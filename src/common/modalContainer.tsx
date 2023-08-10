@@ -1,14 +1,33 @@
 import { useState } from 'react';
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
+import { SerializedStyles, css } from '@emotion/react';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 
+type compornentProps = {
+    isOpen: boolean;
+    handleOpen: any;
+    handleClose: any;
+    buttonMsgEl: any;
+    modalBoxStyle: SerializedStyles;
+    openComponent: any;
+};
+
+const Component = (props: compornentProps) => {
+    return (
+        <>
+            <Button onClick={props.handleOpen}>{props.buttonMsgEl}</Button>
+            <Modal onClose={props.handleClose} open={props.isOpen}>
+                <Box css={props.modalBoxStyle}>{props.openComponent}</Box>
+            </Modal>
+        </>
+    );
+};
+
 /**
  * モーダルのコンテナコンポーネント
  * @param props { any, number, any, number }
- * @returns ModalContainer { JSX.Element }
  */
 export const ModalContainer = (props: { buttonMsgEl: any; height: number; openComponent: any; width: number }) => {
     /** モーダルの開閉状態 */
@@ -36,12 +55,14 @@ export const ModalContainer = (props: { buttonMsgEl: any; height: number; openCo
         overflowY: 'scroll',
     });
 
-    return (
-        <>
-            <Button onClick={handleOpen}>{props.buttonMsgEl}</Button>
-            <Modal onClose={handleClose} open={isOpen}>
-                <Box css={modalBoxStyle}>{props.openComponent}</Box>
-            </Modal>
-        </>
-    );
+    return(
+        <Component
+            isOpen={isOpen}
+            handleOpen={handleOpen}
+            handleClose={handleClose}
+            buttonMsgEl={props.buttonMsgEl}
+            modalBoxStyle={modalBoxStyle} 
+            openComponent={props.openComponent} 
+        />
+    ); 
 };
