@@ -22,4 +22,4 @@ export const EnchantName = (props: { register: UseFormRegister<SearchFormInterfa
             {...props.register('enchantName')}
         />
     );
-}
+};

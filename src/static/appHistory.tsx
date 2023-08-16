@@ -5,7 +5,6 @@ import { DisplayWideAd } from '../adsense/displayWideAd';
 
 /**
  * 更新履歴コンポーネント
- * @returns AppHistory { JSX.Element }
  */
 export const AppHistory = () => {
     /** widgetロード可否 */

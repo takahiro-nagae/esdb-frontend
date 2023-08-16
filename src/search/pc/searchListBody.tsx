@@ -1,3 +1,4 @@
+/* eslint @typescript-eslint/no-explicit-any: 0 */
 import TableBody from "@mui/material/TableBody";
 import { TableCell, TableRow } from "@mui/material";
 import { InfeedAd } from "../../adsense/infeedAd";
@@ -109,4 +110,4 @@ export const SearchListBody = (props: {
                 ))}
         </TableBody>
     );
-}
+};

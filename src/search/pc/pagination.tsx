@@ -44,6 +44,6 @@ export const Pagination = (props: {
             rowsPerPage={props.rowsPerPage}
             rowsPerPageOptions={[ 30, 60, 100 ]}
         />
-    )
+    );
 
-}
+};

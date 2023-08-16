@@ -1,5 +1,6 @@
+/* eslint @typescript-eslint/no-explicit-any: 0 */
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react'
+import { css } from '@emotion/react';
 import HomeIcon from "@material-ui/icons/Home";
 import HistoryIcon from '@material-ui/icons/History';
 import InfoIcon from "@material-ui/icons/Info";

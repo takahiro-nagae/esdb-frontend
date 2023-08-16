@@ -1,3 +1,4 @@
+/* eslint @typescript-eslint/no-explicit-any: 0 */
 import { positionName } from "../function/positionFunction";
 import { Dispatch, SetStateAction, useState } from "react";
 import { Grid } from "@material-ui/core";
@@ -59,7 +60,7 @@ export const SearchFilter = (props: {
      */
     function searchItems(value: any) {
         setSearchWord(value);
-        let listData = props.enchantList.filter((enchant) => {
+        const listData = props.enchantList.filter((enchant) => {
             // 検索用に各値を設定
             const enchant_name: string = enchant.enchant_name;
             const enchant_name_2: string = enchant.enchant_name_2;
@@ -94,4 +95,4 @@ export const SearchFilter = (props: {
                    onChange={(e) => searchItems(e.target.value)}/>
         </Grid>
     );
-}
+};

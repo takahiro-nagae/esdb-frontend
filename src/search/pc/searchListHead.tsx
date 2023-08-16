@@ -80,4 +80,4 @@ export const SearchListHead = (props: {
             </TableRow>
         </TableHead>
     );
-}
+};

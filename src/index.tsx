@@ -1,5 +1,6 @@
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { ThemeProvider } from '@material-ui/core'
+import { ThemeProvider } from '@material-ui/core';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { Home } from './home/home';
@@ -16,6 +17,7 @@ import { DefaultGlobalStyles } from './common/theme/defaultGlobalStyles';
 import { createRoot } from "react-dom/client";
 
 const rootElement = document.getElementById('root');
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 const root = createRoot(rootElement);
 

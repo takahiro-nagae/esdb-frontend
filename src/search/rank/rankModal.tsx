@@ -17,4 +17,4 @@ export const RankModal = ( props: { rank: string } ) => {
             />
         </>
     );
-}
+};

@@ -1,3 +1,4 @@
+/* eslint @typescript-eslint/no-explicit-any: 0 */
 /** @jsxImportSource @emotion/react */
 import { useEffect, useState } from 'react';
 import { Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
@@ -59,4 +60,4 @@ export const Rank = (props: { rank: any }) => {
             <DisplayWideAd/>
         </>
     );
-}
+};
