@@ -1,7 +1,6 @@
 const path = require('path');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = (outputFile) => ({
     entry: './src/index.tsx',
@@ -34,18 +33,22 @@ module.exports = (outputFile) => ({
             exclude: 'node_modules',
             fix: true
         }),
-        new HtmlWebpackPlugin({
-            template: "public/index.html",
-            manifest: "public/manifest.json",
+        new CopyPlugin({
+            patterns: [
+                {   context: "./public",
+                    from: '*.json',
+                    to: '.'
+                },
+                {   context: "./public",
+                    from: '*.ico',
+                    to: '.'
+                },
+                {   context: "./public",
+                    from: '*.png',
+                    to: '.'
+                },
+            ]
         }),
-        // new CopyPlugin({
-        //     patterns: [
-        //         {   
-        //             from: './public',
-        //             to: '.'
-        //         }
-        //     ]
-        // }),
     ],
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx'],

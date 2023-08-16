@@ -30,7 +30,7 @@
     "dev": "npm run webpack:dev && npm run webpack:server",
     "webpack:server": "npx webpack-dev-server --config ./webpack.dev.js",
     "webpack:dev": "npm run cleanup && npx webpack --config ./webpack.dev.js",
-    "build": "GENERATE_SOURCEMAP=false react-scripts build",
+    "build": "npx webpack --config ./webpack.prod.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "format": "prettier --write ./src/**/*.{ts,tsx}"
