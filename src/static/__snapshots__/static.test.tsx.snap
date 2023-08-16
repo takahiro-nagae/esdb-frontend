@@ -22,7 +22,7 @@ exports[`snapshot test about 1`] = `
         data-ad-slot="1191995269"
         data-full-width-responsive="true"
         style={
-          Object {
+          {
             "display": "block",
           }
         }
@@ -30,7 +30,7 @@ exports[`snapshot test about 1`] = `
       <div
         className="MuiPaper-root MuiPaper-elevation1 MuiPaper-rounded"
         style={
-          Object {
+          {
             "marginTop": "15px",
           }
         }
@@ -236,7 +236,7 @@ exports[`snapshot test about 1`] = `
         data-ad-slot="1191995269"
         data-full-width-responsive="true"
         style={
-          Object {
+          {
             "display": "block",
           }
         }
@@ -268,7 +268,7 @@ exports[`snapshot test appHistory 1`] = `
         data-ad-slot="1191995269"
         data-full-width-responsive="true"
         style={
-          Object {
+          {
             "display": "block",
           }
         }
@@ -276,7 +276,7 @@ exports[`snapshot test appHistory 1`] = `
       <div
         className="MuiPaper-root MuiPaper-elevation1 MuiPaper-rounded"
         style={
-          Object {
+          {
             "marginTop": "15px",
           }
         }
@@ -318,7 +318,7 @@ exports[`snapshot test appHistory 1`] = `
         data-ad-slot="1191995269"
         data-full-width-responsive="true"
         style={
-          Object {
+          {
             "display": "block",
           }
         }
@@ -350,7 +350,7 @@ exports[`snapshot test privacyPolicy 1`] = `
         data-ad-slot="1191995269"
         data-full-width-responsive="true"
         style={
-          Object {
+          {
             "display": "block",
           }
         }
@@ -358,7 +358,7 @@ exports[`snapshot test privacyPolicy 1`] = `
       <div
         className="MuiPaper-root MuiPaper-elevation1 MuiPaper-rounded"
         style={
-          Object {
+          {
             "marginTop": "15px",
           }
         }
@@ -447,7 +447,7 @@ exports[`snapshot test privacyPolicy 1`] = `
         data-ad-slot="1191995269"
         data-full-width-responsive="true"
         style={
-          Object {
+          {
             "display": "block",
           }
         }
