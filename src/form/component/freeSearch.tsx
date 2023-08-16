@@ -74,15 +74,15 @@ export const FreeSearch = () => {
             pathname: '/search',
             search: `?${createSearchParams(values.search)}`,
         });
-    }
+    };
 
     /**
      * フォームのエラーハンドラ
      * @param errors { FieldErrors<TFieldValues> }
      */
     const handleOnError: SubmitErrorHandler<FreeFormInterFace> = (errors) => {
-        console.log(errors)
-    }
+        console.log(errors);
+    };
 
     return (
         <>
@@ -110,4 +110,4 @@ export const FreeSearch = () => {
             </form>
         </>
     );
-}
+};

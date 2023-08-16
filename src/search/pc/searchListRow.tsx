@@ -59,4 +59,4 @@ export const SearchListRow = (props: { enchant: EnchantData }) => {
             </TableCell>
         </TableRow>
     );
-}
+};

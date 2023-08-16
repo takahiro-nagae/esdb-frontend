@@ -46,7 +46,7 @@ export const SearchForm = () => {
         values.rankRange = rankRange;
         values.position = position;
 
-        let params = new URLSearchParams();
+        const params = new URLSearchParams();
         params.append('enchantName', values.enchantName);
         params.append('effect', values.effect);
         params.append('effectVal', values.effectVal);

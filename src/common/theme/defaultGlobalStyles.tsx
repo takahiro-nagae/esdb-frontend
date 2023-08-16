@@ -1,3 +1,4 @@
+import React from 'react';
 import GlobalStyles from "@mui/material/GlobalStyles";
 import { Theme } from "./theme";
 
@@ -5,7 +6,7 @@ import { Theme } from "./theme";
  * GlobalStyle定義
  * @returns DefaultGlobalStyles { JSX.Element }
  */
-export const DefaultGlobalStyles = () => {
+export const DefaultGlobalStyles: React.FC = () => {
     return(
         <GlobalStyles
             styles={{
@@ -47,4 +48,4 @@ export const DefaultGlobalStyles = () => {
             }}
         />
     );
-}
+};

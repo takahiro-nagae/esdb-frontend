@@ -12,7 +12,7 @@ import { SearchInfo } from './responseDefinition/searchInfo';
 const END_POINT = 'https://wd5zeazzd9.execute-api.ap-northeast-1.amazonaws.com/Prod/';
 
 export async function getInitData() {
-    let response: FormInit = {
+    const response: FormInit = {
         effect: new Array<EffectInterface>(),
         rank: new Array<RankInterFace>(),
         target: new Array<TargetInterFace>(),
@@ -35,7 +35,7 @@ export async function getInitData() {
 }
 
 export async function getEnchantDetailData(enchantId: string) {
-    let response: EnchantDetail = {
+    const response: EnchantDetail = {
         enchantData: new EnchantDataImpl(),
         effectKbn: '',
         effectName: '',
@@ -76,7 +76,7 @@ export async function getRankData(rank: string) {
 }
 
 export async function getSearchEnchantData(path: string, requestParams: string) {
-    let response: SearchInfo = {
+    const response: SearchInfo = {
         enchantList: [],
         effectName: '',
     };

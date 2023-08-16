@@ -71,4 +71,4 @@ export const SpSearchContainer = (props: {
             </IconButton>
         </>
     );
-}
+};

@@ -82,4 +82,4 @@ export const SearchListContainer = (props: {
             </Grid>
         </>
     );
-}
+};

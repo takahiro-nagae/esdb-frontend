@@ -17,9 +17,9 @@ export const InvalidText = (props: { invalidTargetFlg: string }) => {
             {
                 props.invalidTargetFlg == '1' &&
                 <small css={ red }>
-                    　貼付不可
+                      貼付不可
                 </small>
             }
         </>
     );
-}
+};

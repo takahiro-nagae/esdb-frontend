@@ -4,7 +4,6 @@ import { DisplayWideAd } from '../adsense/displayWideAd';
 
 /**
  * プライバシーポリシーコンポーネント
- * @returns PrivacyPolicy { JSX.Element }
  */
 export const PrivacyPolicy = () => {
     return (

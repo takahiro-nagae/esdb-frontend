@@ -94,4 +94,4 @@ export const Rank = (props: {
             </Grid>
         </>
     );
-}
+};

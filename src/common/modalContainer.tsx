@@ -1,3 +1,4 @@
+/* eslint @typescript-eslint/no-explicit-any: 0 */
 import { useState } from 'react';
 /** @jsxImportSource @emotion/react */
 import { SerializedStyles, css } from '@emotion/react';

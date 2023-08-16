@@ -38,4 +38,4 @@ export const Target = (props: {
             ))}
         </TextField>
     );
-}
+};

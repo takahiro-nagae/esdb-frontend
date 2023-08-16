@@ -16,5 +16,5 @@ export const DetailIndex = () => {
                 <Detail enchant_id={params.enchant_id!} />
             </Grid>
         </Box>
-    )
-}
+    );
+};

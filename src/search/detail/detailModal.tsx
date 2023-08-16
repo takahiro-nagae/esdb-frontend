@@ -20,4 +20,4 @@ export const DetailModal = ( props: { enchant_id: string, count: number } ) => {
             />
         </>
     );
-}
+};
