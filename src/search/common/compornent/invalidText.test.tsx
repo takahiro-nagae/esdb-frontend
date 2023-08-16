@@ -1,5 +1,4 @@
 import renderComponent from "../../../tesetLib/render";
-import React from "react";
 import { InvalidText } from "./invalidText";
 import { dispRedBoldMessage, notExistTestForText } from "../../../tesetLib/commonTesting";
 

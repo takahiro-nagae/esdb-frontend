@@ -5,16 +5,7 @@ exports[`snapshot test 1`] = `
   className="MuiBox-root css-178yklu"
 >
   <div
-    className="MuiGrid-root MuiGrid-container MuiGrid-justify-content-xs-center"
-    css={
-      Object {
-        "map": undefined,
-        "name": "194k3rb",
-        "next": undefined,
-        "styles": "max-width:1200px;margin:auto;",
-        "toString": [Function],
-      }
-    }
+    className="MuiGrid-root css-18ffoz7-SearchFormContainer MuiGrid-container MuiGrid-justify-content-xs-center"
   >
     <div
       className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-11"
@@ -114,7 +105,7 @@ exports[`snapshot test 1`] = `
                   >
                     <span
                       dangerouslySetInnerHTML={
-                        Object {
+                        {
                           "__html": "&#8203;",
                         }
                       }
@@ -236,7 +227,7 @@ exports[`snapshot test 1`] = `
                       >
                         <span
                           dangerouslySetInnerHTML={
-                            Object {
+                            {
                               "__html": "&#8203;",
                             }
                           }
@@ -269,7 +260,7 @@ exports[`snapshot test 1`] = `
                         aria-hidden={true}
                         className="PrivateNotchedOutline-root-1 MuiOutlinedInput-notchedOutline"
                         style={
-                          Object {
+                          {
                             "paddingLeft": 8,
                           }
                         }
@@ -277,14 +268,14 @@ exports[`snapshot test 1`] = `
                         <legend
                           className="PrivateNotchedOutline-legend-2"
                           style={
-                            Object {
+                            {
                               "width": 0.01,
                             }
                           }
                         >
                           <span
                             dangerouslySetInnerHTML={
-                              Object {
+                              {
                                 "__html": "&#8203;",
                               }
                             }
@@ -429,7 +420,7 @@ exports[`snapshot test 1`] = `
                       >
                         <span
                           dangerouslySetInnerHTML={
-                            Object {
+                            {
                               "__html": "&#8203;",
                             }
                           }
@@ -460,7 +451,7 @@ exports[`snapshot test 1`] = `
                         aria-hidden={true}
                         className="PrivateNotchedOutline-root-1 MuiOutlinedInput-notchedOutline"
                         style={
-                          Object {
+                          {
                             "paddingLeft": 8,
                           }
                         }
@@ -468,14 +459,14 @@ exports[`snapshot test 1`] = `
                         <legend
                           className="PrivateNotchedOutline-legend-2"
                           style={
-                            Object {
+                            {
                               "width": 0.01,
                             }
                           }
                         >
                           <span
                             dangerouslySetInnerHTML={
-                              Object {
+                              {
                                 "__html": "&#8203;",
                               }
                             }
@@ -608,7 +599,7 @@ exports[`snapshot test 1`] = `
                   >
                     <span
                       dangerouslySetInnerHTML={
-                        Object {
+                        {
                           "__html": "&#8203;",
                         }
                       }

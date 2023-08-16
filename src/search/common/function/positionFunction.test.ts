@@ -1,3 +1,6 @@
+/**
+ * @jest-environment node
+ */
 import { positionColor, positionName } from './positionFunction';
 
 describe('positionColor', () => {

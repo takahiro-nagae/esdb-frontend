@@ -1,5 +1,4 @@
 import renderComponent from "../../tesetLib/render";
-import React from "react";
 import { EnchantCard } from "./enchantCard";
 import { EnchantData } from "../common/interface/enchantData";
 import {
