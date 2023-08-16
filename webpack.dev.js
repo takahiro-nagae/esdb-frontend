@@ -3,6 +3,7 @@ const commonConf = require('./webpack.common');
 const outputFile = '[name]';
 const webpack = require('webpack');
 const path = require('path');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = () => webpackMerge(commonConf(outputFile), {
     mode: 'development',
@@ -24,5 +25,9 @@ module.exports = () => webpackMerge(commonConf(outputFile), {
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
+        new HtmlWebpackPlugin({
+            template: "public/index.html",
+            manifest: "public/manifest.json",
+        }),
     ]
 });
