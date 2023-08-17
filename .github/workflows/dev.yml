@@ -14,9 +14,17 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18.X
-      
+
       - run: yarn --frozen-lockfile
+      - run: node --experimental-vm-modules node_modules/.bin/jest --config ./jest.config.js
       - run: npx webpack --config ./webpack.dev.js
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: coverage
+          path: coverage/**
+          retention-days: 5
+
       - uses: actions/upload-artifact@v3
         with:
           name: dist
