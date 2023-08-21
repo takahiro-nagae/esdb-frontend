@@ -51,4 +51,4 @@ jobs:
           role-to-assume: arn:aws:iam::520974854908:role/esdb-frontend-dev
           aws-region: ap-northeast-1
 
-      - run: unzip dist.zip -d dist && cd dist && aws s3 sync . s3://esdb-frontend-dev --exact-timestamps --region ap-northeast-1
+      - run: cd dist && aws s3 sync . s3://esdb-frontend-dev --exact-timestamps --region ap-northeast-1
