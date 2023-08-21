@@ -10,23 +10,6 @@ exports[`snapshot test about 1`] = `
     <div
       className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-11"
     >
-      <script
-        async={true}
-        crossOrigin="anonymous"
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8526200711405760"
-      />
-      <ins
-        className="adsbygoogle"
-        data-ad-client="ca-pub-8526200711405760"
-        data-ad-format="auto"
-        data-ad-slot="1191995269"
-        data-full-width-responsive="true"
-        style={
-          {
-            "display": "block",
-          }
-        }
-      />
       <div
         className="MuiPaper-root MuiPaper-elevation1 MuiPaper-rounded"
         style={
@@ -224,23 +207,6 @@ exports[`snapshot test about 1`] = `
           </div>
         </div>
       </div>
-      <script
-        async={true}
-        crossOrigin="anonymous"
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8526200711405760"
-      />
-      <ins
-        className="adsbygoogle"
-        data-ad-client="ca-pub-8526200711405760"
-        data-ad-format="auto"
-        data-ad-slot="1191995269"
-        data-full-width-responsive="true"
-        style={
-          {
-            "display": "block",
-          }
-        }
-      />
     </div>
   </div>
 </div>
@@ -256,23 +222,6 @@ exports[`snapshot test appHistory 1`] = `
     <div
       className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-11"
     >
-      <script
-        async={true}
-        crossOrigin="anonymous"
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8526200711405760"
-      />
-      <ins
-        className="adsbygoogle"
-        data-ad-client="ca-pub-8526200711405760"
-        data-ad-format="auto"
-        data-ad-slot="1191995269"
-        data-full-width-responsive="true"
-        style={
-          {
-            "display": "block",
-          }
-        }
-      />
       <div
         className="MuiPaper-root MuiPaper-elevation1 MuiPaper-rounded"
         style={
@@ -306,23 +255,6 @@ exports[`snapshot test appHistory 1`] = `
           </div>
         </div>
       </div>
-      <script
-        async={true}
-        crossOrigin="anonymous"
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8526200711405760"
-      />
-      <ins
-        className="adsbygoogle"
-        data-ad-client="ca-pub-8526200711405760"
-        data-ad-format="auto"
-        data-ad-slot="1191995269"
-        data-full-width-responsive="true"
-        style={
-          {
-            "display": "block",
-          }
-        }
-      />
     </div>
   </div>
 </div>
@@ -338,23 +270,6 @@ exports[`snapshot test privacyPolicy 1`] = `
     <div
       className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-11"
     >
-      <script
-        async={true}
-        crossOrigin="anonymous"
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8526200711405760"
-      />
-      <ins
-        className="adsbygoogle"
-        data-ad-client="ca-pub-8526200711405760"
-        data-ad-format="auto"
-        data-ad-slot="1191995269"
-        data-full-width-responsive="true"
-        style={
-          {
-            "display": "block",
-          }
-        }
-      />
       <div
         className="MuiPaper-root MuiPaper-elevation1 MuiPaper-rounded"
         style={
@@ -435,23 +350,6 @@ exports[`snapshot test privacyPolicy 1`] = `
           </div>
         </div>
       </div>
-      <script
-        async={true}
-        crossOrigin="anonymous"
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8526200711405760"
-      />
-      <ins
-        className="adsbygoogle"
-        data-ad-client="ca-pub-8526200711405760"
-        data-ad-format="auto"
-        data-ad-slot="1191995269"
-        data-full-width-responsive="true"
-        style={
-          {
-            "display": "block",
-          }
-        }
-      />
     </div>
   </div>
 </div>
