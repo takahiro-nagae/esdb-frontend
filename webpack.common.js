@@ -1,6 +1,9 @@
 const path = require('path');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const dotenv = require('dotenv');
+var webpack = require("webpack");
+const env = dotenv.config().parsed;
 
 module.exports = (outputFile) => ({
     entry: './src/index.tsx',
@@ -48,6 +51,9 @@ module.exports = (outputFile) => ({
                     to: '.'
                 },
             ]
+        }),
+        new webpack.DefinePlugin({
+            'process.env': JSON.stringify(env),
         }),
     ],
     resolve: {

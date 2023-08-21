@@ -6,6 +6,10 @@ import { useEffect } from "react";
  */
 export const DisplayWideAd = () => {
 
+    if(process.env.NODE_ENV !== 'production') {
+        return <></>;
+    }
+
     useEffect(() => {
         window.adsbygoogle = window.adsbygoogle || []
         window.adsbygoogle.push({})
