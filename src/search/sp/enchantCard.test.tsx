@@ -13,7 +13,7 @@ import { EnchantDataTestImpl } from "../common/interface/EnchantDataTestImpl";
 
 const rendering = (enchant: EnchantData) => {
     renderComponent(<EnchantCard enchant={enchant}/>);
-}
+};
 
 /**
  * 値の詳細に関しては他のテストクラスにて担保するため、

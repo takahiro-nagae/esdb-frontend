@@ -17,5 +17,5 @@ export const UseModal = () => {
             isOpen,
             handleOpen,
             handleClose
-        }
+        };
 };

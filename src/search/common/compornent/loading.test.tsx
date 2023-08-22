@@ -1,7 +1,5 @@
 import renderComponent from "../../../tesetLib/render";
-import React from "react";
 import { Loading } from "./loading";
-import { screen } from "@testing-library/react";
 import { loadingCheck, notExistTestForTestId } from "../../../tesetLib/commonTesting";
 
 
@@ -21,18 +19,15 @@ describe('loading', () => {
     test('デフォルトスタイルのローディング', () => {
         rendering(false, undefined);
 
-        const result = screen.getByTestId(testId);
-
         loadingCheck(testId, '#27292D');
     });
 
 
     test('カラーを指定したローディング', () => {
-        const colorCode = '#f00'
+        const colorCode = '#f00';
 
         rendering(false, colorCode);
 
         loadingCheck(testId, colorCode);
     });
 });
-

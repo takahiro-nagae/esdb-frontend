@@ -6,7 +6,7 @@ import { notExistTestForTestId } from "../../../tesetLib/commonTesting";
 
 const rendering = (effectKbn: string, effectName: string) => {
     renderComponent(<EffectList effectKbn={effectKbn} effectName={effectName}/>);
-}
+};
 
 describe('effectList', () => {
 

@@ -12,8 +12,8 @@ export const MultiplexAd = () => {
     }
 
     useEffect(() => {
-        window.adsbygoogle = window.adsbygoogle || []
-        window.adsbygoogle.push({})
+        window.adsbygoogle = window.adsbygoogle || [];
+        window.adsbygoogle.push({});
     }, []);
 
     return(
@@ -27,4 +27,4 @@ export const MultiplexAd = () => {
                 data-ad-slot="6920794667"></ins>
         </>
     );
-}
+};
