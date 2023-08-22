@@ -21,7 +21,7 @@ jobs:
 
       - run: yarn --frozen-lockfile
       - run: node --experimental-vm-modules node_modules/.bin/jest --config ./jest.config.js --coverage
-      - run: npx run build:dev
+      - run: npm run build:dev
       - uses: actions/upload-artifact@v3
         if: always()
         with:
