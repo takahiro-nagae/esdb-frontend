@@ -11,8 +11,8 @@ export const InfeedAd = () => {
     }
 
     useEffect(() => {
-        window.adsbygoogle = window.adsbygoogle || []
-        window.adsbygoogle.push({})
+        window.adsbygoogle = window.adsbygoogle || [];
+        window.adsbygoogle.push({});
     }, []);
 
     return(
@@ -27,4 +27,4 @@ export const InfeedAd = () => {
             data-ad-slot="7794892634"></ins>
         </>
     );
-}
+};

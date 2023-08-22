@@ -11,8 +11,8 @@ export const DisplayWideAd = () => {
     }
 
     useEffect(() => {
-        window.adsbygoogle = window.adsbygoogle || []
-        window.adsbygoogle.push({})
+        window.adsbygoogle = window.adsbygoogle || [];
+        window.adsbygoogle.push({});
     }, []);
 
     return(
@@ -27,4 +27,4 @@ export const DisplayWideAd = () => {
             data-full-width-responsive="true"></ins>
         </>
     );
-}
+};

@@ -12,14 +12,14 @@ module.exports = () => webpackMerge(commonConf(outputFile), {
         open: true,
         port: 3000,
         static: [
-            { 
+            {
                 directory: path.resolve("dist"),
                 watch: {
                     ignored: /node_modules/,
                 },
             },
-            { 
-                directory: path.resolve("public") 
+            {
+                directory: path.resolve("public")
             },
         ]
     },

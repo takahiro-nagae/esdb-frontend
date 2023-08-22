@@ -9,7 +9,7 @@ describe('invalidText', () => {
     const nonInvalid = '0';
     const invalid = '1';
 
-    const expectMessage = '貼付不可'
+    const expectMessage = '貼付不可';
 
     test('貼付可能', () => {
         rendering(nonInvalid);
