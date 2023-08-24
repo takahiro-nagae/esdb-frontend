@@ -11,7 +11,7 @@ export const SearchFormContainer = () => {
     return (
         <Box sx={{ mt: 3 }}>
             <Grid container css={maxWidthStyle} justifyContent='center'>
-                <Grid item xs={11}>
+                <Grid item xs={12}>
                     <Paper>
                         <Box sx={{ p: 2 }}>
                             <h3>検索条件</h3>
