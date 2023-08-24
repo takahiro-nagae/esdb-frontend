@@ -1,9 +1,9 @@
 const webpackMerge = require('webpack-merge').merge;
 const commonConf = require('./webpack.common');
-const outputFile = '[name]';
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const outputFile = '[name]';
 
 module.exports = () => webpackMerge(commonConf(outputFile), {
     mode: 'development',
