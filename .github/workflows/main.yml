@@ -1,6 +1,8 @@
 name: main
 
-on: push
+on:
+  push:
+  pull_request:
 
 permissions:
   id-token: write
@@ -51,7 +53,11 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop'
+    if: |
+      github.ref == 'refs/heads/main'
+      || github.base_ref == 'main'
+      || github.ref == 'refs/heads/develop'
+      || github.base_ref == 'develop'
     steps:
       - uses: actions/download-artifact@v3
         with:
