@@ -93,7 +93,7 @@ export const SearchListBody = (props: {
                             enchant={enchant}
                             key={enchant.enchant_id}
                         />
-                        {index == props.rowData.length - 1 &&
+                        {index == props.rowData.length - 1 && process.env.NODE_ENV === 'production' &&
                             <TableRow
                                 css={tableContentStyle}
                                 key={'lastPc'}

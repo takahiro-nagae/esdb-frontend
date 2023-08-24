@@ -48,7 +48,7 @@ export const SpSearchContainer = (props: {
                                 enchant={enchant}
                                 key={enchant.enchant_id}
                             />
-                            {index == props.rowData.length - 1 &&
+                            {index == props.rowData.length - 1 && process.env.NODE_ENV === 'production' &&
                                 <Card
                                     css={card}
                                     key={'lastSp'}
