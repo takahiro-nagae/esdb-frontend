@@ -3,7 +3,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCssPlugin = require('optimize-css-assets-webpack-plugin');
 const webpackMerge = require('webpack-merge').merge;
 const commonConf = require('./webpack.common');
-const outputFile = '[name].[chunkhash]';
+const outputFile = '[name]';
 
 module.exports = () => webpackMerge(commonConf(outputFile), {
     mode: 'production',

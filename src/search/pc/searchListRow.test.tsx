@@ -7,7 +7,7 @@ import { dispTestIdExpectText, notExistTestForTestId, notExistTestForText } from
 
 const rendering = (enchant: EnchantData) => {
     renderComponent(<SearchListRow enchant={enchant}/>);
-}
+};
 
 /**
  * 値の詳細に関しては他のテストクラスにて担保するため、
@@ -25,8 +25,6 @@ describe('searchListRow', () => {
     const impText = '未実装';
     const invalidText = '貼付不可';
     const dispValId = 'dispVal';
-    const KeyboardArrowDownIcon = 'KeyboardArrowDownIcon';
-    const KeyboardArrowUpIcon = 'KeyboardArrowUpIcon';
 
     test('何もデータがないエンチャント', () => {
         rendering(enchantData);

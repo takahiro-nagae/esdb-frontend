@@ -12,7 +12,7 @@ describe('routeList', () => {
     const enchantID = '00000001';
     const routeNameFor3 = 'test1@test2@test3';
     const routeNameFor4 = 'test1@test2@test3@test4';
-    const testID = 'routeModal'
+    const testID = 'routeModal';
 
     test('routeNameを与えない場合', () => {
         rendering(enchantID, '');
@@ -26,7 +26,7 @@ describe('routeList', () => {
 
         routeNameFor3.split('@').map(str => {
             dispMessage(str);
-        })
+        });
 
         notExistTestForTestId(testID);
     });
@@ -36,7 +36,7 @@ describe('routeList', () => {
 
         routeNameFor3.split('@').map(str => {
             dispMessage(str);
-        })
+        });
         // test4は省略される
         notExistTestForText('test4');
 
