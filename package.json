@@ -32,7 +32,9 @@
     "build:dev": "npm run cleanup && webpack --config ./webpack.dev.js",
     "build": "npx webpack --config ./webpack.prod.js",
     "test": "node --experimental-vm-modules node_modules/.bin/jest --config ./jest.config.js",
-    "format": "prettier --write ./src/**/*.{ts,tsx}"
+    "format": "prettier --write ./src/**/*.{ts,tsx}",
+    "lint": "eslint './src/**/*.{ts,tsx,jsx}'",
+    "fix:lint": "eslint './src/**/*.{ts,tsx,jsx}' --fix"
   },
   "eslintConfig": {
     "extends": [
