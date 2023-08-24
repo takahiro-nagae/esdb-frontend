@@ -55,9 +55,7 @@ jobs:
     runs-on: ubuntu-latest
     if: |
       github.ref == 'refs/heads/main'
-      || github.base_ref == 'main'
       || github.ref == 'refs/heads/develop'
-      || github.base_ref == 'develop'
     steps:
       - uses: actions/download-artifact@v3
         with:
