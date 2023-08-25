@@ -25,7 +25,6 @@
     "web-vitals": "^2.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
     "cleanup": "npx rimraf ./dist",
     "dev": "npm run build:dev && npm run webpack:server",
     "webpack:server": "npx webpack-dev-server --config ./webpack.dev.js",
