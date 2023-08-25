@@ -1,14 +1,7 @@
-name: deploy
+name: main
 
 on:
-  workflow_run:
-    workflows:
-      - build
-    types:
-      - completed
-    branches:
-      - develop
-      - main
+  push:
     paths-ignore:
       - "README.md"
       - ".gitignore"
@@ -18,8 +11,53 @@ permissions:
   contents: read
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.X
+
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+
+      - name: lint
+        run: npm run lint
+
+      - name: test
+        run: node --experimental-vm-modules node_modules/.bin/jest --config ./jest.config.js --coverage
+
+      - name: build:dev
+        if: github.ref != 'refs/heads/main'
+        run: npm run build:dev
+
+      - name: build:prod
+        if: github.ref == 'refs/heads/main'
+        run: npm run build
+
+      - name : upload coverage
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage
+          path: coverage/**
+          retention-days: 5
+
+      - name: upload dist
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: dist/**
+          retention-days: 5
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: |
+      github.ref == 'refs/heads/main'
+      || github.ref == 'refs/heads/develop'
     steps:
       - uses: actions/download-artifact@v3
         with:
