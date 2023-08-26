@@ -9,9 +9,15 @@ import { searchRank } from '../search/rank/interface/searchRank';
 import { SearchRankImpl } from '../search/rank/impl/searchRankImpl';
 import { SearchInfo } from './responseDefinition/searchInfo';
 
-const END_POINT = 'https://wd5zeazzd9.execute-api.ap-northeast-1.amazonaws.com/Prod/';
+const endPoint = () => {
+    if (process.env.NODE_ENV === 'production') {
+        return 'https://wd5zeazzd9.execute-api.ap-northeast-1.amazonaws.com/Prod/';
+    }
 
-export async function getInitData() {
+    return 'https://wd5zeazzd9.execute-api.ap-northeast-1.amazonaws.com/Stage/';
+};
+
+export const getInitData = async () => {
     const response: FormInit = {
         effect: new Array<EffectInterface>(),
         rank: new Array<RankInterFace>(),
@@ -19,7 +25,7 @@ export async function getInitData() {
     };
 
     await axios
-        .get(END_POINT)
+        .get(endPoint())
         .then(res => {
             if (res) {
                 response.effect = res.data.effect;
@@ -32,9 +38,9 @@ export async function getInitData() {
         });
 
     return response;
-}
+};
 
-export async function getEnchantDetailData(enchantId: string) {
+export const getEnchantDetailData = async (enchantId: string) => {
     const response: EnchantDetail = {
         enchantData: new EnchantDataImpl(),
         effectKbn: '',
@@ -43,7 +49,7 @@ export async function getEnchantDetailData(enchantId: string) {
     };
 
     await axios
-        .get(END_POINT + 'detail/' + enchantId)
+        .get(endPoint() + 'detail/' + enchantId)
         .then(res => {
             if (res.data) {
                 response.enchantData = res.data;
@@ -57,12 +63,12 @@ export async function getEnchantDetailData(enchantId: string) {
         });
 
     return response;
-}
+};
 
-export async function getRankData(rank: string) {
+export const getRankData = async (rank: string) => {
     let response: searchRank = new SearchRankImpl();
     await axios
-        .get(END_POINT + 'rank/' + rank)
+        .get(endPoint() + 'rank/' + rank)
         .then(res => {
             if (res.data) {
                 response = res.data;
@@ -73,7 +79,7 @@ export async function getRankData(rank: string) {
         });
 
     return response;
-}
+};
 
 export async function getSearchEnchantData(path: string, requestParams: string) {
     const response: SearchInfo = {
@@ -81,7 +87,7 @@ export async function getSearchEnchantData(path: string, requestParams: string) 
         effectName: '',
     };
     await axios
-        .get(END_POINT + path + requestParams)
+        .get(endPoint() + path + requestParams)
         .then(res => {
             if (res.data) {
                 response.enchantList = res.data.enchant_list;
@@ -94,4 +100,4 @@ export async function getSearchEnchantData(path: string, requestParams: string) 
             console.log(error);
         });
     return response;
-}
+};

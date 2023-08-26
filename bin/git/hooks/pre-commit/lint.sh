@@ -15,7 +15,7 @@ listFiles() {
   git diff --cached --name-only --diff-filter=ACMR | c1grep "$1"
 }
 
-IFS=$'\n' read -r -d '' -a FILES_ARRAY < <( listFiles "\.\(tsx\?\|ts\?\|jsx\?\)$" && printf '\0' )
+IFS=$'\n' read -r -d '' -a FILES_ARRAY < <( listFiles "\.\(tsx\?\|jsx\)$" && printf '\0' )
 if [[ "${#FILES_ARRAY[@]}" -eq 0 ]]; then
   echo "SKIP"
   exit 0
