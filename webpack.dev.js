@@ -7,21 +7,13 @@ const outputFile = '[name]';
 
 module.exports = () => webpackMerge(commonConf(outputFile), {
     mode: 'development',
-    devtool: 'source-map',
+    devtool: 'inline-source-map',
     devServer: {
         open: true,
         port: 3000,
-        static: [
-            {
-                directory: path.resolve("dist"),
-                watch: {
-                    ignored: /node_modules/,
-                },
-            },
-            {
-                directory: path.resolve("public")
-            },
-        ]
+        static: {
+            directory: path.join(__dirname, 'dist'),
+        },
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
