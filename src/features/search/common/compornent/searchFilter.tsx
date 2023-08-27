@@ -5,7 +5,7 @@ import { Grid } from "@material-ui/core";
 import { GridSize } from "@material-ui/core/Grid/Grid";
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { pcQueryProperty, spQueryProperty } from "../../../common/theme/layout";
+import { pcQueryProperty, spQueryProperty } from "../../../../common/theme/layout";
 import { EnchantData } from "../interface/enchantData";
 
 export const SearchFilter = (props: {

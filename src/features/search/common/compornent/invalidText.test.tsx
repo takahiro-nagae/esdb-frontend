@@ -1,6 +1,6 @@
-import renderComponent from "../../../tesetLib/render";
+import renderComponent from "../../../../tesetLib/render";
 import { InvalidText } from "./invalidText";
-import { dispRedBoldMessage, notExistTestForText } from "../../../tesetLib/commonTesting";
+import { dispRedBoldMessage, notExistTestForText } from "../../../../tesetLib/commonTesting";
 
 const rendering = (invalidTargetFlg: string) => renderComponent(<InvalidText invalidTargetFlg={invalidTargetFlg}/>);
 

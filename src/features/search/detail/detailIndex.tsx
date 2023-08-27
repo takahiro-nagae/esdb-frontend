@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { Grid } from '@material-ui/core';
 import Box from '@mui/material/Box';
-import { Detail } from "../detail/detail";
+import { Detail } from "./detail";
 
 /**
  * インデックス登録用の詳細ページ出力コンテナコンポーネント

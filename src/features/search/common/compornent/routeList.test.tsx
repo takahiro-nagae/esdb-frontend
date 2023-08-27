@@ -1,7 +1,7 @@
-import renderComponent from "../../../tesetLib/render";
+import renderComponent from "../../../../tesetLib/render";
 import React from "react";
 import { RouteList } from "./routeList";
-import { dispMessage, notExistTestForTestId, notExistTestForText } from "../../../tesetLib/commonTesting";
+import { dispMessage, notExistTestForTestId, notExistTestForText } from "../../../../tesetLib/commonTesting";
 
 const rendering = (enchantId: string, routeName: string) => {
     renderComponent(<RouteList enchantId={enchantId} routeName={routeName}/>);

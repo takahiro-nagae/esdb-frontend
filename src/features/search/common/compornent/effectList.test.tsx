@@ -1,8 +1,8 @@
-import renderComponent from "../../../tesetLib/render";
+import renderComponent from "../../../../tesetLib/render";
 import React from "react";
 import { EffectList } from "./effectList";
 import { screen } from "@testing-library/react";
-import { notExistTestForTestId } from "../../../tesetLib/commonTesting";
+import { notExistTestForTestId } from "../../../../tesetLib/commonTesting";
 
 const rendering = (effectKbn: string, effectName: string) => {
     renderComponent(<EffectList effectKbn={effectKbn} effectName={effectName}/>);

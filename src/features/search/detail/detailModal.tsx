@@ -2,7 +2,7 @@
 
 /** ローカルライブラリ */
 import { Detail } from "./detail";
-import { ModalContainer } from "../../common/modalContainer";
+import { ModalContainer } from "../../../common/modalContainer";
 
 /**
  * 詳細モーダル表示用コンテナコンポーネント

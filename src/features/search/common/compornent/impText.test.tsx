@@ -1,6 +1,6 @@
-import renderComponent from "../../../tesetLib/render";
+import renderComponent from "../../../../tesetLib/render";
 import { ImpText } from "./impText";
-import { dispRedBoldMessage, notExistTestForText } from "../../../tesetLib/commonTesting";
+import { dispRedBoldMessage, notExistTestForText } from "../../../../tesetLib/commonTesting";
 
 const rendering = (impFlg: string) => renderComponent(<ImpText impFlg={impFlg}/>);
 

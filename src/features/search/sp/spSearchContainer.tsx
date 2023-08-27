@@ -1,7 +1,7 @@
 import { Grid } from "@material-ui/core";
 import Box from "@mui/material/Box";
 import { Card } from "@mui/material";
-import { InfeedAd } from "../../adsense/infeedAd";
+import { InfeedAd } from "../../../adsense/infeedAd";
 import { EnchantCard } from "./enchantCard";
 import IconButton from "@mui/material/IconButton";
 import { KeyboardDoubleArrowUp } from "@mui/icons-material";

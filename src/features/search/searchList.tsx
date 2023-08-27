@@ -1,20 +1,20 @@
 import { useEffect, useState } from 'react';
 /** @jsxImportSource @emotion/react */
 import { useSearchParams } from 'react-router-dom';
-import MediaQuery from 'react-responsive';
 import { Grid } from '@material-ui/core';
 import Box from '@mui/material/Box';
+import { BrowserView, MobileView } from "react-device-detect";
 import { Order } from './pc/type/order';
 import { HeadData } from './pc/interface/headData';
-import { pcDisplayQuery, spDisplayQuery } from '../common/theme/layout';
 import { SearchFilter } from './common/compornent/searchFilter';
 import { EnchantData } from './common/interface/enchantData';
 import { SearchListContainer } from './pc/searchListContainer';
 import { SpSearchContainer } from './sp/spSearchContainer';
 import { Loading } from './common/compornent/loading';
-import { getSearchEnchantData } from '../api/backendApi';
+import { getSearchEnchantData } from '../../api/backendApi';
 import { SearchParamsBuilder } from './searchRequestParamsBuilder';
-import { hitCount, result, verticalCenter } from './searchListStyle';
+import { verticalCenter } from './searchListStyle';
+import { SearchResult } from './result/searechResult';
 
 /**
  * 検索結果一覧のコンテナコンポーネント
@@ -65,28 +65,15 @@ export const SearchList = (props: { isFreeSearch: boolean }) => {
     return (
         <>
             <Loading isLoading={isLoading} />
-            <MediaQuery query={spDisplayQuery}>
+            <MobileView>
                 <SearchFilter enchantList={enchantList} setCount={setCount} setPage={setPage} setRowData={setRowData} xs={12} />
-            </MediaQuery>
+            </MobileView>
             <Box sx={{ mt: 3 }}>
                 <Grid alignItems='center' container css={dispCount < 1 ? verticalCenter : ''} direction='column'>
-                    {dispCount < 1 && (
-                        <>
-                            <p css={result}>検索結果は0件です</p>
-                        </>
-                    )}
+                    <SearchResult dispCount={dispCount} count={count} effectName={effectName} />
                     {dispCount >= 1 && (
                         <>
-                            <p css={result}>
-                                <span css={hitCount}>{count}</span>件ヒットしました
-                                {effectName != '' && (
-                                    <>
-                                        <br />
-                                        <span>値：{effectName}</span>
-                                    </>
-                                )}
-                            </p>
-                            <MediaQuery query={pcDisplayQuery}>
+                            <BrowserView>
                                 <SearchListContainer
                                     count={count}
                                     setCount={setCount}
@@ -100,10 +87,10 @@ export const SearchList = (props: { isFreeSearch: boolean }) => {
                                     rowData={rowData}
                                     setRowData={setRowData}
                                 />
-                            </MediaQuery>
-                            <MediaQuery query={spDisplayQuery}>
+                            </BrowserView>
+                            <MobileView>
                                 <SpSearchContainer rowData={rowData} />
-                            </MediaQuery>
+                            </MobileView>
                         </>
                     )}
                 </Grid>

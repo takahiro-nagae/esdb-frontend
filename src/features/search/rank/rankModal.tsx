@@ -1,5 +1,5 @@
 import { Rank } from "./rank";
-import { ModalContainer } from "../../common/modalContainer";
+import { ModalContainer } from "../../../common/modalContainer";
 
 /**
  * ランクモーダルコンテナコンポーネント
