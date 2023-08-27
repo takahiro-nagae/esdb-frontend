@@ -1,4 +1,4 @@
-import renderComponent from '../tesetLib/render';
+import renderComponent from '../../../tesetLib/render';
 import { BrowserRouter } from 'react-router-dom';
 import { AppMenu } from './appMenu';
 import { screen } from '@testing-library/react';
