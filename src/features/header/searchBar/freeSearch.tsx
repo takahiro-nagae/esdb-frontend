@@ -1,11 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+import { isBrowser } from "react-device-detect";
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import { createSearchParams, useNavigate } from 'react-router-dom';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
-import { FreeFormInterFace } from '../common/interface/freeFormInterFace';
-import { spQueryProperty } from "../../common/theme/layout";
+import { FreeFormRequestType } from './type/freeFormRequestType';
 
 /**
  * 自由検索のコンポーネント
@@ -13,7 +13,7 @@ import { spQueryProperty } from "../../common/theme/layout";
  */
 export const FreeSearch = () => {
 
-    const { register, handleSubmit } = useForm<FreeFormInterFace>({});
+    const { register, handleSubmit } = useForm<FreeFormRequestType>({});
     const navigate = useNavigate();
 
     /** ボタン */
@@ -32,10 +32,7 @@ export const FreeSearch = () => {
         border: '1px solid #424242',
         display: 'flex',
         justifyContent: 'space-between',
-        width: '50%',
-        [spQueryProperty]: {
-            width: '100%'
-        },
+        width: isBrowser ? '50%' : '100%',
     });
 
     /** 検索フォーム内ブロック */
@@ -60,16 +57,13 @@ export const FreeSearch = () => {
         '&:focus': {
             outlineWidth: '0'
         },
-        [spQueryProperty]: {
-            width: '100%'
-        },
     });
 
     /**
      * フォーム送信時のハンドラ
      * @param values { React.BaseSyntheticEvent<object, any, any> }
      */
-    const handleOnSubmit: SubmitHandler<FreeFormInterFace> = (values) => {
+    const handleOnSubmit: SubmitHandler<FreeFormRequestType> = (values) => {
         navigate({
             pathname: '/search',
             search: `?${createSearchParams(values.search)}`,
@@ -80,7 +74,7 @@ export const FreeSearch = () => {
      * フォームのエラーハンドラ
      * @param errors { FieldErrors<TFieldValues> }
      */
-    const handleOnError: SubmitErrorHandler<FreeFormInterFace> = (errors) => {
+    const handleOnError: SubmitErrorHandler<FreeFormRequestType> = (errors) => {
         console.log(errors);
     };
 
