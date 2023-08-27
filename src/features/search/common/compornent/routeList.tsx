@@ -1,6 +1,6 @@
 import { DetailModal } from "../../detail/detailModal";
 import { css } from "@emotion/react";
-import { spQueryProperty } from "../../../../common/theme/layout";
+import { isMobile } from "react-device-detect";
 /** @jsxImportSource @emotion/react */
 
 /**
@@ -21,9 +21,7 @@ export const RouteList = (props: {
 
     /** 入手先の文字色 */
     const routeFont = css({
-        [spQueryProperty]: {
-            color: '#333',
-        }
+        color: '#333',
     });
 
     return (
@@ -33,7 +31,7 @@ export const RouteList = (props: {
                     .slice(0, omtCount)
                     .map((route, index) => (
                         <p
-                            css={routeFont}
+                            css={isMobile ? routeFont: null}
                             dangerouslySetInnerHTML={{ __html: route }}
                             key={index}
                         />
