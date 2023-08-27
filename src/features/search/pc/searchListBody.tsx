@@ -1,7 +1,7 @@
 /* eslint @typescript-eslint/no-explicit-any: 0 */
 import TableBody from "@mui/material/TableBody";
 import { TableCell, TableRow } from "@mui/material";
-import { InfeedAd } from "../../adsense/infeedAd";
+import { InfeedAd } from "../../../adsense/infeedAd";
 import { SearchListRow } from "./searchListRow";
 import { EnchantData } from "../common/interface/enchantData";
 import { Order } from "./type/order";

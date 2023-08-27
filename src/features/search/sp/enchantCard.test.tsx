@@ -1,4 +1,4 @@
-import renderComponent from "../../tesetLib/render";
+import renderComponent from "../../../tesetLib/render";
 import { EnchantCard } from "./enchantCard";
 import { EnchantData } from "../common/interface/enchantData";
 import {
@@ -6,7 +6,7 @@ import {
     dispTestIdExpectText,
     notExistTestForTestId,
     notExistTestForText
-} from "../../tesetLib/commonTesting";
+} from "../../../tesetLib/commonTesting";
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { EnchantDataTestImpl } from "../common/interface/EnchantDataTestImpl";

@@ -1,6 +1,6 @@
-import renderComponent from "../../../tesetLib/render";
+import renderComponent from "../../../../tesetLib/render";
 import { Loading } from "./loading";
-import { loadingCheck, notExistTestForTestId } from "../../../tesetLib/commonTesting";
+import { loadingCheck, notExistTestForTestId } from "../../../../tesetLib/commonTesting";
 
 
 const rendering = (isLoading: boolean, backGroundColorStr?: string) => {

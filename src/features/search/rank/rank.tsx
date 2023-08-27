@@ -2,10 +2,10 @@
 /** @jsxImportSource @emotion/react */
 import { useEffect, useState } from 'react';
 import { Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
-import { DisplayWideAd } from '../../adsense/displayWideAd';
+import { DisplayWideAd } from '../../../adsense/displayWideAd';
 import { searchRank } from "./interface/searchRank";
 import { SearchRankImpl } from "./impl/searchRankImpl";
-import { getRankData } from "../../api/backendApi";
+import { getRankData } from "../../../api/backendApi";
 import { descriptionStyle, rankStyle, rowStyle, tableHeader } from "./style/rankStyle";
 
 /**

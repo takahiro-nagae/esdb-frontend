@@ -5,10 +5,10 @@ import effectColorFunction from '../common/function/effectColorFunction';
 import { createEnchantName, createEnchantNameEn, subTitleStyle } from '../common/function/enchantNameFunction';
 import { positionColor, positionName } from '../common/function/positionFunction';
 import { RankModal } from '../rank/rankModal';
-import { DisplayWideAd } from '../../adsense/displayWideAd';
+import { DisplayWideAd } from '../../../adsense/displayWideAd';
 import { EnchantDataImpl } from './impl/enchantDataImpl';
 import { Loading } from '../common/compornent/loading';
-import { getEnchantDetailData } from '../../api/backendApi';
+import { getEnchantDetailData } from '../../../api/backendApi';
 import { body, header } from './style/detailStyle';
 
 /**

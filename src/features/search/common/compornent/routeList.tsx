@@ -1,6 +1,6 @@
 import { DetailModal } from "../../detail/detailModal";
 import { css } from "@emotion/react";
-import { spQueryProperty } from "../../../common/theme/layout";
+import { spQueryProperty } from "../../../../common/theme/layout";
 /** @jsxImportSource @emotion/react */
 
 /**

@@ -1,9 +1,9 @@
 import { EnchantData } from "../common/interface/enchantData";
-import renderComponent from "../../tesetLib/render";
+import renderComponent from "../../../tesetLib/render";
 import React from "react";
 import { SearchListRow } from "./searchListRow";
 import { EnchantDataTestImpl } from "../common/interface/EnchantDataTestImpl";
-import { dispTestIdExpectText, notExistTestForTestId, notExistTestForText } from "../../tesetLib/commonTesting";
+import { dispTestIdExpectText, notExistTestForTestId, notExistTestForText } from "../../../tesetLib/commonTesting";
 
 const rendering = (enchant: EnchantData) => {
     renderComponent(<SearchListRow enchant={enchant}/>);
