@@ -56,8 +56,7 @@ exports[`snapshot test about 1`] = `
               </p>
               <a
                 className=""
-                href="/https://twitter.com/mabiesdb"
-                onClick={[Function]}
+                href="https://twitter.com/mabiesdb"
               >
                 <svg
                   aria-hidden={true}
@@ -93,8 +92,7 @@ exports[`snapshot test about 1`] = `
               <div>
                 <a
                   className=""
-                  href="/https://twitter.com/jackumagic"
-                  onClick={[Function]}
+                  href="https://twitter.com/jackumagic"
                 >
                   <svg
                     aria-hidden={true}
@@ -119,8 +117,7 @@ exports[`snapshot test about 1`] = `
               >
                 <a
                   className=""
-                  href="/https://jackumagic.com"
-                  onClick={[Function]}
+                  href="https://jackumagic.com"
                 >
                   <svg
                     aria-hidden={true}
@@ -145,8 +142,7 @@ exports[`snapshot test about 1`] = `
               >
                 <a
                   className=""
-                  href="/https://www.youtube.com/channel/UCXBUjcXZta7-zKA-qSj-zFw/featured"
-                  onClick={[Function]}
+                  href="https://www.youtube.com/channel/UCXBUjcXZta7-zKA-qSj-zFw/featured"
                 >
                   <svg
                     aria-hidden={true}
