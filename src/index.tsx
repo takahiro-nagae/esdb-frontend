@@ -1,19 +1,21 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ThemeProvider } from '@material-ui/core';
+import { BrowserView, MobileView } from "react-device-detect";
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { Home } from './home/home';
-import { Header } from './common/header';
 import { Footer } from './common/footer';
 import { About } from './static/about';
 import { AppHistory } from './static/appHistory';
-import { SearchList } from './search/searchList';
+import { SearchList } from './features/search/searchList';
 import { PrivacyPolicy } from './static/privacyPolicy';
-import { RankIndex } from './search/rank/rankIndex';
-import { DetailIndex } from './search/detail/detailIndex';
+import { RankIndex } from './features/search/rank/rankIndex';
+import { DetailIndex } from './features/search/detail/detailIndex';
 import { Theme } from './common/theme/theme';
 import { DefaultGlobalStyles } from './common/theme/defaultGlobalStyles';
 import { createRoot } from "react-dom/client";
+import { PcHeader } from "./features/header/pcHeader";
+import { MobileHeader } from "./features/header/mobileHeader";
 
 const rootElement = document.getElementById('root');
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -24,7 +26,12 @@ root.render(
     <ThemeProvider theme={Theme}>
         <DefaultGlobalStyles/>
         <Router>
-            <Header/>
+            <BrowserView>
+                <PcHeader/>
+            </BrowserView>
+            <MobileView>
+                <MobileHeader/>
+            </MobileView>
             <Routes>
                 <Route
                     element={<Home/>}

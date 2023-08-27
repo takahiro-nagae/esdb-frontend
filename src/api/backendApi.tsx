@@ -3,10 +3,10 @@ import { EffectInterface } from '../form/common/interface/effectInterface';
 import { FormInit } from './responseDefinition/formInit';
 import { RankInterFace } from '../form/common/interface/rankInterFace';
 import { TargetInterFace } from '../form/common/interface/targetInterFace';
-import { EnchantDataImpl } from '../search/detail/impl/enchantDataImpl';
+import { EnchantDataImpl } from '../features/search/detail/impl/enchantDataImpl';
 import { EnchantDetail } from './responseDefinition/enchantDetail';
-import { searchRank } from '../search/rank/interface/searchRank';
-import { SearchRankImpl } from '../search/rank/impl/searchRankImpl';
+import { searchRank } from '../features/search/rank/interface/searchRank';
+import { SearchRankImpl } from '../features/search/rank/impl/searchRankImpl';
 import { SearchInfo } from './responseDefinition/searchInfo';
 
 const endPoint = () => {
