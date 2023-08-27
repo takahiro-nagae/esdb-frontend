@@ -1,11 +1,11 @@
 /* eslint @typescript-eslint/no-explicit-any: 0 */
 import { positionName } from "../function/positionFunction";
 import { Dispatch, SetStateAction, useState } from "react";
+import { isBrowser } from "react-device-detect";
 import { Grid } from "@material-ui/core";
 import { GridSize } from "@material-ui/core/Grid/Grid";
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { pcQueryProperty, spQueryProperty } from "../../../../common/theme/layout";
 import { EnchantData } from "../interface/enchantData";
 
 export const SearchFilter = (props: {
@@ -26,15 +26,9 @@ export const SearchFilter = (props: {
         textAlign: 'right',
         width: '100%',
         zIndex: '3',
-        [spQueryProperty]: {
-            height: '56px',
-            marginTop: '-3px',
-            top: '56px',
-        },
-        [pcQueryProperty]: {
-            height: '44px',
-            top: '64px',
-        },
+        height: isBrowser ? '44px' : '56px',
+        top: isBrowser ? '64px' : '56px',
+        marginTop: isBrowser ? '0' : '-3px',
     });
 
     /** 検索インプットのスタイル */
@@ -44,12 +38,7 @@ export const SearchFilter = (props: {
         color: '#fff',
         height: '32px',
         paddingLeft: '8px',
-        [spQueryProperty]: {
-            width: '95%',
-        },
-        [pcQueryProperty]: {
-            width: '99%',
-        },
+        width: isBrowser ? '99%' : '95%',
     });
 
     /** 検索ワード */

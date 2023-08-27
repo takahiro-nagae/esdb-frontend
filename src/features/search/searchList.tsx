@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 /** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
 import { useSearchParams } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
 import Box from '@mui/material/Box';
@@ -40,6 +41,13 @@ export const SearchList = (props: { isFreeSearch: boolean }) => {
     path = props.isFreeSearch ? '/search' : '/detail';
     requestParams = props.isFreeSearch ? requestParamsBuilder.buildFreeSearchParams() : requestParamsBuilder.buildDefaultSearchParams();
 
+    /** フリー検索の外枠 */
+    const mobileSticky = css({
+        position: 'sticky',
+        top: '56px',
+        zIndex: '3',
+    });
+
     useEffect(() => {
         const res = async () => getSearchEnchantData(path, requestParams);
 
@@ -65,7 +73,7 @@ export const SearchList = (props: { isFreeSearch: boolean }) => {
     return (
         <>
             <Loading isLoading={isLoading} />
-            <MobileView>
+            <MobileView css={mobileSticky}>
                 <SearchFilter enchantList={enchantList} setCount={setCount} setPage={setPage} setRowData={setRowData} xs={12} />
             </MobileView>
             <Box sx={{ mt: 3 }}>
