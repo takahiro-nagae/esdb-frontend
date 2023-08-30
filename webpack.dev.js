@@ -1,16 +1,9 @@
 const webpackMerge = require('webpack-merge').merge;
 const commonConf = require('./webpack.common');
-const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const outputFile = '[name]';
-const historyApiFallback = require("connect-history-api-fallback");
 
-// アドオンに historyApiFallback を追加
-const addon = (app, middleware, option) => {
-    app.use(convert(historyApiFallback()));
-};
-
-module.exports = () => webpackMerge(commonConf(outputFile), {
+module.exports = () => webpackMerge(commonConf(), {
     mode: 'development',
     devtool: 'inline-source-map',
     plugins: [
@@ -18,5 +11,8 @@ module.exports = () => webpackMerge(commonConf(outputFile), {
             template: "public/index.html",
             manifest: "public/manifest.json",
         }),
+        new webpack.EnvironmentPlugin({
+            APP_ENV: 'dev'
+        })
     ]
 });
