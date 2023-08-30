@@ -14,7 +14,7 @@ const endPoint = () => {
         return 'http://localhost:5001/';
     }
 
-    if (process.env.NODE_ENV === 'development') {
+    if (process.env.APP_ENV === 'dev') {
         return 'https://wd5zeazzd9.execute-api.ap-northeast-1.amazonaws.com/Stage/';
     }
 

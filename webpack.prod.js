@@ -1,11 +1,11 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCssPlugin = require('optimize-css-assets-webpack-plugin');
+const webpack = require('webpack');
 const webpackMerge = require('webpack-merge').merge;
 const commonConf = require('./webpack.common');
-const outputFile = '[name]';
 
-module.exports = () => webpackMerge(commonConf(outputFile), {
+module.exports = () => webpackMerge(commonConf(), {
     mode: 'production',
     plugins: [
         new HtmlWebpackPlugin({
@@ -22,6 +22,9 @@ module.exports = () => webpackMerge(commonConf(outputFile), {
                 useShortDoctype: true
               }
         }),
+        new webpack.EnvironmentPlugin({
+            APP_ENV: 'prod'
+        })
     ],
     optimization: {
         minimizer: [

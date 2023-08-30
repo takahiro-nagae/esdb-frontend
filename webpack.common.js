@@ -5,12 +5,12 @@ const dotenv = require('dotenv');
 var webpack = require("webpack");
 const env = dotenv.config().parsed;
 
-module.exports = (outputFile) => ({
+module.exports = () => ({
     entry: './src/index.tsx',
     context: path.resolve(__dirname, './'),
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: `${outputFile}.js`,
+        filename: '[name].js',
     },
     module: {
         rules: [
