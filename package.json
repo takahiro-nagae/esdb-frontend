@@ -25,8 +25,9 @@
   },
   "scripts": {
     "cleanup": "npx rimraf ./dist",
-    "dev": "npm run build:dev && npm run webpack:server",
-    "webpack:server": "npx webpack-dev-server --config ./webpack.dev.js",
+    "start": "npm run build:local && npm run webpack:server",
+    "webpack:server": "npx webpack-dev-server --config ./webpack.local.js",
+    "build:local": "npm run cleanup && webpack --config ./webpack.local.js",
     "build:dev": "npm run cleanup && webpack --config ./webpack.dev.js",
     "build": "npx webpack --config ./webpack.prod.js",
     "test": "node --experimental-vm-modules node_modules/.bin/jest --config ./jest.config.js",

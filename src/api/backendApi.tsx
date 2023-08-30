@@ -10,11 +10,15 @@ import { SearchRankImpl } from '../features/search/rank/impl/searchRankImpl';
 import { SearchInfo } from './responseDefinition/searchInfo';
 
 const endPoint = () => {
-    if (process.env.NODE_ENV === 'production') {
-        return 'https://wd5zeazzd9.execute-api.ap-northeast-1.amazonaws.com/Prod/';
+    if (process.env.APP_ENV === 'local') {
+        return 'http://localhost:5001/';
     }
 
-    return 'https://wd5zeazzd9.execute-api.ap-northeast-1.amazonaws.com/Stage/';
+    if (process.env.NODE_ENV === 'development') {
+        return 'https://wd5zeazzd9.execute-api.ap-northeast-1.amazonaws.com/Stage/';
+    }
+
+    return 'https://wd5zeazzd9.execute-api.ap-northeast-1.amazonaws.com/Prod/';
 };
 
 export const getInitData = async () => {
