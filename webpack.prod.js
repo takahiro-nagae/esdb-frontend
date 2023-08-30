@@ -21,7 +21,7 @@ module.exports = () => webpackMerge(commonConf(outputFile), {
                 removeStyleLinkTypeAttributes: true,
                 useShortDoctype: true
               }
-        })
+        }),
     ],
     optimization: {
         minimizer: [
