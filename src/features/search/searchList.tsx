@@ -48,6 +48,10 @@ export const SearchList = (props: { isFreeSearch: boolean }) => {
         zIndex: '3',
     });
 
+    const maxSearchSize = css({
+        maxWidth: '1400px',
+    });
+
     useEffect(() => {
         const res = async () => getSearchEnchantData(path, requestParams);
 
@@ -81,7 +85,7 @@ export const SearchList = (props: { isFreeSearch: boolean }) => {
                     <SearchResult dispCount={dispCount} count={count} effectName={effectName} />
                     {dispCount >= 1 && (
                         <>
-                            <BrowserView>
+                            <BrowserView css={maxSearchSize}>
                                 <SearchListContainer
                                     count={count}
                                     setCount={setCount}
