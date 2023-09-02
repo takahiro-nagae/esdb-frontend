@@ -64,9 +64,12 @@ export const FreeSearch = () => {
      * @param values { React.BaseSyntheticEvent<object, any, any> }
      */
     const handleOnSubmit: SubmitHandler<FreeFormRequestType> = (values) => {
+        const params = new URLSearchParams();
+        params.append('search', values.search);
+
         navigate({
             pathname: '/search',
-            search: `?${createSearchParams(values.search)}`,
+            search: `?${createSearchParams(params)}`,
         });
     };
 
