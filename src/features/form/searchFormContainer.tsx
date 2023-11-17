@@ -1,7 +1,7 @@
 import { Grid, Paper } from '@material-ui/core';
 import Box from '@mui/material/Box';
 import { SearchForm } from './searchForm';
-import { maxWidthStyle } from '../common/theme/layout';
+import { maxWidthStyle } from '../../common/theme/layout';
 
 /**
  * 検索フォームコンテナコンポーネント

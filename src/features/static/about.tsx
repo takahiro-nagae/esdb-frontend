@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import FeedIcon from '@mui/icons-material/Feed';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import YouTubeIcon from '@mui/icons-material/YouTube';
-import { DisplayWideAd } from '../adsense/displayWideAd';
+import { DisplayWideAd } from '../../adsense/displayWideAd';
 
 /**
  * 当サイトについてコンポーネント

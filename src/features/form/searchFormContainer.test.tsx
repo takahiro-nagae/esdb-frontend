@@ -2,8 +2,8 @@ import React from 'react';
 import TestRenderer from 'react-test-renderer';
 import { SearchFormContainer } from './searchFormContainer';
 import { BrowserRouter } from 'react-router-dom';
-import renderComponent from '../tesetLib/render';
-import { initialPressedAndAfterClickPressed, selectValName, testingInputValForGetByLabelText } from '../tesetLib/commonTesting';
+import renderComponent from '../../tesetLib/render';
+import { initialPressedAndAfterClickPressed, selectValName, testingInputValForGetByLabelText } from '../../tesetLib/commonTesting';
 
 const rendering = () => {
     return renderComponent(
