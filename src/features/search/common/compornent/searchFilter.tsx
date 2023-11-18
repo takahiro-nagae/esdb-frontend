@@ -1,6 +1,6 @@
 /* eslint @typescript-eslint/no-explicit-any: 0 */
 import { positionName } from "../function/positionFunction";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { isBrowser } from "react-device-detect";
 import { Grid } from "@material-ui/core";
 import { GridSize } from "@material-ui/core/Grid/Grid";
@@ -44,10 +44,16 @@ export const SearchFilter = (props: {
     /** 検索ワード */
     const [ searchWord, setSearchWord ] = useState('');
 
+
+    const isFirstRender = useRef(true);
     /**
      * フィルターロジック
      */
     useEffect(() => {
+        if (isFirstRender.current) {
+            isFirstRender.current = false;
+            return;
+        }
         const timer = setTimeout(() => {
             const listData = enchantContext.enchantList.filter((enchant) => {
                 // 検索用に各値を設定

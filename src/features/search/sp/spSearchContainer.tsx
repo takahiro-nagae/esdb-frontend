@@ -61,7 +61,7 @@ export const SpSearchContainer = (props: {
                 </Box>
             </Grid>
             <IconButton
-                aria-label="add an alarm"
+                aria-label="scroll to top"
                 color="secondary"
                 css={topIcon}
                 onClick={scrollToTop}

@@ -5,7 +5,7 @@ type EnchantContext = {
   enchantList: Array<EnchantData>;
   setEnchantList: (enchantList: Array<EnchantData>) => void;
   rowData: Array<EnchantData>;
-  setRowData: (enchantList: Array<EnchantData>) => void;
+  setRowData: (rowData: Array<EnchantData>) => void;
   count: number;
   setCount: (count: number) => void;
 };
