@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Grid, Paper } from '@material-ui/core';
 import Box from '@mui/material/Box';
-import { DisplayWideAd } from '../adsense/displayWideAd';
+import { DisplayWideAd } from '../../adsense/displayWideAd';
 
 /**
  * 更新履歴コンポーネント

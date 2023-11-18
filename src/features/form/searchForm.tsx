@@ -11,7 +11,7 @@ import { SearchFormInterface } from './common/interface/searchFormInterface';
 import { EffectInterface } from './common/interface/effectInterface';
 import { RankInterFace } from './common/interface/rankInterFace';
 import { TargetInterFace } from './common/interface/targetInterFace';
-import { getInitData } from '../api/backendApi';
+import { getInitData } from '../../api/backendApi';
 import { Effect } from './component/effect';
 import { Rank } from './component/rank';
 import { Target } from './component/target';
