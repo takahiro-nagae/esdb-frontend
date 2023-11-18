@@ -5,7 +5,7 @@ import { useSearchParams } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
 import Box from '@mui/material/Box';
 import { BrowserView, MobileView } from "react-device-detect";
-import { SearchFilter } from './common/compornent/searchFilter';
+import { SearchFilter } from './common/compornent/SearchFilter/SearchFilter';
 import { EnchantData } from './common/interface/enchantData';
 import { SearchListContainer } from './pc/searchListContainer';
 import { SpSearchContainer } from './sp/spSearchContainer';
