@@ -101,13 +101,13 @@ export const SearchList = (props: { isFreeSearch: boolean }) => {
                                     </OrderContext.Provider>
                                 </EnchantContext.Provider>
                             </BrowserView>
-                            <MobileView>
-                                <SpSearchContainer rowData={rowData} />
-                            </MobileView>
                         </>
                     )}
                 </Grid>
             </Box>
+            <MobileView>
+                <SpSearchContainer rowData={rowData} />
+            </MobileView>
         </>
     );
 };
