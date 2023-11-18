@@ -27,7 +27,7 @@ jobs:
         run: npm run lint
 
       - name: test
-        run: node --experimental-vm-modules node_modules/.bin/jest --config ./jest.config.js --coverage
+        run: node --experimental-vm-modules node_modules/.bin/jest --forceExit --config ./jest.config.js --coverage
 
       - name: build:dev
         if: github.ref != 'refs/heads/main'
