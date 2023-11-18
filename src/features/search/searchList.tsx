@@ -5,8 +5,6 @@ import { useSearchParams } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
 import Box from '@mui/material/Box';
 import { BrowserView, MobileView } from "react-device-detect";
-import { Order } from './pc/type/order';
-import { HeadData } from './pc/interface/headData';
 import { SearchFilter } from './common/compornent/searchFilter';
 import { EnchantData } from './common/interface/enchantData';
 import { SearchListContainer } from './pc/searchListContainer';
@@ -16,6 +14,11 @@ import { getSearchEnchantData } from '../../api/backendApi';
 import { SearchParamsBuilder } from './searchRequestParamsBuilder';
 import { verticalCenter } from './searchListStyle';
 import { SearchResult } from './result/searechResult';
+import { OrderContext } from './context/OrderContext';
+import { Order } from './pc/type/order';
+import { HeadData } from './pc/interface/headData';
+import { PageContext } from './context/PageContext';
+import { EnchantContext } from './context/EnchantContext';
 
 /**
  * 検索結果一覧のコンテナコンポーネント
@@ -78,7 +81,11 @@ export const SearchList = (props: { isFreeSearch: boolean }) => {
         <>
             <Loading isLoading={isLoading} />
             <MobileView css={mobileSticky}>
-                <SearchFilter enchantList={enchantList} setCount={setCount} setPage={setPage} setRowData={setRowData} xs={12} />
+                <EnchantContext.Provider value={{ enchantList, setEnchantList, rowData, setRowData, count, setCount }}>
+                    <PageContext.Provider value={{ page, setPage }}>
+                        <SearchFilter xs={12} />
+                    </PageContext.Provider>
+                </EnchantContext.Provider>
             </MobileView>
             <Box sx={{ mt: 3 }}>
                 <Grid alignItems='center' container css={dispCount < 1 ? verticalCenter : ''} direction='column'>
@@ -86,19 +93,13 @@ export const SearchList = (props: { isFreeSearch: boolean }) => {
                     {dispCount >= 1 && (
                         <>
                             <BrowserView css={maxSearchSize}>
-                                <SearchListContainer
-                                    count={count}
-                                    setCount={setCount}
-                                    enchantList={enchantList}
-                                    order={order}
-                                    setOrder={setOrder}
-                                    orderBy={orderBy}
-                                    setOrderBy={setOrderBy}
-                                    page={page}
-                                    setPage={setPage}
-                                    rowData={rowData}
-                                    setRowData={setRowData}
-                                />
+                                <EnchantContext.Provider value={{ enchantList, setEnchantList, rowData, setRowData, count, setCount }}>
+                                    <OrderContext.Provider value={{ order, setOrder, orderBy, setOrderBy }}>
+                                        <PageContext.Provider value={{ page, setPage }}>
+                                            <SearchListContainer />
+                                        </PageContext.Provider>
+                                    </OrderContext.Provider>
+                                </EnchantContext.Provider>
                             </BrowserView>
                             <MobileView>
                                 <SpSearchContainer rowData={rowData} />

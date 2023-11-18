@@ -1,20 +1,20 @@
 /* eslint @typescript-eslint/no-explicit-any: 0 */
 import { positionName } from "../function/positionFunction";
-import { Dispatch, SetStateAction, useState } from "react";
+import { useState } from "react";
 import { isBrowser } from "react-device-detect";
 import { Grid } from "@material-ui/core";
 import { GridSize } from "@material-ui/core/Grid/Grid";
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { EnchantData } from "../interface/enchantData";
+import { usePageContext } from "../../context/usePageContext";
+import { useEnchantContext } from "../../context/useEnchantContext";
 
 export const SearchFilter = (props: {
-    enchantList: Array<EnchantData>,
-    setCount: Dispatch<SetStateAction<number>>,
-    setRowData: any,
-    setPage: Dispatch<SetStateAction<number>>,
     xs: GridSize,
 }) => {
+
+    const pageContext = usePageContext();
+    const enchantContext = useEnchantContext();
 
     /** フリー検索の外枠 */
     const freeSearchBoxStyle = css({
@@ -49,7 +49,7 @@ export const SearchFilter = (props: {
      */
     function searchItems(value: any) {
         setSearchWord(value);
-        const listData = props.enchantList.filter((enchant) => {
+        const listData = enchantContext.enchantList.filter((enchant) => {
             // 検索用に各値を設定
             const enchant_name: string = enchant.enchant_name;
             const enchant_name_2: string = enchant.enchant_name_2;
@@ -71,11 +71,11 @@ export const SearchFilter = (props: {
         });
 
         // 検索用のデータ
-        props.setRowData(listData);
+        enchantContext.setRowData(listData);
         // 件数
-        props.setCount(listData.length);
+        enchantContext.setCount(listData.length);
         // ページ初期化
-        props.setPage(0);
+        pageContext.setPage(0);
     }
 
     return (
