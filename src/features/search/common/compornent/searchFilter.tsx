@@ -1,6 +1,6 @@
 /* eslint @typescript-eslint/no-explicit-any: 0 */
 import { positionName } from "../function/positionFunction";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { isBrowser } from "react-device-detect";
 import { Grid } from "@material-ui/core";
 import { GridSize } from "@material-ui/core/Grid/Grid";
@@ -47,41 +47,44 @@ export const SearchFilter = (props: {
     /**
      * フィルターロジック
      */
-    function searchItems(value: any) {
-        setSearchWord(value);
-        const listData = enchantContext.enchantList.filter((enchant) => {
-            // 検索用に各値を設定
-            const enchant_name: string = enchant.enchant_name;
-            const enchant_name_2: string = enchant.enchant_name_2;
-            const enchant_name_en: string = enchant.enchant_name_en;
-            const position: string = positionName(enchant.position_id);
-            const rank: string = enchant.rank;
-            const target_name: string = enchant.target_name;
-            const effect_name: string = enchant.effect_name;
-            const route_name: string = enchant.route_name ? enchant.route_name : '';
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            const listData = enchantContext.enchantList.filter((enchant) => {
+                // 検索用に各値を設定
+                const enchant_name: string = enchant.enchant_name;
+                const enchant_name_2: string = enchant.enchant_name_2;
+                const enchant_name_en: string = enchant.enchant_name_en;
+                const position: string = positionName(enchant.position_id);
+                const rank: string = enchant.rank;
+                const target_name: string = enchant.target_name;
+                const effect_name: string = enchant.effect_name;
+                const route_name: string = enchant.route_name ? enchant.route_name : '';
 
-            return enchant_name.match(value)
-                || enchant_name_2.match(value)
-                || enchant_name_en.match(value)
-                || position.match(value)
-                || rank.match(value)
-                || target_name.match(value)
-                || effect_name.match(value)
-                || route_name.match(value);
-        });
+                return enchant_name.match(searchWord)
+                    || enchant_name_2.match(searchWord)
+                    || enchant_name_en.match(searchWord)
+                    || position.match(searchWord)
+                    || rank.match(searchWord)
+                    || target_name.match(searchWord)
+                    || effect_name.match(searchWord)
+                    || route_name.match(searchWord);
+            });
 
-        // 検索用のデータ
-        enchantContext.setRowData(listData);
-        // 件数
-        enchantContext.setCount(listData.length);
-        // ページ初期化
-        pageContext.setPage(0);
-    }
+            // 検索用のデータ
+            enchantContext.setRowData(listData);
+            // 件数
+            enchantContext.setCount(listData.length);
+            // ページ初期化
+            pageContext.setPage(0);
+        }, 500);
+
+        return () => clearTimeout(timer);
+    }, [ searchWord ]);
 
     return (
         <Grid item xs={props.xs} css={freeSearchBoxStyle}>
             <input css={freeSearchInputStyle} placeholder='絞り込む' value={searchWord}
-                   onChange={(e) => searchItems(e.target.value)}/>
+                   onChange={(e) => setSearchWord(e.target.value)}/>
         </Grid>
     );
 };
