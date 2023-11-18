@@ -1,47 +1,41 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 /** @jsxImportSource @emotion/react */
 import { TablePagination } from '@mui/material';
 import { pagination } from "./style/paginationStyle";
+import { usePageContext } from '../context/usePageContext';
+import { useEnchantContext } from '../context/useEnchantContext';
+import { useRowsPerPageContext } from './context/useRowsPerPageContext';
 
 /**
- * 検索結果のページネーション
- * @param props {
- *                  number,
- *                  number,
- *                  number,
- *                  Dispatch<SetStateAction<number>>,
- *                  Dispatch<React.SetStateAction<number>>
- *               }
+ * 検索結果のページネーションコンポーネント
  * @returns { JSX.Element }
  */
-export const Pagination = (props: {
-    count: number,
-    page: number,
-    rowsPerPage: number,
-    setPage: Dispatch<SetStateAction<number>>,
-    setRowsPerPage: Dispatch<React.SetStateAction<number>>,
-}) => {
+export const Pagination = () => {
+
+    const pageContext = usePageContext();
+    const enchantContext = useEnchantContext();
+    const rowsPerPageContext = useRowsPerPageContext();
 
     /** ページ変更 */
     const handleChangePage = (event: unknown, newPage: number) => {
-        props.setPage(newPage);
+        pageContext.setPage(newPage);
     };
 
     /** ページに表示する件数の変更 */
     const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-        props.setRowsPerPage(+event.target.value);
-        props.setPage(0);
+        rowsPerPageContext.setRowsPerPage(+event.target.value);
+        pageContext.setPage(0);
     };
 
     return (
         <TablePagination
             component="div"
-            count={props.count}
+            count={enchantContext.count}
             css={pagination}
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
-            page={props.page}
-            rowsPerPage={props.rowsPerPage}
+            page={pageContext.page}
+            rowsPerPage={rowsPerPageContext.rowsPerPage}
             rowsPerPageOptions={[ 30, 60, 100 ]}
         />
     );

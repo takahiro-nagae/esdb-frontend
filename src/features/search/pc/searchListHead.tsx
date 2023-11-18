@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React from "react";
 /** @jsxImportSource @emotion/react */
 import TableHead from '@mui/material/TableHead';
 import TableCell from '@mui/material/TableCell/TableCell';
@@ -7,28 +7,22 @@ import TableSortLabel from "@mui/material/TableSortLabel";
 import Box from "@mui/material/Box";
 import { visuallyHidden } from '@mui/utils';
 import { HeadData } from "./interface/headData";
-import { Order } from "./type/order";
 import { HeadCellData } from "./data/headCellData";
 import { tableHeader } from "./style/searchListHeadStyle";
+import { useOrderContext } from "../context/useOrderContext";
 
 /**
  * 検索結果一覧のヘッダー
  * @param props {
- *                  Order,
- *                  Dispatch<SetStateAction<Order>>,
- *                  string,
- *                  Dispatch<SetStateAction<string>>,
  *                  boolean
  *              }
  * @returns SearchListHead { JSX.Element }
  */
 export const SearchListHead = (props: {
-    order: Order,
-    setOrder: Dispatch<SetStateAction<Order>>,
-    orderBy: string,
-    setOrderBy: Dispatch<SetStateAction<keyof HeadData>>,
     valFlg: boolean
 }) => {
+    const orderContext = useOrderContext();
+
     const createSortHandler =
               (property: keyof HeadData) => (event: React.MouseEvent<unknown>) => {
                   handleRequestSort(event, property);
@@ -38,9 +32,9 @@ export const SearchListHead = (props: {
         event: React.MouseEvent<unknown>,
         property: keyof HeadData,
     ) => {
-        const isAsc = props.orderBy === property && props.order === 'asc';
-        props.setOrder(isAsc ? 'desc' : 'asc');
-        props.setOrderBy(property);
+        const isAsc = orderContext.orderBy === property && orderContext.order === 'asc';
+        orderContext.setOrder(isAsc ? 'desc' : 'asc');
+        orderContext.setOrderBy(property);
     };
 
     return (
@@ -51,22 +45,22 @@ export const SearchListHead = (props: {
                     <TableCell
                         css={tableHeader}
                         key={headCell.id}
-                        sortDirection={props.orderBy === headCell.id ? props.order : false}
+                        sortDirection={orderContext.orderBy === headCell.id ? orderContext.order : false}
                     >
                         <TableSortLabel
-                            active={props.orderBy === headCell.id}
-                            direction={props.orderBy === headCell.id ? props.order : 'asc'}
+                            active={orderContext.orderBy === headCell.id}
+                            direction={orderContext.orderBy === headCell.id ? orderContext.order : 'asc'}
                             onClick={createSortHandler(headCell.id)}
                             style={{ color: '#fff' }}
                         >
                             {headCell.label}
-                            {props.orderBy === headCell.id ? (
+                            {orderContext.orderBy === headCell.id ? (
                                 <Box
                                     component="span"
                                     sx={visuallyHidden}
                                 >
                                     {
-                                        props.order === 'desc' ?
+                                        orderContext.order === 'desc' ?
                                             'sorted descending' :
                                             'sorted ascending'
                                     }

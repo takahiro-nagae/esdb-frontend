@@ -3,24 +3,24 @@ import TableBody from "@mui/material/TableBody";
 import { TableCell, TableRow } from "@mui/material";
 import { InfeedAd } from "../../../adsense/infeedAd";
 import { SearchListRow } from "./searchListRow";
-import { EnchantData } from "../common/interface/enchantData";
 import { Order } from "./type/order";
-import { HeadData } from "./interface/headData";
 /** @jsxImportSource @emotion/react */
 import { tableContentStyle, tableDataStyle } from "./style/searchListBodyStyle";
+import { useOrderContext } from "../context/useOrderContext";
+import { usePageContext } from "../context/usePageContext";
+import { useEnchantContext } from "../context/useEnchantContext";
 
 /**
  * PC版検索一覧の本体部分コンテナ
- * @param props { Order, keyof HeadData, number, Array<EnchantData>, number, boolean }
+ * @param props { Array<EnchantData>, number, boolean }
  * @returns { JSX.Element }
  */
 export const SearchListBody = (props: {
-    order: Order,
-    orderBy: keyof HeadData,
-    page: number,
-    rowData: Array<EnchantData>,
     rowsPerPage: number,
 }) => {
+    const enchantContext = useEnchantContext();
+    const pageContext = usePageContext();
+    const orderContext = useOrderContext();
     /**
      * @param array { readonly T[] }
      * @param comparator { (a: T, b: T) => number }
@@ -72,8 +72,8 @@ export const SearchListBody = (props: {
 
     return (
         <TableBody>
-            {stableSort(props.rowData, getComparator(props.order, props.orderBy))
-                .slice(props.page * props.rowsPerPage, props.page * props.rowsPerPage + props.rowsPerPage)
+            {stableSort(enchantContext.rowData, getComparator(orderContext.order, orderContext.orderBy))
+                .slice(pageContext.page * props.rowsPerPage, pageContext.page * props.rowsPerPage + props.rowsPerPage)
                 .map((enchant, index) => (
                     <>
                         {index != 0 && index % 5 == 0 &&
@@ -93,7 +93,7 @@ export const SearchListBody = (props: {
                             enchant={enchant}
                             key={enchant.enchant_id}
                         />
-                        {index == props.rowData.length - 1 && process.env.NODE_ENV === 'production' &&
+                        {index == enchantContext.rowData.length - 1 && process.env.NODE_ENV === 'production' &&
                             <TableRow
                                 css={tableContentStyle}
                                 key={'lastPc'}

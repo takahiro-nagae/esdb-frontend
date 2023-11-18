@@ -1,5 +1,5 @@
 import React from 'react';
-import { MultiplexAd } from '../adsense/multiplexAd';
+import { MultiplexAd } from '../../adsense/multiplexAd';
 import { SearchFormContainer } from '../form/searchFormContainer';
 
 /**
