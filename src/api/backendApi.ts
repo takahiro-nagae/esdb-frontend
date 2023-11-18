@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { EffectInterface } from '../form/common/interface/effectInterface';
 import { FormInit } from './responseDefinition/formInit';
 import { RankInterFace } from '../form/common/interface/rankInterFace';
@@ -8,18 +7,7 @@ import { EnchantDetail } from './responseDefinition/enchantDetail';
 import { searchRank } from '../features/search/rank/interface/searchRank';
 import { SearchRankImpl } from '../features/search/rank/impl/searchRankImpl';
 import { SearchInfo } from './responseDefinition/searchInfo';
-
-const endPoint = () => {
-    if (process.env.APP_ENV === 'local') {
-        return 'http://localhost:5001/';
-    }
-
-    if (process.env.APP_ENV === 'dev') {
-        return 'https://wd5zeazzd9.execute-api.ap-northeast-1.amazonaws.com/Stage/';
-    }
-
-    return 'https://wd5zeazzd9.execute-api.ap-northeast-1.amazonaws.com/Prod/';
-};
+import { getApi } from './ApiBase';
 
 export const getInitData = async () => {
     const response: FormInit = {
@@ -28,16 +16,14 @@ export const getInitData = async () => {
         target: new Array<TargetInterFace>(),
     };
 
-    await axios
-        .get(endPoint())
+    await getApi('')
         .then(res => {
             if (res) {
                 response.effect = res.data.effect;
                 response.rank = res.data.rank;
                 response.target = res.data.target;
             }
-        })
-        .catch(error => {
+        }).catch(error => {
             console.log(error);
         });
 
@@ -52,8 +38,7 @@ export const getEnchantDetailData = async (enchantId: string) => {
         routeName: '',
     };
 
-    await axios
-        .get(endPoint() + 'detail/' + enchantId)
+    await getApi('detail/' + enchantId)
         .then(res => {
             if (res.data) {
                 response.enchantData = res.data;
@@ -61,8 +46,7 @@ export const getEnchantDetailData = async (enchantId: string) => {
                 response.effectName = res.data.effect_name;
                 response.routeName = res.data.route_name;
             }
-        })
-        .catch(error => {
+        }).catch(error => {
             console.log(error);
         });
 
@@ -71,14 +55,12 @@ export const getEnchantDetailData = async (enchantId: string) => {
 
 export const getRankData = async (rank: string) => {
     let response: searchRank = new SearchRankImpl();
-    await axios
-        .get(endPoint() + 'rank/' + rank)
+    await getApi('rank/' + rank)
         .then(res => {
             if (res.data) {
                 response = res.data;
             }
-        })
-        .catch(error => {
+        }).catch(error => {
             console.log(error);
         });
 
@@ -90,8 +72,7 @@ export async function getSearchEnchantData(path: string, requestParams: string) 
         enchantList: [],
         effectName: '',
     };
-    await axios
-        .get(endPoint() + path + requestParams)
+    await getApi(path + requestParams)
         .then(res => {
             if (res.data) {
                 response.enchantList = res.data.enchant_list;
@@ -99,9 +80,9 @@ export async function getSearchEnchantData(path: string, requestParams: string) 
                     response.effectName = res.data.effect_name.effect;
                 }
             }
-        })
-        .catch(error => {
+        }).catch(error => {
             console.log(error);
         });
+
     return response;
 };
