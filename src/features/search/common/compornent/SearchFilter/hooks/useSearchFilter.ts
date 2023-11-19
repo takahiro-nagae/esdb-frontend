@@ -9,6 +9,7 @@ export const useSearchFilter = (searchWord: string) => {
     const isFirstRender = useRef(true);
 
     useEffect(() => {
+        console.log('useSearchFilter');
         if (isFirstRender.current) {
             isFirstRender.current = false;
             return;

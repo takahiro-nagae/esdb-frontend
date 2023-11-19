@@ -13,7 +13,10 @@ export const SearchFilter = (props: {
 
     return (
         <Grid item xs={props.xs} css={freeSearchBoxStyle}>
-            <input css={freeSearchInputStyle} placeholder='絞り込む' value={searchWord}
+            <input css={freeSearchInputStyle}
+                   placeholder='絞り込む'
+                   value={searchWord}
+                   data-testid='searchFilter'
                    onChange={(e) => setSearchWord(e.target.value)}/>
         </Grid>
     );
