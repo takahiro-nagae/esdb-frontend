@@ -1,4 +1,4 @@
-import effectColorFunction from "../function/effectColorFunction";
+import effectColorFunction from "../../function/effectColorFunction";
 /** @jsxImportSource @emotion/react */
 
 /**
