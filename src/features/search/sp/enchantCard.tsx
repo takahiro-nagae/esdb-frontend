@@ -10,7 +10,7 @@ import Typography from '@mui/material/Typography';
 import { positionColor, positionName } from '../common/function/positionFunction';
 import { RankModal } from '../rank/rankModal';
 import { createEnchantName, createEnchantNameEn, subTitleStyle } from '../common/function/enchantNameFunction';
-import { EffectList } from '../common/compornent/effectList';
+import { EffectList } from '../common/compornent/EffectList/EffectList';
 import { RouteList } from '../common/compornent/routeList';
 import { InvalidText } from '../common/compornent/invalidText';
 import { ImpText } from '../common/compornent/impText';
