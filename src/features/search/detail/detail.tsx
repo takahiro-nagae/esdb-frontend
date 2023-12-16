@@ -7,7 +7,7 @@ import { positionColor, positionName } from '../common/function/positionFunction
 import { RankModal } from '../rank/rankModal';
 import { DisplayWideAd } from '../../../adsense/displayWideAd';
 import { EnchantDataImpl } from './impl/enchantDataImpl';
-import { Loading } from '../common/compornent/loading';
+import { Loading } from '../common/compornent/Loading/Loading';
 import { getEnchantDetailData } from '../../../api/backendApi';
 import { body, header } from './style/detailStyle';
 
