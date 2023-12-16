@@ -6,7 +6,7 @@ import { allItemsData, decreaseItemData, designatedItemData, increaseItemData, o
 
 const { NoItems, IncreaseItem, DecreaseItem, DesignatedItem, OthersItem, AllItems } = composeStories(stories);
 
-describe('effectList', () => {
+describe('EffectList', () => {
 
     const testId = 'effect';
 
