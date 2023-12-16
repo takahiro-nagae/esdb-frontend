@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import * as stories from '../stories/ImpText.stories';
 import { composeStories } from '@storybook/react';
 
-describe('impText', () => {
+describe('ImpText', () => {
 
     const expectMessage = '未実装';
 

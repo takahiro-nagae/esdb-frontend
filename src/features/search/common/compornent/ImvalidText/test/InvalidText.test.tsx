@@ -2,7 +2,7 @@ import * as stories from '../stories/InvalidText.stories';
 import { composeStories } from '@storybook/react';
 import { render, screen } from '@testing-library/react';
 
-describe('invalidText', () => {
+describe('InvalidText', () => {
     const expectMessage = '貼付不可';
 
     test('貼付可能', () => {
