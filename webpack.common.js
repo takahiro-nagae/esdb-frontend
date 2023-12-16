@@ -10,6 +10,7 @@ module.exports = () => ({
     context: path.resolve(__dirname, './'),
     output: {
         path: path.resolve(__dirname, 'dist'),
+        publicPath: '/',
         filename: '[name].js',
     },
     module: {
@@ -38,15 +39,18 @@ module.exports = () => ({
         }),
         new CopyPlugin({
             patterns: [
-                {   context: "./public",
+                {
+                    context: "./public",
                     from: '*.json',
                     to: '.'
                 },
-                {   context: "./public",
+                {
+                    context: "./public",
                     from: '*.ico',
                     to: '.'
                 },
-                {   context: "./public",
+                {
+                    context: "./public",
                     from: '*.png',
                     to: '.'
                 },
