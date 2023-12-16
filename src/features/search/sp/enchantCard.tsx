@@ -13,7 +13,7 @@ import { createEnchantName, createEnchantNameEn, subTitleStyle } from '../common
 import { EffectList } from '../common/compornent/EffectList/EffectList';
 import { RouteList } from '../common/compornent/routeList';
 import { InvalidText } from '../common/compornent/invalidText';
-import { ImpText } from '../common/compornent/impText';
+import { ImpText } from '../common/compornent/ImpText/ImpText';
 import { EnchantData } from '../common/interface/enchantData';
 import {
     accIcon,
