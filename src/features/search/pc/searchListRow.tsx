@@ -7,11 +7,12 @@ import { RankModal } from "../rank/rankModal";
 import { positionColor, positionName } from "../common/function/positionFunction";
 import { createEnchantName, createEnchantNameEn, subTitleStyle } from '../common/function/enchantNameFunction';
 import { EffectList } from "../common/compornent/EffectList/EffectList";
-import { RouteList } from "../common/compornent/routeList";
+import { RouteList } from "../common/compornent/RouteList/RouteList";
 import { InvalidText } from "../common/compornent/ImvalidText/InvalidText";
 import { ImpText } from "../common/compornent/ImpText/ImpText";
 import { EnchantData } from "../common/interface/enchantData";
 import { tableContent } from "./style/searchListRowStyle";
+import { DetailModal } from "../detail/detailModal";
 
 /**
  * PCの検索一覧
@@ -19,6 +20,9 @@ import { tableContent } from "./style/searchListRowStyle";
  * @returns SearchListRow { JSX.Element }
  */
 export const SearchListRow = (props: { enchant: EnchantData }) => {
+    const omtCount = 3;
+    const routeNames = props.enchant.route_name ? props.enchant.route_name.split('@') : [];
+
     return (
         <TableRow css={tableContent}>
             <TableCell>
@@ -53,9 +57,17 @@ export const SearchListRow = (props: { enchant: EnchantData }) => {
             </TableCell>
             <TableCell>
                 <RouteList
-                    enchantId={props.enchant.enchant_id}
-                    routeName={props.enchant.route_name}
+                    routeNames={ routeNames }
+                    omtCount={omtCount}
                 />
+                {
+                    routeNames && routeNames.length > omtCount &&
+                    <DetailModal
+                        count={routeNames.length - omtCount}
+                        data-testid='routeModal'
+                        enchant_id={props.enchant.enchant_id}
+                    />
+                }
             </TableCell>
         </TableRow>
     );

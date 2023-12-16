@@ -11,7 +11,7 @@ import { positionColor, positionName } from '../common/function/positionFunction
 import { RankModal } from '../rank/rankModal';
 import { createEnchantName, createEnchantNameEn, subTitleStyle } from '../common/function/enchantNameFunction';
 import { EffectList } from '../common/compornent/EffectList/EffectList';
-import { RouteList } from '../common/compornent/routeList';
+import { RouteList } from '../common/compornent/RouteList/RouteList';
 import { InvalidText } from '../common/compornent/ImvalidText/InvalidText';
 import { ImpText } from '../common/compornent/ImpText/ImpText';
 import { EnchantData } from '../common/interface/enchantData';
@@ -26,6 +26,7 @@ import {
     title,
     value
 } from './style/enchantCardStyle';
+import { DetailModal } from '../detail/detailModal';
 
 /**
  * エンチャントカードコンポーネント
@@ -36,6 +37,9 @@ export const EnchantCard = (props: {
     enchant: EnchantData
 }) => {
     const [ open, setOpen ] = useState(false);
+
+    const omtCount = 3;
+    const routeNames = props.enchant.route_name ? props.enchant.route_name.split('@') : [];
 
     return (
         <Card
@@ -135,9 +139,17 @@ export const EnchantCard = (props: {
                                 <TableCell css={acoHead}>入手先</TableCell>
                                 <TableCell css={acoBody}>
                                     <RouteList
-                                        enchantId={props.enchant.enchant_id}
-                                        routeName={props.enchant.route_name}
+                                        routeNames={ routeNames }
+                                        omtCount={omtCount}
                                     />
+                                    {
+                                        routeNames && routeNames.length > omtCount &&
+                                        <DetailModal
+                                            count={routeNames.length - omtCount}
+                                            data-testid='routeModal'
+                                            enchant_id={props.enchant.enchant_id}
+                                        />
+                                    }
                                 </TableCell>
                             </TableRow>
                         </TableBody>
