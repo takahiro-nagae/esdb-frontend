@@ -9,7 +9,7 @@ import { SearchFilter } from './common/compornent/SearchFilter/SearchFilter';
 import { EnchantData } from './common/interface/enchantData';
 import { SearchListContainer } from './pc/searchListContainer';
 import { SpSearchContainer } from './sp/spSearchContainer';
-import { Loading } from './common/compornent/loading';
+import { Loading } from './common/compornent/Loading/Loading';
 import { getSearchEnchantData } from '../../api/backendApi';
 import { SearchParamsBuilder } from './searchRequestParamsBuilder';
 import { verticalCenter } from './searchListStyle';
