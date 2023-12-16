@@ -1,7 +1,6 @@
 import React from "react";
 import * as stories from '../stories/EffectList.stories';
 import { render, screen } from "@testing-library/react";
-import { notExistTestForTestId } from "../../../../../../tesetLib/commonTesting";
 import { composeStories } from "@storybook/react";
 import { allItemsData, decreaseItemData, designatedItemData, increaseItemData, otherItemData } from "../stories/EffectListStoryData";
 
@@ -13,7 +12,7 @@ describe('effectList', () => {
 
     test('値が全て空', () => {
         render(<NoItems/>);
-        notExistTestForTestId(testId);
+        expect(screen.queryByTestId(testId)).toBeNull();
     });
 
     test('増加効果の時', () => {
