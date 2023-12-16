@@ -1,5 +1,5 @@
-import { css } from "@emotion/react";
 /** @jsxImportSource @emotion/react */
+import { invalid } from "./style/InvalidTextStyle";
 
 /**
  * 貼付不可文字列表示コンポーネント
@@ -7,16 +7,11 @@ import { css } from "@emotion/react";
  * @returns InvalidText { JSX.Element }
  */
 export const InvalidText = (props: { invalidTargetFlg: string }) => {
-    const red = css({
-        color: '#f00',
-        fontWeight: 'bold'
-    });
-
     return (
         <>
             {
                 props.invalidTargetFlg == '1' &&
-                <small css={ red }>
+                <small css={ invalid }>
                       貼付不可
                 </small>
             }
