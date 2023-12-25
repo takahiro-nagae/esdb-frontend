@@ -1,14 +1,16 @@
 import { composeStories } from "@storybook/react";
 import * as stories from "../stories/Detail.stories";
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import { BeginnerData } from "../mock/DetailMockData";
 import { createEnchantName, createEnchantNameEn } from "../../../function/enchantNameFunction";
+import userEvent from "@testing-library/user-event";
+import { Rank } from "../../Rank/Rank";
 
+jest.mock('../../Rank/Rank');
 describe('Detail', () => {
-
     const { DetailView } = composeStories(stories);
 
-    test('表示内容の確認', () => {
+    test('表示内容の確認', async () => {
         render(<DetailView />);
         const enchantData = BeginnerData;
         const rowDatas = screen.getAllByRole('row');
@@ -33,7 +35,12 @@ describe('Detail', () => {
         expect(rankRow.children[0].textContent).toBe('ランク');
         // データのエンチャントのランクが意図した形式で表示されること
         expect(rankRow.children[1].textContent).toBe(enchantData.rank);
-        // TODO: ランクのモーダルが開くことの確認
+        // ランクのモーダルが開くことの確認
+        expect(Rank).toHaveBeenCalledTimes(0);
+        userEvent.click(screen.getByRole('button'));
+        await waitFor(() => {
+            expect(Rank).toHaveBeenCalledTimes(1);
+        });
 
         // 効果
         const effectRow = rowDatas[3];
