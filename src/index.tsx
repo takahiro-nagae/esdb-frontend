@@ -10,7 +10,7 @@ import { AppHistory } from './features/static/appHistory';
 import { SearchList } from './features/search/searchList';
 import { PrivacyPolicy } from './features/static/privacyPolicy';
 import { RankIndex } from './features/search/rank/rankIndex';
-import { DetailIndex } from './features/search/detail/detailIndex';
+import { DetailIndex } from './features/search/common/compornent/Detail/Index/DetailIndex';
 import { Theme } from './common/theme/theme';
 import { DefaultGlobalStyles } from './common/theme/defaultGlobalStyles';
 import { createRoot } from "react-dom/client";

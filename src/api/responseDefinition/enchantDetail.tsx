@@ -1,4 +1,4 @@
-import { EnchantData } from "../../features/search/detail/interface/enchantData";
+import { EnchantData } from "../../features/search/common/interface/enchantData";
 
 export interface EnchantDetail {
     enchantData: EnchantData;

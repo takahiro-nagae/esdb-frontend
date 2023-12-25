@@ -1,8 +1,6 @@
 import { FormInit } from './responseDefinition/formInit';
 import { RankInterFace } from '../features/form/common/interface/rankInterFace';
 import { TargetInterFace } from '../features/form/common/interface/targetInterFace';
-import { EnchantDataImpl } from '../features/search/detail/impl/enchantDataImpl';
-import { EnchantDetail } from './responseDefinition/enchantDetail';
 import { searchRank } from '../features/search/rank/interface/searchRank';
 import { SearchRankImpl } from '../features/search/rank/impl/searchRankImpl';
 import { SearchInfo } from './responseDefinition/searchInfo';
@@ -31,20 +29,10 @@ export const getInitData = async () => {
 };
 
 export const getEnchantDetailData = async (enchantId: string) => {
-    const response: EnchantDetail = {
-        enchantData: new EnchantDataImpl(),
-        effectKbn: '',
-        effectName: '',
-        routeName: '',
-    };
-
-    await getApi('detail/' + enchantId)
+    const response = await getApi('detail/' + enchantId)
         .then(res => {
             if (res.data) {
-                response.enchantData = res.data;
-                response.effectKbn = res.data.effect_kbn;
-                response.effectName = res.data.effect_name;
-                response.routeName = res.data.route_name;
+                return res.data;
             }
         }).catch(error => {
             console.log(error);
