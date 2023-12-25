@@ -1,4 +1,4 @@
-import { SearchFilter } from "../common/compornent/SearchFilter/SearchFilter";
+import { SearchFilter } from "../common/component/SearchFilter/SearchFilter";
 import { Grid } from "@material-ui/core";
 import Box from "@mui/material/Box";
 import TableContainer from "@mui/material/TableContainer";

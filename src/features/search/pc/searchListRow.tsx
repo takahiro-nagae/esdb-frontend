@@ -3,16 +3,16 @@
 import { TableCell, TableRow } from "@material-ui/core";
 
 /** ローカルライブラリ */
-import { RankModal } from "../common/compornent/Rank/Modal/RankModal";
+import { RankModal } from "../common/component/Rank/Modal/RankModal";
 import { positionColor, positionName } from "../common/function/positionFunction";
 import { createEnchantName, createEnchantNameEn, subTitleStyle } from '../common/function/enchantNameFunction';
-import { EffectList } from "../common/compornent/EffectList/EffectList";
-import { RouteList } from "../common/compornent/RouteList/RouteList";
-import { InvalidText } from "../common/compornent/ImvalidText/InvalidText";
-import { ImpText } from "../common/compornent/ImpText/ImpText";
+import { EffectList } from "../common/component/EffectList/EffectList";
+import { RouteList } from "../common/component/RouteList/RouteList";
+import { InvalidText } from "../common/component/ImvalidText/InvalidText";
+import { ImpText } from "../common/component/ImpText/ImpText";
 import { EnchantData } from "../common/interface/enchantData";
 import { tableContent } from "./style/searchListRowStyle";
-import { DetailModal } from "../common/compornent/Detail/Modal/DetailModal";
+import { DetailModal } from "../common/component/Detail/Modal/DetailModal";
 
 /**
  * PCの検索一覧

@@ -8,12 +8,12 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import { positionColor, positionName } from '../common/function/positionFunction';
-import { RankModal } from '../common/compornent/Rank/Modal/RankModal';
+import { RankModal } from '../common/component/Rank/Modal/RankModal';
 import { createEnchantName, createEnchantNameEn, subTitleStyle } from '../common/function/enchantNameFunction';
-import { EffectList } from '../common/compornent/EffectList/EffectList';
-import { RouteList } from '../common/compornent/RouteList/RouteList';
-import { InvalidText } from '../common/compornent/ImvalidText/InvalidText';
-import { ImpText } from '../common/compornent/ImpText/ImpText';
+import { EffectList } from '../common/component/EffectList/EffectList';
+import { RouteList } from '../common/component/RouteList/RouteList';
+import { InvalidText } from '../common/component/ImvalidText/InvalidText';
+import { ImpText } from '../common/component/ImpText/ImpText';
 import { EnchantData } from '../common/interface/enchantData';
 import {
     accIcon,
@@ -26,7 +26,7 @@ import {
     title,
     value
 } from './style/enchantCardStyle';
-import { DetailModal } from '../common/compornent/Detail/Modal/DetailModal';
+import { DetailModal } from '../common/component/Detail/Modal/DetailModal';
 
 /**
  * エンチャントカードコンポーネント
