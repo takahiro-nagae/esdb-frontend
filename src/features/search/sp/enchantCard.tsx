@@ -26,7 +26,7 @@ import {
     title,
     value
 } from './style/enchantCardStyle';
-import { DetailModal } from '../detail/detailModal';
+import { DetailModal } from '../common/compornent/Detail/Modal/DetailModal';
 
 /**
  * エンチャントカードコンポーネント
@@ -142,14 +142,11 @@ export const EnchantCard = (props: {
                                         routeNames={ routeNames }
                                         omtCount={omtCount}
                                     />
-                                    {
-                                        routeNames && routeNames.length > omtCount &&
-                                        <DetailModal
-                                            count={routeNames.length - omtCount}
-                                            data-testid='routeModal'
-                                            enchant_id={props.enchant.enchant_id}
-                                        />
-                                    }
+                                    <DetailModal
+                                        count={routeNames.length - omtCount}
+                                        data-testid='routeModal'
+                                        enchant={props.enchant}
+                                    />
                                 </TableCell>
                             </TableRow>
                         </TableBody>

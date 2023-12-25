@@ -62,8 +62,8 @@ export const ModalContainer = (props: { buttonMsgEl: any; height: number; openCo
             handleOpen={handleOpen}
             handleClose={handleClose}
             buttonMsgEl={props.buttonMsgEl}
-            modalBoxStyle={modalBoxStyle} 
-            openComponent={props.openComponent} 
+            modalBoxStyle={modalBoxStyle}
+            openComponent={props.openComponent}
         />
-    ); 
+    );
 };

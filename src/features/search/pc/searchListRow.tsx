@@ -12,7 +12,7 @@ import { InvalidText } from "../common/compornent/ImvalidText/InvalidText";
 import { ImpText } from "../common/compornent/ImpText/ImpText";
 import { EnchantData } from "../common/interface/enchantData";
 import { tableContent } from "./style/searchListRowStyle";
-import { DetailModal } from "../detail/detailModal";
+import { DetailModal } from "../common/compornent/Detail/Modal/DetailModal";
 
 /**
  * PCの検索一覧
@@ -60,14 +60,11 @@ export const SearchListRow = (props: { enchant: EnchantData }) => {
                     routeNames={ routeNames }
                     omtCount={omtCount}
                 />
-                {
-                    routeNames && routeNames.length > omtCount &&
-                    <DetailModal
-                        count={routeNames.length - omtCount}
-                        data-testid='routeModal'
-                        enchant_id={props.enchant.enchant_id}
-                    />
-                }
+                <DetailModal
+                    count={routeNames.length - omtCount}
+                    data-testid='routeModal'
+                    enchant={props.enchant}
+                />
             </TableCell>
         </TableRow>
     );
