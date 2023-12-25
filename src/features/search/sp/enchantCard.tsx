@@ -8,7 +8,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import { positionColor, positionName } from '../common/function/positionFunction';
-import { RankModal } from '../rank/rankModal';
+import { RankModal } from '../common/compornent/Rank/Modal/RankModal';
 import { createEnchantName, createEnchantNameEn, subTitleStyle } from '../common/function/enchantNameFunction';
 import { EffectList } from '../common/compornent/EffectList/EffectList';
 import { RouteList } from '../common/compornent/RouteList/RouteList';
