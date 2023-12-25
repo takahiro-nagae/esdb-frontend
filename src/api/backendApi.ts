@@ -26,19 +26,6 @@ export const getInitData = async () => {
     return response;
 };
 
-export const getEnchantDetailData = async (enchantId: string) => {
-    const response = await getApi('detail/' + enchantId)
-        .then(res => {
-            if (res.data) {
-                return res.data;
-            }
-        }).catch(error => {
-            console.log(error);
-        });
-
-    return response;
-};
-
 export async function getSearchEnchantData(path: string, requestParams: string) {
     const response: SearchInfo = {
         enchantList: [],
