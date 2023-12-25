@@ -1,8 +1,6 @@
 import { FormInit } from './responseDefinition/formInit';
 import { RankInterFace } from '../features/form/common/interface/rankInterFace';
 import { TargetInterFace } from '../features/form/common/interface/targetInterFace';
-import { searchRank } from '../features/search/rank/interface/searchRank';
-import { SearchRankImpl } from '../features/search/rank/impl/searchRankImpl';
 import { SearchInfo } from './responseDefinition/searchInfo';
 import { getApi } from './ApiBase';
 import { EffectInterface } from '../features/form/common/interface/effectInterface';
@@ -33,20 +31,6 @@ export const getEnchantDetailData = async (enchantId: string) => {
         .then(res => {
             if (res.data) {
                 return res.data;
-            }
-        }).catch(error => {
-            console.log(error);
-        });
-
-    return response;
-};
-
-export const getRankData = async (rank: string) => {
-    let response: searchRank = new SearchRankImpl();
-    await getApi('rank/' + rank)
-        .then(res => {
-            if (res.data) {
-                response = res.data;
             }
         }).catch(error => {
             console.log(error);

@@ -9,7 +9,7 @@ import { About } from './features/static/about';
 import { AppHistory } from './features/static/appHistory';
 import { SearchList } from './features/search/searchList';
 import { PrivacyPolicy } from './features/static/privacyPolicy';
-import { RankIndex } from './features/search/rank/rankIndex';
+import { RankIndex } from './features/search/common/compornent/Rank/Index/RankIndex';
 import { DetailIndex } from './features/search/common/compornent/Detail/Index/DetailIndex';
 import { Theme } from './common/theme/theme';
 import { DefaultGlobalStyles } from './common/theme/defaultGlobalStyles';

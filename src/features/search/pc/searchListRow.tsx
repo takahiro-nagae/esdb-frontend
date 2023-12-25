@@ -3,7 +3,7 @@
 import { TableCell, TableRow } from "@material-ui/core";
 
 /** ローカルライブラリ */
-import { RankModal } from "../rank/rankModal";
+import { RankModal } from "../common/compornent/Rank/Modal/RankModal";
 import { positionColor, positionName } from "../common/function/positionFunction";
 import { createEnchantName, createEnchantNameEn, subTitleStyle } from '../common/function/enchantNameFunction';
 import { EffectList } from "../common/compornent/EffectList/EffectList";

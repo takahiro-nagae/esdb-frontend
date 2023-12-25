@@ -1,7 +1,9 @@
+import {searchRank} from "./searchRank";
+
 /**
- * 検索画面のランクインターフェース
+ * 検索画面のランク実装ランク
  */
-export interface searchRank {
+export class SearchRankImpl implements searchRank {
     /** ランク */
     rank: string;
     /** 通常：木曜以外 */
@@ -24,4 +26,19 @@ export interface searchRank {
     ancient_rate_thu: string;
     /** 稀代：木曜 */
     rare_holy_rate_thu: string;
+
+    constructor() {
+        this.rank = '-';
+        this.normal_rate = '-';
+        this.elite_rate = '-';
+        this.elf_rate = '-';
+        this.ancient_rate = '-';
+        this.rare_holy_rate = '-';
+        this.normal_rate_thu = '-';
+        this.elite_rate_thu = '-';
+        this.elf_rate_thu = '-';
+        this.ancient_rate_thu = '-';
+        this.rare_holy_rate_thu = '-';
+    }
+
 }
