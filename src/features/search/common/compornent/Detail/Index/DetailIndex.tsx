@@ -2,10 +2,10 @@ import { useParams } from "react-router-dom";
 import { Grid } from '@material-ui/core';
 import Box from '@mui/material/Box';
 import { Detail } from "../Detail";
-import { getEnchantDetailData } from "../../../../../../api/backendApi";
 import { useEffect, useState } from 'react';
 import { EnchantData } from "../../../interface/enchantData";
 import { Loading } from "../../Loading/Loading";
+import { getEnchantDetailData } from "./api/getEnchantDetailData";
 
 /**
  * インデックス登録用の詳細ページ出力コンテナコンポーネント
