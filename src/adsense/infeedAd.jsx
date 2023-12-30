@@ -7,7 +7,7 @@ import { useEffect } from "react";
 export const InfeedAd = () => {
 
     if(process.env.NODE_ENV !== 'production') {
-        return <></>;
+        return null;
     }
 
     useEffect(() => {
