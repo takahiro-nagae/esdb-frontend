@@ -8,7 +8,7 @@ import { BrowserView, MobileView } from "react-device-detect";
 import { SearchFilter } from './common/component/SearchFilter/SearchFilter';
 import { EnchantData } from './common/interface/enchantData';
 import { SearchListContainer } from './pc/searchListContainer';
-import { SpSearchContainer } from './sp/spSearchContainer';
+import { SpSearchContainer } from './sp/SpSearchContainer';
 import { Loading } from './common/component/Loading/Loading';
 import { getSearchEnchantData } from '../../api/backendApi';
 import { SearchParamsBuilder } from './searchRequestParamsBuilder';
