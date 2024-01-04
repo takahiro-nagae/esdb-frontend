@@ -13,7 +13,7 @@ import { Loading } from './common/component/Loading/Loading';
 import { getSearchEnchantData } from '../../api/backendApi';
 import { SearchParamsBuilder } from './searchRequestParamsBuilder';
 import { verticalCenter } from './searchListStyle';
-import { SearchResult } from './result/searechResult';
+import { SearchResultHead } from './component/SearchResult/SearechResultHead';
 import { OrderContext } from './context/OrderContext';
 import { Order } from './pc/type/order';
 import { HeadData } from './pc/interface/headData';
@@ -89,7 +89,7 @@ export const SearchList = (props: { isFreeSearch: boolean }) => {
             </MobileView>
             <Box sx={{ mt: 3 }}>
                 <Grid alignItems='center' container css={dispCount < 1 ? verticalCenter : ''} direction='column'>
-                    <SearchResult dispCount={dispCount} count={count} effectName={effectName} />
+                    <SearchResultHead dispCount={dispCount} count={count} effectName={effectName} />
                     {dispCount >= 1 && (
                         <>
                             <BrowserView css={maxSearchSize}>

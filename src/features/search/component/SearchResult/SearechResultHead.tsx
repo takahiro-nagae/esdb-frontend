@@ -1,4 +1,5 @@
-import { hitCount, result } from "../searchListStyle";
+/** @jsxImportSource @emotion/react */
+import { hitCount, result } from "./style/SearechResultHeadStyle";
 
 type SearchResultType = {
     dispCount: number;
@@ -27,4 +28,4 @@ const Compornent = (props: SearchResultType) => {
     );
 };
 
-export const SearchResult = Compornent;
+export const SearchResultHead = Compornent;
