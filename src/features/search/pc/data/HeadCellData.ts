@@ -1,4 +1,4 @@
-import { HeadData } from "../interface/headData";
+import { HeadData } from "../type/HeadData";
 
 interface HeadCell {
     id: keyof HeadData;

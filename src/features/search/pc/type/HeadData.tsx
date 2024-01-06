@@ -1,7 +1,4 @@
-/**
- * ヘッダーのデータインターフェース
- */
-export interface HeadData {
+export type HeadData = {
     /**  エンチャントID */
     enchant_id: string;
     /** エンチャント名 */

@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import { Card } from "@material-ui/core";
 import { InfeedAd } from "../../../../../adsense/infeedAd";
 import { card } from "./style/AdsStyle";

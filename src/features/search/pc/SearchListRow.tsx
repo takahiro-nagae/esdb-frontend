@@ -1,8 +1,6 @@
-/** サードパーティーライブラリ */
 /** @jsxImportSource @emotion/react */
 import { TableCell, TableRow } from "@material-ui/core";
 
-/** ローカルライブラリ */
 import { RankModal } from "../common/component/Rank/Modal/RankModal";
 import { positionColor, positionName } from "../common/function/positionFunction";
 import { createEnchantName, createEnchantNameEn, subTitleStyle } from '../common/function/enchantNameFunction';
@@ -11,7 +9,7 @@ import { RouteList } from "../common/component/RouteList/RouteList";
 import { InvalidText } from "../common/component/ImvalidText/InvalidText";
 import { ImpText } from "../common/component/ImpText/ImpText";
 import { EnchantData } from "../common/interface/enchantData";
-import { tableContent } from "./style/searchListRowStyle";
+import { tableContent } from "./style/SearchListRowStyle";
 import { DetailModal } from "../common/component/Detail/Modal/DetailModal";
 
 /**
@@ -26,9 +24,7 @@ export const SearchListRow = (props: { enchant: EnchantData }) => {
     return (
         <TableRow css={tableContent}>
             <TableCell>
-                <span
-                    data-testid='enchantName'
-                >
+                <span data-testid='enchantName'>
                     {createEnchantName(props.enchant.enchant_name, props.enchant.enchant_name_2)}
                 </span>
                 <InvalidText invalidTargetFlg={props.enchant.invalid_target_flg}/>
