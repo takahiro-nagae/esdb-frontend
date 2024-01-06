@@ -7,18 +7,18 @@ import Box from '@mui/material/Box';
 import { BrowserView, MobileView } from "react-device-detect";
 import { SearchFilter } from './common/component/SearchFilter/SearchFilter';
 import { EnchantData } from './common/interface/enchantData';
-import { SearchListContainer } from './pc/searchListContainer';
 import { SpSearchContainer } from './sp/SpSearchContainer';
 import { Loading } from './common/component/Loading/Loading';
 import { getSearchEnchantData } from '../../api/backendApi';
 import { SearchParamsBuilder } from './searchRequestParamsBuilder';
 import { verticalCenter } from './searchListStyle';
 import { SearchResultHead } from './component/SearchResult/SearechResultHead';
-import { OrderContext } from './context/OrderContext';
-import { Order } from './pc/type/order';
-import { HeadData } from './pc/interface/headData';
+import { OrderContext } from './context/pc/OrderContext';
+import { Order } from './pc/type/Order';
+import { HeadData } from './pc/type/HeadData';
 import { PageContext } from './context/PageContext';
 import { EnchantContext } from './context/EnchantContext';
+import { SearchListContainer } from './pc/SearchListContainer';
 
 /**
  * 検索結果一覧のコンテナコンポーネント

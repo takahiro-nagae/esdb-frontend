@@ -1,42 +1,44 @@
-import React from 'react';
 /** @jsxImportSource @emotion/react */
+import React from 'react';
 import { TablePagination } from '@mui/material';
-import { pagination } from "./style/paginationStyle";
+import { pagination } from "./style/PaginationStyle";
 import { usePageContext } from '../context/usePageContext';
-import { useEnchantContext } from '../context/useEnchantContext';
-import { useRowsPerPageContext } from './context/useRowsPerPageContext';
 
 /**
  * 検索結果のページネーションコンポーネント
  * @returns { JSX.Element }
  */
-export const Pagination = () => {
-
+export const Pagination = (props:
+    {
+        rowsPerPage: number,
+        setRowsPerPage: (rowsPerPage: number) => void,
+        maxCount: number
+    }
+) => {
     const pageContext = usePageContext();
-    const enchantContext = useEnchantContext();
-    const rowsPerPageContext = useRowsPerPageContext();
 
     /** ページ変更 */
-    const handleChangePage = (event: unknown, newPage: number) => {
+    const handleChangePage = (newPage: number) => {
         pageContext.setPage(newPage);
     };
 
     /** ページに表示する件数の変更 */
     const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-        rowsPerPageContext.setRowsPerPage(+event.target.value);
+        props.setRowsPerPage(+event.target.value);
         pageContext.setPage(0);
     };
 
     return (
         <TablePagination
             component="div"
-            count={enchantContext.count}
+            count={props.maxCount}
             css={pagination}
-            onPageChange={handleChangePage}
+            onPageChange={(e, page) => handleChangePage(page)}
             onRowsPerPageChange={handleChangeRowsPerPage}
             page={pageContext.page}
-            rowsPerPage={rowsPerPageContext.rowsPerPage}
+            rowsPerPage={props.rowsPerPage}
             rowsPerPageOptions={[ 30, 60, 100 ]}
+            data-testid="pagination"
         />
     );
 
