@@ -7,7 +7,7 @@ import { Home } from './features/home/home';
 import { Footer } from './common/footer';
 import { About } from './features/static/about';
 import { AppHistory } from './features/static/appHistory';
-import { SearchList } from './features/search/searchList';
+import { SearchList } from './features/search/SearchList';
 import { PrivacyPolicy } from './features/static/privacyPolicy';
 import { RankIndex } from './features/search/common/component/Rank/Index/RankIndex';
 import { DetailIndex } from './features/search/common/component/Detail/Index/DetailIndex';
