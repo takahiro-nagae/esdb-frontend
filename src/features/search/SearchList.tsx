@@ -16,7 +16,7 @@ import { HeadData } from './pc/type/HeadData';
 import { PageContext } from './context/PageContext';
 import { EnchantContext } from './context/EnchantContext';
 import { SearchListContainer } from './pc/SearchListContainer';
-import { getSearchEnchantData } from './api/GetSearchEnchantData';
+import { getSearchEnchantData } from './api/getSearchEnchantData';
 
 /**
  * 検索結果一覧のコンテナコンポーネント
