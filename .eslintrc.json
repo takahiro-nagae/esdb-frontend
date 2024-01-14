@@ -8,7 +8,8 @@
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
         "plugin:react/recommended",
-        "prettier"
+        "prettier",
+        "plugin:storybook/recommended"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -20,8 +21,18 @@
         "react"
     ],
     "rules": {
-        "semi": ["error", "always"],
-        "react/no-unknown-property": ["error", { "ignore": ["css"] }],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "react/no-unknown-property": [
+            "error",
+            {
+                "ignore": [
+                    "css"
+                ]
+            }
+        ],
         "react/react-in-jsx-scope": "off"
     }
 }
