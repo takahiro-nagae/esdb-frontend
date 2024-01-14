@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
+import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
 import Box from '@mui/material/Box';
@@ -9,9 +8,7 @@ import { SearchFilter } from './common/component/SearchFilter/SearchFilter';
 import { EnchantData } from './common/interface/enchantData';
 import { SpSearchContainer } from './sp/SpSearchContainer';
 import { Loading } from './common/component/Loading/Loading';
-import { getSearchEnchantData } from '../../api/backendApi';
-import { SearchParamsBuilder } from './searchRequestParamsBuilder';
-import { verticalCenter } from './searchListStyle';
+import { maxSearchSize, mobileSticky, verticalCenter } from './style/SearchListStyle';
 import { SearchResultHead } from './component/SearchResult/SearechResultHead';
 import { OrderContext } from './context/pc/OrderContext';
 import { Order } from './pc/type/Order';
@@ -19,6 +16,7 @@ import { HeadData } from './pc/type/HeadData';
 import { PageContext } from './context/PageContext';
 import { EnchantContext } from './context/EnchantContext';
 import { SearchListContainer } from './pc/SearchListContainer';
+import { getSearchEnchantData } from './api/GetSearchEnchantData';
 
 /**
  * 検索結果一覧のコンテナコンポーネント
@@ -36,27 +34,11 @@ export const SearchList = (props: { isFreeSearch: boolean }) => {
     const [page, setPage] = useState(0);
     const [effectName, setEffectName] = useState('');
 
-    let path = '';
-    let requestParams = '';
-
     const [inputParams] = useSearchParams();
-    const requestParamsBuilder = new SearchParamsBuilder(inputParams);
-    path = props.isFreeSearch ? '/search' : '/detail';
-    requestParams = props.isFreeSearch ? requestParamsBuilder.buildFreeSearchParams() : requestParamsBuilder.buildDefaultSearchParams();
-
-    /** フリー検索の外枠 */
-    const mobileSticky = css({
-        position: 'sticky',
-        top: '56px',
-        zIndex: '3',
-    });
-
-    const maxSearchSize = css({
-        maxWidth: '1400px',
-    });
+    const path = props.isFreeSearch ? '/search' : '/detail';
 
     useEffect(() => {
-        const res = async () => getSearchEnchantData(path, requestParams);
+        const res = async () => getSearchEnchantData(path, inputParams);
 
         res().then(res => {
             const enchantList = res.enchantList;
@@ -75,7 +57,7 @@ export const SearchList = (props: { isFreeSearch: boolean }) => {
 
             setIsLoading(true);
         });
-    }, [requestParams]);
+    }, [inputParams]);
 
     return (
         <>
