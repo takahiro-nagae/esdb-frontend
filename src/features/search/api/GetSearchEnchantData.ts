@@ -6,7 +6,7 @@ type SearchInfo = {
     effectName: string;
 }
 
-export async function getSearchEnchantData(path: string, requestParams: URLSearchParams) {
+export const getSearchEnchantData = async(path: string, requestParams: URLSearchParams) => {
     const response: SearchInfo = {
         enchantList: [],
         effectName: '',
