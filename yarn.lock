@@ -5199,11 +5199,11 @@ __metadata:
   linkType: hard
 
 "@types/react-test-renderer@npm:^18.0.0":
-  version: 18.0.6
-  resolution: "@types/react-test-renderer@npm:18.0.6"
+  version: 18.3.0
+  resolution: "@types/react-test-renderer@npm:18.3.0"
   dependencies:
     "@types/react": "npm:*"
-  checksum: f490d4379e8d095f8fa91700ceb37d0fe5a96d7cc0c51e9d7127fc3d2dc4e37a382dd6215b295b300037985cb8938cb5088130102ad14b79e4622e7e520c5a3b
+  checksum: 3c9748be52e8e659e7adf91dea6939486463264e6f633bf21c4cb116de18af7bef0595568a1e588160420b2f65289473075dda1cb417c2875df8cf7a09f5d913
   languageName: node
   linkType: hard
 
