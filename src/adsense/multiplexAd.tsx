@@ -7,7 +7,7 @@ import { useEffect } from "react";
  */
 export const MultiplexAd = () => {
 
-    if(import.meta.env.VITE_APP_ENV !== 'prod') {
+    if(process.env.VITE_APP_ENV !== 'prod') {
         return <></>;
     }
 

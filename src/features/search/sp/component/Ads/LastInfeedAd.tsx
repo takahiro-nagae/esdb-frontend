@@ -7,7 +7,7 @@ import { displayLastAd } from "./function/displayAd";
 export const LastInfeedAd = (props: {index: number, dataLength: number}) => {
     if(displayLastAd(props.index, props.dataLength)) {
         // カードが描画されるためproduction以外はreturn null
-        if(import.meta.env.VITE_APP_ENV !== 'prod') {
+        if(process.env.VITE_APP_ENV !== 'prod') {
             return null;
         }
 
