@@ -6,7 +6,7 @@ import { useEffect } from "react";
  */
 export const DisplayWideAd = () => {
 
-    if(process.env.NODE_ENV !== 'production') {
+    if(process.env.VITE_APP_ENV !== 'prod') {
         return <></>;
     }
 

@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ThemeProvider } from '@material-ui/core';
 import { BrowserView, MobileView } from "react-device-detect";
 import './index.css';
-import reportWebVitals from './reportWebVitals';
 import { Home } from './features/home/home';
 import { Footer } from './common/footer';
 import { About } from './features/static/about';
@@ -70,5 +69,3 @@ root.render(
         </Router>
     </ThemeProvider>,
 );
-
-reportWebVitals();
