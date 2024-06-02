@@ -4,7 +4,7 @@ axios.defaults.baseURL = 'http://localhost:3000';
 axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
 
 const settingEndpoint = () => {
-    switch (import.meta.env.VITE_APP_ENV) {
+    switch (process.env.VITE_APP_ENV) {
         case 'dev':
             axios.defaults.baseURL = 'http://localhost:5001';
             break;
