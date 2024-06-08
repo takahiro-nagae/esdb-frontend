@@ -26,8 +26,8 @@
   "scripts": {
     "cleanup": "npx rimraf ./dist",
     "dev": "vite --mode dev",
-    "build:local": "npm run cleanup && vite build --mode dev",
-    "build:dev": "npm run cleanup && vite build --mode stg",
+    "build:dev": "npm run cleanup && vite build --mode dev",
+    "build:stg": "npm run cleanup && vite build --mode stg",
     "build": "vite build --mode prod",
     "test": "node --experimental-vm-modules node_modules/.bin/jest --config ./jest.config.js",
     "format": "prettier --write ./src/**/*.{ts,tsx}",
