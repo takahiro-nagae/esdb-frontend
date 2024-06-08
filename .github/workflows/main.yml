@@ -30,8 +30,8 @@ jobs:
         run: node --experimental-vm-modules node_modules/.bin/jest --forceExit --config ./jest.config.js --coverage
 
       - name: build:dev
-        if: github.ref != 'refs/heads/main'
-        run: npm run build:dev
+        if: github.ref != 'refs/heads/develop'
+        run: npm run build:stg
 
       - name: build:prod
         if: github.ref == 'refs/heads/main'
