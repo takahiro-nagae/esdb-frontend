@@ -2,8 +2,8 @@
 import { TableCell, TableRow } from "@material-ui/core";
 
 import { RankModal } from "../common/component/Rank/Modal/RankModal";
-import { positionColor, positionName } from "../common/function/positionFunction";
-import { createEnchantName, createEnchantNameEn, subTitleStyle } from '../common/function/enchantNameFunction';
+import { positionColor, positionName } from "../common/functions/positionFunction";
+import { createEnchantName, createEnchantNameEn, subTitleStyle } from '../common/functions/enchantNameFunction';
 import { EffectList } from "../common/component/EffectList/EffectList";
 import { RouteList } from "../common/component/RouteList/RouteList";
 import { InvalidText } from "../common/component/ImvalidText/InvalidText";

@@ -1,7 +1,7 @@
 import * as stories from "../stories/SearchListRow.stories";
 import userEvent from "@testing-library/user-event";
 import { Rank } from "../../common/component/Rank/Rank";
-import { positionName } from "../../common/function/positionFunction";
+import { positionName } from "../../common/functions/positionFunction";
 import { EnchantData } from "../../common/interface/enchantData";
 import { render, waitFor, screen } from "@testing-library/react";
 import { Dummy1, Dummy1NotDispVal } from "../data/SearchListMockData";
