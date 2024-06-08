@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { Table, TableBody, TableCell, TableRow } from '@mui/material';
-import effectColorFunction from '../../function/effectColorFunction';
-import { createEnchantName, createEnchantNameEn, subTitleStyle } from '../../function/enchantNameFunction';
-import { positionColor, positionName } from '../../function/positionFunction';
+import effectColorFunction from '../../functions/effectColorFunction';
+import { createEnchantName, createEnchantNameEn, subTitleStyle } from '../../functions/enchantNameFunction';
+import { positionColor, positionName } from '../../functions/positionFunction';
 import { RankModal } from '../Rank/Modal/RankModal';
 import { DisplayWideAd } from '../../../../../adsense/displayWideAd';
 import { EnchantData } from '../../interface/enchantData';

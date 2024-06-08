@@ -2,7 +2,7 @@ import { composeStories } from "@storybook/react";
 import * as stories from "../stories/SearchListBody.stories";
 import { render, screen, waitFor } from "@testing-library/react";
 import { Dummy1, Dummy1NotDispVal, Dummy2, Dummy2NotDispVal } from "../data/SearchListMockData";
-import { positionName } from "../../common/function/positionFunction";
+import { positionName } from "../../common/functions/positionFunction";
 import { EnchantData } from "../../common/interface/enchantData";
 import { Rank } from "../../common/component/Rank/Rank";
 import userEvent from "@testing-library/user-event";
