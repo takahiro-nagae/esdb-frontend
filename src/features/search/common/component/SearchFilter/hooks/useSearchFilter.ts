@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { usePageContext } from '../../../../context/usePageContext';
 import { useEnchantContext } from '../../../../context/useEnchantContext';
-import { positionName } from '../../../function/positionFunction';
+import { positionName } from '../../../functions/positionFunction';
 
 export const useSearchFilter = (searchWord: string) => {
     const pageContext = usePageContext();

@@ -2,7 +2,7 @@ import { composeStories } from "@storybook/react";
 import * as stories from "../stories/Detail.stories";
 import { render, screen, waitFor } from "@testing-library/react";
 import { BeginnerData } from "../mock/DetailMockData";
-import { createEnchantName, createEnchantNameEn } from "../../../function/enchantNameFunction";
+import { createEnchantName, createEnchantNameEn } from "../../../functions/enchantNameFunction";
 import userEvent from "@testing-library/user-event";
 import { Rank } from "../../Rank/Rank";
 

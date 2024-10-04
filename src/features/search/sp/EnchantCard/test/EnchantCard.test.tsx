@@ -2,9 +2,9 @@ import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { composeStories } from "@storybook/react";
 import * as stories from '../stories/EnchantCard.stories';
-import { createEnchantName, createEnchantNameEn } from "../../../common/function/enchantNameFunction";
+import { createEnchantName, createEnchantNameEn } from "../../../common/functions/enchantNameFunction";
 import { BeginnerData, ScarecrowDataAll } from "../../data/EnchantCardMockData";
-import { positionName } from "../../../common/function/positionFunction";
+import { positionName } from "../../../common/functions/positionFunction";
 import { DetailTable } from "../component/DetailTable/DetailTable";
 
 jest.mock('../component/DetailTable/DetailTable');
