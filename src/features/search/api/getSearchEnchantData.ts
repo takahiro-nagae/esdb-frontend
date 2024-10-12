@@ -1,4 +1,4 @@
-import { getApi } from "../../../api/ApiBase";
+import { internalApiClient } from "@/repositories/_client";
 import { EnchantData } from "../common/interface/enchantData";
 
 type SearchInfo = {
@@ -11,7 +11,7 @@ export const getSearchEnchantData = async(path: string, requestParams: URLSearch
         enchantList: [],
         effectName: '',
     };
-    await getApi(path + '?' + requestParams)
+    await internalApiClient(path + '?' + requestParams)
         .then(res => {
             if (res.data) {
                 response.enchantList = res.data.enchant_list;
