@@ -14,34 +14,15 @@ import { EnchantName } from './component/EnchantName/EnchantName';
  * @returns SearchForm { JSX.Element }
  */
 export const SearchForm = () => {
-  const {
-    rankRange,
-    setRankRange,
-    position,
-    setPosition,
-    handleSubmit,
-    register,
-    effectList,
-    targetList,
-    rankList,
-  } = useSearchForm();
+  const { form, position, effect, register, target, rank } = useSearchForm();
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={form.handleSubmit}>
       <EnchantName register={register} />
-      <Effect effectList={effectList} register={register} />
-      <Position
-        register={register}
-        setPosition={setPosition}
-        position={position}
-      />
-      <Rank
-        rankList={rankList}
-        rankRange={rankRange}
-        register={register}
-        setRankRange={setRankRange}
-      />
-      <Target register={register} targetList={targetList} />
+      <Effect {...effect} register={register} />
+      <Position register={register} {...position} />
+      <Rank {...rank} register={register} />
+      <Target register={register} {...target} />
       <Grid container alignItems='center'>
         <Grid item xs={12}>
           <Button

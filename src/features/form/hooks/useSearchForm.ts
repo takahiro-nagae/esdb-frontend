@@ -57,14 +57,24 @@ export const useSearchForm = () => {
   };
 
   return {
+    form: {
+      handleSubmit: handleSubmit(handleOnSubmit, handleOnError),
+    },
+    rank: {
+      rankList,
+      rankRange,
+      setRankRange,
+    },
+    effect: {
+      effectList,
+    },
+    position: {
+      position,
+      setPosition,
+    },
+    target: {
+      targetList,
+    },
     register,
-    handleSubmit: handleSubmit(handleOnSubmit, handleOnError),
-    effectList,
-    position,
-    setPosition,
-    rankList,
-    rankRange,
-    setRankRange,
-    targetList,
   };
 };
