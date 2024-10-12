@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`snapshot test 1`] = `
 <div
@@ -26,7 +26,7 @@ exports[`snapshot test 1`] = `
               onSubmit={[Function]}
             >
               <div
-                className="MuiFormControl-root MuiTextField-root css-1wavz5f-EnchantName MuiFormControl-fullWidth"
+                className="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
               >
                 <label
                   className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-marginDense MuiInputLabel-outlined"
@@ -300,14 +300,14 @@ exports[`snapshot test 1`] = `
                 </small>
               </label>
               <div
-                className="MuiToggleButtonGroup-root MuiToggleButtonGroup-fullWidth css-w6qmpt-MuiToggleButtonGroup-root-Position"
+                className="MuiToggleButtonGroup-root MuiToggleButtonGroup-fullWidth css-1n5r594-Position css-mgs850-MuiToggleButtonGroup-root"
                 id="position"
                 role="group"
               >
                 <button
                   aria-label="0"
                   aria-pressed={true}
-                  className="MuiButtonBase-root MuiToggleButton-root Mui-selected MuiToggleButton-fullWidth MuiToggleButton-sizeSmall MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal css-u52p9z-MuiButtonBase-root-MuiToggleButton-root-Position"
+                  className="MuiButtonBase-root MuiToggleButton-root Mui-selected MuiToggleButton-fullWidth MuiToggleButton-sizeSmall MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal css-19hqzce-Position css-1xgjc5y-MuiButtonBase-root-MuiToggleButton-root"
                   disabled={false}
                   onBlur={[Function]}
                   onChange={[Function]}
@@ -334,7 +334,7 @@ exports[`snapshot test 1`] = `
                 <button
                   aria-label="1"
                   aria-pressed={false}
-                  className="MuiButtonBase-root MuiToggleButton-root MuiToggleButton-fullWidth MuiToggleButton-sizeSmall MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal css-u52p9z-MuiButtonBase-root-MuiToggleButton-root-Position"
+                  className="MuiButtonBase-root MuiToggleButton-root MuiToggleButton-fullWidth MuiToggleButton-sizeSmall MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal css-19hqzce-Position css-1xgjc5y-MuiButtonBase-root-MuiToggleButton-root"
                   disabled={false}
                   onBlur={[Function]}
                   onChange={[Function]}
@@ -361,7 +361,7 @@ exports[`snapshot test 1`] = `
                 <button
                   aria-label="2"
                   aria-pressed={false}
-                  className="MuiButtonBase-root MuiToggleButton-root MuiToggleButton-fullWidth MuiToggleButton-sizeSmall MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal css-u52p9z-MuiButtonBase-root-MuiToggleButton-root-Position"
+                  className="MuiButtonBase-root MuiToggleButton-root MuiToggleButton-fullWidth MuiToggleButton-sizeSmall MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal css-19hqzce-Position css-1xgjc5y-MuiButtonBase-root-MuiToggleButton-root"
                   disabled={false}
                   onBlur={[Function]}
                   onChange={[Function]}
@@ -483,13 +483,13 @@ exports[`snapshot test 1`] = `
                   className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-7"
                 >
                   <div
-                    className="MuiToggleButtonGroup-root MuiToggleButtonGroup-fullWidth css-1dyvoru-MuiToggleButtonGroup-root-Rank"
+                    className="MuiToggleButtonGroup-root MuiToggleButtonGroup-fullWidth css-avb8cg-Rank css-mgs850-MuiToggleButtonGroup-root"
                     role="group"
                   >
                     <button
                       aria-label="1"
                       aria-pressed={true}
-                      className="MuiButtonBase-root MuiToggleButton-root Mui-selected MuiToggleButton-fullWidth MuiToggleButton-sizeSmall MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal css-d260ev-MuiButtonBase-root-MuiToggleButton-root-Rank"
+                      className="MuiButtonBase-root MuiToggleButton-root Mui-selected MuiToggleButton-fullWidth MuiToggleButton-sizeSmall MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal css-1srwd3q-Rank css-1xgjc5y-MuiButtonBase-root-MuiToggleButton-root"
                       disabled={false}
                       onBlur={[Function]}
                       onChange={[Function]}
@@ -516,7 +516,7 @@ exports[`snapshot test 1`] = `
                     <button
                       aria-label="2"
                       aria-pressed={false}
-                      className="MuiButtonBase-root MuiToggleButton-root MuiToggleButton-fullWidth MuiToggleButton-sizeSmall MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal css-d260ev-MuiButtonBase-root-MuiToggleButton-root-Rank"
+                      className="MuiButtonBase-root MuiToggleButton-root MuiToggleButton-fullWidth MuiToggleButton-sizeSmall MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal css-1srwd3q-Rank css-1xgjc5y-MuiButtonBase-root-MuiToggleButton-root"
                       disabled={false}
                       onBlur={[Function]}
                       onChange={[Function]}
@@ -543,7 +543,7 @@ exports[`snapshot test 1`] = `
                     <button
                       aria-label="3"
                       aria-pressed={false}
-                      className="MuiButtonBase-root MuiToggleButton-root MuiToggleButton-fullWidth MuiToggleButton-sizeSmall MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal css-d260ev-MuiButtonBase-root-MuiToggleButton-root-Rank"
+                      className="MuiButtonBase-root MuiToggleButton-root MuiToggleButton-fullWidth MuiToggleButton-sizeSmall MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal css-1srwd3q-Rank css-1xgjc5y-MuiButtonBase-root-MuiToggleButton-root"
                       disabled={false}
                       onBlur={[Function]}
                       onChange={[Function]}
@@ -654,7 +654,7 @@ exports[`snapshot test 1`] = `
                   className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
                 >
                   <button
-                    className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-xeim5k-MuiButtonBase-root-MuiButton-root-SearchForm"
+                    className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-5isai1-SearchForm css-sghohy-MuiButtonBase-root-MuiButton-root"
                     disabled={false}
                     onBlur={[Function]}
                     onContextMenu={[Function]}

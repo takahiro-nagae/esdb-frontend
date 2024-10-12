@@ -1,12 +1,8 @@
 {
   "compilerOptions": {
-    "types": ["@emotion/react/types/css-prop", "node"],
+    "types": ["@emotion/react/types/css-prop", "node", "vite/client"],
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -20,12 +16,10 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "jsxImportSource": "@emotion/react",
-    "baseUrl": "./",
+    "baseUrl": "./src",
     "paths": {
-      "@/*": [ "src/*" ]
+      "@/*": ["*"]
     }
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src"]
 }

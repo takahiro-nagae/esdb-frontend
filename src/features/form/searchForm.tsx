@@ -2,14 +2,13 @@
 import { Grid } from '@material-ui/core';
 import Button from '@mui/material/Button';
 import SearchIcon from '@mui/icons-material/Search';
-import { EnchantName } from './component/enchantName';
 import { Position } from './component/position';
 import { Effect } from './component/effect';
 import { Rank } from './component/rank';
 import { Target } from './component/target';
 import { searchBtn } from './style/searchFormStyle';
 import { useSearchForm } from './hooks/useSearchForm';
-
+import { EnchantName } from './component/EnchantName/EnchantName';
 /**
  * 検索フォームの詳細コンポーネント
  * @returns SearchForm { JSX.Element }
