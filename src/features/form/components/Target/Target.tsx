@@ -1,15 +1,18 @@
 import { MenuItem, TextField } from '@material-ui/core';
-import { UseFormRegister } from 'react-hook-form';
 import { FormTargetType } from '@/repositories/form/_types';
-import { FormType } from '../../common/type/FormType';
 import styles from '../../common/style/common.module.css';
 
 type TargetProps = {
   targetList: Array<FormTargetType>;
-  register: UseFormRegister<FormType>;
+  selectedTarget: string;
+  setSelectedTarget: (value: string) => void;
 };
 
-export const Target: React.FC<TargetProps> = ({ targetList, register }) => {
+export const Target: React.FC<TargetProps> = ({
+  targetList,
+  selectedTarget,
+  setSelectedTarget,
+}) => {
   return (
     <TextField
       className={styles.formContainer}
@@ -21,7 +24,8 @@ export const Target: React.FC<TargetProps> = ({ targetList, register }) => {
       select
       size='small'
       variant='outlined'
-      {...(register ? register('target') : {})}
+      value={selectedTarget}
+      onChange={e => setSelectedTarget(e.target.value)}
     >
       <MenuItem value=''>指定なし</MenuItem>
       {targetList.map(target => (

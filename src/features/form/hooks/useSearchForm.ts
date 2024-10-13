@@ -24,9 +24,10 @@ export const useSearchForm = () => {
   const [rankRange, setRankRange] = useState('1');
 
   const [targetList, setTargetList] = useState<Array<FormTargetType>>([]);
+  const [selectedTarget, setSelectedTarget] = useState('');
 
   const navigate = useNavigate();
-  const { register, handleSubmit } = useForm<FormType>({});
+  const { handleSubmit } = useForm<FormType>({});
 
   useEffect(() => {
     const res = async () => await fetchInitData();
@@ -47,7 +48,7 @@ export const useSearchForm = () => {
     params.append('position', position);
     params.append('rank', selectedRank);
     params.append('rankRange', rankRange);
-    params.append('target', values.target);
+    params.append('target', selectedTarget);
 
     navigate({
       pathname: '/detail',
@@ -100,7 +101,8 @@ export const useSearchForm = () => {
     },
     target: {
       targetList,
+      selectedTarget,
+      setSelectedTarget,
     },
-    register,
   };
 };
