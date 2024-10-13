@@ -37,6 +37,6 @@ describe('EffectDropDown Component', () => {
     const options = within(listbox).getAllByRole('option');
     expect(options).toHaveLength(1);
     const [option1] = options;
-    expect(option1).toHaveTextContent('指定無し');
+    expect(option1).toHaveTextContent('指定なし');
   });
 });
