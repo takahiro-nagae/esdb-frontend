@@ -1,6 +1,7 @@
 import { ToggleButton, ToggleButtonGroup } from '@mui/material';
 import React from 'react';
 import styles from './../../common/style/common.module.css';
+import { POSITION_ITEMS } from './const';
 
 type PositionProps = {
   position: string;
@@ -11,12 +12,6 @@ export const Position: React.FC<PositionProps> = ({
   position,
   setPosition,
 }) => {
-  const positionItems = [
-    { value: '0', label: '指定なし' },
-    { value: '1', label: '接頭' },
-    { value: '2', label: '接尾' },
-  ];
-
   return (
     <>
       <label className={styles.label}>
@@ -30,7 +25,7 @@ export const Position: React.FC<PositionProps> = ({
         onChange={(_, newAlignment) => setPosition(newAlignment)}
         size='small'
       >
-        {positionItems.map(positionItem => (
+        {POSITION_ITEMS.map(positionItem => (
           <ToggleButton
             aria-label={positionItem.label}
             className={
