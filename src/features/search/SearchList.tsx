@@ -45,7 +45,6 @@ export const SearchList = (props: { isFreeSearch: boolean }) => {
     const res = async () => getSearchEnchantData(path, inputParams);
 
     res().then(res => {
-      console.log(res);
       const enchantList = res.enchantList;
       setEnchantList(enchantList);
       setRowData(enchantList);
