@@ -1,16 +1,16 @@
 import { Grid, Paper } from '@material-ui/core';
 import Box from '@mui/material/Box';
-import { SearchForm } from './searchForm';
-import { maxWidthStyle } from '../../common/theme/layout';
+import { SearchForm } from './SearchForm';
+import styles from './SearchFormContainer.module.css';
 
-/**
- * 検索フォームコンテナコンポーネント
- * @returns SearchFormContainer { JSX.Element }
- */
-export const SearchFormContainer = () => {
+export const SearchFormContainer: React.FC = () => {
   return (
     <Box sx={{ mt: 3 }}>
-      <Grid container css={maxWidthStyle} justifyContent='center'>
+      <Grid
+        container
+        className={styles.searchFormContainer}
+        justifyContent='center'
+      >
         <Grid item xs={12}>
           <Paper>
             <Box sx={{ p: 2 }}>
