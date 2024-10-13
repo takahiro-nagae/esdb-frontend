@@ -6,10 +6,7 @@ type EnchantNameProps = {
   register: UseFormRegister<FormType>;
 };
 
-export const EnchantName: React.FC<EnchantNameProps> = (
-  props: EnchantNameProps,
-) => {
-  const { register } = props;
+export const EnchantName: React.FC<EnchantNameProps> = ({ register }) => {
   return (
     <TextField
       fullWidth

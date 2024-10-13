@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import * as stories from './EncantName.stories';
+import * as stories from './EnchantName.stories';
 import { composeStories } from '@storybook/react';
 import userEvent from '@testing-library/user-event';
 

@@ -2,11 +2,7 @@ import React from 'react';
 import { SearchFormContainer } from './searchFormContainer';
 import { BrowserRouter } from 'react-router-dom';
 import renderComponent from '../../tesetLib/render';
-import {
-  initialPressedAndAfterClickPressed,
-  selectValName,
-  testingInputValForGetByLabelText,
-} from '../../tesetLib/commonTesting';
+import { initialPressedAndAfterClickPressed } from '../../tesetLib/commonTesting';
 
 const rendering = () => {
   return renderComponent(
@@ -30,52 +26,6 @@ const BUTTON_INDEX = {
 } as const;
 
 describe('component test', () => {
-  describe('値', () => {
-    const labelName = '値';
-
-    test('入力は数値のみ可能であるか確認', () => {
-      rendering();
-      testingInputValForGetByLabelText(labelName, '1１@＃Qdあイｳ江🌍', '1');
-    });
-  });
-
-  describe('効果の範囲', () => {
-    const buttonTestID = 'range';
-    const inputTestId = 'rangeInput';
-
-    test('1番目の値を選択', () => {
-      rendering();
-
-      selectValName(BUTTON_INDEX.Range, inputTestId, buttonTestID, '', '​', 0);
-    });
-
-    test('2番目の値を選択', () => {
-      rendering();
-
-      selectValName(
-        BUTTON_INDEX.Range,
-        inputTestId,
-        buttonTestID,
-        '1',
-        '以上',
-        1,
-      );
-    });
-
-    test('3番目の値を選択', () => {
-      rendering();
-
-      selectValName(
-        BUTTON_INDEX.Range,
-        inputTestId,
-        buttonTestID,
-        '2',
-        '以下',
-        2,
-      );
-    });
-  });
-
   describe('位置', () => {
     test('1番目の値を選択', () => {
       rendering();
