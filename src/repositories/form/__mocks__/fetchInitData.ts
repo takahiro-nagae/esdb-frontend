@@ -14,10 +14,17 @@ export const RANK_MOCK = [
   },
 ];
 
+export const TARGET_MOCK = [
+  {
+    target_code: '001',
+    target_name: 'test',
+  },
+];
+
 export const fetchInitData: typeof originalFn = () => {
   return Promise.resolve({
     effect: EFFECT_MOCK,
     rank: RANK_MOCK,
-    target: [],
+    target: TARGET_MOCK,
   });
 };

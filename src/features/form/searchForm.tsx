@@ -3,7 +3,7 @@ import { Grid } from '@material-ui/core';
 import Button from '@mui/material/Button';
 import SearchIcon from '@mui/icons-material/Search';
 import { Rank } from './components/Rank/Rank';
-import { Target } from './components/target';
+import { Target } from './components/Target/Target';
 import { searchBtn } from './style/searchFormStyle';
 import { useSearchForm } from './hooks/useSearchForm';
 import { EnchantName } from './components/EnchantName/EnchantName';
