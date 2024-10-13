@@ -8,10 +8,16 @@ export const EFFECT_MOCK: FormEffectType[] = [
   },
 ];
 
+export const RANK_MOCK = [
+  {
+    rank: 'F',
+  },
+];
+
 export const fetchInitData: typeof originalFn = () => {
   return Promise.resolve({
     effect: EFFECT_MOCK,
-    rank: [],
+    rank: RANK_MOCK,
     target: [],
   });
 };
