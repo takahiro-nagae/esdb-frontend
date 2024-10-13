@@ -1,17 +1,17 @@
 import { FormRankType } from '@/repositories/form/_types';
-import { UseFormRegister } from 'react-hook-form';
-import { FormType } from '../../common/type/FormType';
 import styles from '../../common/style/common.module.css';
 import { MenuItem, TextField } from '@material-ui/core';
 
-type RankDropDownProps = {
+export type RankDropdownProps = {
   rankList: Array<FormRankType>;
-  register: UseFormRegister<FormType>;
+  selectedRank: string;
+  setSelectedRank: (E: string) => void;
 };
 
-export const RankDropDown: React.FC<RankDropDownProps> = ({
+export const RankDropdown: React.FC<RankDropdownProps> = ({
   rankList,
-  register,
+  selectedRank,
+  setSelectedRank,
 }) => {
   return (
     <TextField
@@ -22,7 +22,8 @@ export const RankDropDown: React.FC<RankDropDownProps> = ({
       select
       variant='outlined'
       size='small'
-      {...(register ? register('rank') : {})}
+      value={selectedRank}
+      onChange={e => setSelectedRank(e.target.value)}
     >
       <MenuItem value=''>指定なし</MenuItem>
       {rankList.map(rank => (

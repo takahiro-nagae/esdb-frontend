@@ -1,24 +1,16 @@
-import { UseFormRegister } from 'react-hook-form';
 import { Grid } from '@material-ui/core';
 import { FormRankType } from '@/repositories/form/_types';
-import { FormType } from '../../common/type/FormType';
-import { RankRange } from './RankRange';
+import { RankRange, RankRangeProps } from './RankRange';
 import styles from '../../common/style/common.module.css';
-import { RankDropDown } from './RankDropDown';
+import { RankDropdown, RankDropdownProps } from './RankDropdown';
 
 type RankProps = {
   rankList: Array<FormRankType>;
-  rankRange: string;
-  register: UseFormRegister<FormType>;
-  setRankRange: (E: string) => void;
+  dropdown: Omit<RankDropdownProps, 'rankList'>;
+  range: RankRangeProps;
 };
 
-export const Rank: React.FC<RankProps> = ({
-  rankList,
-  rankRange,
-  register,
-  setRankRange,
-}) => {
+export const Rank: React.FC<RankProps> = ({ rankList, dropdown, range }) => {
   return (
     <>
       <label className={styles.label}>
@@ -26,11 +18,11 @@ export const Rank: React.FC<RankProps> = ({
       </label>
       <Grid container className={styles.formContainer}>
         <Grid item xs={4}>
-          <RankDropDown rankList={rankList} register={register} />
+          <RankDropdown rankList={rankList} {...dropdown} />
         </Grid>
         <Grid item xs={1} />
         <Grid item xs={7}>
-          <RankRange rankRange={rankRange} setRankRange={setRankRange} />
+          <RankRange {...range} />
         </Grid>
       </Grid>
     </>

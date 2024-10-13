@@ -18,8 +18,11 @@ export const useSearchForm = () => {
   const [effectRange, setEffectRange] = useState('0');
 
   const [position, setPosition] = useState('0');
+
   const [rankList, setRankList] = useState<Array<FormRankType>>([]);
+  const [selectedRank, setSelectedRank] = useState('');
   const [rankRange, setRankRange] = useState('1');
+
   const [targetList, setTargetList] = useState<Array<FormTargetType>>([]);
 
   const navigate = useNavigate();
@@ -42,7 +45,7 @@ export const useSearchForm = () => {
     params.append('effectVal', inputEffectValue);
     params.append('range', effectRange);
     params.append('position', position);
-    params.append('rank', values.rank);
+    params.append('rank', selectedRank);
     params.append('rankRange', rankRange);
     params.append('target', values.target);
 
@@ -67,8 +70,14 @@ export const useSearchForm = () => {
     },
     rank: {
       rankList,
-      rankRange,
-      setRankRange,
+      dropdown: {
+        selectedRank,
+        setSelectedRank,
+      },
+      range: {
+        rankRange,
+        setRankRange,
+      },
     },
     effect: {
       effectList,

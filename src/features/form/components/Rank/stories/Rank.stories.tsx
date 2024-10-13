@@ -1,8 +1,7 @@
-import { Meta, Story } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { RANK_MOCK } from '@/repositories/form/__mocks__/fetchInitData';
 import { Rank } from '../Rank';
-import { FormType } from '@/features/form/common/type/FormType';
-import { useForm } from 'react-hook-form';
+
 import { useState } from 'react';
 
 export default {
@@ -15,15 +14,15 @@ export default {
   ],
 } as Meta<typeof Rank>;
 
-const Template: Story<typeof Rank> = () => {
+const Template: StoryFn<typeof Rank> = () => {
+  const [selectedRank, setSelectedRank] = useState('');
   const [rankRange, setRankRange] = useState('1');
-  const { register } = useForm<FormType>();
+
   return (
     <Rank
       rankList={RANK_MOCK}
-      rankRange={rankRange}
-      register={register}
-      setRankRange={setRankRange}
+      dropdown={{ selectedRank, setSelectedRank }}
+      range={{ rankRange, setRankRange }}
     />
   );
 };

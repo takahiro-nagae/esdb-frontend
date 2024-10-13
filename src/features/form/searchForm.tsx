@@ -16,7 +16,7 @@ export const SearchForm: React.FC = () => {
       <EnchantName {...enchantName} />
       <Effect {...effect} />
       <Position {...position} />
-      <Rank {...rank} register={register} />
+      <Rank {...rank} />
       <Target register={register} {...target} />
       <Grid container alignItems='center'>
         <Grid item xs={12}>
