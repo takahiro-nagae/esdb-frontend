@@ -20,14 +20,12 @@ export const useSearchForm = () => {
   const { register, handleSubmit } = useForm<FormType>({});
 
   useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetchInitData();
+    const res = async () => await fetchInitData();
+    res().then(res => {
       setEffectList(res.effect);
       setRankList(res.rank);
       setTargetList(res.target);
-    };
-
-    fetchData();
+    });
   }, []);
 
   /** フォームの送信処理ハンドラ */
