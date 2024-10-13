@@ -20,7 +20,7 @@ const Template: StoryFn<typeof Effect> = () => {
   return (
     <Effect
       effectList={EFFECT_MOCK}
-      dropDown={{ selectedEffect, setSelectedEffect }}
+      dropdown={{ selectedEffect, setSelectedEffect }}
       input={{
         inputEffectValue,
         setInputEffectValue,

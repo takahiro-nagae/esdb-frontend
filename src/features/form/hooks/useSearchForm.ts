@@ -81,7 +81,7 @@ export const useSearchForm = () => {
     },
     effect: {
       effectList,
-      dropDown: {
+      dropdown: {
         selectedEffect,
         setSelectedEffect,
       },

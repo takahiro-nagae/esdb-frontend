@@ -2,13 +2,13 @@ import { FormEffectType } from '@/repositories/form/_types';
 import { MenuItem, TextField } from '@material-ui/core';
 import styles from '../../common/style/common.module.css';
 
-export type EffectDropDownProps = {
+export type EffectDropdownProps = {
   effectList: Array<FormEffectType>;
   selectedEffect: string;
   setSelectedEffect: (E: string) => void;
 };
 
-export const EffectDropDown: React.FC<EffectDropDownProps> = ({
+export const EffectDropdown: React.FC<EffectDropdownProps> = ({
   effectList,
   selectedEffect,
   setSelectedEffect,

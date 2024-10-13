@@ -1,5 +1,5 @@
 import { composeStories } from '@storybook/react';
-import * as stories from '../stories/EffectDropDown.stories';
+import * as stories from '../stories/EffectDropdown.stories';
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
