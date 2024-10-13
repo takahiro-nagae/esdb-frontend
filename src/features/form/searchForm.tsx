@@ -8,11 +8,12 @@ import { Position } from './components/Position/Position';
 import { SearchButton } from './components/SearchButton/SearchButton';
 
 export const SearchForm: React.FC = () => {
-  const { form, position, effect, register, target, rank } = useSearchForm();
+  const { form, enchantName, position, effect, register, target, rank } =
+    useSearchForm();
 
   return (
     <form onSubmit={form.handleSubmit}>
-      <EnchantName register={register} />
+      <EnchantName {...enchantName} />
       <Effect {...effect} register={register} />
       <Position {...position} />
       <Rank {...rank} register={register} />

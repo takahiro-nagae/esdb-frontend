@@ -10,6 +10,7 @@ import {
 import { FormType } from '../common/type/FormType';
 
 export const useSearchForm = () => {
+  const [inputEnchantName, setInputEnchantName] = useState('');
   const [effectList, setEffectList] = useState<Array<FormEffectType>>([]);
   const [position, setPosition] = useState('0');
   const [rankList, setRankList] = useState<Array<FormRankType>>([]);
@@ -30,17 +31,14 @@ export const useSearchForm = () => {
 
   /** フォームの送信処理ハンドラ */
   const handleOnSubmit: SubmitHandler<FormType> = values => {
-    values.rankRange = rankRange;
-    values.position = position;
-
     const params = new URLSearchParams();
-    params.append('enchantName', values.enchantName);
+    params.append('enchantName', inputEnchantName);
     params.append('effect', values.effect);
     params.append('effectVal', values.effectVal);
     params.append('range', values.range);
-    params.append('position', values.position);
+    params.append('position', position);
     params.append('rank', values.rank);
-    params.append('rankRange', values.rankRange);
+    params.append('rankRange', rankRange);
     params.append('target', values.target);
 
     navigate({
@@ -57,6 +55,10 @@ export const useSearchForm = () => {
   return {
     form: {
       handleSubmit: handleSubmit(handleOnSubmit, handleOnError),
+    },
+    enchantName: {
+      inputEnchantName,
+      setInputEnchantName,
     },
     rank: {
       rankList,

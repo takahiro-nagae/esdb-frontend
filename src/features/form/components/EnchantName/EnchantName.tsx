@@ -1,12 +1,14 @@
 import { TextField } from '@material-ui/core';
-import { FormType } from '../../common/type/FormType';
-import { UseFormRegister } from 'react-hook-form';
 
 type EnchantNameProps = {
-  register: UseFormRegister<FormType>;
+  inputEnchantName: string;
+  setInputEnchantName: (E: string) => void;
 };
 
-export const EnchantName: React.FC<EnchantNameProps> = ({ register }) => {
+export const EnchantName: React.FC<EnchantNameProps> = ({
+  inputEnchantName,
+  setInputEnchantName,
+}) => {
   return (
     <TextField
       fullWidth
@@ -15,7 +17,8 @@ export const EnchantName: React.FC<EnchantNameProps> = ({ register }) => {
       label='エンチャント名'
       size='small'
       variant='outlined'
-      {...(register ? register('enchantName') : {})}
+      value={inputEnchantName}
+      onChange={e => setInputEnchantName(e.target.value)}
     />
   );
 };

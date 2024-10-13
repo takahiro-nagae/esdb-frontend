@@ -13,6 +13,7 @@ export default {
 
 export const Default: StoryObj<typeof EnchantName> = {
   args: {
-    register: undefined,
+    inputEnchantName: '',
+    setInputEnchantName: undefined,
   },
 };
