@@ -8,10 +8,11 @@ import { Position } from './components/Position/Position';
 import { SearchButton } from './components/SearchButton/SearchButton';
 
 export const SearchForm: React.FC = () => {
-  const { form, enchantName, position, effect, target, rank } = useSearchForm();
+  const { handleSubmit, enchantName, position, effect, target, rank } =
+    useSearchForm();
 
   return (
-    <form onSubmit={form.handleSubmit}>
+    <>
       <EnchantName {...enchantName} />
       <Effect {...effect} />
       <Position {...position} />
@@ -19,9 +20,9 @@ export const SearchForm: React.FC = () => {
       <Target {...target} />
       <Grid container alignItems='center'>
         <Grid item xs={12}>
-          <SearchButton />
+          <SearchButton handleSubmit={handleSubmit} />
         </Grid>
       </Grid>
-    </form>
+    </>
   );
 };

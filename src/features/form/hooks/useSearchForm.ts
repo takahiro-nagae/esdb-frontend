@@ -1,4 +1,3 @@
-import { SubmitHandler, useForm, SubmitErrorHandler } from 'react-hook-form';
 import { createSearchParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { fetchInitData } from '@/repositories/form/fetchInitData';
@@ -7,7 +6,6 @@ import {
   FormRankType,
   FormTargetType,
 } from '@/repositories/form/_types';
-import { FormType } from '../common/type/FormType';
 
 export const useSearchForm = () => {
   const [inputEnchantName, setInputEnchantName] = useState('');
@@ -27,7 +25,6 @@ export const useSearchForm = () => {
   const [selectedTarget, setSelectedTarget] = useState('');
 
   const navigate = useNavigate();
-  const { handleSubmit } = useForm<FormType>({});
 
   useEffect(() => {
     const res = async () => await fetchInitData();
@@ -38,8 +35,7 @@ export const useSearchForm = () => {
     });
   }, []);
 
-  /** フォームの送信処理ハンドラ */
-  const handleOnSubmit: SubmitHandler<FormType> = values => {
+  const handleSubmit = () => {
     const params = new URLSearchParams();
     params.append('enchantName', inputEnchantName);
     params.append('effect', selectedEffect);
@@ -56,15 +52,8 @@ export const useSearchForm = () => {
     });
   };
 
-  /** フォームのエラーハンドラ */
-  const handleOnError: SubmitErrorHandler<FormType> = errors => {
-    console.log(errors);
-  };
-
   return {
-    form: {
-      handleSubmit: handleSubmit(handleOnSubmit, handleOnError),
-    },
+    handleSubmit,
     enchantName: {
       inputEnchantName,
       setInputEnchantName,
