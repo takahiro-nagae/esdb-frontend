@@ -2,13 +2,13 @@
 import { Grid } from '@material-ui/core';
 import Button from '@mui/material/Button';
 import SearchIcon from '@mui/icons-material/Search';
-import { Position } from './components/position';
 import { Rank } from './components/rank';
 import { Target } from './components/target';
 import { searchBtn } from './style/searchFormStyle';
 import { useSearchForm } from './hooks/useSearchForm';
 import { EnchantName } from './components/EnchantName/EnchantName';
 import { Effect } from './components/Effect/Effect';
+import { Position } from './components/Position/Position';
 
 /**
  * 検索フォームの詳細コンポーネント
@@ -21,7 +21,7 @@ export const SearchForm = () => {
     <form onSubmit={form.handleSubmit}>
       <EnchantName register={register} />
       <Effect {...effect} register={register} />
-      <Position register={register} {...position} />
+      <Position {...position} />
       <Rank {...rank} register={register} />
       <Target register={register} {...target} />
       <Grid container alignItems='center'>
