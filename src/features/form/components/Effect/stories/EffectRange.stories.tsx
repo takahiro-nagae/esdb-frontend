@@ -13,6 +13,7 @@ export default {
 
 export const Default: StoryObj<typeof EffectRange> = {
   args: {
-    register: undefined,
+    effectRange: '',
+    setEffectRange: () => {},
   },
 };

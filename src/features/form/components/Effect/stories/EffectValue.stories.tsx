@@ -13,6 +13,7 @@ export default {
 
 export const Default: StoryObj<typeof EffectValue> = {
   args: {
-    register: undefined,
+    inputEffectValue: '',
+    setInputEffectValue: () => {},
   },
 };

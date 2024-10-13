@@ -15,6 +15,17 @@ export default {
 export const Default: StoryObj<typeof Effect> = {
   args: {
     effectList: EFFECT_MOCK,
-    register: undefined,
+    dropDown: {
+      selectedEffect: '',
+      setSelectedEffect: () => {},
+    },
+    input: {
+      inputEffectValue: '',
+      setInputEffectValue: () => {},
+    },
+    range: {
+      effectRange: '',
+      setEffectRange: () => {},
+    },
   },
 };

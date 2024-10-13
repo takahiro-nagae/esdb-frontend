@@ -1,13 +1,15 @@
-import { UseFormRegister } from 'react-hook-form';
-import { FormType } from '../../common/type/FormType';
 import { MenuItem, TextField } from '@material-ui/core';
 import { EFFECT_RANGE_ITEMS } from './const';
 
-type EffectRangeProps = {
-  register: UseFormRegister<FormType>;
+export type EffectRangeProps = {
+  effectRange: string;
+  setEffectRange: (E: string) => void;
 };
 
-export const EffectRange: React.FC<EffectRangeProps> = ({ register }) => {
+export const EffectRange: React.FC<EffectRangeProps> = ({
+  effectRange,
+  setEffectRange,
+}) => {
   return (
     <TextField
       data-testid='range'
@@ -21,7 +23,8 @@ export const EffectRange: React.FC<EffectRangeProps> = ({ register }) => {
       inputProps={{
         'data-testid': 'rangeInput',
       }}
-      {...(register ? register('range') : {})}
+      value={effectRange}
+      onChange={e => setEffectRange(e.target.value)}
     >
       {EFFECT_RANGE_ITEMS.map(item => (
         <MenuItem key={item.value} value={item.value}>

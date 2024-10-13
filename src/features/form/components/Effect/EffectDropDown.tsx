@@ -1,17 +1,17 @@
 import { FormEffectType } from '@/repositories/form/_types';
-import { UseFormRegister } from 'react-hook-form';
-import { FormType } from '../../common/type/FormType';
 import { MenuItem, TextField } from '@material-ui/core';
 import styles from '../../common/style/common.module.css';
 
-type EffectDropDownProps = {
+export type EffectDropDownProps = {
   effectList: Array<FormEffectType>;
-  register: UseFormRegister<FormType>;
+  selectedEffect: string;
+  setSelectedEffect: (E: string) => void;
 };
 
 export const EffectDropDown: React.FC<EffectDropDownProps> = ({
   effectList,
-  register,
+  selectedEffect,
+  setSelectedEffect,
 }) => {
   return (
     <div className={styles.formContainer}>
@@ -27,7 +27,9 @@ export const EffectDropDown: React.FC<EffectDropDownProps> = ({
         }}
         select
         size='small'
-        {...(register ? register('effect') : {})}
+        variant='outlined'
+        value={selectedEffect}
+        onChange={e => setSelectedEffect(e.target.value)}
       >
         <MenuItem value=''>指定なし</MenuItem>
         {effectList.map(effect => (

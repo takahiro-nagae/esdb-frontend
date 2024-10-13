@@ -14,7 +14,7 @@ export const SearchForm: React.FC = () => {
   return (
     <form onSubmit={form.handleSubmit}>
       <EnchantName {...enchantName} />
-      <Effect {...effect} register={register} />
+      <Effect {...effect} />
       <Position {...position} />
       <Rank {...rank} register={register} />
       <Target register={register} {...target} />

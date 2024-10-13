@@ -11,7 +11,12 @@ import { FormType } from '../common/type/FormType';
 
 export const useSearchForm = () => {
   const [inputEnchantName, setInputEnchantName] = useState('');
+
   const [effectList, setEffectList] = useState<Array<FormEffectType>>([]);
+  const [selectedEffect, setSelectedEffect] = useState('');
+  const [inputEffectValue, setInputEffectValue] = useState('');
+  const [effectRange, setEffectRange] = useState('0');
+
   const [position, setPosition] = useState('0');
   const [rankList, setRankList] = useState<Array<FormRankType>>([]);
   const [rankRange, setRankRange] = useState('1');
@@ -33,9 +38,9 @@ export const useSearchForm = () => {
   const handleOnSubmit: SubmitHandler<FormType> = values => {
     const params = new URLSearchParams();
     params.append('enchantName', inputEnchantName);
-    params.append('effect', values.effect);
-    params.append('effectVal', values.effectVal);
-    params.append('range', values.range);
+    params.append('effect', selectedEffect);
+    params.append('effectVal', inputEffectValue);
+    params.append('range', effectRange);
     params.append('position', position);
     params.append('rank', values.rank);
     params.append('rankRange', rankRange);
@@ -67,6 +72,18 @@ export const useSearchForm = () => {
     },
     effect: {
       effectList,
+      dropDown: {
+        selectedEffect,
+        setSelectedEffect,
+      },
+      input: {
+        inputEffectValue,
+        setInputEffectValue,
+      },
+      range: {
+        effectRange,
+        setEffectRange,
+      },
     },
     position: {
       position,

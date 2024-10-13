@@ -15,13 +15,15 @@ export default {
 export const Default: StoryObj<typeof EffectDropDown> = {
   args: {
     effectList: EFFECT_MOCK,
-    register: undefined,
+    selectedEffect: '',
+    setSelectedEffect: () => {},
   },
 };
 
 export const None: StoryObj<typeof EffectDropDown> = {
   args: {
     effectList: [],
-    register: undefined,
+    selectedEffect: '',
+    setSelectedEffect: () => {},
   },
 };

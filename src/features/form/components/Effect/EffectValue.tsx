@@ -1,12 +1,14 @@
-import { UseFormRegister } from 'react-hook-form';
-import { FormType } from '../../common/type/FormType';
 import { TextField } from '@material-ui/core';
 
-type EffectValueProps = {
-  register: UseFormRegister<FormType>;
+export type EffectValueProps = {
+  inputEffectValue: string;
+  setInputEffectValue: (E: string) => void;
 };
 
-export const EffectValue: React.FC<EffectValueProps> = ({ register }) => {
+export const EffectValue: React.FC<EffectValueProps> = ({
+  inputEffectValue,
+  setInputEffectValue,
+}) => {
   return (
     <TextField
       fullWidth
@@ -16,7 +18,8 @@ export const EffectValue: React.FC<EffectValueProps> = ({ register }) => {
       size='small'
       type='number'
       variant='outlined'
-      {...(register ? register('effectVal') : {})}
+      value={inputEffectValue}
+      onChange={e => setInputEffectValue(e.target.value)}
     />
   );
 };
