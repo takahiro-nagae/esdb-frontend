@@ -1,6 +1,7 @@
 import { UseFormRegister } from 'react-hook-form';
 import { FormType } from '../../common/type/FormType';
 import { MenuItem, TextField } from '@material-ui/core';
+import { EFFECT_RANGE_ITEMS } from './const';
 
 type EffectRangeProps = {
   register: UseFormRegister<FormType>;
@@ -22,9 +23,11 @@ export const EffectRange: React.FC<EffectRangeProps> = ({ register }) => {
       }}
       {...(register ? register('range') : {})}
     >
-      <MenuItem value=''>指定なし</MenuItem>
-      <MenuItem value='1'>以上</MenuItem>
-      <MenuItem value='2'>以下</MenuItem>
+      {EFFECT_RANGE_ITEMS.map(item => (
+        <MenuItem key={item.value} value={item.value}>
+          {item.label}
+        </MenuItem>
+      ))}
     </TextField>
   );
 };
