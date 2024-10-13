@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { RankRange } from '../RankRange';
 import { useState } from 'react';
 
@@ -12,7 +12,7 @@ export default {
   ],
 } as Meta<typeof RankRange>;
 
-const Template: Story<typeof RankRange> = () => {
+const Template: StoryFn<typeof RankRange> = () => {
   const [rankRange, setRankRange] = useState('1');
   return <RankRange rankRange={rankRange} setRankRange={setRankRange} />;
 };

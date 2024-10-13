@@ -1,6 +1,7 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { EFFECT_MOCK } from '@/repositories/form/__mocks__/fetchInitData';
 import { EffectDropDown } from '../EffectDropDown';
+import { useState } from 'react';
 
 export default {
   title: 'form/Effect/EffectDropDown',
@@ -12,18 +13,23 @@ export default {
   ],
 } as Meta<typeof EffectDropDown>;
 
-export const Default: StoryObj<typeof EffectDropDown> = {
-  args: {
-    effectList: EFFECT_MOCK,
-    selectedEffect: '',
-    setSelectedEffect: () => {},
-  },
+const Template: StoryFn<typeof EffectDropDown> = args => {
+  const [selectedEffect, setSelectedEffect] = useState('0');
+  return (
+    <EffectDropDown
+      {...args}
+      selectedEffect={selectedEffect}
+      setSelectedEffect={setSelectedEffect}
+    />
+  );
 };
 
-export const None: StoryObj<typeof EffectDropDown> = {
-  args: {
-    effectList: [],
-    selectedEffect: '',
-    setSelectedEffect: () => {},
-  },
+export const Default = Template.bind({});
+Default.args = {
+  effectList: EFFECT_MOCK,
+};
+
+export const None = Template.bind({});
+None.args = {
+  effectList: [],
 };

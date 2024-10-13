@@ -1,5 +1,6 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, Story } from '@storybook/react';
 import { EnchantName } from './EnchantName';
+import { useState } from 'react';
 
 export default {
   title: 'form/EnchantName',
@@ -11,9 +12,14 @@ export default {
   ],
 } as Meta<typeof EnchantName>;
 
-export const Default: StoryObj<typeof EnchantName> = {
-  args: {
-    inputEnchantName: '',
-    setInputEnchantName: undefined,
-  },
+const Template: Story<typeof EnchantName> = () => {
+  const [inputEnchantName, setInputEnchantName] = useState('');
+  return (
+    <EnchantName
+      inputEnchantName={inputEnchantName}
+      setInputEnchantName={setInputEnchantName}
+    />
+  );
 };
+
+export const Default = Template.bind({});

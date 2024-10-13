@@ -1,5 +1,6 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { EffectValue } from '../EffectValue';
+import { useState } from 'react';
 
 export default {
   title: 'form/Effect/EffectValue',
@@ -11,9 +12,14 @@ export default {
   ],
 } as Meta<typeof EffectValue>;
 
-export const Default: StoryObj<typeof EffectValue> = {
-  args: {
-    inputEffectValue: '',
-    setInputEffectValue: () => {},
-  },
+const Template: StoryFn<typeof EffectValue> = () => {
+  const [inputEffectValue, setInputEffectValue] = useState('');
+  return (
+    <EffectValue
+      inputEffectValue={inputEffectValue}
+      setInputEffectValue={setInputEffectValue}
+    />
+  );
 };
+
+export const Default = Template.bind({});
