@@ -1,9 +1,9 @@
 import { Grid } from '@material-ui/core';
 import Box from '@mui/material/Box';
 import { BrowserView, MobileView } from 'react-device-detect';
-import { SearchFilter } from './common/component/SearchFilter/SearchFilter';
+import { SearchFilter } from './common/components/SearchFilter/SearchFilter';
 import { SpSearchContainer } from './sp/SpSearchContainer';
-import { Loading } from './common/component/Loading/Loading';
+import { Loading } from './common/components/Loading/Loading';
 
 import { SearchResultHead } from './component/SearchResult/SearechResultHead';
 import { OrderContext } from './context/pc/OrderContext';

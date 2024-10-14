@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { TableCell, TableRow } from '@material-ui/core';
 
-import { RankModal } from '../common/component/Rank/Modal/RankModal';
+import { RankModal } from '../common/components/Rank/Modal/RankModal';
 import {
   positionColor,
   positionName,
@@ -11,13 +11,13 @@ import {
   createEnchantNameEn,
   subTitleStyle,
 } from '../common/functions/enchantNameFunction';
-import { EffectList } from '../common/component/EffectList/EffectList';
-import { RouteList } from '../common/component/RouteList/RouteList';
-import { InvalidText } from '../common/component/ImvalidText/InvalidText';
-import { ImpText } from '../common/component/ImpText/ImpText';
+import { EffectList } from '../common/components/EffectList/EffectList';
+import { RouteList } from '../common/components/RouteList/RouteList';
+import { InvalidText } from '../common/components/ImvalidText/InvalidText';
+import { ImpText } from '../common/components/ImpText/ImpText';
 
 import { tableContent } from './style/SearchListRowStyle';
-import { DetailModal } from '../common/component/Detail/Modal/DetailModal';
+import { DetailModal } from '../common/components/Detail/Modal/DetailModal';
 import { EnchantData } from '@/repositories/search/_types';
 
 /**

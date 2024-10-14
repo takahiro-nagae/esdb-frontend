@@ -7,9 +7,9 @@ import {
   TableCell,
   TableRow,
 } from '@material-ui/core';
-import { EffectList } from '../../../../common/component/EffectList/EffectList';
-import { RouteList } from '../../../../common/component/RouteList/RouteList';
-import { DetailModal } from '../../../../common/component/Detail/Modal/DetailModal';
+import { EffectList } from '../../../../common/components/EffectList/EffectList';
+import { RouteList } from '../../../../common/components/RouteList/RouteList';
+import { DetailModal } from '../../../../common/components/Detail/Modal/DetailModal';
 
 import { acoBody, acoHead, target } from './style/DetailTableStyle';
 import { EnchantData } from '@/repositories/search/_types';

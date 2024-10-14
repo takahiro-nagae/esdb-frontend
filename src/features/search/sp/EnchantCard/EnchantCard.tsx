@@ -7,14 +7,14 @@ import {
   positionColor,
   positionName,
 } from '../../common/functions/positionFunction';
-import { RankModal } from '../../common/component/Rank/Modal/RankModal';
+import { RankModal } from '../../common/components/Rank/Modal/RankModal';
 import {
   createEnchantName,
   createEnchantNameEn,
   subTitleStyle,
 } from '../../common/functions/enchantNameFunction';
-import { InvalidText } from '../../common/component/ImvalidText/InvalidText';
-import { ImpText } from '../../common/component/ImpText/ImpText';
+import { InvalidText } from '../../common/components/ImvalidText/InvalidText';
+import { ImpText } from '../../common/components/ImpText/ImpText';
 import {
   cardBox,
   enchantCard,
