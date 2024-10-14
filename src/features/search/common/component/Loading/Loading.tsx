@@ -1,26 +1,18 @@
-/** @jsxImportSource @emotion/react */
-import ReactLoading from "react-loading";
-import { loadingContainerStyle, verticalCenterStyle } from "./style/LoadingStyle";
+import ReactLoading from 'react-loading';
+import styles from './Loading.module.css';
 
-/**
- * ローディングの共通コンポーネント
- * @param props { boolean, string? }
- * @returns Loading { JSX.Element }
- */
-export const Loading = (props: {
-    isLoading: boolean
-}) => {
-    return (
-        <>
-            {!props.isLoading &&
-                <div
-                    css={loadingContainerStyle}
-                    data-testid='loading'
-                >
-                    <ReactLoading css={verticalCenterStyle} type="bubbles"/>
-                </div>
+type LoadingProps = {
+  isLoading: boolean;
+};
 
-            }
-        </>
-    );
+export const Loading: React.FC<LoadingProps> = ({ isLoading }) => {
+  return (
+    <>
+      {!isLoading && (
+        <div className={styles.loadingContainer} data-testid='loading'>
+          <ReactLoading className={styles.verticalCenter} type='bubbles' />
+        </div>
+      )}
+    </>
+  );
 };

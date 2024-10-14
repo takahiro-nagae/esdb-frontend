@@ -1,0 +1,13 @@
+.loadingContainer {
+  background-color: #27292d;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 999;
+}
+
+.verticalCenter {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
