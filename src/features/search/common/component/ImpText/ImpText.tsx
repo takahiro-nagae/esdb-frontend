@@ -1,15 +1,11 @@
-/** @jsxImportSource @emotion/react */
-import { notImped } from "./style/ImptextStyle";
+import styles from './ImpText.module.css';
 
-export const ImpText = (props: { impFlg: string }) => {
-    return (
-        <>
-            {
-                props.impFlg == '0' &&
-                <small css={notImped}>
-                    未実装
-                </small>
-            }
-        </>
-    );
+type ImpTextProps = {
+  impFlg: string;
+};
+
+export const ImpText: React.FC<ImpTextProps> = ({ impFlg }) => {
+  return (
+    <>{impFlg == '0' && <small className={styles.notImped}>未実装</small>}</>
+  );
 };
