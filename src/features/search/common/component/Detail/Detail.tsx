@@ -1,31 +1,30 @@
-/** @jsxImportSource @emotion/react */
 import { Table, TableBody, TableCell, TableRow } from '@mui/material';
-import effectColorFunction from '../../functions/effectColorFunction';
 import {
   createEnchantName,
   createEnchantNameEn,
-  subTitleStyle,
 } from '../../functions/enchantNameFunction';
-import { positionColor, positionName } from '../../functions/positionFunction';
+import { positionName } from '../../functions/positionFunction';
 import { RankModal } from '../Rank/Modal/RankModal';
 import { DisplayWideAd } from '../../../../../adsense/displayWideAd';
-import { body, header } from './style/DetailStyle';
-import { EnchantData } from '@/repositories/search/_types';
+import { EnchantDataDetail } from '@/repositories/search/_types';
+import styles from './Detail.module.css';
+import effectListStyles from '../EffectList/EffectList.module.css';
+import enchantNameStyles from '../styles/EnchantName.module.css';
+import positionStyles from '../styles/Position.module.css';
 
-/**
- * エンチャント詳細表示のコンポーネント
- * @param props { string }
- * @returns Detail { JSX.Element }
- */
-export const Detail = (props: { enchant: EnchantData }) => {
-  const effectKbnArray = props.enchant.effect_kbn
-    ? props.enchant.effect_kbn.split('@')
+type DetailProps = {
+  enchant: EnchantDataDetail;
+};
+
+export const Detail: React.FC<DetailProps> = ({ enchant }) => {
+  const effectKbnArray = enchant.effect_kbn
+    ? enchant.effect_kbn.split('@')
     : [];
-  const effectNameArray = props.enchant.effect_name
-    ? props.enchant.effect_name.split('@')
+  const effectNameArray = enchant.effect_name
+    ? enchant.effect_name.split('@')
     : [];
-  const routeNameArray = props.enchant.route_name
-    ? props.enchant.route_name.split('@')
+  const routeNameArray = enchant.route_name
+    ? enchant.route_name.split('@')
     : [];
 
   return (
@@ -33,51 +32,57 @@ export const Detail = (props: { enchant: EnchantData }) => {
       <Table size='small'>
         <TableBody>
           <TableRow>
-            <TableCell css={header}>名称</TableCell>
-            <TableCell css={body}>
+            <TableCell className={styles.header}>名称</TableCell>
+            <TableCell className={styles.body}>
               <span>
                 {createEnchantName(
-                  props.enchant.enchant_name,
-                  props.enchant.enchant_name_2,
+                  enchant.enchant_name,
+                  enchant.enchant_name_2,
                 )}
               </span>
               <br />
-              <small css={subTitleStyle}>
+              <small className={enchantNameStyles.subTitleStyle}>
                 {createEnchantNameEn(
-                  props.enchant.enchant_name_en,
-                  props.enchant.position_id,
+                  enchant.enchant_name_en,
+                  enchant.position_id,
                 )}
               </small>
             </TableCell>
           </TableRow>
           <TableRow>
-            <TableCell css={header}>位置</TableCell>
-            <TableCell css={body}>
-              <span css={positionColor(props.enchant.position_id)}>
-                {positionName(props.enchant.position_id)}
+            <TableCell className={styles.header}>位置</TableCell>
+            <TableCell className={styles.body}>
+              <span
+                className={
+                  enchant.position_id === '1'
+                    ? positionStyles.prefix
+                    : positionStyles.suffix
+                }
+              >
+                {positionName(enchant.position_id)}
               </span>
             </TableCell>
           </TableRow>
           <TableRow>
-            <TableCell css={header}>ランク</TableCell>
-            <TableCell css={body}>
-              <RankModal rank={props.enchant.rank} />
+            <TableCell className={styles.header}>ランク</TableCell>
+            <TableCell className={styles.body}>
+              <RankModal rank={enchant.rank} />
             </TableCell>
           </TableRow>
           <TableRow>
-            <TableCell css={header}>効果</TableCell>
-            <TableCell css={body}>
+            <TableCell className={styles.header}>効果</TableCell>
+            <TableCell className={styles.body}>
               {effectKbnArray &&
                 effectKbnArray.map((effectKbn, index) => (
-                  <p css={effectColorFunction(effectKbn)} key={index}>
+                  <p className={effectListStyles[`${effectKbn}`]} key={index}>
                     {effectNameArray[index]}
                   </p>
                 ))}
             </TableCell>
           </TableRow>
           <TableRow>
-            <TableCell css={header}>入手先</TableCell>
-            <TableCell css={body}>
+            <TableCell className={styles.header}>入手先</TableCell>
+            <TableCell className={styles.body}>
               {routeNameArray &&
                 routeNameArray.map((route, index) => (
                   <p dangerouslySetInnerHTML={{ __html: route }} key={index} />

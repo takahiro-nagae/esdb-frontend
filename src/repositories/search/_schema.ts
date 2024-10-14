@@ -18,6 +18,21 @@ export const EnchantDataSchema = z.object({
   disp_val: z.string().optional(),
 });
 
+export const EnchantDataDetailSchema = z.object({
+  effect_kbn: EnchantDataSchema.shape.effect_kbn,
+  effect_name: EnchantDataSchema.shape.effect_name,
+  enchant_id: EnchantDataSchema.shape.enchant_id,
+  enchant_name: EnchantDataSchema.shape.enchant_name,
+  enchant_name_2: EnchantDataSchema.shape.enchant_name_2,
+  enchant_name_en: EnchantDataSchema.shape.enchant_name_en,
+  imp_flg: EnchantDataSchema.shape.imp_flg,
+  position_id: EnchantDataSchema.shape.position_id,
+  rank: EnchantDataSchema.shape.rank,
+  route_name: EnchantDataSchema.shape.route_name,
+  target_code: EnchantDataSchema.shape.target_code,
+  target_name: EnchantDataSchema.shape.target_name,
+});
+
 export const RankDataSchema = z.object({
   rank: z.string(),
   normal_rate: z.string().optional(),
