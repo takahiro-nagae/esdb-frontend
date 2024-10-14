@@ -1,19 +1,21 @@
-/** @jsxImportSource @emotion/react */
-import { invalid } from './style/InvalidTextStyle';
+import styles from './InvalidText.module.css';
 
-/**
- * 貼付不可文字列表示コンポーネント
- * @param props { string }
- * @returns InvalidText { JSX.Element }
- */
-export const InvalidText = (props: {
+type InvalidTextProps = {
   invalidTargetFlg: number | undefined;
+};
+
+export const InvalidText: React.FC<InvalidTextProps> = ({
+  invalidTargetFlg,
 }) => {
-  if (props.invalidTargetFlg) {
+  if (!invalidTargetFlg) {
     return null;
   }
 
   return (
-    <>{props.invalidTargetFlg === 1 && <small css={invalid}>貼付不可</small>}</>
+    <>
+      {invalidTargetFlg === 1 && (
+        <small className={styles.invalid}>貼付不可</small>
+      )}
+    </>
   );
 };
