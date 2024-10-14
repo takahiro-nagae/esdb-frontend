@@ -1,7 +1,4 @@
-/** @jsxImportSource @emotion/react */
-import { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import { Grid } from '@material-ui/core';
+/** @jsxImportSource @emotion/react */ import { Grid } from '@material-ui/core';
 import Box from '@mui/material/Box';
 import { BrowserView, MobileView } from 'react-device-detect';
 import { SearchFilter } from './common/component/SearchFilter/SearchFilter';
@@ -14,53 +11,18 @@ import {
 } from './style/SearchListStyle';
 import { SearchResultHead } from './component/SearchResult/SearechResultHead';
 import { OrderContext } from './context/pc/OrderContext';
-import { Order } from './pc/type/Order';
-import { HeadData } from './pc/type/HeadData';
 import { PageContext } from './context/PageContext';
 import { EnchantContext } from './context/EnchantContext';
 import { SearchListContainer } from './pc/SearchListContainer';
-import { getSearchEnchantData } from '@/repositories/search/getSearchEnchantData';
-import { EnchantData } from '@/repositories/search/_types';
+import { useSearchList } from './hooks/useSearchList';
 
 type SearchListProps = {
   isFreeSearch: boolean;
 };
 
 export const SearchList: React.FC<SearchListProps> = ({ isFreeSearch }) => {
-  const [enchantList, setEnchantList] = useState<Array<EnchantData>>([]);
-  const [rowData, setRowData] = useState<Array<EnchantData>>([]);
-  const [count, setCount] = useState(0);
-  const [dispCount, setDispCount] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
-  const [order, setOrder] = useState<Order>('asc');
-  const [orderBy, setOrderBy] = useState<keyof HeadData>('enchant_id');
-  const [page, setPage] = useState(0);
-  const [effectName, setEffectName] = useState('');
-
-  const [inputParams] = useSearchParams();
-  const path = isFreeSearch ? '/search' : '/detail';
-
-  useEffect(() => {
-    const res = async () => getSearchEnchantData(path, inputParams);
-
-    res().then(res => {
-      const enchantList = res.enchant_list;
-      setEnchantList(enchantList);
-      setRowData(enchantList);
-
-      const dataLength = enchantList.length;
-      setCount(dataLength);
-      setDispCount(dataLength);
-      if (dataLength > 0) {
-        setOrderBy('disp_val');
-        setOrder('desc');
-      }
-
-      res.effect_name && setEffectName(res.effect_name);
-
-      setIsLoading(true);
-    });
-  }, [inputParams]);
+  const { isLoading, enchantList, effectName, count, order, page } =
+    useSearchList(isFreeSearch);
 
   return (
     <>
@@ -68,15 +30,12 @@ export const SearchList: React.FC<SearchListProps> = ({ isFreeSearch }) => {
       <MobileView css={mobileSticky}>
         <EnchantContext.Provider
           value={{
-            enchantList,
-            setEnchantList,
-            rowData,
-            setRowData,
-            count,
-            setCount,
+            ...enchantList,
+            count: count.count,
+            setCount: count.setCount,
           }}
         >
-          <PageContext.Provider value={{ page, setPage }}>
+          <PageContext.Provider value={{ ...page }}>
             <SearchFilter xs={12} />
           </PageContext.Provider>
         </EnchantContext.Provider>
@@ -85,31 +44,26 @@ export const SearchList: React.FC<SearchListProps> = ({ isFreeSearch }) => {
         <Grid
           alignItems='center'
           container
-          css={dispCount < 1 ? verticalCenter : ''}
+          css={count.dispCount < 1 ? verticalCenter : ''}
           direction='column'
         >
           <SearchResultHead
-            dispCount={dispCount}
-            count={count}
+            dispCount={count.dispCount}
+            count={count.count}
             effectName={effectName}
           />
-          {dispCount >= 1 && (
+          {count.dispCount >= 1 && (
             <>
               <BrowserView css={maxSearchSize}>
                 <EnchantContext.Provider
                   value={{
-                    enchantList,
-                    setEnchantList,
-                    rowData,
-                    setRowData,
-                    count,
-                    setCount,
+                    ...enchantList,
+                    count: count.count,
+                    setCount: count.setCount,
                   }}
                 >
-                  <OrderContext.Provider
-                    value={{ order, setOrder, orderBy, setOrderBy }}
-                  >
-                    <PageContext.Provider value={{ page, setPage }}>
+                  <OrderContext.Provider value={{ ...order }}>
+                    <PageContext.Provider value={{ ...page }}>
                       <SearchListContainer />
                     </PageContext.Provider>
                   </OrderContext.Provider>
@@ -120,7 +74,7 @@ export const SearchList: React.FC<SearchListProps> = ({ isFreeSearch }) => {
         </Grid>
       </Box>
       <MobileView>
-        <SpSearchContainer rowData={rowData} />
+        <SpSearchContainer rowData={enchantList.rowData} />
       </MobileView>
     </>
   );
