@@ -8,7 +8,7 @@ const ResponseSchema = z.object({
   effect_name: z.string().nullable(),
 });
 
-export const getSearchEnchantData = async (
+export const fetchSearchEnchantData = async (
   path: string,
   requestParams: URLSearchParams,
 ) => {

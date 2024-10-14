@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { HeadData } from '../pc/type/HeadData';
 import { Order } from '../pc/type/Order';
 import { useSearchParams } from 'react-router-dom';
-import { getSearchEnchantData } from '@/repositories/search/getSearchEnchantData';
+import { fetchSearchEnchantData } from '@/repositories/search/fetchSearchEnchantData';
 
 export const useSearchList = (isFreeSearch: boolean) => {
   const [enchantList, setEnchantList] = useState<Array<EnchantData>>([]);
@@ -20,7 +20,7 @@ export const useSearchList = (isFreeSearch: boolean) => {
   const path = isFreeSearch ? '/search' : '/detail';
 
   useEffect(() => {
-    const res = async () => getSearchEnchantData(path, inputParams);
+    const res = async () => fetchSearchEnchantData(path, inputParams);
 
     res().then(res => {
       const enchantList = res.enchant_list;
