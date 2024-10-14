@@ -1,31 +1,31 @@
-import effectColorFunction from "../../functions/effectColorFunction";
-/** @jsxImportSource @emotion/react */
+import styles from './EffectList.module.css';
 
-/**
- * 検索一覧の効果コンポーネント
- * @param props { string, string }
- * @returns EffectList { JSX.Element }
- */
-export const EffectList = (props: {
-    effectKbn: string,
-    effectName: string
+type EffectListProps = {
+  effectKbn: string;
+  effectName: string;
+};
+
+export const EffectList: React.FC<EffectListProps> = ({
+  effectKbn,
+  effectName,
 }) => {
-    /** 効果区分を配列化 */
-    const effectKbnArray: "" | string[] = props.effectKbn && props.effectKbn.split('@');
-    /** 効果名を配列化 */
-    const effectNameArray: "" | string[] = props.effectName && props.effectName.split('@');
+  /** 効果区分を配列化 */
+  const effectKbnArray: '' | string[] = effectKbn && effectKbn.split('@');
+  /** 効果名を配列化 */
+  const effectNameArray: '' | string[] = effectName && effectName.split('@');
 
-    return (
-        <>
-            {effectKbnArray && effectKbnArray.map((effectKbn, index) =>
-                <p
-                    css={effectColorFunction(effectKbn)}
-                    data-testid='effect'
-                    key={index}
-                >
-                    {effectNameArray[index]}
-                </p>
-            )}
-        </>
-    );
+  return (
+    <>
+      {effectKbnArray &&
+        effectKbnArray.map((effectKbn, index) => (
+          <p
+            className={styles[`${effectKbn}`]}
+            data-testid='effect'
+            key={index}
+          >
+            {effectNameArray[index]}
+          </p>
+        ))}
+    </>
+  );
 };
