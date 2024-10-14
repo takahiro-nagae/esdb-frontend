@@ -1,30 +1,29 @@
-/** @jsxImportSource @emotion/react */
-import { isMobile } from "react-device-detect";
-import { routeFont } from "./style/RouteListStyle";
-import DOMPurify from "dompurify";
+import { isMobile } from 'react-device-detect';
 
-/**
- * 入手先一覧コンポーネント
- * @param props { string[], number }
- * @returns RouteList { JSX.Element }
- */
-export const RouteList = (props: {
-    routeNames: string[],
-    omtCount: number,
+import DOMPurify from 'dompurify';
+import styles from './RouteList.module.css';
+
+type RouteListProps = {
+  routeNames: string[];
+  omtCount: number;
+};
+
+export const RouteList: React.FC<RouteListProps> = ({
+  routeNames,
+  omtCount,
 }) => {
-    return (
-        <>
-            {
-                props.routeNames && props.routeNames
-                    .slice(0, props.omtCount)
-                    .map((route, index) => (
-                        <p
-                            css={isMobile ? routeFont: null}
-                            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(route) }}
-                            key={index}
-                        />
-                    ))
-            }
-        </>
-    );
+  return (
+    <>
+      {routeNames &&
+        routeNames
+          .slice(0, omtCount)
+          .map((route, index) => (
+            <p
+              className={isMobile ? styles.font : ''}
+              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(route) }}
+              key={index}
+            />
+          ))}
+    </>
+  );
 };
