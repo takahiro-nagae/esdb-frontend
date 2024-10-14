@@ -1,20 +1,15 @@
-import { Rank } from "../Rank";
-import { ModalContainer } from "../../../../../../common/modalContainer";
+import { ModalContainer } from '@/common/modalContainer';
+import { Rank, RankProps } from '../Rank';
 
-/**
- * ランクモーダルコンテナコンポーネント
- * @param props
- * @returns RankModal { JSX.Element }
- */
-export const RankModal = ( props: { rank: string } ) => {
-    return (
-        <>
-            <ModalContainer
-                buttonMsgEl={ props.rank }
-                height={ 70 }
-                openComponent={ <Rank rank={ props.rank }/> }
-                width={ 85 }
-            />
-        </>
-    );
+export const RankModal: React.FC<RankProps> = ({ rank }) => {
+  return (
+    <>
+      <ModalContainer
+        buttonMsgEl={rank}
+        height={70}
+        openComponent={<Rank rank={rank} />}
+        width={85}
+      />
+    </>
+  );
 };

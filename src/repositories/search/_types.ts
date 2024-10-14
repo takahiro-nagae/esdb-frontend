@@ -1,4 +1,5 @@
 import { z } from 'zod';
-import { EnchantDataSchema } from './_schema';
+import { EnchantDataSchema, RankDataSchema } from './_schema';
 
 export type EnchantData = z.infer<typeof EnchantDataSchema>;
+export type RankData = z.infer<typeof RankDataSchema>;
