@@ -5,7 +5,7 @@ import { SearchFilter } from './common/components/SearchFilter/SearchFilter';
 import { SpSearchContainer } from './sp/SpSearchContainer';
 import { Loading } from './common/components/Loading/Loading';
 
-import { SearchResultHead } from './component/SearchResult/SearechResultHead';
+import { SearchResultHead } from './components/SearchResult/SearechResultHead';
 import { OrderContext } from './context/pc/OrderContext';
 import { PageContext } from './context/PageContext';
 import { EnchantContext } from './context/EnchantContext';
