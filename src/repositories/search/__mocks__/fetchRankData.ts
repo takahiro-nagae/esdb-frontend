@@ -1,6 +1,6 @@
 import { fetchRankData as originalFn } from '../fetchRankData';
 
-export const RANK_MOCK = {
+const RANK_MOCK = {
   rank: 'F',
   normal_rate: '1',
   elite_rate: '2',

@@ -13,6 +13,6 @@ export const fetchSearchEnchantData = async (
   requestParams: URLSearchParams,
 ) => {
   const data = await internalApiClient(path + '?' + requestParams);
-  const response = ResponseSchema.parse(data);
-  return response;
+
+  return ResponseSchema.parse(data);
 };

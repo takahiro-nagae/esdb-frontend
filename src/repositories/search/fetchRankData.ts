@@ -5,7 +5,6 @@ const ResponseSchema = RankDataSchema;
 
 export const fetchRankData = async (rank: string) => {
   const data = await internalApiClient('rank/' + rank);
-  const response = ResponseSchema.parse(data);
 
-  return response;
+  return ResponseSchema.parse(data);
 };

@@ -1,5 +1,5 @@
 import { EnchantDataDetail } from '@/repositories/search/_types';
-import { getEnchantDetailData } from '@/repositories/search/fetchEnchantDetailData';
+import { fetchEnchantDetailData } from '@/repositories/search/fetchEnchantDetailData';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -11,7 +11,7 @@ export const useDetailIndex = () => {
 
   useEffect(() => {
     const enchantIdParam = params.enchant_id ? params.enchant_id : '';
-    getEnchantDetailData(enchantIdParam).then(res => {
+    fetchEnchantDetailData(enchantIdParam).then(res => {
       setEnchantData(res);
       setIsLoading(true);
     });
