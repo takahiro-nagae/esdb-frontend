@@ -1,0 +1,14 @@
+.mobileHeader {
+  position: sticky;
+  top: 56px;
+  z-index: 3;
+}
+
+.verticalCenter {
+  position: absolute;
+  top: 50%;
+}
+
+.maxSearchSize {
+  max-width: 1400px;
+}

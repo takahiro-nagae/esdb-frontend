@@ -1,20 +1,17 @@
-/** @jsxImportSource @emotion/react */ import { Grid } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import Box from '@mui/material/Box';
 import { BrowserView, MobileView } from 'react-device-detect';
 import { SearchFilter } from './common/component/SearchFilter/SearchFilter';
 import { SpSearchContainer } from './sp/SpSearchContainer';
 import { Loading } from './common/component/Loading/Loading';
-import {
-  maxSearchSize,
-  mobileSticky,
-  verticalCenter,
-} from './style/SearchListStyle';
+
 import { SearchResultHead } from './component/SearchResult/SearechResultHead';
 import { OrderContext } from './context/pc/OrderContext';
 import { PageContext } from './context/PageContext';
 import { EnchantContext } from './context/EnchantContext';
 import { SearchListContainer } from './pc/SearchListContainer';
 import { useSearchList } from './hooks/useSearchList';
+import styles from './SearchList.module.css';
 
 type SearchListProps = {
   isFreeSearch: boolean;
@@ -27,7 +24,7 @@ export const SearchList: React.FC<SearchListProps> = ({ isFreeSearch }) => {
   return (
     <>
       <Loading isLoading={isLoading} />
-      <MobileView css={mobileSticky}>
+      <MobileView className={styles.mobileHeader}>
         <EnchantContext.Provider
           value={{
             ...enchantList,
@@ -44,7 +41,7 @@ export const SearchList: React.FC<SearchListProps> = ({ isFreeSearch }) => {
         <Grid
           alignItems='center'
           container
-          css={count.dispCount < 1 ? verticalCenter : ''}
+          className={count.dispCount < 1 ? styles.verticalCenter : ''}
           direction='column'
         >
           <SearchResultHead
@@ -54,7 +51,7 @@ export const SearchList: React.FC<SearchListProps> = ({ isFreeSearch }) => {
           />
           {count.dispCount >= 1 && (
             <>
-              <BrowserView css={maxSearchSize}>
+              <BrowserView className={styles.maxSearchSize}>
                 <EnchantContext.Provider
                   value={{
                     ...enchantList,
