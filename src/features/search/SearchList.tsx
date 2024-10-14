@@ -5,7 +5,6 @@ import { Grid } from '@material-ui/core';
 import Box from '@mui/material/Box';
 import { BrowserView, MobileView } from 'react-device-detect';
 import { SearchFilter } from './common/component/SearchFilter/SearchFilter';
-import { EnchantData } from './common/interface/enchantData';
 import { SpSearchContainer } from './sp/SpSearchContainer';
 import { Loading } from './common/component/Loading/Loading';
 import {
@@ -20,14 +19,14 @@ import { HeadData } from './pc/type/HeadData';
 import { PageContext } from './context/PageContext';
 import { EnchantContext } from './context/EnchantContext';
 import { SearchListContainer } from './pc/SearchListContainer';
-import { getSearchEnchantData } from './api/getSearchEnchantData';
+import { getSearchEnchantData } from '@/repositories/search/getSearchEnchantData';
+import { EnchantData } from '@/repositories/search/_types';
 
-/**
- * 検索結果一覧のコンテナコンポーネント
- * @param props { boolean }
- * @returns SearchList { JSX.Element }
- */
-export const SearchList = (props: { isFreeSearch: boolean }) => {
+type SearchListProps = {
+  isFreeSearch: boolean;
+};
+
+export const SearchList: React.FC<SearchListProps> = ({ isFreeSearch }) => {
   const [enchantList, setEnchantList] = useState<Array<EnchantData>>([]);
   const [rowData, setRowData] = useState<Array<EnchantData>>([]);
   const [count, setCount] = useState(0);
@@ -39,13 +38,13 @@ export const SearchList = (props: { isFreeSearch: boolean }) => {
   const [effectName, setEffectName] = useState('');
 
   const [inputParams] = useSearchParams();
-  const path = props.isFreeSearch ? '/search' : '/detail';
+  const path = isFreeSearch ? '/search' : '/detail';
 
   useEffect(() => {
     const res = async () => getSearchEnchantData(path, inputParams);
 
     res().then(res => {
-      const enchantList = res.enchantList;
+      const enchantList = res.enchant_list;
       setEnchantList(enchantList);
       setRowData(enchantList);
 
@@ -57,7 +56,7 @@ export const SearchList = (props: { isFreeSearch: boolean }) => {
         setOrder('desc');
       }
 
-      res.effectName && setEffectName(res.effectName);
+      res.effect_name && setEffectName(res.effect_name);
 
       setIsLoading(true);
     });
