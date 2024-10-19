@@ -10,5 +10,6 @@
 }
 
 .maxSearchSize {
-  max-width: 1400px;
+  max-width: 1100px;
+  min-width: 1100px;
 }
