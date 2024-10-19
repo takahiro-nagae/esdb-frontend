@@ -9,8 +9,8 @@ import { DisplayWideAd } from '../../../../../adsense/displayWideAd';
 import { EnchantDataDetail } from '@/repositories/search/_types';
 import styles from './Detail.module.css';
 import effectListStyles from '../EffectList/EffectList.module.css';
-import enchantNameStyles from '../styles/EnchantName.module.css';
-import positionStyles from '../styles/Position.module.css';
+import enchantNameStyles from '../../styles/EnchantName.module.css';
+import positionStyles from '../../styles/Position.module.css';
 
 type DetailProps = {
   enchant: EnchantDataDetail;

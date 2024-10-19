@@ -1,0 +1,30 @@
+.enchantCard {
+  background-color: #3c3b40 !important;
+  box-sizing: border-box;
+  margin: 8px;
+  padding: 8px;
+}
+
+.cardBox {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.inline {
+  color: #fff;
+  display: inline;
+  margin-left: 16px;
+  margin-right: -24px;
+  vertical-align: middle;
+}
+
+.title {
+  color: #fff;
+  font-weight: bold;
+}
+
+.value {
+  color: #fff;
+}

@@ -1,29 +1,30 @@
-/** @jsxImportSource @emotion/react */
 import { Grid } from '@material-ui/core';
 import Box from '@mui/material/Box';
-import { EnchantCard } from './EnchantCard/EnchantCard';
+import { EnchantCard } from './component/EnchantCard/EnchantCard';
 
-import { dataWidth } from './style/SpSearchContainerStyle';
 import { ScrollTopButton } from './component/ScrollTopButton/ScrollTopButton';
 import { LastInfeedAd } from './component/Ads/LastInfeedAd';
 import { AmongAd } from './component/Ads/AmongAd';
 import { EnchantData } from '@/repositories/search/_types';
 
-/**
- * SPの検索結果コンテナ
- * @param props { Array<EnchantData>, boolean }
- * @returns SpSearchContainer { JSX.Element }
- */
-export const SpSearchContainer = (props: { rowData: Array<EnchantData> }) => {
+import styles from './SpSearchContainer.module.css';
+
+type SpSearchContainerProps = {
+  rowData: Array<EnchantData>;
+};
+
+export const SpSearchContainer: React.FC<SpSearchContainerProps> = ({
+  rowData,
+}) => {
   return (
     <>
-      <Grid css={dataWidth} item xs={12}>
+      <Grid className={styles.dataWidth} item xs={12}>
         <Box sx={{ p: 1 }}>
-          {props.rowData.map((enchant, index) => (
+          {rowData.map((enchant, index) => (
             <>
               <AmongAd index={index} />
               <EnchantCard enchant={enchant} key={enchant.enchant_id} />
-              <LastInfeedAd index={index} dataLength={props.rowData.length} />
+              <LastInfeedAd index={index} dataLength={rowData.length} />
             </>
           ))}
         </Box>

@@ -1,11 +1,12 @@
 import { composeStories } from '@storybook/react';
 import * as stories from '../stories/DetailTable.stories';
 import { render, screen, waitFor } from '@testing-library/react';
-import { BeginnerData } from '../../../../data/EnchantCardMockData';
 import userEvent from '@testing-library/user-event';
-import { Detail } from '../../../../../common/components/Detail/Detail';
+import { Detail } from '../../../../../../common/components/Detail/Detail';
+import { ENCHANT_DATA_MOCK } from '@/repositories/search/__mocks__/fetchSearchEnchantData';
+import { OPEN_ROUTE_NAME } from '../stories/DetailTable.stories';
 
-jest.mock('../../../../../common/component/Detail/Detail');
+jest.mock('../../../../../../common/components/Detail/Detail');
 describe('DetailTable', () => {
   const { NotOpen, Open } = composeStories(stories);
 
@@ -20,7 +21,7 @@ describe('DetailTable', () => {
 
     // 対象の確認
     expect(
-      screen.getByText('対象：' + BeginnerData.target_name),
+      screen.getByText('対象：' + ENCHANT_DATA_MOCK.target_name),
     ).toBeInTheDocument();
 
     const rows = screen.getAllByRole('row');
@@ -28,13 +29,13 @@ describe('DetailTable', () => {
     // 効果の確認
     expect(rows[0].children[0]).toHaveTextContent('効果');
     expect(rows[0].children[1]).toHaveTextContent(
-      BeginnerData.effect_name.replaceAll('@', ''),
+      ENCHANT_DATA_MOCK.effect_name.replaceAll('@', ''),
     );
 
     // 入手先の確認
     expect(rows[1].children[0]).toHaveTextContent('入手先');
     const omtCount = 3;
-    const routeNames = BeginnerData.route_name.split('@');
+    const routeNames = OPEN_ROUTE_NAME.split('@');
     let dispRouteNames = '';
     routeNames.forEach((routeName, i) => {
       if (i < omtCount) {
