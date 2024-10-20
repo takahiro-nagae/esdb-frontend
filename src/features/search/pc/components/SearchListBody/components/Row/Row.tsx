@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { TableCell, TableRow } from '@material-ui/core';
 
 import { EnchantData } from '@/repositories/search/_types';
