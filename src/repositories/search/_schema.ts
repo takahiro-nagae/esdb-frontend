@@ -15,7 +15,12 @@ export const EnchantDataSchema = z.object({
   route_name: z.string().nullable(),
   imp_flg: z.string(),
   invalid_target_flg: z.number().optional(),
-  disp_val: z.string().optional(),
+  disp_val: z.number().optional(),
+});
+
+export const EffectNameSchema = z.object({
+  effect_id: z.string(),
+  effect: z.string(),
 });
 
 export const EnchantDataDetailSchema = z.object({

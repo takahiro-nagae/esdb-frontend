@@ -61,7 +61,11 @@ export const SearchList: React.FC<SearchListProps> = ({ isFreeSearch }) => {
                 >
                   <OrderContext.Provider value={{ ...order }}>
                     <PageContext.Provider value={{ ...page }}>
-                      <SearchListContainer />
+                      <SearchListContainer
+                        rowData={enchantList.rowData}
+                        count={count.count}
+                        isDispVal={Boolean(enchantList.enchantList[0].disp_val)}
+                      />
                     </PageContext.Provider>
                   </OrderContext.Provider>
                 </EnchantContext.Provider>

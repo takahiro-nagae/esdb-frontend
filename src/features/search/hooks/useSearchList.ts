@@ -1,7 +1,7 @@
 import { EnchantData } from '@/repositories/search/_types';
 import { useEffect, useState } from 'react';
-import { HeadData } from '../pc/type/HeadData';
-import { Order } from '../pc/type/Order';
+import { HeadData } from '../pc/components/SearchListHead/types/HeadData';
+import { Order } from '../pc/types/Order';
 import { useSearchParams } from 'react-router-dom';
 import { fetchSearchEnchantData } from '@/repositories/search/fetchSearchEnchantData';
 
@@ -30,12 +30,12 @@ export const useSearchList = (isFreeSearch: boolean) => {
       const dataLength = enchantList.length;
       setCount(dataLength);
       setDispCount(dataLength);
-      if (dataLength > 0) {
+      if (dataLength > 0 && enchantList[0].disp_val) {
         setOrderBy('disp_val');
         setOrder('desc');
       }
 
-      res.effect_name && setEffectName(res.effect_name);
+      res.effect_name && setEffectName(res.effect_name.effect);
 
       setIsLoading(true);
     });

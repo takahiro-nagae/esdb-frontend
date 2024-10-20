@@ -4,7 +4,6 @@ import { useEnchantContext } from '../../../../context/useEnchantContext';
 import { positionName } from '../../../functions/positionFunction';
 
 export const useSearchFilter = () => {
-  console.log('useSearchFilter');
   const [searchWord, setSearchWord] = useState('');
   const pageContext = usePageContext();
   const enchantContext = useEnchantContext();
