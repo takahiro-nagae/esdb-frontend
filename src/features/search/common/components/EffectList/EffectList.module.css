@@ -1,0 +1,20 @@
+.increase {
+  color: #8989ff;
+  margin: 2px;
+}
+.decrease {
+  color: #ff3b3b;
+  margin: 2px;
+}
+.not-relevant {
+  color: #11d612;
+  margin: '2px';
+}
+.designated {
+  color: #f0f;
+  margin: '2px';
+}
+.default {
+  color: #f461f4;
+  margin: 2px;
+}

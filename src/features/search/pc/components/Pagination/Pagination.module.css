@@ -1,0 +1,10 @@
+.pagination {
+  background-color: #3c3b40;
+  border-bottom: 1px solid rgba(81, 81, 81, 1);
+  border-top: 1px solid rgba(81, 81, 81, 1);
+  color: #ccc !important;
+}
+
+.pagination .css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon {
+  color: #fff;
+}

@@ -1,5 +1,5 @@
+import { EnchantData } from '@/repositories/search/_types';
 import { createContext } from 'react';
-import { EnchantData } from '../common/interface/enchantData';
 
 type EnchantContext = {
   enchantList: Array<EnchantData>;
@@ -10,4 +10,6 @@ type EnchantContext = {
   setCount: (count: number) => void;
 };
 
-export const EnchantContext = createContext<EnchantContext>({} as EnchantContext);
+export const EnchantContext = createContext<EnchantContext>(
+  {} as EnchantContext,
+);

@@ -1,0 +1,13 @@
+.tableHeader {
+  background-color: #1f2023;
+  border: none;
+  border-bottom: 1px solid rgba(81, 81, 81, 1) !important;
+  color: #fff !important;
+  position: sticky;
+  top: 108px;
+  z-index: 3;
+}
+
+.tableHeader path {
+  color: #fff;
+}

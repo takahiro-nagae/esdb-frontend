@@ -1,0 +1,15 @@
+.acoHead {
+  background-color: #2f2f2f;
+  color: #fff !important;
+  border-color: #515151 !important;
+}
+
+.acoBody {
+  background-color: #fff;
+}
+
+.target {
+  border-left: 4px solid #0886a3;
+  color: #fff;
+  padding-left: 16px;
+}
