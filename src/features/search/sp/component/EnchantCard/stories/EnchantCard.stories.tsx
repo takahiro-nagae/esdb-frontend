@@ -19,7 +19,7 @@ export const AllView: StoryObj<typeof EnchantCard> = {
       ...ENCHANT_DATA_MOCK,
       imp_flg: '0',
       invalid_target_flg: 1,
-      disp_val: '100',
+      disp_val: 100,
     },
   },
 };

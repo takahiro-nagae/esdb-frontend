@@ -1,7 +1,5 @@
 import * as stories from './Row.stories';
 import userEvent from '@testing-library/user-event';
-import { Rank } from '../../../../../common/components/Rank/Rank';
-import { positionName } from '../../../../../common/functions/positionFunction';
 import { render, waitFor, screen } from '@testing-library/react';
 import { composeStories } from '@storybook/react';
 import {
@@ -9,6 +7,8 @@ import {
   Dummy1NotDispVal,
 } from '@/features/search/pc/data/SearchListMockData';
 import { EnchantData } from '@/repositories/search/_types';
+import { positionName } from '@/features/search/common/functions/positionFunction';
+import { Rank } from '@/features/search/common/components/Rank/Rank';
 
 jest.mock('../../../../../common/components/Rank/Rank');
 describe('SearchList Row', () => {

@@ -2,13 +2,13 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { composeStories } from '@storybook/react';
 import * as stories from '../stories/EnchantCard.stories';
+import { DetailTable } from '../component/DetailTable/DetailTable';
+import { ENCHANT_DATA_MOCK } from '@/repositories/search/__mocks__/fetchSearchEnchantData';
 import {
   createEnchantName,
   createEnchantNameEn,
-} from '../../../../common/functions/enchantNameFunction';
-import { positionName } from '../../../../common/functions/positionFunction';
-import { DetailTable } from '../component/DetailTable/DetailTable';
-import { ENCHANT_DATA_MOCK } from '@/repositories/search/__mocks__/fetchSearchEnchantData';
+} from '@/features/search/common/functions/enchantNameFunction';
+import { positionName } from '@/features/search/common/functions/positionFunction';
 
 jest.mock('../component/DetailTable/DetailTable');
 describe('EnchantCard', () => {

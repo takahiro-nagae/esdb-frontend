@@ -1,11 +1,12 @@
-import { EnchantDataDetail } from '@/repositories/search/_types';
+import { EnchantData } from '@/repositories/search/_types';
 
-export const FlamingoData: EnchantDataDetail = {
+export const FlamingoData: EnchantData = {
   enchant_id: '00000001',
   enchant_name: 'フラミンゴスレイヤー',
   enchant_name_2: '',
   enchant_name_en: "Flamingo Slayer's",
   position_id: '1',
+  rank_seq: 1,
   rank: 'F',
   target_name: '全て',
   target_code: '0',
@@ -16,13 +17,14 @@ export const FlamingoData: EnchantDataDetail = {
   imp_flg: '1',
 };
 
-export const BeginnerData: EnchantDataDetail = {
+export const BeginnerData: EnchantData = {
   enchant_id: '00000005',
   enchant_name: '初歩の',
   enchant_name_2: 'ビギナー',
   enchant_name_en: "Beginner's",
   position_id: '1',
   target_code: '0',
+  rank_seq: 1,
   rank: 'F',
   target_name: '全て',
   effect_kbn: 'decrease@increase',

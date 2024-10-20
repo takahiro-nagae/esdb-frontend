@@ -1,16 +1,16 @@
 import { Table, TableBody, TableCell, TableRow } from '@mui/material';
-import {
-  createEnchantName,
-  createEnchantNameEn,
-} from '../../functions/enchantNameFunction';
-import { positionName } from '../../functions/positionFunction';
-import { RankModal } from '../Rank/Modal/RankModal';
-import { DisplayWideAd } from '../../../../../adsense/displayWideAd';
 import { EnchantDataDetail } from '@/repositories/search/_types';
 import styles from './Detail.module.css';
 import effectListStyles from '../EffectList/EffectList.module.css';
 import enchantNameStyles from '../../styles/EnchantName.module.css';
 import positionStyles from '../../styles/Position.module.css';
+import {
+  createEnchantName,
+  createEnchantNameEn,
+} from '../../functions/enchantNameFunction';
+import { RankModal } from '../Rank/Modal/RankModal';
+import { DisplayWideAd } from '@/adsense/displayWideAd';
+import { positionName } from '../../functions/positionFunction';
 
 type DetailProps = {
   enchant: EnchantDataDetail;
