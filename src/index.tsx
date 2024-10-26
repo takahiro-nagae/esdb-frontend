@@ -13,8 +13,8 @@ import { DetailIndex } from './features/search/common/components/Detail/Index/De
 import { Theme } from './common/theme/theme';
 import { DefaultGlobalStyles } from './common/theme/defaultGlobalStyles';
 import { createRoot } from 'react-dom/client';
-import { PcHeader } from './features/header/pcHeader';
-import { MobileHeader } from './features/header/mobileHeader';
+import { PcHeader } from './features/header/PcHeader';
+import { MobileHeader } from './features/header/MobileHeader';
 
 const rootElement = document.getElementById('root');
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment

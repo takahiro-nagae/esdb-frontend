@@ -8,13 +8,13 @@ export const EnchantDataSchema = z.object({
   position_id: z.string(),
   rank: z.string(),
   rank_seq: z.number(),
-  target_code: z.string(),
+  target_code: z.string().optional(),
   target_name: z.string(),
   effect_kbn: z.string(),
   effect_name: z.string(),
   route_name: z.string().nullable(),
   imp_flg: z.string(),
-  invalid_target_flg: z.number().optional(),
+  invalid_target_flg: z.number().optional().or(z.string().optional()), // FIXME: searchとdetailで型が違う
   disp_val: z.number().optional(),
 });
 

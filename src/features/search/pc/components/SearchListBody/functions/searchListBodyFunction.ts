@@ -6,7 +6,6 @@ export const stableSort = (
   array: Array<EnchantData>,
   comparator: (a: EnchantData, b: EnchantData) => number,
 ) => {
-  console.log('array', array);
   const stabilizedThis = array.map(
     (el, index) => [el, index] as [EnchantData, number],
   );
