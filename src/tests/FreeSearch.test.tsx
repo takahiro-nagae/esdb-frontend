@@ -1,4 +1,4 @@
-import { FreeSearch } from '@/features/header/components/SearchBar/FreeSearch';
+import { FreeSearch } from '@/features/Header/components/SearchBar/FreeSearch';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { BrowserRouter } from 'react-router-dom';

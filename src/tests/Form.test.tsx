@@ -1,6 +1,6 @@
 // import * as fetchInitData from '../repositories/form/fetchInitData';
 
-import { SearchFormContainer } from '@/features/form/SearchFormContainer';
+import { SearchFormContainer } from '@/features/Form/SearchFormContainer';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { BrowserRouter } from 'react-router-dom';
