@@ -1,0 +1,12 @@
+.text {
+  vertical-align: middle;
+  margin-left: 10px;
+}
+
+.activated {
+  color: #007dff;
+}
+
+.inactivated {
+  color: #fff;
+}
