@@ -1,6 +1,6 @@
 import { TableCell, TableRow } from '@mui/material';
 import { displayLastAd } from './function/displayAd';
-import { InfeedAd } from '@/adsense/infeedAd';
+import { InfeedAd } from '@/adsense/InfeedAd';
 import styles from './Ad.module.css';
 
 type LastInfeedAdProps = {

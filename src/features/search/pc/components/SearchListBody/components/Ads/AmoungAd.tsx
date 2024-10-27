@@ -1,7 +1,7 @@
 import { TableCell, TableRow } from '@mui/material';
 import { displayAmongAd } from './function/displayAd';
 import styles from './Ad.module.css';
-import { InfeedAd } from '@/adsense/infeedAd';
+import { InfeedAd } from '@/adsense/InfeedAd';
 
 type AmongAdProps = {
   index: number;

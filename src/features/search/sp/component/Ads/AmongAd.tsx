@@ -1,5 +1,5 @@
 import { Card } from '@material-ui/core';
-import { InfeedAd } from '../../../../../adsense/infeedAd';
+import { InfeedAd } from '../../../../../adsense/InfeedAd';
 import { displayAmongAd } from './function/displayAd';
 import styles from './Ad.module.css';
 

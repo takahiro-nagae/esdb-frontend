@@ -1,6 +1,6 @@
 import { Grid, Paper } from '@material-ui/core';
 import Box from '@mui/material/Box';
-import { DisplayWideAd } from '../../adsense/displayWideAd';
+import { DisplayWideAd } from '../../adsense/DisplayWideAd';
 
 export const PrivacyPolicy: React.FC = () => {
   return (

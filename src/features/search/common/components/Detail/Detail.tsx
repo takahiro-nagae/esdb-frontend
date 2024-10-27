@@ -9,7 +9,7 @@ import {
   createEnchantNameEn,
 } from '../../functions/enchantNameFunction';
 import { RankModal } from '../Rank/Modal/RankModal';
-import { DisplayWideAd } from '@/adsense/displayWideAd';
+import { DisplayWideAd } from '@/adsense/DisplayWideAd';
 import { positionName } from '../../functions/positionFunction';
 
 type DetailProps = {

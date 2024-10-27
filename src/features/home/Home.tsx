@@ -1,5 +1,5 @@
 import React from 'react';
-import { MultiplexAd } from '../../adsense/multiplexAd';
+import { MultiplexAd } from '../../adsense/MultiplexAd';
 import { SearchFormContainer } from '../form/SearchFormContainer';
 
 export const Home: React.FC = () => {

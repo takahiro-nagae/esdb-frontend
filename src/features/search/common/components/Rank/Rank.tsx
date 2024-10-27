@@ -9,7 +9,7 @@ import {
 import styles from './Rank.module.css';
 import { RANK_HEADER_LABELS } from './const';
 import { useRank } from './hooks/useRank';
-import { DisplayWideAd } from '@/adsense/displayWideAd';
+import { DisplayWideAd } from '@/adsense/DisplayWideAd';
 
 export type RankProps = {
   rank: string;
