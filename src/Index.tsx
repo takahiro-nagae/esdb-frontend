@@ -3,7 +3,7 @@ import { ThemeProvider } from '@material-ui/core';
 import { BrowserView, MobileView } from 'react-device-detect';
 import './index.css';
 import { Home } from './features/home/Home';
-import { Footer } from './common/footer';
+import { Footer } from './common/Footer';
 import { About } from './features/static/About';
 import { AppHistory } from './features/static/AppHistory';
 import { SearchList } from './features/search/SearchList';
