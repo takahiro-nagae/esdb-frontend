@@ -1,7 +1,7 @@
 import styles from './InvalidText.module.css';
 
 type InvalidTextProps = {
-  invalidTargetFlg: number | undefined;
+  invalidTargetFlg: string | number | undefined;
 };
 
 export const InvalidText: React.FC<InvalidTextProps> = ({
