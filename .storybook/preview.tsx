@@ -2,7 +2,7 @@ import React from 'react';
 import { ThemeProvider } from '@material-ui/core';
 import type { Preview } from '@storybook/react';
 import { Theme } from '../src/common/theme/theme';
-import { DefaultGlobalStyles } from '../src/common/theme/defaultGlobalStyles';
+import { DefaultGlobalStyles } from '../src/common/theme/DefaultGlobalStyles';
 import '../src/index.css';
 
 const preview: Preview = {

@@ -11,7 +11,7 @@ import { PrivacyPolicy } from './features/static/PrivacyPolicy';
 import { RankIndex } from './features/search/common/components/Rank/Index/RankIndex';
 import { DetailIndex } from './features/search/common/components/Detail/Index/DetailIndex';
 import { Theme } from './common/theme/theme';
-import { DefaultGlobalStyles } from './common/theme/defaultGlobalStyles';
+import { DefaultGlobalStyles } from './common/theme/DefaultGlobalStyles';
 import { createRoot } from 'react-dom/client';
 import { PcHeader } from './features/header/PcHeader';
 import { MobileHeader } from './features/header/MobileHeader';
