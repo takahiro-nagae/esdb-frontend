@@ -15,4 +15,19 @@ export default defineConfig(({ mode }) => ({
   server: {
     port: 3000,
   },
+  test: {
+    globals: true,
+    environment: 'happy-dom',
+    setupFiles: ['./vitest-setup.ts'],
+    include: ['src/**/*.test.{ts,tsx}', 'tests/**/*.test.{ts,tsx}'],
+    outputFile: 'test-report/index.html',
+    reporters: ['html', 'dot'],
+    coverage: {
+      enabled: true,
+      include: ['src/**/*.{ts,tsx}'],
+      exclude: ['**/*.stories.tsx'],
+      reportsDirectory: 'test-report/coverage',
+      reporter: ['html'],
+    },
+  },
 }));

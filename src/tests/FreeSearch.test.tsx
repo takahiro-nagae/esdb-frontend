@@ -2,6 +2,7 @@ import { FreeSearch } from '@/features/Header/components/SearchBar/FreeSearch';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { BrowserRouter } from 'react-router-dom';
+import { describe, expect, it } from 'vitest';
 
 describe('FreeSearch Integration Tests', () => {
   it('ヘッダーの自由検索の挙動確認', async () => {

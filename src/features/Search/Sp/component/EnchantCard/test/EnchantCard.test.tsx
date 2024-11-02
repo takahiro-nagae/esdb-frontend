@@ -9,8 +9,9 @@ import {
   createEnchantNameEn,
 } from '@/features/Search/common/functions/enchantNameFunction';
 import { positionName } from '@/features/Search/common/functions/positionFunction';
+import { describe, expect, test, vi } from 'vitest';
 
-jest.mock('../component/DetailTable/DetailTable');
+vi.mock('../component/DetailTable/DetailTable');
 describe('EnchantCard', () => {
   const { Normal, AllView } = composeStories(stories);
 

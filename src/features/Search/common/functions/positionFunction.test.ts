@@ -1,6 +1,4 @@
-/**
- * @jest-environment node
- */
+import { describe, expect, test } from 'vitest';
 import { positionName } from './positionFunction';
 
 describe('positionName', () => {

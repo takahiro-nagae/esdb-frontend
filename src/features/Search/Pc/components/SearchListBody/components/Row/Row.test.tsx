@@ -9,8 +9,9 @@ import {
 import { EnchantData } from '@/repositories/search/_types';
 import { positionName } from '@/features/Search/common/functions/positionFunction';
 import { Rank } from '@/features/Search/common/components/Rank/Rank';
+import { describe, expect, test, vi } from 'vitest';
 
-jest.mock('../../../../../common/components/Rank/Rank');
+vi.mock('../../../../../common/components/Rank/Rank');
 describe('SearchList Row', () => {
   const { IsDispVal, IsNotDispVal } = composeStories(stories);
 

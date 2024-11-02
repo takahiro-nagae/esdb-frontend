@@ -2,6 +2,7 @@ import { composeStories } from '@storybook/react';
 import * as stories from '../stories/EffectDropdown.stories';
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { describe, expect, it } from 'vitest';
 
 describe('EffectDropDown Component', () => {
   const { Default } = composeStories(stories);

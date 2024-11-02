@@ -5,8 +5,9 @@ import userEvent from '@testing-library/user-event';
 import { Detail } from '../../../../../../common/components/Detail/Detail';
 import { ENCHANT_DATA_MOCK } from '@/repositories/search/__mocks__/fetchSearchEnchantData';
 import { OPEN_ROUTE_NAME } from '../stories/DetailTable.stories';
+import { describe, expect, test, vi } from 'vitest';
 
-jest.mock('../../../../../../common/components/Detail/Detail');
+vi.mock('../../../../../../common/components/Detail/Detail');
 describe('DetailTable', () => {
   const { NotOpen, Open } = composeStories(stories);
 

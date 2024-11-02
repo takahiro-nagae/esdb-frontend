@@ -12,8 +12,9 @@ import {
   Dummy2NotDispVal,
 } from '../../data/SearchListMockData';
 import { Rank } from '@/features/Search/common/components/Rank/Rank';
+import { describe, expect, test, vi } from 'vitest';
 
-jest.mock('../../../common/components/Rank/Rank');
+vi.mock('../../../common/components/Rank/Rank');
 describe('SearchListBody', () => {
   const {
     EnchantNameAsc,

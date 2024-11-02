@@ -1,25 +1,25 @@
-import { composeStories } from "@storybook/react";
-import * as stories from "../stories/SearchListContainer.stories";
-import { render, screen } from "@testing-library/react";
+import { composeStories } from '@storybook/react';
+import * as stories from '../stories/SearchListContainer.stories';
+import { render, screen } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
 
 describe('SearchListContainer', () => {
-    test('表示内容の確認', () => {
-        const { Default } = composeStories(stories);
+  it('表示内容の確認', () => {
+    const { Default } = composeStories(stories);
 
-        render(<Default />);
+    render(<Default />);
 
-        // 絞り込みフィルターが表示されていること
-        expect(screen.getByTestId('searchFilter')).toBeInTheDocument();
+    // 絞り込みフィルターが表示されていること
+    expect(screen.getByTestId('searchFilter')).toBeInTheDocument();
 
-        // テーブルが表示されていること
-        expect(screen.getByRole('table')).toBeInTheDocument();
+    // テーブルが表示されていること
+    expect(screen.getByRole('table')).toBeInTheDocument();
 
-        // ヘッダー + データが2件表示されていること
-        const rows = screen.getAllByRole('row');
-        expect(rows.length).toBe(3);
+    // ヘッダー + データが2件表示されていること
+    const rows = screen.getAllByRole('row');
+    expect(rows.length).toBe(3);
 
-        // ページネーションが表示されていること
-        expect(screen.getByTestId('pagination')).toBeInTheDocument();
-
-    });
+    // ページネーションが表示されていること
+    expect(screen.getByTestId('pagination')).toBeInTheDocument();
+  });
 });

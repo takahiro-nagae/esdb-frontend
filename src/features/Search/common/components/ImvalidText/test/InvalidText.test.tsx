@@ -1,11 +1,12 @@
 import * as stories from '../stories/InvalidText.stories';
 import { composeStories } from '@storybook/react';
 import { render, screen } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
 
 describe('InvalidText', () => {
   const expectMessage = '貼付不可';
 
-  test('貼付可能', () => {
+  it('貼付可能', () => {
     const { NotInvalid } = composeStories(stories);
     render(<NotInvalid />);
 
@@ -13,7 +14,7 @@ describe('InvalidText', () => {
     expect(screen.queryByText(expectMessage)).toBeNull();
   });
 
-  test('貼付不可', () => {
+  it('貼付不可', () => {
     const { Invalid } = composeStories(stories);
     render(<Invalid />);
 

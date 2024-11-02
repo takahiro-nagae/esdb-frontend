@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { AppMenuData } from '../MenuData';
 import * as stories from '../stories/AppMenu.stories';
 import { composeStories } from '@storybook/react';
+import { expect, test } from 'vitest';
 
 test('メニューのクリック確認', async () => {
   const { Default } = composeStories(stories);

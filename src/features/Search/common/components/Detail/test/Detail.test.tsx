@@ -9,8 +9,9 @@ import {
 import userEvent from '@testing-library/user-event';
 import { Rank } from '../../Rank/Rank';
 import { positionName } from '../../../functions/positionFunction';
+import { describe, expect, test, vi } from 'vitest';
 
-jest.mock('../../Rank/Rank');
+vi.mock('../../Rank/Rank');
 describe('Detail', () => {
   const { DetailView } = composeStories(stories);
 
