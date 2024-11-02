@@ -1,6 +1,8 @@
 import { TableCell, TableRow } from '@mui/material';
-import { displayAmongAd } from './function/displayAd';
+
 import styles from './Ad.module.css';
+import { displayAmongAd } from './function/displayAd';
+
 import { InfeedAd } from '@/adsense/InfeedAd';
 
 type AmongAdProps = {

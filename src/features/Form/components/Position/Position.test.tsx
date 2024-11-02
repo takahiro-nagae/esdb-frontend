@@ -1,7 +1,8 @@
 import { composeStories } from '@storybook/react';
-import * as stories from './Position.stories';
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
+
+import * as stories from './Position.stories';
 
 describe('EffectDropDown Component', () => {
   const { Default } = composeStories(stories);

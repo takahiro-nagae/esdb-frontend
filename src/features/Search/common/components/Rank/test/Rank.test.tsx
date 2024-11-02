@@ -1,6 +1,7 @@
 import { render, screen, waitFor } from '@testing-library/react';
-import { Rank } from '../Rank';
 import { describe, expect, it } from 'vitest';
+
+import { Rank } from '../Rank';
 
 describe('Rank', () => {
   it('表示確認', async () => {

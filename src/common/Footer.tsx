@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box';
+
 import styles from './Footer.module.css';
 
 export const Footer: React.FC = () => {

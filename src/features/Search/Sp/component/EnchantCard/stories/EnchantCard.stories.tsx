@@ -1,5 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
+
 import { EnchantCard } from '../EnchantCard';
+
 import { ENCHANT_DATA_MOCK } from '@/repositories/search/__mocks__/fetchSearchEnchantData';
 
 export default {

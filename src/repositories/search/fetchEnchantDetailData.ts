@@ -1,4 +1,5 @@
 import { internalApiClient } from '../_client';
+
 import { EnchantDataDetailSchema } from './_schema';
 
 const ResponseSchema = EnchantDataDetailSchema;

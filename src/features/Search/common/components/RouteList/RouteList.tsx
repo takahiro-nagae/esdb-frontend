@@ -1,6 +1,6 @@
+import DOMPurify from 'dompurify';
 import { isMobile } from 'react-device-detect';
 
-import DOMPurify from 'dompurify';
 import styles from './RouteList.module.css';
 
 type RouteListProps = {

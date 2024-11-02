@@ -1,9 +1,10 @@
-import HomeIcon from '@material-ui/icons/Home';
 import HistoryIcon from '@material-ui/icons/History';
+import HomeIcon from '@material-ui/icons/Home';
 import InfoIcon from '@material-ui/icons/Info';
 import NotesIcon from '@material-ui/icons/Notes';
-import styles from './MenuData.module.css';
 import { ReactElement } from 'react';
+
+import styles from './MenuData.module.css';
 
 type AppRowType = Partial<{
   url: string;

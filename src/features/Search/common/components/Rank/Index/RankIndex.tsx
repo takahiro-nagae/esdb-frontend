@@ -1,8 +1,9 @@
-import { useParams } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
 import Box from '@mui/material/Box';
-import { Rank } from '../Rank';
 import React from 'react';
+import { useParams } from 'react-router-dom';
+
+import { Rank } from '../Rank';
 
 export const RankIndex: React.FC = () => {
   const params = useParams();

@@ -1,5 +1,6 @@
-import { fetchSearchEnchantData as originalFn } from '@/repositories/search/fetchSearchEnchantData';
 import { EnchantData } from '../_types';
+
+import { fetchSearchEnchantData as originalFn } from '@/repositories/search/fetchSearchEnchantData';
 
 export const ENCHANT_DATA_MOCK: EnchantData = {
   enchant_id: '1',

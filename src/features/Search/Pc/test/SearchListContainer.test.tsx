@@ -1,7 +1,8 @@
 import { composeStories } from '@storybook/react';
-import * as stories from '../stories/SearchListContainer.stories';
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
+
+import * as stories from '../stories/SearchListContainer.stories';
 
 describe('SearchListContainer', () => {
   it('表示内容の確認', () => {

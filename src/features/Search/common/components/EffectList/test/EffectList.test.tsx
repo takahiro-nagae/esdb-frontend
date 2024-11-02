@@ -1,7 +1,9 @@
-import React from 'react';
-import * as stories from '../stories/EffectList.stories';
-import { render, screen } from '@testing-library/react';
 import { composeStories } from '@storybook/react';
+import { render, screen } from '@testing-library/react';
+import React from 'react';
+import { describe, expect, it } from 'vitest';
+
+import * as stories from '../stories/EffectList.stories';
 import {
   allItemsData,
   decreaseItemData,
@@ -9,7 +11,7 @@ import {
   increaseItemData,
   otherItemData,
 } from '../stories/EffectListStoryData';
-import { describe, expect, it } from 'vitest';
+
 
 const {
   NoItems,

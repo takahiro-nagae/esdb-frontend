@@ -1,9 +1,10 @@
 import { composeStories } from '@storybook/react';
-import * as stories from '../stories/ScrollTopButton.stories';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { animateScroll } from 'react-scroll/modules';
 import { describe, expect, test, vi } from 'vitest';
+
+import * as stories from '../stories/ScrollTopButton.stories';
 
 vi.mock('react-scroll/modules');
 describe('ScrollTopButton', () => {

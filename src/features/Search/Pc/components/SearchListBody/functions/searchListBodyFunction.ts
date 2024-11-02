@@ -1,6 +1,7 @@
-import { EnchantData } from '@/repositories/search/_types';
-import { HeadData } from '../../SearchListHead/types/HeadData';
 import { Order } from '../../../types/Order';
+import { HeadData } from '../../SearchListHead/types/HeadData';
+
+import { EnchantData } from '@/repositories/search/_types';
 
 export const stableSort = (
   array: Array<EnchantData>,

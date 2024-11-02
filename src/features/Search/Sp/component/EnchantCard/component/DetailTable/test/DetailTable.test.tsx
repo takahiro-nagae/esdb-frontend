@@ -1,11 +1,13 @@
 import { composeStories } from '@storybook/react';
-import * as stories from '../stories/DetailTable.stories';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { Detail } from '../../../../../../common/components/Detail/Detail';
-import { ENCHANT_DATA_MOCK } from '@/repositories/search/__mocks__/fetchSearchEnchantData';
-import { OPEN_ROUTE_NAME } from '../stories/DetailTable.stories';
 import { describe, expect, test, vi } from 'vitest';
+
+import { Detail } from '../../../../../../common/components/Detail/Detail';
+import { OPEN_ROUTE_NAME } from '../stories/DetailTable.stories';
+import * as stories from '../stories/DetailTable.stories';
+
+import { ENCHANT_DATA_MOCK } from '@/repositories/search/__mocks__/fetchSearchEnchantData';
 
 vi.mock('../../../../../../common/components/Detail/Detail');
 describe('DetailTable', () => {

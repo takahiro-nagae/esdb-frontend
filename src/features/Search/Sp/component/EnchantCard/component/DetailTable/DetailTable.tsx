@@ -6,12 +6,14 @@ import {
   TableCell,
   TableRow,
 } from '@material-ui/core';
+
+import { DetailModal } from '../../../../../common/components/Detail/Modal/DetailModal';
 import { EffectList } from '../../../../../common/components/EffectList/EffectList';
 import { RouteList } from '../../../../../common/components/RouteList/RouteList';
-import { DetailModal } from '../../../../../common/components/Detail/Modal/DetailModal';
+
+import styles from './DetailTable.module.css';
 
 import { EnchantData } from '@/repositories/search/_types';
-import styles from './DetailTable.module.css';
 
 type DetailTableProps = {
   enchant: EnchantData;

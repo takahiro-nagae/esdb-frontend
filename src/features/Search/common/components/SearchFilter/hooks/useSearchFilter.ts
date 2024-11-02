@@ -1,7 +1,9 @@
+import { useEffect, useRef, useState, useCallback } from 'react';
+
+import { positionName } from '../../../functions/positionFunction';
+
 import { useEnchantContext } from '@/features/Search/context/useEnchantContext';
 import { usePageContext } from '@/features/Search/context/usePageContext';
-import { useEffect, useRef, useState, useCallback } from 'react';
-import { positionName } from '../../../functions/positionFunction';
 
 export const useSearchFilter = () => {
   const [searchWord, setSearchWord] = useState('');

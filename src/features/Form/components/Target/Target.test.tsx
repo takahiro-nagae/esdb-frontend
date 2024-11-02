@@ -1,8 +1,9 @@
 import { composeStories } from '@storybook/react';
-import * as stories from './Target.stories';
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
+
+import * as stories from './Target.stories';
 
 describe('RankDropDown Component', () => {
   const { Default } = composeStories(stories);

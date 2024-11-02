@@ -1,6 +1,7 @@
 import { KeyboardDoubleArrowUp } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
 import { animateScroll } from 'react-scroll/modules';
+
 import styles from './ScrollTopButton.module.css';
 
 export const ScrollTopButton: React.FC = () => {

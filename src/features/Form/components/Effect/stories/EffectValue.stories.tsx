@@ -1,6 +1,7 @@
 import { Meta, StoryFn } from '@storybook/react';
-import { EffectValue } from '../EffectValue';
 import { useState } from 'react';
+
+import { EffectValue } from '../EffectValue';
 
 export default {
   title: 'form/Effect/EffectValue',

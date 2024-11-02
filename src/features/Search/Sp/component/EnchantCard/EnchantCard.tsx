@@ -1,22 +1,24 @@
-import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
-import { positionName } from '../../../common/functions/positionFunction';
+import { useState } from 'react';
+
+import { ImpText } from '../../../common/components/ImpText/ImpText';
+import { InvalidText } from '../../../common/components/ImvalidText/InvalidText';
 import { RankModal } from '../../../common/components/Rank/Modal/RankModal';
 import {
   createEnchantName,
   createEnchantNameEn,
 } from '../../../common/functions/enchantNameFunction';
-import { InvalidText } from '../../../common/components/ImvalidText/InvalidText';
-import { ImpText } from '../../../common/components/ImpText/ImpText';
-
-import { DetailTable } from './component/DetailTable/DetailTable';
-import { AccordionButton } from './component/AccordionButton/AccordionButton';
-import { EnchantData } from '@/repositories/search/_types';
-import styles from './EnchantCard.module.css';
+import { positionName } from '../../../common/functions/positionFunction';
 import enchantNameStyles from '../../../common/styles/EnchantName.module.css';
 import positionStyles from '../../../common/styles/Position.module.css';
+
+import styles from './EnchantCard.module.css';
+import { AccordionButton } from './component/AccordionButton/AccordionButton';
+import { DetailTable } from './component/DetailTable/DetailTable';
+
+import { EnchantData } from '@/repositories/search/_types';
 
 type EnchantCardProps = {
   enchant: EnchantData;

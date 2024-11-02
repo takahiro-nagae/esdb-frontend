@@ -1,13 +1,14 @@
 import { Grid } from '@material-ui/core';
 import Box from '@mui/material/Box';
-import { EnchantCard } from './component/EnchantCard/EnchantCard';
-
-import { ScrollTopButton } from './component/ScrollTopButton/ScrollTopButton';
-import { LastInfeedAd } from './component/Ads/LastInfeedAd';
-import { AmongAd } from './component/Ads/AmongAd';
-import { EnchantData } from '@/repositories/search/_types';
 
 import styles from './SpSearchContainer.module.css';
+import { AmongAd } from './component/Ads/AmongAd';
+import { LastInfeedAd } from './component/Ads/LastInfeedAd';
+import { EnchantCard } from './component/EnchantCard/EnchantCard';
+import { ScrollTopButton } from './component/ScrollTopButton/ScrollTopButton';
+
+import { EnchantData } from '@/repositories/search/_types';
+
 
 type SpSearchContainerProps = {
   rowData: Array<EnchantData>;

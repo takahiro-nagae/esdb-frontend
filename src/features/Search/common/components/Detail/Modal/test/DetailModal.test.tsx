@@ -1,9 +1,10 @@
-import { describe, expect, test, vi } from 'vitest';
 import { composeStories } from '@storybook/react';
-import * as stories from '../stories/DetailModal.stories';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { describe, expect, test, vi } from 'vitest';
+
 import { Detail } from '../../Detail';
+import * as stories from '../stories/DetailModal.stories';
 
 vi.mock('../../Detail');
 describe('DetailModal', () => {

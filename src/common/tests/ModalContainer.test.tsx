@@ -1,8 +1,9 @@
 import { composeStories } from '@storybook/react';
 import { render, screen } from '@testing-library/react';
-import * as stories from '../stories/ModalContainer.stories';
 import userEvent from '@testing-library/user-event';
 import { expect, test } from 'vitest';
+
+import * as stories from '../stories/ModalContainer.stories';
 
 test('コンテナの挙動確認', async () => {
   const { Default } = composeStories(stories);

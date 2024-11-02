@@ -1,7 +1,9 @@
 import { Meta, StoryFn } from '@storybook/react';
-import { Effect } from '../Effect';
-import { EFFECT_MOCK } from '@/repositories/form/__mocks__/fetchInitData';
 import { useState } from 'react';
+
+import { Effect } from '../Effect';
+
+import { EFFECT_MOCK } from '@/repositories/form/__mocks__/fetchInitData';
 
 export default {
   title: 'form/Effect/Effect',

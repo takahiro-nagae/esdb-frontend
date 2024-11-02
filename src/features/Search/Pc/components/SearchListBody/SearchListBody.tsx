@@ -1,11 +1,13 @@
 import TableBody from '@mui/material/TableBody';
-import { EnchantData } from '@/repositories/search/_types';
-import { getComparator, stableSort } from './functions/searchListBodyFunction';
+
 import { AmongAd } from './components/Ads/AmoungAd';
-import { Row } from './components/Row/Row';
 import { LastInfeedAd } from './components/Ads/LastInfeedAd';
+import { Row } from './components/Row/Row';
+import { getComparator, stableSort } from './functions/searchListBodyFunction';
+
 import { useOrderContext } from '@/features/Search/context/pc/useOrderContext';
 import { usePageContext } from '@/features/Search/context/usePageContext';
+import { EnchantData } from '@/repositories/search/_types';
 
 type SearchListBodyProps = {
   rowData: Array<EnchantData>;

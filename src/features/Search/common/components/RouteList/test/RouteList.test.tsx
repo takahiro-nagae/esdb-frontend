@@ -1,9 +1,11 @@
-import React from 'react';
-import * as stories from '../stories/RouteList.stories';
 import { composeStories } from '@storybook/react';
 import { render, screen } from '@testing-library/react';
-import { omtData, routeNameFor3 } from '../stories/RouteListStoryData';
+import React from 'react';
 import { describe, expect, it } from 'vitest';
+
+import * as stories from '../stories/RouteList.stories';
+import { omtData, routeNameFor3 } from '../stories/RouteListStoryData';
+
 
 describe('RouteList', () => {
   it('入手先がない', () => {

@@ -1,6 +1,7 @@
 import { Meta, StoryFn } from '@storybook/react';
-import { EffectRange } from '../EffectRange';
 import { useState } from 'react';
+
+import { EffectRange } from '../EffectRange';
 
 export default {
   title: 'form/Effect/EffectRange',

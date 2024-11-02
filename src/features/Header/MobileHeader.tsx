@@ -1,8 +1,9 @@
-import { Link } from 'react-router-dom';
 import { AppBar, Toolbar } from '@material-ui/core';
+import { Link } from 'react-router-dom';
+
+import styles from './MobileHeader.module.css';
 import { AppMenu } from './components/Menu/AppMenu';
 import { FreeSearch } from './components/SearchBar/FreeSearch';
-import styles from './MobileHeader.module.css';
 
 const Component = () => {
   return (

@@ -1,8 +1,9 @@
-import { render, screen } from '@testing-library/react';
-import * as stories from '../stories/SearchFilter.stories';
 import { composeStories } from '@storybook/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, test } from 'vitest';
+
+import * as stories from '../stories/SearchFilter.stories';
 
 const { Init } = composeStories(stories);
 

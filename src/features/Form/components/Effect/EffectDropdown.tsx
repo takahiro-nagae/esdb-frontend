@@ -1,6 +1,8 @@
-import { FormEffectType } from '@/repositories/form/_types';
 import { MenuItem, TextField } from '@material-ui/core';
+
 import styles from '../../common/style/common.module.css';
+
+import { FormEffectType } from '@/repositories/form/_types';
 
 export type EffectDropdownProps = {
   effectList: Array<FormEffectType>;

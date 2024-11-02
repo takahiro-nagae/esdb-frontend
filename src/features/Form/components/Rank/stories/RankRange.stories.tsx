@@ -1,6 +1,7 @@
 import { Meta, StoryFn } from '@storybook/react';
-import { RankRange } from '../RankRange';
 import { useState } from 'react';
+
+import { RankRange } from '../RankRange';
 
 export default {
   title: 'form/Rank/RankRange',

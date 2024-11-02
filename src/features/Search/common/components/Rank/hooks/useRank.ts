@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
-import { fetchRankData } from '@/repositories/search/fetchRankData';
 import { RankData } from '@/repositories/search/_types';
+import { fetchRankData } from '@/repositories/search/fetchRankData';
 
 type rankData = {
   rank: string;

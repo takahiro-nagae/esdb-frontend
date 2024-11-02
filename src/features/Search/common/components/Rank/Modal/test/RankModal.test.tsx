@@ -1,9 +1,10 @@
 import { composeStories } from '@storybook/react';
-import * as stories from '../stories/RankModal.stories';
 import { render, screen, waitFor } from '@testing-library/react';
-import { Rank } from '../../Rank';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
+
+import { Rank } from '../../Rank';
+import * as stories from '../stories/RankModal.stories';
 
 vi.mock('../../Rank');
 describe('RankModal', () => {

@@ -1,5 +1,6 @@
-import React from 'react';
 import GlobalStyles from '@mui/material/GlobalStyles';
+import React from 'react';
+
 import { Theme } from './theme';
 
 export const DefaultGlobalStyles: React.FC = () => {

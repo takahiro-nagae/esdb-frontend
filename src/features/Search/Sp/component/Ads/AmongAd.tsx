@@ -1,7 +1,9 @@
 import { Card } from '@material-ui/core';
+
 import { InfeedAd } from '../../../../../adsense/InfeedAd';
-import { displayAmongAd } from './function/displayAd';
+
 import styles from './Ad.module.css';
+import { displayAmongAd } from './function/displayAd';
 
 type AmongAdProps = {
   index: number;

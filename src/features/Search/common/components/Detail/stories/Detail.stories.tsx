@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { BeginnerData } from "../mock/DetailMockData";
+
 import { Detail } from "../Detail";
+import { BeginnerData } from "../mock/DetailMockData";
 
 export default {
     title: 'search/common/component/Detail',

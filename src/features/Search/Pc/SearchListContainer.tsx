@@ -1,15 +1,17 @@
-import { SearchFilter } from '../common/components/SearchFilter/SearchFilter';
 import { Grid } from '@material-ui/core';
 import Box from '@mui/material/Box';
-import TableContainer from '@mui/material/TableContainer';
 import Table from '@mui/material/Table';
-import { SearchListHead } from './components/SearchListHead/SearchListHead';
+import TableContainer from '@mui/material/TableContainer';
 import React, { useState } from 'react';
-import { SearchListBody } from './components/SearchListBody/SearchListBody';
+
+import { SearchFilter } from '../common/components/SearchFilter/SearchFilter';
 
 import styles from './SearchListContainer.module.css';
-import { EnchantData } from '@/repositories/search/_types';
 import { Pagination } from './components/Pagination/Pagination';
+import { SearchListBody } from './components/SearchListBody/SearchListBody';
+import { SearchListHead } from './components/SearchListHead/SearchListHead';
+
+import { EnchantData } from '@/repositories/search/_types';
 
 type SearchListContainerProps = {
   rowData: Array<EnchantData>;

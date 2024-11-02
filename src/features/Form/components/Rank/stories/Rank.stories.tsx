@@ -1,8 +1,10 @@
 import { Meta, StoryFn } from '@storybook/react';
-import { RANK_MOCK } from '@/repositories/form/__mocks__/fetchInitData';
+import { useState } from 'react';
+
 import { Rank } from '../Rank';
 
-import { useState } from 'react';
+import { RANK_MOCK } from '@/repositories/form/__mocks__/fetchInitData';
+
 
 export default {
   title: 'form/Rank/Rank',

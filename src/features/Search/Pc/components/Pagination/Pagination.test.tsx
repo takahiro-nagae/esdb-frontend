@@ -1,8 +1,9 @@
-import { render, screen, waitFor } from '@testing-library/react';
-import * as stories from './Pagination.stories';
 import { composeStories } from '@storybook/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
+
+import * as stories from './Pagination.stories';
 
 describe('Pagination', () => {
   const { Default, Page1, PerPage60Page1 } = composeStories(stories);

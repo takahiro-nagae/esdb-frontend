@@ -1,8 +1,9 @@
 import { Meta, StoryFn } from '@storybook/react';
+import { useState } from 'react';
+
+import { Target } from './Target';
 
 import { TARGET_MOCK } from '@/repositories/form/__mocks__/fetchInitData';
-import { Target } from './Target';
-import { useState } from 'react';
 
 export default {
   title: 'form/Target',

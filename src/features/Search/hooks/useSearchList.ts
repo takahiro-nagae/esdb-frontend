@@ -1,8 +1,10 @@
-import { EnchantData } from '@/repositories/search/_types';
 import { useEffect, useState } from 'react';
-import { HeadData } from '../pc/components/SearchListHead/types/HeadData';
-import { Order } from '../pc/types/Order';
 import { useSearchParams } from 'react-router-dom';
+
+import { HeadData } from '../Pc/components/SearchListHead/types/HeadData';
+import { Order } from '../Pc/types/Order';
+
+import { EnchantData } from '@/repositories/search/_types';
 import { fetchSearchEnchantData } from '@/repositories/search/fetchSearchEnchantData';
 
 export const useSearchList = (isFreeSearch: boolean) => {

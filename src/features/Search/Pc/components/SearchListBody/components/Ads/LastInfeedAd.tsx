@@ -1,7 +1,9 @@
 import { TableCell, TableRow } from '@mui/material';
-import { displayLastAd } from './function/displayAd';
-import { InfeedAd } from '@/adsense/InfeedAd';
+
 import styles from './Ad.module.css';
+import { displayLastAd } from './function/displayAd';
+
+import { InfeedAd } from '@/adsense/InfeedAd';
 
 type LastInfeedAdProps = {
   index: number;

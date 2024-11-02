@@ -1,6 +1,8 @@
-import { internalApiClient } from '../_client';
-import { FormEffectSchema, FormRankSchema, FormTargetSchema } from './_schema';
 import { z } from 'zod';
+
+import { internalApiClient } from '../_client';
+
+import { FormEffectSchema, FormRankSchema, FormTargetSchema } from './_schema';
 
 const ResponseSchema = z.object({
   effect: z.array(FormEffectSchema),

@@ -1,11 +1,12 @@
-import { createSearchParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { fetchInitData } from '@/repositories/form/fetchInitData';
+import { createSearchParams, useNavigate } from 'react-router-dom';
+
 import {
   FormEffectType,
   FormRankType,
   FormTargetType,
 } from '@/repositories/form/_types';
+import { fetchInitData } from '@/repositories/form/fetchInitData';
 
 export const useSearchForm = () => {
   const [inputEnchantName, setInputEnchantName] = useState('');
