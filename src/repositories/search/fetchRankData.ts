@@ -1,4 +1,5 @@
 import { internalApiClient } from '../_client';
+
 import { RankDataSchema } from './_schema';
 
 const ResponseSchema = RankDataSchema;

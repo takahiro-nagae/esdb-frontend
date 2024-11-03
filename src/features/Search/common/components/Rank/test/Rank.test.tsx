@@ -1,8 +1,10 @@
 import { render, screen, waitFor } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
+
 import { Rank } from '../Rank';
 
 describe('Rank', () => {
-  test('表示確認', async () => {
+  it('表示確認', async () => {
     render(<Rank rank={'F'} />);
 
     // ランクの表示が想定通りか

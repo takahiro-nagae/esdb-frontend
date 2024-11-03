@@ -1,6 +1,7 @@
 import { Meta, Story } from '@storybook/react';
-import { Position } from './Position';
 import { useState } from 'react';
+
+import { Position } from './Position';
 
 export default {
   title: 'form/Position',

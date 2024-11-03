@@ -1,6 +1,8 @@
 import { MenuItem, TextField } from '@material-ui/core';
-import { FormTargetType } from '@/repositories/form/_types';
+
 import styles from '../../common/style/common.module.css';
+
+import { FormTargetType } from '@/repositories/form/_types';
 
 type TargetProps = {
   targetList: Array<FormTargetType>;

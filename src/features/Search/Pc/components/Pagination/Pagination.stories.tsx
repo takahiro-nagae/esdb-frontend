@@ -1,6 +1,8 @@
 import { Meta, StoryObj } from '@storybook/react';
-import { Pagination } from './Pagination';
+
 import { PageContext } from '../../../context/PageContext';
+
+import { Pagination } from './Pagination';
 
 export default {
   title: 'search/pc/Pagination',

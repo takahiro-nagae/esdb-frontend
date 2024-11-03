@@ -1,16 +1,18 @@
 import { composeStories } from '@storybook/react';
-import * as stories from '../stories/Detail.stories';
 import { render, screen, waitFor } from '@testing-library/react';
-import { BeginnerData } from '../mock/DetailMockData';
+import userEvent from '@testing-library/user-event';
+import { describe, expect, test, vi } from 'vitest';
+
 import {
   createEnchantName,
   createEnchantNameEn,
 } from '../../../functions/enchantNameFunction';
-import userEvent from '@testing-library/user-event';
-import { Rank } from '../../Rank/Rank';
 import { positionName } from '../../../functions/positionFunction';
+import { Rank } from '../../Rank/Rank';
+import { BeginnerData } from '../mock/DetailMockData';
+import * as stories from '../stories/Detail.stories';
 
-jest.mock('../../Rank/Rank');
+vi.mock('../../Rank/Rank');
 describe('Detail', () => {
   const { DetailView } = composeStories(stories);
 

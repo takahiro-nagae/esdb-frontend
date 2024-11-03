@@ -1,6 +1,7 @@
+import { Detail } from '../Detail';
+
 import { ModalContainer } from '@/common/ModalContainer';
 import { EnchantData } from '@/repositories/search/_types';
-import { Detail } from '../Detail';
 
 type DetailModalProps = {
   enchant: EnchantData;

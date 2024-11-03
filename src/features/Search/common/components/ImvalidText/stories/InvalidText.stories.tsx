@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
+
 import { InvalidText } from '../InvalidText';
 
 export default {
@@ -8,12 +9,12 @@ export default {
 
 export const NotInvalid: StoryObj<typeof InvalidText> = {
   args: {
-    invalidTargetFlg: 0,
+    invalidTargetFlg: '0',
   },
 };
 
 export const Invalid: StoryObj<typeof InvalidText> = {
   args: {
-    invalidTargetFlg: 1,
+    invalidTargetFlg: '1',
   },
 };

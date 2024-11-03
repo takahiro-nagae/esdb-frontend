@@ -1,12 +1,14 @@
-import { render, screen, waitFor } from '@testing-library/react';
-import * as stories from './Pagination.stories';
 import { composeStories } from '@storybook/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { describe, expect, it } from 'vitest';
+
+import * as stories from './Pagination.stories';
 
 describe('Pagination', () => {
   const { Default, Page1, PerPage60Page1 } = composeStories(stories);
 
-  test('Defaultの表示内容確認', async () => {
+  it('Defaultの表示内容確認', async () => {
     render(<Default />);
 
     // 件数の表示が正しいこと
@@ -26,7 +28,7 @@ describe('Pagination', () => {
     });
   });
 
-  test('ページ送りした場合の表示内容確認', async () => {
+  it('ページ送りした場合の表示内容確認', async () => {
     render(<Page1 />);
 
     // 件数の表示が正しいこと
@@ -46,7 +48,7 @@ describe('Pagination', () => {
     });
   });
 
-  test('ページに表示する件数を60にした場合の表示内容確認', async () => {
+  it('ページに表示する件数を60にした場合の表示内容確認', async () => {
     render(<PerPage60Page1 />);
 
     // 件数の表示が正しいこと

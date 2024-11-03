@@ -1,7 +1,9 @@
-import { render, screen } from '@testing-library/react';
-import * as stories from './EnchantName.stories';
 import { composeStories } from '@storybook/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { describe, expect, it } from 'vitest';
+
+import * as stories from './EnchantName.stories';
 
 describe('EnchantName Component', () => {
   const { Default } = composeStories(stories);
@@ -14,7 +16,7 @@ describe('EnchantName Component', () => {
     ).toBeInTheDocument();
   });
 
-  test('なんでも入力できるか確認', async () => {
+  it('なんでも入力できるか確認', async () => {
     render(<Default />);
 
     const input: HTMLInputElement = screen.getByLabelText('エンチャント名');

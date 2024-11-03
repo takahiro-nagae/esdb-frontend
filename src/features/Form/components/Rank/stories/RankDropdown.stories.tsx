@@ -1,8 +1,9 @@
 import { Meta, StoryFn } from '@storybook/react';
+import { useState } from 'react';
 
 import { RankDropdown } from '../RankDropdown';
+
 import { RANK_MOCK } from '@/repositories/form/__mocks__/fetchInitData';
-import { useState } from 'react';
 
 export default {
   title: 'form/Rank/RankDropdown',

@@ -1,8 +1,11 @@
 import { Grid } from '@material-ui/core';
-import { FormRankType } from '@/repositories/form/_types';
-import { RankRange, RankRangeProps } from './RankRange';
+
 import styles from '../../common/style/common.module.css';
+
 import { RankDropdown, RankDropdownProps } from './RankDropdown';
+import { RankRange, RankRangeProps } from './RankRange';
+
+import { FormRankType } from '@/repositories/form/_types';
 
 type RankProps = {
   rankList: Array<FormRankType>;

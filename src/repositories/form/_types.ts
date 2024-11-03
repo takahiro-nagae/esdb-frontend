@@ -1,4 +1,5 @@
 import { z } from 'zod';
+
 import { FormEffectSchema, FormRankSchema, FormTargetSchema } from './_schema';
 
 export type FormEffectType = z.infer<typeof FormEffectSchema>;

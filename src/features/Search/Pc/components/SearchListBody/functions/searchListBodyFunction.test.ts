@@ -1,6 +1,8 @@
-import { EnchantData } from '@/repositories/search/_types';
 import { Dummy1, Dummy2 } from '../../../data/SearchListMockData';
+
 import { getComparator, stableSort } from './searchListBodyFunction';
+
+import { EnchantData } from '@/repositories/search/_types';
 
 describe('getComparator', () => {
   const mockComparator = (

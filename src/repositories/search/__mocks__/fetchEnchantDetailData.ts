@@ -1,4 +1,4 @@
-import { fetchEnchantDetailData as originalFn } from '@/repositories/search/fetchEnchantDetailData';
+import { fetchEnchantDetailData as originalFn } from '../../search/fetchEnchantDetailData';
 
 const ENCHANT_MOCK = {
   enchant_id: '1',

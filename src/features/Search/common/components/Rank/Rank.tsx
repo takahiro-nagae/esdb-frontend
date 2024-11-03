@@ -9,6 +9,7 @@ import {
 import styles from './Rank.module.css';
 import { RANK_HEADER_LABELS } from './const';
 import { useRank } from './hooks/useRank';
+
 import { DisplayWideAd } from '@/adsense/DisplayWideAd';
 
 export type RankProps = {
@@ -33,7 +34,9 @@ export const Rank: React.FC<RankProps> = ({ rank }) => {
         <TableHead>
           <TableRow>
             {RANK_HEADER_LABELS.map(label => (
-              <TableCell className={styles.header}>{label}</TableCell>
+              <TableCell key={label} className={styles.header}>
+                {label}
+              </TableCell>
             ))}
           </TableRow>
         </TableHead>

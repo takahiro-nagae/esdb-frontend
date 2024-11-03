@@ -1,5 +1,6 @@
 import { Grid, Paper } from '@material-ui/core';
 import Box from '@mui/material/Box';
+
 import { SearchForm } from './SearchForm';
 import styles from './SearchFormContainer.module.css';
 

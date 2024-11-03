@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { DetailModal } from "../DetailModal";
+
 import { BeginnerData, FlamingoData } from "../../mock/DetailMockData";
+import { DetailModal } from "../DetailModal";
 
 export default {
     title: 'search/common/component/Detail/Modal/DetailModal',

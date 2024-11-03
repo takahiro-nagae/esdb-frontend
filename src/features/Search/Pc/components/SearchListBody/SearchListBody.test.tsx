@@ -1,19 +1,22 @@
 import { composeStories } from '@storybook/react';
-import * as stories from './SearchListBody.stories';
 import { render, screen, waitFor } from '@testing-library/react';
-
 import userEvent from '@testing-library/user-event';
-import { EnchantData } from '@/repositories/search/_types';
-import { positionName } from '@/features/Search/common/functions/positionFunction';
+import { describe, expect, test, vi } from 'vitest';
+
 import {
   Dummy1,
   Dummy1NotDispVal,
   Dummy2,
   Dummy2NotDispVal,
 } from '../../data/SearchListMockData';
-import { Rank } from '@/features/Search/common/components/Rank/Rank';
 
-jest.mock('../../../common/components/Rank/Rank');
+import * as stories from './SearchListBody.stories';
+
+import { Rank } from '@/features/Search/common/components/Rank/Rank';
+import { positionName } from '@/features/Search/common/functions/positionFunction';
+import { EnchantData } from '@/repositories/search/_types';
+
+vi.mock('../../../common/components/Rank/Rank');
 describe('SearchListBody', () => {
   const {
     EnchantNameAsc,

@@ -1,7 +1,9 @@
 import { Grid } from '@material-ui/core';
 import Box from '@mui/material/Box';
-import { Detail } from '../Detail';
+
 import { Loading } from '../../Loading/Loading';
+import { Detail } from '../Detail';
+
 import { useDetailIndex } from './hooks/useDetailIndex';
 
 export const DetailIndex: React.FC = () => {

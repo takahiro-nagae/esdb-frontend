@@ -1,6 +1,7 @@
 import { Meta, StoryFn } from '@storybook/react';
-import { AppMenu } from '../AppMenu';
 import { BrowserRouter } from 'react-router-dom';
+
+import { AppMenu } from '../AppMenu';
 
 export default {
   title: 'header/Menu',

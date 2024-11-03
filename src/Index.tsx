@@ -1,20 +1,21 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from '@material-ui/core';
 import { BrowserView, MobileView } from 'react-device-detect';
+import { createRoot } from 'react-dom/client';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
 import './index.css';
-import { Home } from './features/Home/Home';
 import { Footer } from './common/Footer';
+import { DefaultGlobalStyles } from './common/theme/DefaultGlobalStyles';
+import { Theme } from './common/theme/theme';
+import { MobileHeader } from './features/Header/MobileHeader';
+import { PcHeader } from './features/Header/PcHeader';
+import { Home } from './features/Home/Home';
+import { SearchList } from './features/Search/SearchList';
+import { DetailIndex } from './features/Search/common/components/Detail/Index/DetailIndex';
+import { RankIndex } from './features/Search/common/components/Rank/Index/RankIndex';
 import { About } from './features/Static/About';
 import { AppHistory } from './features/Static/AppHistory';
-import { SearchList } from './features/Search/SearchList';
 import { PrivacyPolicy } from './features/Static/PrivacyPolicy';
-import { RankIndex } from './features/Search/common/components/Rank/Index/RankIndex';
-import { DetailIndex } from './features/Search/common/components/Detail/Index/DetailIndex';
-import { Theme } from './common/theme/theme';
-import { DefaultGlobalStyles } from './common/theme/DefaultGlobalStyles';
-import { createRoot } from 'react-dom/client';
-import { PcHeader } from './features/Header/PcHeader';
-import { MobileHeader } from './features/Header/MobileHeader';
 
 const rootElement = document.getElementById('root');
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment

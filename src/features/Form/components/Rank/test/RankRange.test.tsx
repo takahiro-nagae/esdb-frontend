@@ -1,6 +1,8 @@
 import { composeStories } from '@storybook/react';
-import * as stories from '../stories/RankRange.stories';
 import { render, screen } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
+
+import * as stories from '../stories/RankRange.stories';
 
 describe('RankRange Component', () => {
   const { Default } = composeStories(stories);

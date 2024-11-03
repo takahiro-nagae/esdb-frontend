@@ -1,20 +1,22 @@
 import { TableCell, TableRow } from '@material-ui/core';
 
-import { EnchantData } from '@/repositories/search/_types';
-import { InvalidText } from '@/features/Search/common/components/ImvalidText/InvalidText';
-import { ImpText } from '@/features/Search/common/components/ImpText/ImpText';
-import { EffectList } from '@/features/Search/common/components/EffectList/EffectList';
-import { RouteList } from '@/features/Search/common/components/RouteList/RouteList';
+import enchantNameStyles from '../../../../../common/styles/EnchantName.module.css';
+import positionStyles from '../../../../../common/styles/Position.module.css';
+
+import styles from './Row.module.css';
+
 import { DetailModal } from '@/features/Search/common/components/Detail/Modal/DetailModal';
+import { EffectList } from '@/features/Search/common/components/EffectList/EffectList';
+import { ImpText } from '@/features/Search/common/components/ImpText/ImpText';
+import { InvalidText } from '@/features/Search/common/components/ImvalidText/InvalidText';
+import { RankModal } from '@/features/Search/common/components/Rank/Modal/RankModal';
+import { RouteList } from '@/features/Search/common/components/RouteList/RouteList';
 import {
   createEnchantName,
   createEnchantNameEn,
 } from '@/features/Search/common/functions/enchantNameFunction';
 import { positionName } from '@/features/Search/common/functions/positionFunction';
-import { RankModal } from '@/features/Search/common/components/Rank/Modal/RankModal';
-import styles from './Row.module.css';
-import enchantNameStyles from '../../../../../common/styles/EnchantName.module.css';
-import positionStyles from '../../../../../common/styles/Position.module.css';
+import { EnchantData } from '@/repositories/search/_types';
 
 type RowProps = {
   enchant: EnchantData;

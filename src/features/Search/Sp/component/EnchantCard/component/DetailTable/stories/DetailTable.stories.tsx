@@ -1,5 +1,7 @@
 import { Meta } from '@storybook/react';
+
 import { DetailTable } from '../DetailTable';
+
 import { ENCHANT_DATA_MOCK } from '@/repositories/search/__mocks__/fetchSearchEnchantData';
 
 export default {

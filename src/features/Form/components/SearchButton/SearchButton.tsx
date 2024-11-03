@@ -1,5 +1,6 @@
-import Button from '@mui/material/Button';
 import SearchIcon from '@mui/icons-material/Search';
+import Button from '@mui/material/Button';
+
 import styles from './SearchButton.module.css';
 
 type SearchButtonProps = {

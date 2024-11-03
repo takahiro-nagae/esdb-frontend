@@ -1,6 +1,7 @@
-import { isBrowser } from 'react-device-detect';
-import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
+import IconButton from '@mui/material/IconButton';
+import { isBrowser } from 'react-device-detect';
+
 import styles from './FreeSearch.module.css';
 import { useFreeSearch } from './hooks/useFreeSearch';
 

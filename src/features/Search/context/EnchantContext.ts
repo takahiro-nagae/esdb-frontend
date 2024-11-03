@@ -1,5 +1,6 @@
-import { EnchantData } from '@/repositories/search/_types';
 import { createContext } from 'react';
+
+import { EnchantData } from '@/repositories/search/_types';
 
 type EnchantContext = {
   enchantList: Array<EnchantData>;

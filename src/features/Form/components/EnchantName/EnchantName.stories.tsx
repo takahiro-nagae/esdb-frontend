@@ -1,6 +1,7 @@
 import { Meta, Story } from '@storybook/react';
-import { EnchantName } from './EnchantName';
 import { useState } from 'react';
+
+import { EnchantName } from './EnchantName';
 
 export default {
   title: 'form/EnchantName',

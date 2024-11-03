@@ -1,5 +1,6 @@
-import { ModalContainer } from '@/common/ModalContainer';
 import { Rank, RankProps } from '../Rank';
+
+import { ModalContainer } from '@/common/ModalContainer';
 
 export const RankModal: React.FC<RankProps> = ({ rank }) => {
   return (

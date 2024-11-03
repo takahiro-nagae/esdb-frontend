@@ -1,12 +1,13 @@
+import { composeStories } from '@storybook/react';
 import { render, screen } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
 
 import * as stories from '../stories/ImpText.stories';
-import { composeStories } from '@storybook/react';
 
 describe('ImpText', () => {
   const expectMessage = '未実装';
 
-  test('エンチャントが実装されていない', () => {
+  it('エンチャントが実装されていない', () => {
     const { NotImped } = composeStories(stories);
     render(<NotImped />);
 
@@ -14,7 +15,7 @@ describe('ImpText', () => {
     expect(screen.getByText(expectMessage)).toBeTruthy();
   });
 
-  test('エンチャントが実装されている', () => {
+  it('エンチャントが実装されている', () => {
     const { Imped } = composeStories(stories);
     render(<Imped />);
 

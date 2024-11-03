@@ -1,8 +1,9 @@
+import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
-import Box from '@mui/material/Box';
-import { UseModal } from './hooks/useModal';
+
 import styles from './ModalContainer.module.css';
+import { UseModal } from './hooks/useModal';
 
 type ModalContainerProps = {
   buttonMsgEl: React.ReactElement | string;

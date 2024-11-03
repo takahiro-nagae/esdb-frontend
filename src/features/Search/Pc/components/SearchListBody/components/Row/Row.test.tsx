@@ -1,16 +1,20 @@
-import * as stories from './Row.stories';
-import userEvent from '@testing-library/user-event';
-import { render, waitFor, screen } from '@testing-library/react';
 import { composeStories } from '@storybook/react';
+import { render, waitFor, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { describe, expect, test, vi } from 'vitest';
+
+import * as stories from './Row.stories';
+
 import {
   Dummy1,
   Dummy1NotDispVal,
 } from '@/features/Search/Pc/data/SearchListMockData';
-import { EnchantData } from '@/repositories/search/_types';
-import { positionName } from '@/features/Search/common/functions/positionFunction';
 import { Rank } from '@/features/Search/common/components/Rank/Rank';
+import { positionName } from '@/features/Search/common/functions/positionFunction';
+import { EnchantData } from '@/repositories/search/_types';
 
-jest.mock('../../../../../common/components/Rank/Rank');
+
+vi.mock('../../../../../common/components/Rank/Rank');
 describe('SearchList Row', () => {
   const { IsDispVal, IsNotDispVal } = composeStories(stories);
 

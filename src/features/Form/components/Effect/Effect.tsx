@@ -1,9 +1,13 @@
 import { Grid } from '@material-ui/core';
-import { FormEffectType } from '@/repositories/form/_types';
-import { EffectValue, EffectValueProps } from './EffectValue';
-import { EffectRange, EffectRangeProps } from './EffectRange';
-import { EffectDropdown, EffectDropdownProps } from './EffectDropdown';
+
 import styles from '../../common/style/common.module.css';
+
+import { EffectDropdown, EffectDropdownProps } from './EffectDropdown';
+import { EffectRange, EffectRangeProps } from './EffectRange';
+import { EffectValue, EffectValueProps } from './EffectValue';
+
+import { FormEffectType } from '@/repositories/form/_types';
+
 
 type EffectProps = {
   effectList: Array<FormEffectType>;

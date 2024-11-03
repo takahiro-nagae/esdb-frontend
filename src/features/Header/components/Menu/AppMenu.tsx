@@ -1,4 +1,3 @@
-import { NavLink } from 'react-router-dom';
 import { IconButton, Menu, MenuItem } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import {
@@ -6,8 +5,10 @@ import {
   bindTrigger,
   usePopupState,
 } from 'material-ui-popup-state/hooks';
-import { AppMenuData } from './MenuData';
+import { NavLink } from 'react-router-dom';
+
 import styles from './AppMenu.module.css';
+import { AppMenuData } from './MenuData';
 
 const Component: React.FC = () => {
   const popupState = usePopupState({ variant: 'popover', popupId: '' });

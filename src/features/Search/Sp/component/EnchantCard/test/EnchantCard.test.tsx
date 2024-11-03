@@ -1,16 +1,20 @@
+import { composeStories } from '@storybook/react';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { composeStories } from '@storybook/react';
-import * as stories from '../stories/EnchantCard.stories';
+import { describe, expect, test, vi } from 'vitest';
+
 import { DetailTable } from '../component/DetailTable/DetailTable';
-import { ENCHANT_DATA_MOCK } from '@/repositories/search/__mocks__/fetchSearchEnchantData';
+import * as stories from '../stories/EnchantCard.stories';
+
 import {
   createEnchantName,
   createEnchantNameEn,
 } from '@/features/Search/common/functions/enchantNameFunction';
 import { positionName } from '@/features/Search/common/functions/positionFunction';
+import { ENCHANT_DATA_MOCK } from '@/repositories/search/__mocks__/fetchSearchEnchantData';
 
-jest.mock('../component/DetailTable/DetailTable');
+
+vi.mock('../component/DetailTable/DetailTable');
 describe('EnchantCard', () => {
   const { Normal, AllView } = composeStories(stories);
 

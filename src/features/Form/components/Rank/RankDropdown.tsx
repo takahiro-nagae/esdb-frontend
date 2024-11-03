@@ -1,6 +1,8 @@
-import { FormRankType } from '@/repositories/form/_types';
-import styles from '../../common/style/common.module.css';
 import { MenuItem, TextField } from '@material-ui/core';
+
+import styles from '../../common/style/common.module.css';
+
+import { FormRankType } from '@/repositories/form/_types';
 
 export type RankDropdownProps = {
   rankList: Array<FormRankType>;

@@ -3,8 +3,8 @@ name: main
 on:
   push:
     paths-ignore:
-      - "README.md"
-      - ".gitignore"
+      - 'README.md'
+      - '.gitignore'
 
 permissions:
   id-token: write
@@ -27,7 +27,7 @@ jobs:
         run: npm run lint
 
       - name: test
-        run: node --experimental-vm-modules node_modules/.bin/jest --forceExit --config ./jest.config.js --coverage
+        run: npm run test
 
       - name: build:stg
         if: github.ref != 'refs/heads/main'
@@ -37,7 +37,7 @@ jobs:
         if: github.ref == 'refs/heads/main'
         run: npm run build
 
-      - name : upload coverage
+      - name: upload coverage
         if: always()
         uses: actions/upload-artifact@v4
         with:

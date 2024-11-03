@@ -1,19 +1,21 @@
 import { composeStories } from '@storybook/react';
-import * as searchListHeadFunction from './functions/searchListHeadFunction';
-import * as stories from './SearchListHead.stories';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { afterEach, describe, expect, test, vi } from 'vitest';
+
+import * as stories from './SearchListHead.stories';
+import * as searchListHeadFunction from './functions/searchListHeadFunction';
 
 describe('SearchListHead', () => {
-  const func = jest
+  const func = vi
     .spyOn(searchListHeadFunction, 'createSortHandler')
-    .mockImplementationOnce(jest.fn());
+    .mockImplementationOnce(vi.fn());
 
   const { Default, EnchantNameAsc, EnchantNameDesc, DescVal } =
     composeStories(stories);
 
   afterEach(() => {
-    jest.useRealTimers();
+    vi.useRealTimers();
     func.mockClear();
   });
 

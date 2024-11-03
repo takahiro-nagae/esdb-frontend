@@ -1,5 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
+
 import { EffectList } from "../EffectList";
+
 import { allItemsData, decreaseItemData, designatedItemData, increaseItemData, otherItemData } from "./EffectListStoryData";
 
 export default {

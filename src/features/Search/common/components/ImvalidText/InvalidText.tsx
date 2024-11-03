@@ -13,7 +13,7 @@ export const InvalidText: React.FC<InvalidTextProps> = ({
 
   return (
     <>
-      {invalidTargetFlg === 1 && (
+      {invalidTargetFlg === '1' && (
         <small className={styles.invalid}>貼付不可</small>
       )}
     </>

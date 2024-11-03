@@ -1,7 +1,9 @@
 import { Card } from '@material-ui/core';
+
 import { InfeedAd } from '../../../../../adsense/InfeedAd';
-import { displayLastAd } from './function/displayAd';
+
 import styles from './Ad.module.css';
+import { displayLastAd } from './function/displayAd';
 
 type LastInfeedAdProps = {
   index: number;

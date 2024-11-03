@@ -1,6 +1,7 @@
 import { ToggleButton, ToggleButtonGroup } from '@mui/material';
-import { RANK_RANGE_ITEMS } from './const';
+
 import styles from './../../common/style/common.module.css';
+import { RANK_RANGE_ITEMS } from './const';
 
 export type RankRangeProps = {
   rankRange: string;

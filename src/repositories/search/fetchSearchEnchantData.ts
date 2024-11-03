@@ -1,6 +1,7 @@
-import { internalApiClient } from '@/repositories/_client';
-
 import { z } from 'zod';
+
+import { internalApiClient } from '../_client';
+
 import { EffectNameSchema, EnchantDataSchema } from './_schema';
 
 const ResponseSchema = z.object({

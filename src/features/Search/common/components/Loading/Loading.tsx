@@ -1,4 +1,5 @@
 import ReactLoading from 'react-loading';
+
 import styles from './Loading.module.css';
 
 type LoadingProps = {

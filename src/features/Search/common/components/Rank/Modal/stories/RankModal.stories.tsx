@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
+
 import { RankModal } from "../RankModal";
 
 export default {

@@ -5,6 +5,10 @@
   color: #ccc !important;
 }
 
-.pagination .css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon {
-  color: #fff;
+.pagination svg {
+  color: #fff !important;
+}
+
+.pagination button:disabled > svg {
+  color: black !important;
 }
