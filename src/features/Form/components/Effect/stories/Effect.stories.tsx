@@ -1,8 +1,8 @@
 import { Meta, StoryFn } from '@storybook/react';
-import { useState } from 'react';
 
 import { Effect } from '../Effect';
 
+import { useEffectStore } from '@/features/Form/store/useEffectStore';
 import { EFFECT_MOCK } from '@/repositories/form/__mocks__/fetchInitData';
 
 export default {
@@ -10,29 +10,15 @@ export default {
   component: Effect,
   decorators: [
     Story => {
+      const { setEffects } = useEffectStore();
+      setEffects(EFFECT_MOCK);
       return <Story />;
     },
   ],
 } as Meta<typeof Effect>;
 
 const Template: StoryFn<typeof Effect> = () => {
-  const [selectedEffect, setSelectedEffect] = useState('');
-  const [inputEffectValue, setInputEffectValue] = useState('');
-  const [effectRange, setEffectRange] = useState('');
-  return (
-    <Effect
-      effectList={EFFECT_MOCK}
-      dropdown={{ selectedEffect, setSelectedEffect }}
-      input={{
-        inputEffectValue,
-        setInputEffectValue,
-      }}
-      range={{
-        effectRange,
-        setEffectRange,
-      }}
-    />
-  );
+  return <Effect />;
 };
 
 export const Default = Template.bind({});

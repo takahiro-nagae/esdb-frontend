@@ -1,5 +1,4 @@
 import { Meta, StoryFn } from '@storybook/react';
-import { useState } from 'react';
 
 import { EffectValue } from '../EffectValue';
 
@@ -14,13 +13,7 @@ export default {
 } as Meta<typeof EffectValue>;
 
 const Template: StoryFn<typeof EffectValue> = () => {
-  const [inputEffectValue, setInputEffectValue] = useState('');
-  return (
-    <EffectValue
-      inputEffectValue={inputEffectValue}
-      setInputEffectValue={setInputEffectValue}
-    />
-  );
+  return <EffectValue />;
 };
 
 export const Default = Template.bind({});

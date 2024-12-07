@@ -1,20 +1,11 @@
 import { MenuItem, TextField } from '@material-ui/core';
 
 import styles from '../../common/style/common.module.css';
+import { useTargetStore } from '../../store/useTargetStore';
 
-import { FormTargetType } from '@/repositories/form/_types';
+export const Target: React.FC = () => {
+  const { targets, selected, setSelected } = useTargetStore();
 
-type TargetProps = {
-  targetList: Array<FormTargetType>;
-  selectedTarget: string;
-  setSelectedTarget: (value: string) => void;
-};
-
-export const Target: React.FC<TargetProps> = ({
-  targetList,
-  selectedTarget,
-  setSelectedTarget,
-}) => {
   return (
     <TextField
       className={styles.formContainer}
@@ -26,11 +17,11 @@ export const Target: React.FC<TargetProps> = ({
       select
       size='small'
       variant='outlined'
-      value={selectedTarget}
-      onChange={e => setSelectedTarget(e.target.value)}
+      value={selected}
+      onChange={e => setSelected(e.target.value)}
     >
       <MenuItem value=''>指定なし</MenuItem>
-      {targetList.map(target => (
+      {targets.map(target => (
         <MenuItem key={target.target_code} value={target.target_code}>
           {target.target_name}
         </MenuItem>

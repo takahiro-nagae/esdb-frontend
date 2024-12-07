@@ -1,5 +1,7 @@
 import { Meta, StoryFn } from '@storybook/react';
-import { useState } from 'react';
+import { useEffect } from 'react';
+
+import { useTargetStore } from '../../store/useTargetStore';
 
 import { Target } from './Target';
 
@@ -9,29 +11,24 @@ export default {
   title: 'form/Target',
   component: Target,
   decorators: [
-    Story => {
+    (Story, context) => {
+      const { setTargets } = useTargetStore();
+      useEffect(() => {
+        if (context.name === 'Default') {
+          setTargets(TARGET_MOCK);
+        } else {
+          setTargets([]);
+        }
+      }, [context.name, setTargets]);
       return <Story />;
     },
   ],
 } as Meta<typeof Target>;
 
 const Template: StoryFn<typeof Target> = args => {
-  const [selectedTarget, setSelectedTarget] = useState('1');
-  return (
-    <Target
-      {...args}
-      selectedTarget={selectedTarget}
-      setSelectedTarget={setSelectedTarget}
-    />
-  );
+  return <Target {...args} />;
 };
 
 export const Default = Template.bind({});
-Default.args = {
-  targetList: TARGET_MOCK,
-};
 
 export const None = Template.bind({});
-None.args = {
-  targetList: [],
-};

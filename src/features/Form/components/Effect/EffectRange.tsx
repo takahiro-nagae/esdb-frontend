@@ -1,16 +1,12 @@
 import { MenuItem, TextField } from '@material-ui/core';
 
+import { useEffectStore } from '../../store/useEffectStore';
+
 import { EFFECT_RANGE_ITEMS } from './const';
 
-export type EffectRangeProps = {
-  effectRange: string;
-  setEffectRange: (E: string) => void;
-};
+export const EffectRange: React.FC = () => {
+  const { range, setRange } = useEffectStore();
 
-export const EffectRange: React.FC<EffectRangeProps> = ({
-  effectRange,
-  setEffectRange,
-}) => {
   return (
     <TextField
       data-testid='range'
@@ -24,8 +20,8 @@ export const EffectRange: React.FC<EffectRangeProps> = ({
       inputProps={{
         'data-testid': 'rangeInput',
       }}
-      value={effectRange}
-      onChange={e => setEffectRange(e.target.value)}
+      value={range}
+      onChange={e => setRange(e.target.value)}
     >
       {EFFECT_RANGE_ITEMS.map(item => (
         <MenuItem key={item.value} value={item.value}>

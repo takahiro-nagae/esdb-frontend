@@ -1,14 +1,10 @@
 import { TextField } from '@material-ui/core';
 
-export type EffectValueProps = {
-  inputEffectValue: string;
-  setInputEffectValue: (E: string) => void;
-};
+import { useEffectStore } from '../../store/useEffectStore';
 
-export const EffectValue: React.FC<EffectValueProps> = ({
-  inputEffectValue,
-  setInputEffectValue,
-}) => {
+export const EffectValue: React.FC = () => {
+  const { value, setValue } = useEffectStore();
+
   return (
     <TextField
       fullWidth
@@ -18,8 +14,8 @@ export const EffectValue: React.FC<EffectValueProps> = ({
       size='small'
       type='number'
       variant='outlined'
-      value={inputEffectValue}
-      onChange={e => setInputEffectValue(e.target.value)}
+      value={value}
+      onChange={e => setValue(e.target.value)}
     />
   );
 };

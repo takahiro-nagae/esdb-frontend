@@ -1,14 +1,10 @@
 import { TextField } from '@material-ui/core';
 
-type EnchantNameProps = {
-  inputEnchantName: string;
-  setInputEnchantName: (E: string) => void;
-};
+import { useEnchantNameStore } from '../../store/useEnchantNameStore';
 
-export const EnchantName: React.FC<EnchantNameProps> = ({
-  inputEnchantName,
-  setInputEnchantName,
-}) => {
+export const EnchantName: React.FC = () => {
+  const { enchantName, setEnchantName } = useEnchantNameStore();
+
   return (
     <TextField
       fullWidth
@@ -17,8 +13,8 @@ export const EnchantName: React.FC<EnchantNameProps> = ({
       label='エンチャント名'
       size='small'
       variant='outlined'
-      value={inputEnchantName}
-      onChange={e => setInputEnchantName(e.target.value)}
+      value={enchantName}
+      onChange={e => setEnchantName(e.target.value)}
     />
   );
 };
