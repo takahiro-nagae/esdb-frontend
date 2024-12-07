@@ -23,7 +23,10 @@ export const Pagination: React.FC<PaginationProps> = ({
       component='div'
       count={count}
       className={styles.pagination}
-      onPageChange={(_, page) => setPage(page)}
+      onPageChange={(_, page) => {
+        setPage(page);
+        window.scrollTo(0, 0);
+      }}
       onRowsPerPageChange={e => {
         setRowsPerPage(+e.target.value);
         setPage(0);

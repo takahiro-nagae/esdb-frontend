@@ -34,7 +34,7 @@ export const SearchList: React.FC<SearchListProps> = ({ isFreeSearch }) => {
           <SearchResultHead />
           {immutableEnchants.length >= 1 && (
             <>
-              <BrowserView className={styles.maxSearchSize}>
+              <BrowserView className={styles.pcContainer}>
                 <SearchListContainer />
               </BrowserView>
             </>
