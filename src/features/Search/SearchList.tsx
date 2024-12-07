@@ -8,74 +8,41 @@ import { SpSearchContainer } from './Sp/SpSearchContainer';
 import { Loading } from './common/components/Loading/Loading';
 import { SearchFilter } from './common/components/SearchFilter/SearchFilter';
 import { SearchResultHead } from './components/SearchResult/SearechResultHead';
-import { EnchantContext } from './context/EnchantContext';
-import { PageContext } from './context/PageContext';
-import { OrderContext } from './context/pc/OrderContext';
 import { useSearchList } from './hooks/useSearchList';
+import { useEnchantStore } from './state/useEnchantStore';
 
 type SearchListProps = {
   isFreeSearch: boolean;
 };
 
 export const SearchList: React.FC<SearchListProps> = ({ isFreeSearch }) => {
-  const { isLoading, enchantList, effectName, count, order, page } =
-    useSearchList(isFreeSearch);
-
+  const { isLoading } = useSearchList(isFreeSearch);
+  const { immutableEnchants } = useEnchantStore();
   return (
     <>
       <Loading isLoading={isLoading} />
       <MobileView className={styles.mobileHeader}>
-        <EnchantContext.Provider
-          value={{
-            ...enchantList,
-            count: count.count,
-            setCount: count.setCount,
-          }}
-        >
-          <PageContext.Provider value={{ ...page }}>
-            <SearchFilter xs={12} />
-          </PageContext.Provider>
-        </EnchantContext.Provider>
+        <SearchFilter xs={12} />
       </MobileView>
       <Box sx={{ mt: 3 }}>
         <Grid
           alignItems='center'
           container
-          className={count.dispCount < 1 ? styles.verticalCenter : ''}
+          className={immutableEnchants.length < 1 ? styles.verticalCenter : ''}
           direction='column'
         >
-          <SearchResultHead
-            dispCount={count.dispCount}
-            count={count.count}
-            effectName={effectName}
-          />
-          {count.dispCount >= 1 && (
+          <SearchResultHead />
+          {immutableEnchants.length >= 1 && (
             <>
               <BrowserView className={styles.maxSearchSize}>
-                <EnchantContext.Provider
-                  value={{
-                    ...enchantList,
-                    count: count.count,
-                    setCount: count.setCount,
-                  }}
-                >
-                  <OrderContext.Provider value={{ ...order }}>
-                    <PageContext.Provider value={{ ...page }}>
-                      <SearchListContainer
-                        rowData={enchantList.rowData}
-                        count={count.count}
-                        isDispVal={Boolean(enchantList.enchantList[0].disp_val)}
-                      />
-                    </PageContext.Provider>
-                  </OrderContext.Provider>
-                </EnchantContext.Provider>
+                <SearchListContainer />
               </BrowserView>
             </>
           )}
         </Grid>
       </Box>
       <MobileView>
-        <SpSearchContainer rowData={enchantList.rowData} />
+        <SpSearchContainer />
       </MobileView>
     </>
   );

@@ -4,8 +4,8 @@ import userEvent from '@testing-library/user-event';
 import { describe, expect, test, vi } from 'vitest';
 
 import { Detail } from '../../../../../../common/components/Detail/Detail';
-import { OPEN_ROUTE_NAME } from '../stories/DetailTable.stories';
 import * as stories from '../stories/DetailTable.stories';
+import { OPEN_ROUTE_NAME } from '../stories/mockRouteName';
 
 import { ENCHANT_DATA_MOCK } from '@/repositories/search/__mocks__/fetchSearchEnchantData';
 

@@ -6,54 +6,45 @@ import TableSortLabel from '@mui/material/TableSortLabel';
 import { visuallyHidden } from '@mui/utils';
 import React from 'react';
 
-
-import { useOrderContext } from '../../../context/pc/useOrderContext';
-
 import styles from './SearchListHead.module.css';
 import { HeadCellData } from './const/HeadCellData';
-import {
-  createSortHandler,
-  isDisplayCell,
-} from './functions/searchListHeadFunction';
+import { isDisplayCell } from './functions/searchListHeadFunction';
+import { HeadData } from './types/HeadData';
 
-type SearchListHeadProps = {
-  isDispVal: boolean;
-};
+import { useEnchantStore } from '@/features/Search/state/useEnchantStore';
+import { usePcLayoutStore } from '@/features/Search/state/usePcLayoutStore';
 
-export const SearchListHead: React.FC<SearchListHeadProps> = ({
-  isDispVal,
-}) => {
-  const orderContext = useOrderContext();
+export const SearchListHead: React.FC = () => {
+  const { enchants } = useEnchantStore();
+  const { order, orderBy, setOrder, setOrderBy } = usePcLayoutStore();
+
+  const createSortHandler = (property: keyof HeadData) => {
+    const isAsc = orderBy === property && order === 'asc';
+    setOrder(isAsc ? 'desc' : 'asc');
+    setOrderBy(property);
+  };
 
   return (
     <TableHead>
       <TableRow>
         {HeadCellData.map(
           headCell =>
-            isDisplayCell(headCell.id, isDispVal) && (
+            isDisplayCell(headCell.id, enchants[0]?.disp_val !== undefined) && (
               <TableCell
                 className={styles.tableHeader}
                 key={headCell.id}
-                sortDirection={
-                  orderContext.orderBy === headCell.id
-                    ? orderContext.order
-                    : false
-                }
+                sortDirection={orderBy === headCell.id ? order : false}
               >
                 <TableSortLabel
-                  active={orderContext.orderBy === headCell.id}
-                  direction={
-                    orderContext.orderBy === headCell.id
-                      ? orderContext.order
-                      : 'asc'
-                  }
-                  onClick={() => createSortHandler(headCell.id, orderContext)}
+                  active={orderBy === headCell.id}
+                  direction={orderBy === headCell.id ? order : 'asc'}
+                  onClick={() => createSortHandler(headCell.id)}
                   style={{ color: '#fff' }}
                 >
                   {headCell.label}
-                  {orderContext.orderBy === headCell.id ? (
+                  {orderBy === headCell.id ? (
                     <Box component='span' sx={visuallyHidden}>
-                      {orderContext.order === 'desc'
+                      {order === 'desc'
                         ? 'sorted descending'
                         : 'sorted ascending'}
                     </Box>

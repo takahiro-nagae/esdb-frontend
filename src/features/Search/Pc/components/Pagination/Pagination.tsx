@@ -2,30 +2,33 @@ import { TablePagination } from '@mui/material';
 import React from 'react';
 
 import styles from './Pagination.module.css';
-import { usePagination } from './hooks/usePagination';
+
+import { usePcLayoutStore } from '@/features/Search/state/usePcLayoutStore';
 
 type PaginationProps = {
   rowsPerPage: number;
   setRowsPerPage: (rowsPerPage: number) => void;
-  maxCount: number;
+  count: number;
 };
 
 export const Pagination: React.FC<PaginationProps> = ({
   rowsPerPage,
   setRowsPerPage,
-  maxCount,
+  count,
 }) => {
-  const { pageContext, handleChangePage, handleChangeRowsPerPage } =
-    usePagination(setRowsPerPage);
+  const { page, setPage } = usePcLayoutStore();
 
   return (
     <TablePagination
       component='div'
-      count={maxCount}
+      count={count}
       className={styles.pagination}
-      onPageChange={(e, page) => handleChangePage(page)}
-      onRowsPerPageChange={handleChangeRowsPerPage}
-      page={pageContext.page}
+      onPageChange={(_, page) => setPage(page)}
+      onRowsPerPageChange={e => {
+        setRowsPerPage(+e.target.value);
+        setPage(0);
+      }}
+      page={page}
       rowsPerPage={rowsPerPage}
       rowsPerPageOptions={[30, 60, 100]}
       data-testid='pagination'

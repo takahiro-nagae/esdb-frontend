@@ -5,31 +5,26 @@ import { LastInfeedAd } from './components/Ads/LastInfeedAd';
 import { Row } from './components/Row/Row';
 import { getComparator, stableSort } from './functions/searchListBodyFunction';
 
-import { useOrderContext } from '@/features/Search/context/pc/useOrderContext';
-import { usePageContext } from '@/features/Search/context/usePageContext';
-import { EnchantData } from '@/repositories/search/_types';
+import { useEnchantStore } from '@/features/Search/state/useEnchantStore';
+import { usePcLayoutStore } from '@/features/Search/state/usePcLayoutStore';
 
 type SearchListBodyProps = {
-  rowData: Array<EnchantData>;
   rowsPerPage: number;
 };
 
 export const SearchListBody: React.FC<SearchListBodyProps> = ({
-  rowData,
   rowsPerPage,
 }) => {
-  const pageContext = usePageContext();
-  const orderContext = useOrderContext();
+  const { page } = usePcLayoutStore();
+  const { enchants, enchantsLength } = useEnchantStore();
+  const { order, orderBy } = usePcLayoutStore();
 
-  const sliceFrom = pageContext.page * rowsPerPage;
+  const sliceFrom = page * rowsPerPage;
   const sliceTo = sliceFrom + rowsPerPage;
 
   return (
     <TableBody>
-      {stableSort(
-        rowData,
-        getComparator(orderContext.order, orderContext.orderBy),
-      )
+      {stableSort(enchants, getComparator(order, orderBy))
         .slice(sliceFrom, sliceTo)
         .map((enchant, index) => (
           <>
@@ -37,7 +32,7 @@ export const SearchListBody: React.FC<SearchListBodyProps> = ({
             <Row enchant={enchant} key={enchant.enchant_id} />
             <LastInfeedAd
               index={index}
-              dataLength={rowData.length}
+              dataLength={enchantsLength}
               disp_val={enchant.disp_val}
             />
           </>
