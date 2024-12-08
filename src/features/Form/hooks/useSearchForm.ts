@@ -1,46 +1,43 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { createSearchParams, useNavigate } from 'react-router-dom';
 
-import {
-  FormEffectType,
-  FormRankType,
-  FormTargetType,
-} from '@/repositories/form/_types';
+import { useEffectStore } from '../store/useEffectStore';
+import { useEnchantNameStore } from '../store/useEnchantNameStore';
+import { usePositionStore } from '../store/usePositionStore';
+import { useRankStore } from '../store/useRankStore';
+import { useTargetStore } from '../store/useTargetStore';
+
 import { fetchInitData } from '@/repositories/form/fetchInitData';
 
 export const useSearchForm = () => {
-  const [inputEnchantName, setInputEnchantName] = useState('');
+  const { enchantName } = useEnchantNameStore();
+  const {
+    selected: selectedEffect,
+    value: effectValue,
+    range: effectRange,
+    setEffects,
+  } = useEffectStore();
+  const { position } = usePositionStore();
 
-  const [effectList, setEffectList] = useState<Array<FormEffectType>>([]);
-  const [selectedEffect, setSelectedEffect] = useState('');
-  const [inputEffectValue, setInputEffectValue] = useState('');
-  const [effectRange, setEffectRange] = useState('0');
-
-  const [position, setPosition] = useState('0');
-
-  const [rankList, setRankList] = useState<Array<FormRankType>>([]);
-  const [selectedRank, setSelectedRank] = useState('');
-  const [rankRange, setRankRange] = useState('1');
-
-  const [targetList, setTargetList] = useState<Array<FormTargetType>>([]);
-  const [selectedTarget, setSelectedTarget] = useState('');
+  const { setRanks, selected: selectedRank, range: rankRange } = useRankStore();
+  const { setTargets, selected: selectedTarget } = useTargetStore();
 
   const navigate = useNavigate();
 
   useEffect(() => {
     const res = async () => await fetchInitData();
     res().then(res => {
-      setEffectList(res.effect);
-      setRankList(res.rank);
-      setTargetList(res.target);
+      setEffects(res.effect);
+      setRanks(res.rank);
+      setTargets(res.target);
     });
   }, []);
 
   const handleSubmit = () => {
     const params = new URLSearchParams();
-    params.append('enchantName', inputEnchantName);
+    params.append('enchantName', enchantName);
     params.append('effect', selectedEffect);
-    params.append('effectVal', inputEffectValue);
+    params.append('effectVal', effectValue);
     params.append('range', effectRange);
     params.append('position', position);
     params.append('rank', selectedRank);
@@ -55,44 +52,5 @@ export const useSearchForm = () => {
 
   return {
     handleSubmit,
-    enchantName: {
-      inputEnchantName,
-      setInputEnchantName,
-    },
-    rank: {
-      rankList,
-      dropdown: {
-        selectedRank,
-        setSelectedRank,
-      },
-      range: {
-        rankRange,
-        setRankRange,
-      },
-    },
-    effect: {
-      effectList,
-      dropdown: {
-        selectedEffect,
-        setSelectedEffect,
-      },
-      input: {
-        inputEffectValue,
-        setInputEffectValue,
-      },
-      range: {
-        effectRange,
-        setEffectRange,
-      },
-    },
-    position: {
-      position,
-      setPosition,
-    },
-    target: {
-      targetList,
-      selectedTarget,
-      setSelectedTarget,
-    },
   };
 };

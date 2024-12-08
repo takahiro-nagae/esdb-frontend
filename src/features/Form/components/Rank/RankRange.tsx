@@ -1,30 +1,26 @@
 import { ToggleButton, ToggleButtonGroup } from '@mui/material';
 
+import { useRankStore } from '../../store/useRankStore';
+
 import styles from './../../common/style/common.module.css';
 import { RANK_RANGE_ITEMS } from './const';
 
-export type RankRangeProps = {
-  rankRange: string;
-  setRankRange: (E: string) => void;
-};
+export const RankRange: React.FC = () => {
+  const { range, setRange } = useRankStore();
 
-export const RankRange: React.FC<RankRangeProps> = ({
-  rankRange,
-  setRankRange,
-}) => {
   return (
     <ToggleButtonGroup
       className={styles.formContainer}
       fullWidth
       exclusive
       size='small'
-      onChange={(_, newAlignment) => setRankRange(newAlignment)}
+      onChange={(_, newAlignment) => setRange(newAlignment)}
     >
       {RANK_RANGE_ITEMS.map(rankRangeItem => (
         <ToggleButton
           aria-label={rankRangeItem.label}
           className={
-            rankRangeItem.value === rankRange
+            rankRangeItem.value === range
               ? styles.toggleButtonSelected
               : styles.toggleButton
           }

@@ -1,18 +1,19 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
+import { isBrowser } from 'react-device-detect';
 
 import { positionName } from '../../../functions/positionFunction';
 
-import { useEnchantContext } from '@/features/Search/context/useEnchantContext';
-import { usePageContext } from '@/features/Search/context/usePageContext';
+import { useEnchantStore } from '@/features/Search/state/useEnchantStore';
+import { usePcLayoutStore } from '@/features/Search/state/usePcLayoutStore';
 
 export const useSearchFilter = () => {
+  const { immutableEnchants, setEnchants } = useEnchantStore();
+  const { setPage } = usePcLayoutStore();
   const [searchWord, setSearchWord] = useState('');
-  const pageContext = usePageContext();
-  const enchantContext = useEnchantContext();
   const isFirstRender = useRef(true);
 
   const filterEnchantData = useCallback(() => {
-    const listData = enchantContext.enchantList.filter(enchant => {
+    const listData = immutableEnchants.filter(enchant => {
       // 検索用に各値を設定
       const enchant_name: string = enchant.enchant_name;
       const enchant_name_2: string = enchant.enchant_name_2;
@@ -36,7 +37,7 @@ export const useSearchFilter = () => {
     });
 
     return listData;
-  }, [enchantContext.enchantList, searchWord]);
+  }, [searchWord]);
 
   useEffect(() => {
     if (isFirstRender.current) {
@@ -47,9 +48,10 @@ export const useSearchFilter = () => {
     const timer = setTimeout(() => {
       const filterList = filterEnchantData();
 
-      enchantContext.setRowData(filterList);
-      enchantContext.setCount(filterList.length);
-      pageContext.setPage(0);
+      setEnchants(filterList);
+      if (isBrowser) {
+        setPage(0);
+      }
     }, 500);
 
     return () => clearTimeout(timer);

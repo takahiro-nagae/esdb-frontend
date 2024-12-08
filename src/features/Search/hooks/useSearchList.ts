@@ -1,22 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import { HeadData } from '../Pc/components/SearchListHead/types/HeadData';
-import { Order } from '../Pc/types/Order';
+import { useEnchantStore } from '../state/useEnchantStore';
+import { usePcLayoutStore } from '../state/usePcLayoutStore';
 
-import { EnchantData } from '@/repositories/search/_types';
 import { fetchSearchEnchantData } from '@/repositories/search/fetchSearchEnchantData';
 
 export const useSearchList = (isFreeSearch: boolean) => {
-  const [enchantList, setEnchantList] = useState<Array<EnchantData>>([]);
-  const [rowData, setRowData] = useState<Array<EnchantData>>([]);
-  const [count, setCount] = useState(0);
-  const [dispCount, setDispCount] = useState(0);
+  const { setImmutableEnchants, setEffectName } = useEnchantStore();
+  const { setOrderBy, setOrder, setPage } = usePcLayoutStore();
   const [isLoading, setIsLoading] = useState(false);
-  const [order, setOrder] = useState<Order>('asc');
-  const [orderBy, setOrderBy] = useState<keyof HeadData>('enchant_id');
-  const [page, setPage] = useState(0);
-  const [effectName, setEffectName] = useState('');
 
   const [inputParams] = useSearchParams();
   const path = isFreeSearch ? '/search' : '/detail';
@@ -26,47 +19,21 @@ export const useSearchList = (isFreeSearch: boolean) => {
 
     res().then(res => {
       const enchantList = res.enchant_list;
-      setEnchantList(enchantList);
-      setRowData(enchantList);
+      setImmutableEnchants(enchantList);
 
       const dataLength = enchantList.length;
-      setCount(dataLength);
-      setDispCount(dataLength);
       if (dataLength > 0 && enchantList[0].disp_val) {
         setOrderBy('disp_val');
         setOrder('desc');
       }
 
       res.effect_name && setEffectName(res.effect_name.effect);
-
+      setPage(0);
       setIsLoading(true);
     });
   }, [inputParams]);
 
   return {
     isLoading,
-    enchantList: {
-      enchantList,
-      setEnchantList,
-      rowData,
-      setRowData,
-    },
-    effectName,
-    count: {
-      count,
-      setCount,
-      dispCount,
-      setDispCount,
-    },
-    order: {
-      order,
-      setOrder,
-      orderBy,
-      setOrderBy,
-    },
-    page: {
-      page,
-      setPage,
-    },
   };
 };

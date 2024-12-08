@@ -1,5 +1,4 @@
-import { Meta, Story } from '@storybook/react';
-import { useState } from 'react';
+import { Meta, StoryFn } from '@storybook/react';
 
 import { Position } from './Position';
 
@@ -13,9 +12,8 @@ export default {
   ],
 } as Meta<typeof Position>;
 
-const Template: Story<typeof Position> = args => {
-  const [position, setPosition] = useState('0');
-  return <Position {...args} position={position} setPosition={setPosition} />;
+const Template: StoryFn<typeof Position> = () => {
+  return <Position />;
 };
 
 export const Default = Template.bind({});

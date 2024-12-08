@@ -6,21 +6,21 @@ import * as stories from '../stories/SearchResultHead.stories';
 
 describe('SearchResultHead', () => {
   const {
-    ResulutNone,
-    ResulutEqualsDisplay,
-    ResulutNotEqualsDisplay,
+    ResultNone,
+    ResultEqualsDisplay,
+    ResultNotEqualsDisplay,
     DisplayEffect,
   } = composeStories(stories);
 
   it('取得した結果が0件の場合', () => {
-    render(<ResulutNone />);
+    render(<ResultNone />);
 
     // 0件の表示がされていること
     expect(screen.getByText('検索結果は0件です')).toBeInTheDocument();
   });
 
   it('取得した結果が表示件数と同じ場合', () => {
-    render(<ResulutEqualsDisplay />);
+    render(<ResultEqualsDisplay />);
 
     // 意図した件数が表示されていること
     expect(screen.getByText('5')).toBeInTheDocument();
@@ -31,7 +31,7 @@ describe('SearchResultHead', () => {
   });
 
   it('取得した結果が表示件数と異なる場合', () => {
-    render(<ResulutNotEqualsDisplay />);
+    render(<ResultNotEqualsDisplay />);
 
     // 意図した件数が表示されていること
     expect(screen.getByText('3')).toBeInTheDocument();

@@ -1,8 +1,8 @@
 import { Meta, StoryObj } from '@storybook/react';
+import { useEffect } from 'react';
 
-import { EnchantContext } from '../../context/EnchantContext';
-import { PageContext } from '../../context/PageContext';
-import { OrderContext } from '../../context/pc/OrderContext';
+import { useEnchantStore } from '../../state/useEnchantStore';
+import { usePcLayoutStore } from '../../state/usePcLayoutStore';
 import { SearchListContainer } from '../SearchListContainer';
 import { Dummy1, Dummy2 } from '../data/SearchListMockData';
 
@@ -11,49 +11,32 @@ export default {
   component: SearchListContainer,
   decorators: [
     Story => {
+      const { setImmutableEnchants } = useEnchantStore();
+      const { setOrderBy, setOrder, setPage } = usePcLayoutStore();
+      useEffect(() => {
+        setImmutableEnchants([Dummy1, Dummy2]);
+        setOrderBy('enchant_name');
+        setOrder('asc');
+        setPage(0);
+      }, [setImmutableEnchants, setOrderBy, setOrder, setPage]);
+
       return (
-        <EnchantContext.Provider
-          value={{
-            enchantList: [Dummy1, Dummy2],
-            setEnchantList: () => {},
-            rowData: [Dummy1, Dummy2],
-            setRowData: () => {},
-            count: 2,
-            setCount: () => {},
-          }}
-        >
-          <OrderContext.Provider
-            value={{
-              order: 'asc',
-              setOrder: () => {},
-              orderBy: 'enchant_name',
-              setOrderBy: () => {},
-            }}
-          >
-            <PageContext.Provider value={{ page: 0, setPage: () => {} }}>
-              <style>
-                {`
-                                    div {
-                                        top: 0 !important;
-                                    }
-                                    th {
-                                        top: 0 !important;
-                                    }
-                                `}
-              </style>
-              <Story />
-            </PageContext.Provider>
-          </OrderContext.Provider>
-        </EnchantContext.Provider>
+        <>
+          <style>
+            {`
+              div {
+                  top: 0 !important;
+              }
+              th {
+                  top: 0 !important;
+              }
+          `}
+          </style>
+          <Story />
+        </>
       );
     },
   ],
 } as Meta<typeof SearchListContainer>;
 
-export const Default: StoryObj<typeof SearchListContainer> = {
-  args: {
-    rowData: [Dummy1, Dummy2],
-    count: 2,
-    isDispVal: true,
-  },
-};
+export const Default: StoryObj<typeof SearchListContainer> = {};

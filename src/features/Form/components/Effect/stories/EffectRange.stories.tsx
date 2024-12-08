@@ -1,5 +1,4 @@
 import { Meta, StoryFn } from '@storybook/react';
-import { useState } from 'react';
 
 import { EffectRange } from '../EffectRange';
 
@@ -14,10 +13,7 @@ export default {
 } as Meta<typeof EffectRange>;
 
 const Template: StoryFn<typeof EffectRange> = () => {
-  const [effectRange, setEffectRange] = useState('0');
-  return (
-    <EffectRange effectRange={effectRange} setEffectRange={setEffectRange} />
-  );
+  return <EffectRange />;
 };
 
 export const Default = Template.bind({});

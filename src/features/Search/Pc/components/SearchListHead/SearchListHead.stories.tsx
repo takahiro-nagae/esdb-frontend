@@ -1,106 +1,52 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
+import { useEffect } from 'react';
+
+import { Dummy1, Dummy1NotDispVal } from '../../data/SearchListMockData';
 
 import { SearchListHead } from './SearchListHead';
 
-import { OrderContext } from '@/features/Search/context/pc/OrderContext';
+import { useEnchantStore } from '@/features/Search/state/useEnchantStore';
+import { usePcLayoutStore } from '@/features/Search/state/usePcLayoutStore';
 
 export default {
   title: 'search/pc/SearchListHead',
   component: SearchListHead,
+  decorators: [
+    (Story, context) => {
+      const { setOrderBy, setOrder } = usePcLayoutStore();
+      const { setImmutableEnchants } = useEnchantStore();
+      useEffect(() => {
+        if (context.name === 'Default') {
+          setOrderBy('enchant_id');
+          setOrder('asc');
+          setImmutableEnchants([Dummy1NotDispVal]);
+        } else if (context.name === 'Enchant Name Asc') {
+          setOrderBy('enchant_name');
+          setOrder('asc');
+          setImmutableEnchants([Dummy1NotDispVal]);
+        } else if (context.name === 'Enchant Name Desc') {
+          setOrderBy('enchant_name');
+          setOrder('desc');
+          setImmutableEnchants([Dummy1NotDispVal]);
+        } else if (context.name === 'Desc Val') {
+          setOrderBy('disp_val');
+          setOrder('asc');
+          setImmutableEnchants([Dummy1]);
+        }
+      }, [context.name, setOrderBy, setOrder]);
+
+      return <Story />;
+    },
+  ],
 } as Meta<typeof SearchListHead>;
 
-export const Default: StoryObj<typeof SearchListHead> = {
-  decorators: [
-    Story => {
-      return (
-        <OrderContext.Provider
-          value={{
-            orderBy: 'enchant_id',
-            setOrderBy: () => {},
-            order: 'asc',
-            setOrder: () => {},
-          }}
-        >
-          <table>
-            <Story />
-          </table>
-        </OrderContext.Provider>
-      );
-    },
-  ],
-  args: {
-    isDispVal: false,
-  },
+const Template: StoryFn<typeof SearchListHead> = args => {
+  return <SearchListHead {...args} />;
 };
+export const Default = Template.bind({});
 
-export const EnchantNameAsc: StoryObj<typeof SearchListHead> = {
-  decorators: [
-    Story => {
-      return (
-        <OrderContext.Provider
-          value={{
-            orderBy: 'enchant_name',
-            setOrderBy: () => {},
-            order: 'asc',
-            setOrder: () => {},
-          }}
-        >
-          <table>
-            <Story />
-          </table>
-        </OrderContext.Provider>
-      );
-    },
-  ],
-  args: {
-    isDispVal: false,
-  },
-};
+export const EnchantNameAsc = Template.bind({});
 
-export const EnchantNameDesc: StoryObj<typeof SearchListHead> = {
-  decorators: [
-    Story => {
-      return (
-        <OrderContext.Provider
-          value={{
-            orderBy: 'enchant_name',
-            setOrderBy: () => {},
-            order: 'desc',
-            setOrder: () => {},
-          }}
-        >
-          <table>
-            <Story />
-          </table>
-        </OrderContext.Provider>
-      );
-    },
-  ],
-  args: {
-    isDispVal: false,
-  },
-};
+export const EnchantNameDesc = Template.bind({});
 
-export const DescVal: StoryObj<typeof SearchListHead> = {
-  decorators: [
-    Story => {
-      return (
-        <OrderContext.Provider
-          value={{
-            orderBy: 'disp_val',
-            setOrderBy: () => {},
-            order: 'asc',
-            setOrder: () => {},
-          }}
-        >
-          <table>
-            <Story />
-          </table>
-        </OrderContext.Provider>
-      );
-    },
-  ],
-  args: {
-    isDispVal: true,
-  },
-};
+export const DescVal = Template.bind({});

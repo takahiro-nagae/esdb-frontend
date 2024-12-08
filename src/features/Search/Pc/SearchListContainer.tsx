@@ -5,26 +5,16 @@ import TableContainer from '@mui/material/TableContainer';
 import React, { useState } from 'react';
 
 import { SearchFilter } from '../common/components/SearchFilter/SearchFilter';
+import { useEnchantStore } from '../state/useEnchantStore';
 
 import styles from './SearchListContainer.module.css';
 import { Pagination } from './components/Pagination/Pagination';
 import { SearchListBody } from './components/SearchListBody/SearchListBody';
 import { SearchListHead } from './components/SearchListHead/SearchListHead';
 
-import { EnchantData } from '@/repositories/search/_types';
-
-type SearchListContainerProps = {
-  rowData: Array<EnchantData>;
-  count: number;
-  isDispVal: boolean;
-};
-
-export const SearchListContainer: React.FC<SearchListContainerProps> = ({
-  rowData,
-  count,
-  isDispVal,
-}) => {
+export const SearchListContainer: React.FC = () => {
   const [rowsPerPage, setRowsPerPage] = useState(30);
+  const { enchantsLength } = useEnchantStore();
   const xsSize = 11;
 
   return (
@@ -34,14 +24,14 @@ export const SearchListContainer: React.FC<SearchListContainerProps> = ({
         <Box>
           <TableContainer className={styles.table}>
             <Table>
-              <SearchListHead isDispVal={isDispVal} />
-              <SearchListBody rowData={rowData} rowsPerPage={rowsPerPage} />
+              <SearchListHead />
+              <SearchListBody rowsPerPage={rowsPerPage} />
             </Table>
           </TableContainer>
           <Pagination
             rowsPerPage={rowsPerPage}
             setRowsPerPage={setRowsPerPage}
-            maxCount={count}
+            count={enchantsLength}
           />
         </Box>
       </Grid>

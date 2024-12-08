@@ -1,40 +1,49 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from '@storybook/react';
+import { useEffect } from 'react';
 
-import { SearchResultHead } from "../SearechResultHead";
+import { SearchResultHead } from '../SearechResultHead';
+
+import { Dummy1 } from '@/features/Search/Pc/data/SearchListMockData';
+import { useEnchantStore } from '@/features/Search/state/useEnchantStore';
 
 export default {
-    title: 'search/component/SearchResult/SearchResultHead',
-    component: SearchResultHead,
+  title: 'search/component/SearchResult/SearchResultHead',
+  component: SearchResultHead,
+  decorators: [
+    (Story, context) => {
+      const { setImmutableEnchants, setEffectName } = useEnchantStore();
+      useEffect(() => {
+        switch (context.name) {
+          case 'Result None':
+            setImmutableEnchants([]);
+            setEffectName('');
+            break;
+          case 'Result Equals Display':
+            setImmutableEnchants([Dummy1, Dummy1, Dummy1, Dummy1, Dummy1]);
+            setEffectName('');
+            break;
+          case 'Result Not Equals Display':
+            setImmutableEnchants([Dummy1, Dummy1, Dummy1]);
+            setEffectName('');
+            break;
+          case 'Display Effect':
+            setImmutableEnchants([Dummy1, Dummy1, Dummy1, Dummy1, Dummy1]);
+            setEffectName('最大ダメージ');
+            break;
+          default:
+            break;
+        }
+      }, [setImmutableEnchants, setEffectName]);
+
+      return <Story />;
+    },
+  ],
 } as Meta<typeof SearchResultHead>;
 
-export const ResulutNone: StoryObj<typeof SearchResultHead> = {
-    args: {
-        dispCount: 0,
-        count: 0,
-        effectName: ''
-    }
-};
+export const ResultNone: StoryObj<typeof SearchResultHead> = {};
 
-export const ResulutEqualsDisplay: StoryObj<typeof SearchResultHead> = {
-    args: {
-        dispCount: 5,
-        count: 5,
-        effectName: ''
-    }
-};
+export const ResultEqualsDisplay: StoryObj<typeof SearchResultHead> = {};
 
-export const ResulutNotEqualsDisplay: StoryObj<typeof SearchResultHead> = {
-    args: {
-        dispCount: 5,
-        count: 3,
-        effectName: ''
-    }
-};
+export const ResultNotEqualsDisplay: StoryObj<typeof SearchResultHead> = {};
 
-export const DisplayEffect: StoryObj<typeof SearchResultHead> = {
-    args: {
-        dispCount: 5,
-        count: 5,
-        effectName: '最大ダメージ'
-    }
-};
+export const DisplayEffect: StoryObj<typeof SearchResultHead> = {};

@@ -1,20 +1,11 @@
 import { MenuItem, TextField } from '@material-ui/core';
 
 import styles from '../../common/style/common.module.css';
+import { useRankStore } from '../../store/useRankStore';
 
-import { FormRankType } from '@/repositories/form/_types';
+export const RankDropdown: React.FC = () => {
+  const { ranks, selected, setSelected } = useRankStore();
 
-export type RankDropdownProps = {
-  rankList: Array<FormRankType>;
-  selectedRank: string;
-  setSelectedRank: (E: string) => void;
-};
-
-export const RankDropdown: React.FC<RankDropdownProps> = ({
-  rankList,
-  selectedRank,
-  setSelectedRank,
-}) => {
   return (
     <TextField
       className={styles.formContainer}
@@ -24,11 +15,11 @@ export const RankDropdown: React.FC<RankDropdownProps> = ({
       select
       variant='outlined'
       size='small'
-      value={selectedRank}
-      onChange={e => setSelectedRank(e.target.value)}
+      value={selected}
+      onChange={e => setSelected(e.target.value)}
     >
       <MenuItem value=''>指定なし</MenuItem>
-      {rankList.map(rank => (
+      {ranks.map(rank => (
         <MenuItem key={rank.rank} value={rank.rank}>
           {rank.rank}
         </MenuItem>

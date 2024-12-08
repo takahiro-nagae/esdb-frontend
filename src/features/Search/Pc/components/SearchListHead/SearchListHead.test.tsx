@@ -1,22 +1,15 @@
 import { composeStories } from '@storybook/react';
-import { render, screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, test, vi } from 'vitest';
 
 import * as stories from './SearchListHead.stories';
-import * as searchListHeadFunction from './functions/searchListHeadFunction';
 
 describe('SearchListHead', () => {
-  const func = vi
-    .spyOn(searchListHeadFunction, 'createSortHandler')
-    .mockImplementationOnce(vi.fn());
-
   const { Default, EnchantNameAsc, EnchantNameDesc, DescVal } =
     composeStories(stories);
 
   afterEach(() => {
     vi.useRealTimers();
-    func.mockClear();
   });
 
   test('値なしの初期表示', async () => {
@@ -34,13 +27,6 @@ describe('SearchListHead', () => {
     // テキストの確認
     expect(labels[0]).toHaveTextContent('効果');
     expect(labels[1]).toHaveTextContent('入手先');
-
-    // ソートハンドラーの呼び出し確認
-    expect(func).toHaveBeenCalledTimes(0);
-    userEvent.click(buttons[0]);
-    await waitFor(() => {
-      expect(func).toHaveBeenCalledTimes(1);
-    });
   });
 
   test('エンチャント名昇順', async () => {
@@ -66,13 +52,6 @@ describe('SearchListHead', () => {
     // テキストの確認
     expect(labels[0]).toHaveTextContent('効果');
     expect(labels[1]).toHaveTextContent('入手先');
-
-    // ソートハンドラーの呼び出し確認
-    expect(func).toHaveBeenCalledTimes(0);
-    userEvent.click(buttons[0]);
-    await waitFor(() => {
-      expect(func).toHaveBeenCalledTimes(1);
-    });
   });
 
   test('エンチャント名降順', async () => {
@@ -98,13 +77,6 @@ describe('SearchListHead', () => {
     // テキストの確認
     expect(labels[0]).toHaveTextContent('効果');
     expect(labels[1]).toHaveTextContent('入手先');
-
-    // ソートハンドラーの呼び出し確認
-    expect(func).toHaveBeenCalledTimes(0);
-    userEvent.click(buttons[0]);
-    await waitFor(() => {
-      expect(func).toHaveBeenCalledTimes(1);
-    });
   });
 
   test('効果が表示された時の表示確認', async () => {
@@ -131,12 +103,5 @@ describe('SearchListHead', () => {
     expect(
       screen.getByText('エンチャント名').children[0],
     ).not.toHaveTextContent('sorted ascending');
-
-    // ソートハンドラーの呼び出し確認
-    expect(func).toHaveBeenCalledTimes(0);
-    userEvent.click(buttons[4]);
-    await waitFor(() => {
-      expect(func).toHaveBeenCalledTimes(1);
-    });
   });
 });

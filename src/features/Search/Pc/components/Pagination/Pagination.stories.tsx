@@ -1,61 +1,50 @@
-import { Meta, StoryObj } from '@storybook/react';
-
-import { PageContext } from '../../../context/PageContext';
+import { Meta, StoryFn } from '@storybook/react';
+import { useEffect } from 'react';
 
 import { Pagination } from './Pagination';
+
+import { usePcLayoutStore } from '@/features/Search/state/usePcLayoutStore';
 
 export default {
   title: 'search/pc/Pagination',
   component: Pagination,
   decorators: [
-    Story => {
-      return (
-        <PageContext.Provider value={{ page: 0, setPage: () => {} }}>
-          <Story />
-        </PageContext.Provider>
-      );
+    (Story, context) => {
+      const { setPage } = usePcLayoutStore();
+      useEffect(() => {
+        if (context.name === 'Default') {
+          setPage(0);
+        } else {
+          setPage(1);
+        }
+      }, [context.name, setPage]);
+
+      return <Story />;
     },
   ],
 } as Meta<typeof Pagination>;
 
-export const Default: StoryObj<typeof Pagination> = {
-  args: {
-    rowsPerPage: 30,
-    setRowsPerPage: () => {},
-    maxCount: 100,
-  },
+const Template: StoryFn<typeof Pagination> = args => {
+  return <Pagination {...args} />;
 };
 
-export const Page1: StoryObj<typeof Pagination> = {
-  args: {
-    rowsPerPage: 30,
-    setRowsPerPage: () => {},
-    maxCount: 100,
-  },
-  decorators: [
-    Story => {
-      return (
-        <PageContext.Provider value={{ page: 1, setPage: () => {} }}>
-          <Story />
-        </PageContext.Provider>
-      );
-    },
-  ],
+export const Default = Template.bind({});
+Default.args = {
+  rowsPerPage: 30,
+  setRowsPerPage: () => {},
+  count: 100,
 };
 
-export const PerPage60Page1: StoryObj<typeof Pagination> = {
-  args: {
-    rowsPerPage: 60,
-    setRowsPerPage: () => {},
-    maxCount: 100,
-  },
-  decorators: [
-    Story => {
-      return (
-        <PageContext.Provider value={{ page: 1, setPage: () => {} }}>
-          <Story />
-        </PageContext.Provider>
-      );
-    },
-  ],
+export const Page1 = Template.bind({});
+Page1.args = {
+  rowsPerPage: 30,
+  setRowsPerPage: () => {},
+  count: 100,
+};
+
+export const PerPage60Page1 = Template.bind({});
+PerPage60Page1.args = {
+  rowsPerPage: 60,
+  setRowsPerPage: () => {},
+  count: 100,
 };

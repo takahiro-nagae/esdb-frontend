@@ -1,22 +1,16 @@
+import { useEnchantStore } from '../../state/useEnchantStore';
+
 import styles from './SearchResultHead.module.css';
 
-type SearchResultType = {
-  dispCount: number;
-  count: number;
-  effectName: string;
-};
-
-export const SearchResultHead: React.FC<SearchResultType> = ({
-  dispCount,
-  count,
-  effectName,
-}) => {
+export const SearchResultHead: React.FC = () => {
+  const { enchantsLength, effectName } = useEnchantStore();
   return (
     <>
-      {dispCount < 1 && <p className={styles.result}>検索結果は0件です</p>}
-      {dispCount >= 1 && (
+      {enchantsLength < 1 && <p className={styles.result}>検索結果は0件です</p>}
+      {enchantsLength >= 1 && (
         <p className={styles.result}>
-          <span className={styles.hitCount}>{count}</span>件ヒットしました
+          <span className={styles.hitCount}>{enchantsLength}</span>
+          件ヒットしました
           {effectName != '' && (
             <>
               <br />
