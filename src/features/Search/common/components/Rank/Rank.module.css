@@ -1,0 +1,25 @@
+.description {
+  color: #fff;
+  padding-left: 20px;
+}
+
+.rankResult {
+  color: #f00;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.header {
+  background-color: #0854a3;
+  color: #fff;
+  border-bottom: 1px solid rgba(81, 81, 81, 1);
+}
+
+.row {
+  background-color: #3c3b40;
+}
+
+.data {
+  color: #fff;
+  border-bottom: 1px solid rgba(81, 81, 81, 1);
+}

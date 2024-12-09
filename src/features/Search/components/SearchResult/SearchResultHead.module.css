@@ -1,0 +1,10 @@
+.result {
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+}
+
+.hitCount {
+  color: #f00;
+  font-size: 18px;
+}

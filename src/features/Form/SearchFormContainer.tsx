@@ -1,0 +1,28 @@
+import { Grid, Paper } from '@material-ui/core';
+import Box from '@mui/material/Box';
+
+import { SearchForm } from './SearchForm';
+import styles from './SearchFormContainer.module.css';
+
+export const SearchFormContainer: React.FC = () => {
+  return (
+    <Box sx={{ mt: 3 }}>
+      <Grid
+        container
+        className={styles.searchFormContainer}
+        justifyContent='center'
+      >
+        <Grid item xs={12}>
+          <Paper>
+            <Box sx={{ p: 2 }}>
+              <h3>検索条件</h3>
+              <Box sx={{ mx: 1, my: 4 }}>
+                <SearchForm />
+              </Box>
+            </Box>
+          </Paper>
+        </Grid>
+      </Grid>
+    </Box>
+  );
+};

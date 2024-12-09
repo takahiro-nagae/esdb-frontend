@@ -1,0 +1,11 @@
+.header {
+  color: #fff !important;
+  background-color: #2f2f2f;
+  border-bottom: 1px solid rgba(81, 81, 81, 1);
+}
+
+.body {
+  color: #fff !important;
+  background-color: #3c3b40;
+  border-bottom: 1px solid rgba(81, 81, 81, 1);
+}
