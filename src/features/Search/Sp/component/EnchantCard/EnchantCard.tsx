@@ -22,7 +22,7 @@ import { AccordionButton } from './component/AccordionButton/AccordionButton';
 import { DetailTable } from './component/DetailTable/DetailTable';
 
 import { EnchantData } from '@/repositories/search/_types';
-import { isFavorite, useFavoriteState } from '@/state/useFavoriteState';
+import { isFavorite, useBookmarkState } from '@/state/useBookmarkState';
 
 type EnchantCardProps = {
   enchant: EnchantData;
@@ -30,7 +30,7 @@ type EnchantCardProps = {
 
 export const EnchantCard: React.FC<EnchantCardProps> = ({ enchant }) => {
   const [open, setOpen] = useState(false);
-  const { pushEnchant, removeEnchant } = useFavoriteState();
+  const { pushEnchant, removeEnchant } = useBookmarkState();
 
   return (
     <Card className={styles.enchantCard}>

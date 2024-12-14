@@ -8,6 +8,7 @@ import './index.css';
 import { Footer } from './common/Footer';
 import { DefaultGlobalStyles } from './common/theme/DefaultGlobalStyles';
 import { Theme } from './common/theme/theme';
+import { Bookmark } from './features/Bookmark/Bookmark';
 import { MobileHeader } from './features/Header/MobileHeader';
 import { PcHeader } from './features/Header/PcHeader';
 import { Home } from './features/Home/Home';
@@ -43,6 +44,7 @@ root.render(
           <Route element={<SearchList isFreeSearch={true} />} path='search' />
           <Route element={<RankIndex />} path='rank/:rank' />
           <Route element={<DetailIndex />} path='detail/:enchant_id' />
+          <Route element={<Bookmark />} path='bookmark' />
         </Routes>
         <Footer />
       </Router>

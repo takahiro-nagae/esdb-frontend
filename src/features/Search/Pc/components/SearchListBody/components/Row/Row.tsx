@@ -20,7 +20,7 @@ import {
 } from '@/features/Search/common/functions/enchantNameFunction';
 import { positionName } from '@/features/Search/common/functions/positionFunction';
 import { EnchantData } from '@/repositories/search/_types';
-import { isFavorite, useFavoriteState } from '@/state/useFavoriteState';
+import { isFavorite, useBookmarkState } from '@/state/useBookmarkState';
 
 type RowProps = {
   enchant: EnchantData;
@@ -30,7 +30,7 @@ type RowProps = {
 export const Row: React.FC<RowProps> = ({ enchant, index }) => {
   const omtCount = 3;
   const routeNames = enchant.route_name ? enchant.route_name.split('@') : [];
-  const { pushEnchant, removeEnchant } = useFavoriteState();
+  const { pushEnchant, removeEnchant } = useBookmarkState();
 
   return (
     <>

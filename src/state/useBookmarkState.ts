@@ -37,7 +37,7 @@ const useStore = create<State & Action>()(
   ),
 );
 
-export const useFavoriteState = () => {
+export const useBookmarkState = () => {
   const enchants = useStore(store => store.enchants);
   const pushEnchant = useStore(store => store.pushEnchant);
   const removeEnchant = useStore(store => store.removeEnchant);
