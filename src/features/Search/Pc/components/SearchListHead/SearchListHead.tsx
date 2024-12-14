@@ -27,6 +27,7 @@ export const SearchListHead: React.FC = () => {
   return (
     <TableHead>
       <TableRow>
+        <TableCell className={styles.tableHeader}></TableCell>
         {HeadCellData.map(
           headCell =>
             isDisplayCell(headCell.id, enchants[0]?.disp_val !== undefined) && (

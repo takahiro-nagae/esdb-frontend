@@ -1,6 +1,5 @@
 import TableBody from '@mui/material/TableBody';
 
-import { AmongAd } from './components/Ads/AmoungAd';
 import { LastInfeedAd } from './components/Ads/LastInfeedAd';
 import { Row } from './components/Row/Row';
 import { getComparator, stableSort } from './functions/searchListBodyFunction';
@@ -16,7 +15,7 @@ export const SearchListBody: React.FC<SearchListBodyProps> = ({
   rowsPerPage,
 }) => {
   const { page } = usePcLayoutStore();
-  const { enchants, enchantsLength } = useEnchantStore();
+  const { enchants } = useEnchantStore();
   const { order, orderBy } = usePcLayoutStore();
 
   const sliceFrom = page * rowsPerPage;
@@ -27,16 +26,9 @@ export const SearchListBody: React.FC<SearchListBodyProps> = ({
       {stableSort(enchants, getComparator(order, orderBy))
         .slice(sliceFrom, sliceTo)
         .map((enchant, index) => (
-          <>
-            <AmongAd index={index} disp_val={enchant.disp_val} />
-            <Row enchant={enchant} key={enchant.enchant_id} />
-            <LastInfeedAd
-              index={index}
-              dataLength={enchantsLength}
-              disp_val={enchant.disp_val}
-            />
-          </>
+          <Row enchant={enchant} key={enchant.enchant_id} index={index} />
         ))}
+      <LastInfeedAd disp_val={enchants[0].disp_val} />
     </TableBody>
   );
 };

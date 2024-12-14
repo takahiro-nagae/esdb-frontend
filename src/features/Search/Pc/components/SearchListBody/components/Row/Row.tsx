@@ -1,7 +1,10 @@
-import { TableCell, TableRow } from '@material-ui/core';
+import { IconButton, TableCell, TableRow } from '@material-ui/core';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
+import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
 
 import enchantNameStyles from '../../../../../common/styles/EnchantName.module.css';
 import positionStyles from '../../../../../common/styles/Position.module.css';
+import { AmongAd } from '../Ads/AmoungAd';
 
 import styles from './Row.module.css';
 
@@ -17,61 +20,83 @@ import {
 } from '@/features/Search/common/functions/enchantNameFunction';
 import { positionName } from '@/features/Search/common/functions/positionFunction';
 import { EnchantData } from '@/repositories/search/_types';
+import { isFavorite, useFavoriteState } from '@/state/useFavoriteState';
 
 type RowProps = {
   enchant: EnchantData;
+  index: number;
 };
 
-export const Row: React.FC<RowProps> = ({ enchant }) => {
+export const Row: React.FC<RowProps> = ({ enchant, index }) => {
   const omtCount = 3;
   const routeNames = enchant.route_name ? enchant.route_name.split('@') : [];
+  const { pushEnchant, removeEnchant } = useFavoriteState();
 
   return (
-    <TableRow className={styles.tableContent}>
-      <TableCell>
-        <span data-testid='enchantName'>
-          {createEnchantName(enchant.enchant_name, enchant.enchant_name_2)}
-        </span>
-        <InvalidText invalidTargetFlg={enchant.invalid_target_flg} />
-        <ImpText impFlg={enchant.imp_flg} />
-        <br />
-        <small
-          className={enchantNameStyles.subTitleStyle}
-          data-testid='enchantNameEn'
+    <>
+      <AmongAd index={index} disp_val={enchant.disp_val} />
+      <TableRow className={styles.tableContent}>
+        <TableCell>
+          {isFavorite(enchant.enchant_id) ? (
+            <IconButton onClick={() => removeEnchant(enchant.enchant_id)}>
+              <BookmarkIcon
+                onClick={() => removeEnchant(enchant.enchant_id)}
+                color='info'
+              />
+            </IconButton>
+          ) : (
+            <IconButton onClick={() => pushEnchant(enchant)}>
+              <BookmarkBorderOutlinedIcon
+                onClick={() => pushEnchant(enchant)}
+              />
+            </IconButton>
+          )}
+        </TableCell>
+        <TableCell>
+          <span data-testid='enchantName'>
+            {createEnchantName(enchant.enchant_name, enchant.enchant_name_2)}
+          </span>
+          <InvalidText invalidTargetFlg={enchant.invalid_target_flg} />
+          <ImpText impFlg={enchant.imp_flg} />
+          <br />
+          <small
+            className={enchantNameStyles.subTitleStyle}
+            data-testid='enchantNameEn'
+          >
+            {createEnchantNameEn(enchant.enchant_name_en, enchant.position_id)}
+          </small>
+        </TableCell>
+        <TableCell
+          className={
+            enchant.position_id === '1'
+              ? positionStyles.prefix
+              : positionStyles.suffix
+          }
         >
-          {createEnchantNameEn(enchant.enchant_name_en, enchant.position_id)}
-        </small>
-      </TableCell>
-      <TableCell
-        className={
-          enchant.position_id === '1'
-            ? positionStyles.prefix
-            : positionStyles.suffix
-        }
-      >
-        {positionName(enchant.position_id)}
-      </TableCell>
-      <TableCell>
-        <RankModal rank={enchant.rank} />
-      </TableCell>
-      <TableCell>{enchant.target_name}</TableCell>
-      {enchant.disp_val && (
-        <TableCell data-testid='dispVal'>{enchant.disp_val}</TableCell>
-      )}
-      <TableCell>
-        <EffectList
-          effectKbn={enchant.effect_kbn}
-          effectName={enchant.effect_name}
-        />
-      </TableCell>
-      <TableCell>
-        <RouteList routeNames={routeNames} omtCount={omtCount} />
-        <DetailModal
-          count={routeNames.length - omtCount}
-          data-testid='routeModal'
-          enchant={enchant}
-        />
-      </TableCell>
-    </TableRow>
+          {positionName(enchant.position_id)}
+        </TableCell>
+        <TableCell>
+          <RankModal rank={enchant.rank} />
+        </TableCell>
+        <TableCell>{enchant.target_name}</TableCell>
+        {enchant.disp_val && (
+          <TableCell data-testid='dispVal'>{enchant.disp_val}</TableCell>
+        )}
+        <TableCell>
+          <EffectList
+            effectKbn={enchant.effect_kbn}
+            effectName={enchant.effect_name}
+          />
+        </TableCell>
+        <TableCell>
+          <RouteList routeNames={routeNames} omtCount={omtCount} />
+          <DetailModal
+            count={routeNames.length - omtCount}
+            data-testid='routeModal'
+            enchant={enchant}
+          />
+        </TableCell>
+      </TableRow>
+    </>
   );
 };
