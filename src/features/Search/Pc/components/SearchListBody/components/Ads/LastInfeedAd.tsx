@@ -16,7 +16,7 @@ export const LastInfeedAd: React.FC<LastInfeedAdProps> = ({ disp_val }) => {
 
   return (
     <TableRow className={styles.tableContent}>
-      <TableCell colSpan={disp_val ? 7 : 6} className={styles.tableData}>
+      <TableCell colSpan={disp_val ? 8 : 7} className={styles.tableData}>
         <InfeedAd />
       </TableCell>
     </TableRow>

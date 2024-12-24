@@ -19,7 +19,7 @@ export const AmongAd: React.FC<AmongAdProps> = ({ index, disp_val }) => {
 
     return (
       <TableRow className={styles.tableContent} key={index}>
-        <TableCell colSpan={disp_val ? 7 : 6} className={styles.tableData}>
+        <TableCell colSpan={disp_val ? 8 : 7} className={styles.tableData}>
           <InfeedAd />
         </TableCell>
       </TableRow>
