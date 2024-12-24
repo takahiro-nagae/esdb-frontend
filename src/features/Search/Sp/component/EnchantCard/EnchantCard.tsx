@@ -1,3 +1,6 @@
+import { IconButton } from '@material-ui/core';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
+import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
@@ -19,6 +22,7 @@ import { AccordionButton } from './component/AccordionButton/AccordionButton';
 import { DetailTable } from './component/DetailTable/DetailTable';
 
 import { EnchantData } from '@/repositories/search/_types';
+import { isFavorite, useBookmarkState } from '@/state/useBookmarkState';
 
 type EnchantCardProps = {
   enchant: EnchantData;
@@ -26,10 +30,23 @@ type EnchantCardProps = {
 
 export const EnchantCard: React.FC<EnchantCardProps> = ({ enchant }) => {
   const [open, setOpen] = useState(false);
+  const { pushEnchant, removeEnchant } = useBookmarkState();
 
   return (
     <Card className={styles.enchantCard}>
       <Box className={styles.cardBox}>
+        {isFavorite(enchant.enchant_id) ? (
+          <IconButton onClick={() => removeEnchant(enchant.enchant_id)}>
+            <BookmarkIcon
+              onClick={() => removeEnchant(enchant.enchant_id)}
+              color='info'
+            />
+          </IconButton>
+        ) : (
+          <IconButton onClick={() => pushEnchant(enchant)}>
+            <BookmarkBorderOutlinedIcon onClick={() => pushEnchant(enchant)} />
+          </IconButton>
+        )}
         <Box>
           <Typography className={styles.title}>
             <span data-testid='enchantName'>
@@ -69,7 +86,7 @@ export const EnchantCard: React.FC<EnchantCardProps> = ({ enchant }) => {
             </p>
           )}
         </Box>
-        <Box>
+        <Box className={styles.accordionButton}>
           <AccordionButton open={open} setOpen={setOpen} />
         </Box>
       </Box>

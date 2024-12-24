@@ -2,6 +2,7 @@ import HistoryIcon from '@material-ui/icons/History';
 import HomeIcon from '@material-ui/icons/Home';
 import InfoIcon from '@material-ui/icons/Info';
 import NotesIcon from '@material-ui/icons/Notes';
+import { Bookmark } from '@mui/icons-material';
 import { ReactElement } from 'react';
 
 import styles from './MenuData.module.css';
@@ -17,6 +18,11 @@ export const AppMenuData: Array<AppRowType> = [
     url: '/',
     icon: <HomeIcon className={styles.icon}></HomeIcon>,
     text: 'HOME',
+  },
+  {
+    url: '/bookmark',
+    icon: <Bookmark className={styles.icon}></Bookmark>,
+    text: 'ブックマーク',
   },
   {
     url: '/history',

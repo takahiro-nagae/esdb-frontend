@@ -17,7 +17,7 @@ export const AmongAd: React.FC<AmongAdProps> = ({ index }) => {
     }
 
     return (
-      <Card className={styles.card} key={index}>
+      <Card className={styles.card}>
         <InfeedAd />
       </Card>
     );

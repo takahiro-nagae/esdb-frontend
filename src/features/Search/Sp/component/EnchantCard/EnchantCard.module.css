@@ -8,8 +8,6 @@
 .cardBox {
   display: flex;
   align-items: center;
-  flex-direction: row;
-  justify-content: space-around;
 }
 
 .inline {
@@ -27,4 +25,8 @@
 
 .value {
   color: #fff;
+}
+
+.accordionButton {
+  margin-left: auto;
 }
