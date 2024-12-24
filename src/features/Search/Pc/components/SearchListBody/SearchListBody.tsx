@@ -28,7 +28,7 @@ export const SearchListBody: React.FC<SearchListBodyProps> = ({
         .map((enchant, index) => (
           <Row enchant={enchant} key={enchant.enchant_id} index={index} />
         ))}
-      <LastInfeedAd disp_val={enchants[0].disp_val} />
+      <LastInfeedAd disp_val={enchants[0]?.disp_val} />
     </TableBody>
   );
 };

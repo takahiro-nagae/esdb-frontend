@@ -33,28 +33,28 @@ describe('SearchListBody', () => {
     isDispVal: boolean,
   ) => {
     // エンチャント名
-    expect(row.children[0]).toHaveTextContent(data.enchant_name);
+    expect(row.children[1]).toHaveTextContent(data.enchant_name);
     // 位置
-    expect(row.children[1]).toHaveTextContent(positionName(data.position_id));
+    expect(row.children[2]).toHaveTextContent(positionName(data.position_id));
     // ランク
-    expect(row.children[2]).toHaveTextContent(data.rank);
-    clickRank(row.children[2] as HTMLElement);
+    expect(row.children[3]).toHaveTextContent(data.rank);
+    clickRank(row.children[3] as HTMLElement);
     // 対象
-    expect(row.children[3]).toHaveTextContent(data.target_name);
+    expect(row.children[4]).toHaveTextContent(data.target_name);
     if (isDispVal) {
       // 値
-      expect(row.children[4]).toHaveTextContent(
+      expect(row.children[5]).toHaveTextContent(
         data.disp_val?.toString() || '',
       );
+      // 効果
+      expect(row.children[6]).toHaveTextContent(data.effect_name);
+      // 入手先
+      expect(row.children[7]).toHaveTextContent(data.route_name || '');
+    } else {
       // 効果
       expect(row.children[5]).toHaveTextContent(data.effect_name);
       // 入手先
       expect(row.children[6]).toHaveTextContent(data.route_name || '');
-    } else {
-      // 効果
-      expect(row.children[4]).toHaveTextContent(data.effect_name);
-      // 入手先
-      expect(row.children[5]).toHaveTextContent(data.route_name || '');
     }
   };
 
