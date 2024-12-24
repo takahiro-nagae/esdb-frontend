@@ -7,7 +7,7 @@ import { SpSearchContainer } from '../Search/Sp/SpSearchContainer';
 import { useEnchantStore } from '../Search/state/useEnchantStore';
 
 import styles from './Bookmark.module.css';
-import { BookMarkResultHead } from './components/BookMarkResultHead';
+import { BookMarkResultHead } from './components/BookmarkResultHead';
 
 import { useBookmarkState } from '@/state/useBookmarkState';
 
