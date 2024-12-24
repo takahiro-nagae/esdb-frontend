@@ -46,8 +46,8 @@ export const useSearchFilter = () => {
     }
 
     const timer = setTimeout(() => {
+      if (!searchWord) return;
       const filterList = filterEnchantData();
-
       setEnchants(filterList);
       if (isBrowser) {
         setPage(0);
