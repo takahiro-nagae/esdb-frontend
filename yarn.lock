@@ -2099,7 +2099,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:^18, @types/react@npm:^18.0.26, @types/react@npm:^18.2.20":
+"@types/react@npm:^18, @types/react@npm:^18.2.20":
   version: 18.3.14
   resolution: "@types/react@npm:18.3.14"
   dependencies:
@@ -5471,18 +5471,21 @@ __metadata:
   linkType: hard
 
 "material-ui-popup-state@npm:^5.0.10":
-  version: 5.3.1
-  resolution: "material-ui-popup-state@npm:5.3.1"
+  version: 5.3.3
+  resolution: "material-ui-popup-state@npm:5.3.3"
   dependencies:
     "@babel/runtime": "npm:^7.20.6"
     "@types/prop-types": "npm:^15.7.3"
-    "@types/react": "npm:^18.0.26"
     classnames: "npm:^2.2.6"
     prop-types: "npm:^15.7.2"
   peerDependencies:
     "@mui/material": ^5.0.0 || ^6.0.0
-    react: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: 10c0/9321f52f0bd7625e34a51fce86176bdaf3bd419f55b8780c9fe0ebaa9340dc7fa72893e5954d2bd17f1955d76ea6a503343771abaf7cff2d37c24b67c80e03ae
+    "@types/react": ^16.8.0 || ^17 || ^18 || ^19
+    react: ^16.8.0 || ^17 || ^18 || ^19
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  checksum: 10c0/8e2a3c48394d0465ba4707f63db5d0e8f0f5832b42b55fe8612bc6cb279771acb289b1f3e2057dcfb98c0a5722bcb03be6fe614d4d0ef579130c016b85d46cb2
   languageName: node
   linkType: hard
 
