@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-named-as-default
 import DOMPurify from 'dompurify';
 import { isMobile } from 'react-device-detect';
 

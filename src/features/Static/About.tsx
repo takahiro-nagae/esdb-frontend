@@ -1,7 +1,7 @@
-import { Grid, Paper } from '@material-ui/core';
 import FeedIcon from '@mui/icons-material/Feed';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import YouTubeIcon from '@mui/icons-material/YouTube';
+import { Grid, Paper } from '@mui/material';
 import Box from '@mui/material/Box';
 import { NavLink } from 'react-router-dom';
 
@@ -15,7 +15,7 @@ export const About: React.FC = () => {
       <Grid container justifyContent='center'>
         <Grid item xs={11}>
           <DisplayWideAd />
-          <Paper style={{ marginTop: '15px' }}>
+          <Paper style={{ marginTop: '15px', background: '#424242' }}>
             <Box sx={{ p: 2 }}>
               <h2>当サイトについて</h2>
               <Box sx={{ p: 2 }}>

@@ -1,4 +1,4 @@
-import { Grid } from '@material-ui/core';
+import { Grid } from '@mui/material';
 
 import { Effect } from './components/Effect/Effect';
 import { EnchantName } from './components/EnchantName/EnchantName';

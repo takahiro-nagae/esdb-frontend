@@ -1,4 +1,4 @@
-import { AppBar, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Toolbar, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 import styles from './PcHeader.module.css';

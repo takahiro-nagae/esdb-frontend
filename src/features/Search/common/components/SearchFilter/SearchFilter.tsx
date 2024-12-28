@@ -1,11 +1,14 @@
-import { Grid } from '@material-ui/core';
-import { GridSize } from '@material-ui/core/Grid/Grid';
+import { Grid } from '@mui/material';
 import { isBrowser } from 'react-device-detect';
 
 import styles from './SearchFilter.module.css';
 import { useSearchFilter } from './hooks/useSearchFilter';
 
-export const SearchFilter = (props: { xs: GridSize }) => {
+type SearchFilterProps = {
+  xs: number;
+};
+
+export const SearchFilter: React.FC<SearchFilterProps> = props => {
   const { searchWord, setSearchWord } = useSearchFilter();
 
   return (

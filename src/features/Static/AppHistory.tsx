@@ -1,4 +1,4 @@
-import { Grid, Paper } from '@material-ui/core';
+import { Grid, Paper } from '@mui/material';
 import Box from '@mui/material/Box';
 import { useEffect } from 'react';
 
@@ -22,7 +22,7 @@ export const AppHistory: React.FC = () => {
       <Grid container justifyContent='center'>
         <Grid item xs={11}>
           <DisplayWideAd />
-          <Paper style={{ marginTop: '15px' }}>
+          <Paper style={{ marginTop: '15px', background: '#424242' }}>
             <Box sx={{ p: 2 }}>
               <h2>更新履歴</h2>
               <Box sx={{ p: 2 }}>

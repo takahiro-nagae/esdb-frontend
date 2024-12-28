@@ -1,5 +1,5 @@
-import { IconButton, Menu, MenuItem } from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
+import { Menu as MenuIcon } from '@mui/icons-material';
+import { IconButton, MenuItem, Menu } from '@mui/material';
 import {
   bindMenu,
   bindTrigger,
