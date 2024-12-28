@@ -1,5 +1,5 @@
-import SearchIcon from '@material-ui/icons/Search';
-import IconButton from '@mui/material/IconButton';
+import { Search } from '@mui/icons-material';
+import { IconButton } from '@mui/material';
 import { isBrowser } from 'react-device-detect';
 
 import styles from './FreeSearch.module.css';
@@ -27,7 +27,7 @@ export const FreeSearch: React.FC = () => {
           type='submit'
           onClick={handleSubmit}
         >
-          <SearchIcon />
+          <Search />
         </IconButton>
       </div>
     </div>

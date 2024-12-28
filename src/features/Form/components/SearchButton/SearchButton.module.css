@@ -1,3 +1,7 @@
 .searchButton {
   width: 100%;
 }
+
+.searchButton:hover {
+  background: #3680cd;
+}

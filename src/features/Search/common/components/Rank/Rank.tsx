@@ -4,7 +4,7 @@ import {
   TableCell,
   TableHead,
   TableRow,
-} from '@material-ui/core';
+} from '@mui/material';
 
 import styles from './Rank.module.css';
 import { RANK_HEADER_LABELS } from './const';
