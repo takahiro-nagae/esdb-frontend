@@ -9,7 +9,7 @@ export const PrivacyPolicy: React.FC = () => {
       <Grid container justifyContent='center'>
         <Grid item xs={11}>
           <DisplayWideAd />
-          <Paper style={{ marginTop: '15px' }}>
+          <Paper style={{ marginTop: '15px', background: '#424242' }}>
             <Box sx={{ p: 2 }}>
               <h2>プライバシーポリシー</h2>
               <Box sx={{ p: 2 }}>

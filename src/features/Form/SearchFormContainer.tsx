@@ -13,7 +13,7 @@ export const SearchFormContainer: React.FC = () => {
         justifyContent='center'
       >
         <Grid item xs={12}>
-          <Paper>
+          <Paper style={{ background: '#424242' }}>
             <Box sx={{ p: 2 }}>
               <h3>検索条件</h3>
               <Box sx={{ mx: 1, my: 4 }}>
