@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest';
 
 import * as stories from '../stories/InvalidText.stories';
 
-describe('InvalidText', () => {
+describe('InvalidText Component', () => {
   const expectMessage = '貼付不可';
 
   it('貼付可能', () => {
@@ -20,6 +20,6 @@ describe('InvalidText', () => {
     render(<Invalid />);
 
     // 貼付不可メッセージが表示されること
-    expect(screen.getByText(expectMessage)).toBeTruthy;
+    expect(screen.getByText(expectMessage)).toBeTruthy();
   });
 });
