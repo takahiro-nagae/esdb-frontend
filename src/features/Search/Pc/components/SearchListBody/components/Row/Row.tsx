@@ -1,6 +1,6 @@
-import { IconButton, TableCell, TableRow } from '@material-ui/core';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
+import { IconButton, TableCell, TableRow } from '@mui/material';
 
 import enchantNameStyles from '../../../../../common/styles/EnchantName.module.css';
 import positionStyles from '../../../../../common/styles/Position.module.css';

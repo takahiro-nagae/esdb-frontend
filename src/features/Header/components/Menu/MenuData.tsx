@@ -1,8 +1,4 @@
-import HistoryIcon from '@material-ui/icons/History';
-import HomeIcon from '@material-ui/icons/Home';
-import InfoIcon from '@material-ui/icons/Info';
-import NotesIcon from '@material-ui/icons/Notes';
-import { Bookmark } from '@mui/icons-material';
+import { Bookmark, Home, History, Info, Notes } from '@mui/icons-material';
 import { ReactElement } from 'react';
 
 import styles from './MenuData.module.css';
@@ -16,7 +12,7 @@ type AppRowType = Partial<{
 export const AppMenuData: Array<AppRowType> = [
   {
     url: '/',
-    icon: <HomeIcon className={styles.icon}></HomeIcon>,
+    icon: <Home className={styles.icon}></Home>,
     text: 'HOME',
   },
   {
@@ -26,17 +22,17 @@ export const AppMenuData: Array<AppRowType> = [
   },
   {
     url: '/history',
-    icon: <HistoryIcon className={styles.icon}></HistoryIcon>,
+    icon: <History className={styles.icon}></History>,
     text: '更新履歴',
   },
   {
     url: '/about',
-    icon: <InfoIcon className={styles.icon}></InfoIcon>,
+    icon: <Info className={styles.icon}></Info>,
     text: '当サイトについて',
   },
   {
     url: '/privacyPolicy',
-    icon: <NotesIcon className={styles.icon}></NotesIcon>,
+    icon: <Notes className={styles.icon}></Notes>,
     text: 'プライバシーポリシー',
   },
 ];

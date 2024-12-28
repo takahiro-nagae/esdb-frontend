@@ -5,7 +5,7 @@ import {
   TableBody,
   TableCell,
   TableRow,
-} from '@material-ui/core';
+} from '@mui/material';
 
 import { DetailModal } from '../../../../../common/components/Detail/Modal/DetailModal';
 import { EffectList } from '../../../../../common/components/EffectList/EffectList';

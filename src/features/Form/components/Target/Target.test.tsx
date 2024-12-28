@@ -11,7 +11,7 @@ describe('RankDropDown Component', () => {
   it('コンポーネントの確認', async () => {
     render(<Default />);
 
-    await userEvent.click(screen.getByRole('button'));
+    await userEvent.click(screen.getByRole('combobox'));
 
     const listbox = screen.getByRole('listbox');
     const options = within(listbox).getAllByRole('option');
@@ -21,12 +21,12 @@ describe('RankDropDown Component', () => {
     expect(option2).toHaveTextContent('test');
   });
 
-  it('ランクが取得できない場合', async () => {
+  it('対象が取得できない場合', async () => {
     const { None } = composeStories(stories);
 
     render(<None />);
 
-    await userEvent.click(screen.getByRole('button'));
+    await userEvent.click(screen.getByRole('combobox'));
 
     const listbox = screen.getByRole('listbox');
     const options = within(listbox).getAllByRole('option');

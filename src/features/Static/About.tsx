@@ -1,7 +1,7 @@
-import { Grid, Paper } from '@material-ui/core';
 import FeedIcon from '@mui/icons-material/Feed';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import YouTubeIcon from '@mui/icons-material/YouTube';
+import { Grid, Paper } from '@mui/material';
 import Box from '@mui/material/Box';
 import { NavLink } from 'react-router-dom';
 

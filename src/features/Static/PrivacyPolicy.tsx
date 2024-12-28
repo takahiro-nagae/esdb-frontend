@@ -1,4 +1,4 @@
-import { Grid, Paper } from '@material-ui/core';
+import { Grid, Paper } from '@mui/material';
 import Box from '@mui/material/Box';
 
 import { DisplayWideAd } from '../../adsense/DisplayWideAd';

@@ -18,7 +18,7 @@ describe('EffectDropDown Component', () => {
   it('効果が取得できた場合', async () => {
     render(<Default />);
 
-    await userEvent.click(screen.getByRole('button'));
+    await userEvent.click(screen.getByRole('combobox'));
 
     const listbox = screen.getByRole('listbox');
     const options = within(listbox).getAllByRole('option');
@@ -33,7 +33,7 @@ describe('EffectDropDown Component', () => {
 
     render(<None />);
 
-    await userEvent.click(screen.getByRole('button'));
+    await userEvent.click(screen.getByRole('combobox'));
 
     const listbox = screen.getByRole('listbox');
     const options = within(listbox).getAllByRole('option');
