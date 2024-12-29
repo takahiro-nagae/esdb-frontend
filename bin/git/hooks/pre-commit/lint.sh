@@ -22,4 +22,4 @@ if [[ "${#FILES_ARRAY[@]}" -eq 0 ]]; then
 fi
 
 echo "Linting js..."
-yarn eslint "${FILES_ARRAY[@]}"
+ESLINT_USE_FLAT_CONFIG=false yarn eslint "${FILES_ARRAY[@]}"
