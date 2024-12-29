@@ -1,13 +1,17 @@
 import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 import { useEnchantStore } from '@/features/Search/state/useEnchantStore';
 import { usePcLayoutStore } from '@/features/Search/state/usePcLayoutStore';
 import { fetchSearchEnchantData } from '@/repositories/search/fetchSearchEnchantData';
 
-export const useSearchList = (path: string, inputParams: URLSearchParams) => {
+export const useSearchList = (isFreeSearch: boolean) => {
   const { setImmutableEnchants, setEffectName } = useEnchantStore();
   const { setOrderBy, setOrder, setPage } = usePcLayoutStore();
   const [isLoading, setIsLoading] = useState(false);
+
+  const [inputParams] = useSearchParams();
+  const path = isFreeSearch ? '/search' : '/detail';
 
   useEffect(() => {
     const fetchData = async () => {
