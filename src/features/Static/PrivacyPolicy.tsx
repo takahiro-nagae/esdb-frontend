@@ -13,29 +13,6 @@ export const PrivacyPolicy: React.FC = () => {
             <Box sx={{ p: 2 }}>
               <h2>プライバシーポリシー</h2>
               <Box sx={{ p: 2 }}>
-                <h3>アクセス解析ツールについて</h3>
-                <Box sx={{ ml: 2 }}>
-                  <p>
-                    当サイトでは、Googleによるアクセス解析ツール「Googleアナリティクス」を利用しています。
-                    <br />
-                    このGoogleアナリティクスはトラフィックデータの収集のためにCookieを使用しています。
-                  </p>
-                  <p>
-                    このトラフィックデータは匿名で収集されており、個人を特定するものではありません。
-                    <br />
-                    この機能はCookieを無効にすることで収集を拒否することが出来ますので、お使いのブラウザの設定をご確認ください。
-                    <br />
-                    この規約に関して、詳しくは
-                    <a
-                      target='__blank'
-                      href='https://marketingplatform.google.com/about/analytics/terms/jp/'
-                    >
-                      こちらをクリックしてください。
-                    </a>
-                  </p>
-                </Box>
-              </Box>
-              <Box sx={{ p: 2 }}>
                 <h3>免責事項</h3>
                 <Box sx={{ ml: 2 }}>
                   <p>
