@@ -10,9 +10,11 @@ export const useSearchFilter = () => {
   const { immutableEnchants, setEnchants } = useEnchantStore();
   const { setPage } = usePcLayoutStore();
   const [searchWord, setSearchWord] = useState('');
-  const isFirstRender = useRef(true);
 
   const filterEnchantData = useCallback(() => {
+    const trimmedSearchWord = searchWord.trim();
+    if (trimmedSearchWord === '') return immutableEnchants;
+
     const listData = immutableEnchants.filter(enchant => {
       // 検索用に各値を設定
       const enchant_name: string = enchant.enchant_name;
@@ -40,13 +42,7 @@ export const useSearchFilter = () => {
   }, [searchWord]);
 
   useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return;
-    }
-
     const timer = setTimeout(() => {
-      if (!searchWord) return;
       const filterList = filterEnchantData();
       setEnchants(filterList);
       if (isBrowser) {
