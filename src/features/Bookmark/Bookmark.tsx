@@ -1,4 +1,11 @@
-import { DndContext, DragEndEvent } from '@dnd-kit/core';
+import {
+  DndContext,
+  DragEndEvent,
+  KeyboardSensor,
+  MouseSensor,
+  useSensor,
+  useSensors,
+} from '@dnd-kit/core';
 import { SortableContext } from '@dnd-kit/sortable';
 import { Box, Grid } from '@mui/material';
 import { useEffect, useState } from 'react';
@@ -48,6 +55,14 @@ export const Bookmark: React.FC = () => {
     setEnchants(newEnchants);
   };
 
+  const mouseSensor = useSensor(MouseSensor, {
+    activationConstraint: {
+      distance: 5,
+    },
+  });
+  const keyboardSensor = useSensor(KeyboardSensor);
+  const sensors = useSensors(mouseSensor, keyboardSensor);
+
   return (
     <>
       <Box sx={{ mt: 3 }}>
@@ -61,7 +76,7 @@ export const Bookmark: React.FC = () => {
           {immutableEnchants.length >= 1 && (
             <>
               <BrowserView className={styles.pcContainer}>
-                <DndContext onDragEnd={onDragEnd}>
+                <DndContext onDragEnd={onDragEnd} sensors={sensors}>
                   <SortableContext
                     items={immutableEnchants.map(enchant => enchant.enchant_id)}
                   >
