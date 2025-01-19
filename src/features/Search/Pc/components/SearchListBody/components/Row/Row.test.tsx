@@ -61,7 +61,7 @@ describe('SearchList Row', () => {
   test('値がある場合の表示確認', () => {
     render(<IsDispVal />);
 
-    const row = screen.getByRole('row');
+    const row = screen.getByTestId('enchantRow');
 
     // 値の確認
     rowCheck(row, Dummy1, true);
@@ -70,7 +70,7 @@ describe('SearchList Row', () => {
   test('値がない場合の表示確認', () => {
     render(<IsNotDispVal />);
 
-    const row = screen.getByRole('row');
+    const row = screen.getByTestId('enchantRow');
 
     // 値の確認
     rowCheck(row, Dummy1NotDispVal, false);

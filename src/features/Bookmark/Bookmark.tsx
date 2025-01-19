@@ -1,3 +1,5 @@
+import { DndContext, DragEndEvent } from '@dnd-kit/core';
+import { SortableContext } from '@dnd-kit/sortable';
 import { Box, Grid } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { BrowserView, MobileView } from 'react-device-detect';
@@ -13,7 +15,7 @@ import { useBookmarkState } from '@/state/useBookmarkState';
 
 export const Bookmark: React.FC = () => {
   const [isRender, setIsRender] = useState(false);
-  const { enchants } = useBookmarkState();
+  const { enchants, setEnchants } = useBookmarkState();
   const { immutableEnchants, setImmutableEnchants } = useEnchantStore();
 
   useEffect(() => {
@@ -26,6 +28,25 @@ export const Bookmark: React.FC = () => {
   useEffect(() => {
     return () => setIsRender(false);
   }, []);
+
+  const onDragEnd = (e: DragEndEvent) => {
+    if (e.over === null || e.active.id === e.over.id) return;
+
+    const oldId = e.active.id;
+    const oldIndex = immutableEnchants.findIndex(
+      enchant => enchant.enchant_id === oldId,
+    );
+    const newId = e.over.id;
+    const newIndex = immutableEnchants.findIndex(
+      enchant => enchant.enchant_id === newId,
+    );
+
+    const newEnchants = [...immutableEnchants];
+    newEnchants.splice(oldIndex, 1);
+    newEnchants.splice(newIndex, 0, immutableEnchants[oldIndex]);
+    setImmutableEnchants(newEnchants);
+    setEnchants(newEnchants);
+  };
 
   return (
     <>
@@ -40,7 +61,13 @@ export const Bookmark: React.FC = () => {
           {immutableEnchants.length >= 1 && (
             <>
               <BrowserView className={styles.pcContainer}>
-                <SearchListContainer />
+                <DndContext onDragEnd={onDragEnd}>
+                  <SortableContext
+                    items={immutableEnchants.map(enchant => enchant.enchant_id)}
+                  >
+                    <SearchListContainer />
+                  </SortableContext>
+                </DndContext>
               </BrowserView>
             </>
           )}
