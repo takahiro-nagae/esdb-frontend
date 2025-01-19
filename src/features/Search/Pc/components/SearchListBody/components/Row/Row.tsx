@@ -57,16 +57,11 @@ export const Row: React.FC<RowProps> = ({ enchant, index }) => {
         <TableCell>
           {isFavorite(enchant.enchant_id) ? (
             <IconButton onClick={() => removeEnchant(enchant.enchant_id)}>
-              <BookmarkIcon
-                onClick={() => removeEnchant(enchant.enchant_id)}
-                color='info'
-              />
+              <BookmarkIcon color='info' />
             </IconButton>
           ) : (
             <IconButton onClick={() => pushEnchant(enchant)}>
-              <BookmarkBorderOutlinedIcon
-                onClick={() => pushEnchant(enchant)}
-              />
+              <BookmarkBorderOutlinedIcon />
             </IconButton>
           )}
         </TableCell>
