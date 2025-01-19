@@ -71,7 +71,7 @@ describe('SearchListBody', () => {
   test('エンチャント名の昇順の表示確認', () => {
     render(<EnchantNameAsc />);
 
-    const rows = screen.getAllByRole('row');
+    const rows = screen.getAllByTestId('enchantRow');
 
     // 1列目の確認
     rowCheck(rows[0], Dummy1, true);
@@ -82,7 +82,7 @@ describe('SearchListBody', () => {
   test('エンチャント名の降順の表示確認', () => {
     render(<EnchantNameDesc />);
 
-    const rows = screen.getAllByRole('row');
+    const rows = screen.getAllByTestId('enchantRow');
 
     // 1列目の確認
     rowCheck(rows[0], Dummy2, true);
@@ -93,7 +93,7 @@ describe('SearchListBody', () => {
   test('エンチャント名の昇順の表示確認(値なし)', () => {
     render(<NotValEnchantNameAsc />);
 
-    const rows = screen.getAllByRole('row');
+    const rows = screen.getAllByTestId('enchantRow');
 
     // 1列目の確認
     rowCheck(rows[0], Dummy1NotDispVal, false);
@@ -104,7 +104,7 @@ describe('SearchListBody', () => {
   test('同じソート値の表示確認', () => {
     render(<SameSortValue />);
 
-    const rows = screen.getAllByRole('row');
+    const rows = screen.getAllByTestId('enchantRow');
 
     // 1列目の確認
     rowCheck(rows[0], Dummy1, true);
@@ -115,7 +115,7 @@ describe('SearchListBody', () => {
   test('表示件数1の表示確認', () => {
     render(<DispRowPerPage1 />);
 
-    const rows = screen.getAllByRole('row');
+    const rows = screen.getAllByTestId('enchantRow');
 
     // 表示件数は1件
     expect(rows.length).toBe(1);
@@ -126,7 +126,7 @@ describe('SearchListBody', () => {
   test('表示件数2の表示確認', () => {
     render(<DispRowPerPage2 />);
 
-    const rows = screen.getAllByRole('row');
+    const rows = screen.getAllByTestId('enchantRow');
 
     // 表示件数は1件
     expect(rows.length).toBe(1);

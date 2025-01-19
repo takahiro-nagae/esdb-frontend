@@ -16,9 +16,9 @@ describe('SearchListContainer', () => {
     // テーブルが表示されていること
     expect(screen.getByRole('table')).toBeInTheDocument();
 
-    // ヘッダー + データが2件表示されていること
-    const rows = screen.getAllByRole('row');
-    expect(rows.length).toBe(3);
+    // データが2件表示されていること
+    const rows = screen.getAllByTestId('enchantRow');
+    expect(rows.length).toBe(2);
 
     // ページネーションが表示されていること
     expect(screen.getByTestId('pagination')).toBeInTheDocument();
