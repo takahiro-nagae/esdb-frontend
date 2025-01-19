@@ -15,7 +15,7 @@ export const stableSort = (
   return stabilizedThis.map(el => el[0]);
 };
 
-export const getComparator = (order: Order, orderBy: keyof HeadData) => {
+export const getComparator = (order: Order, orderBy: keyof HeadData | '') => {
   return order === 'desc'
     ? (a: EnchantData, b: EnchantData) => descendingComparator(a, b, orderBy)
     : (a: EnchantData, b: EnchantData) => -descendingComparator(a, b, orderBy);
@@ -24,8 +24,12 @@ export const getComparator = (order: Order, orderBy: keyof HeadData) => {
 const descendingComparator = (
   a: EnchantData,
   b: EnchantData,
-  orderBy: keyof HeadData,
+  orderBy: keyof HeadData | '',
 ) => {
+  if (orderBy === '') {
+    return 0;
+  }
+
   const aValue = a[orderBy];
   const bValue = b[orderBy];
 

@@ -34,9 +34,9 @@ describe('Bookmark Component', () => {
     expect(screen.getByTestId('searchFilter')).toBeInTheDocument();
     // テーブルが表示されていること
     expect(screen.getByRole('table')).toBeInTheDocument();
-    // ヘッダー + データが2件表示されていること
-    const rows = screen.getAllByRole('row');
-    expect(rows.length).toBe(3);
+    // データが2件表示されていること
+    const rows = screen.getAllByTestId('enchantRow');
+    expect(rows.length).toBe(2);
     // ページネーションが表示されていること
     expect(screen.getByTestId('pagination')).toBeInTheDocument();
 
@@ -45,8 +45,8 @@ describe('Bookmark Component', () => {
     expect(screen.getByText('件ブックマークしています')).toBeInTheDocument();
 
     // データが正しく表示されていること
-    rowCheck(rows[1], Dummy1);
-    rowCheck(rows[2], Dummy2);
+    rowCheck(rows[0], Dummy1);
+    rowCheck(rows[1], Dummy2);
   });
 
   it('displays the correct number of enchants', () => {

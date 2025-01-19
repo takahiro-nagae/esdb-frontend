@@ -1,3 +1,5 @@
+import { useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
 import { IconButton, TableCell, TableRow } from '@mui/material';
@@ -32,10 +34,26 @@ export const Row: React.FC<RowProps> = ({ enchant, index }) => {
   const routeNames = enchant.route_name ? enchant.route_name.split('@') : [];
   const { pushEnchant, removeEnchant } = useBookmarkState();
 
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({
+      id: enchant.enchant_id,
+    });
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+  };
+
   return (
     <>
       <AmongAd index={index} disp_val={enchant.disp_val} />
-      <TableRow className={styles.tableContent}>
+      <TableRow
+        className={styles.tableContent}
+        {...listeners}
+        {...attributes}
+        ref={setNodeRef}
+        style={style}
+        data-testid='enchantRow'
+      >
         <TableCell>
           {isFavorite(enchant.enchant_id) ? (
             <IconButton onClick={() => removeEnchant(enchant.enchant_id)}>

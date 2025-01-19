@@ -6,7 +6,7 @@ import { Order } from '../Pc/types/Order';
 
 type State = {
   order: Order;
-  orderBy: keyof HeadData;
+  orderBy: keyof HeadData | '';
   page: number;
 };
 
@@ -19,7 +19,7 @@ type Action = {
 const useStore = create<State & Action>()(
   immer(set => ({
     order: 'asc',
-    orderBy: 'enchant_id',
+    orderBy: '',
     page: 0,
     setOrder: (order: Order) => set({ order }),
     setOrderBy: (orderBy: keyof HeadData) => set({ orderBy }),
