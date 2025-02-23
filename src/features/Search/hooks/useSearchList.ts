@@ -37,6 +37,10 @@ export const useSearchList = (isFreeSearch: boolean) => {
     };
 
     fetchData();
+
+    return () => {
+      setImmutableEnchants([]);
+    };
   }, [
     path,
     inputParams,
