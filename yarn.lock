@@ -6354,15 +6354,15 @@ __metadata:
   linkType: hard
 
 "react-scroll@npm:^1.9.0":
-  version: 1.9.0
-  resolution: "react-scroll@npm:1.9.0"
+  version: 1.9.3
+  resolution: "react-scroll@npm:1.9.3"
   dependencies:
     lodash.throttle: "npm:^4.1.1"
     prop-types: "npm:^15.7.2"
   peerDependencies:
-    react: ^15.5.4 || ^16.0.0 || ^17.0.0 || ^18.0.0
-    react-dom: ^15.5.4 || ^16.0.0 || ^17.0.0 || ^18.0.0
-  checksum: 10c0/bcaa045740351ba1373d2e3f236b1ff0d383e4e5efd43d87644c165a3c1c4988bd0361515c487688daf39c122b035c8a014fcd9184f51deb4a0d2c232ac5fb61
+    react: ^15.5.4 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+    react-dom: ^15.5.4 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+  checksum: 10c0/01bb18381ede7d8fd2e7bda0276f96c204aa0212afd320eb797652eff976ed4e5da3b68f86f938df63311f376ace6dcb3b5c68135462d52ba3b0b2d83de918df
   languageName: node
   linkType: hard
 
