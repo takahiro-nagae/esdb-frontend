@@ -1,0 +1,19 @@
+query SearchEnchant($keyword: String!) {
+  search(keyword: $keyword) {
+    id
+    name
+    nameEn
+    isImp
+    impName
+    effect {
+      name
+      type
+    }
+    position
+    positionName
+    rank
+    rankSeq
+    route
+    target
+  }
+}
