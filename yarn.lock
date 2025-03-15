@@ -4323,7 +4323,7 @@ __metadata:
     eslint-plugin-prettier: "npm:^5.0.0"
     eslint-plugin-react: "npm:^7.33.1"
     eslint-plugin-storybook: "npm:^0.11.0"
-    happy-dom: "npm:^16.0.0"
+    happy-dom: "npm:^17.0.0"
     immer: "npm:^10.1.1"
     material-ui-popup-state: "npm:^5.0.10"
     prettier: "npm:^3.0.1"
@@ -4551,13 +4551,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"happy-dom@npm:^16.0.0":
-  version: 16.8.1
-  resolution: "happy-dom@npm:16.8.1"
+"happy-dom@npm:^17.0.0":
+  version: 17.1.0
+  resolution: "happy-dom@npm:17.1.0"
   dependencies:
     webidl-conversions: "npm:^7.0.0"
     whatwg-mimetype: "npm:^3.0.0"
-  checksum: 10c0/3e6e4ce3bf67871304fadc7a0e661397b3d6c12de149cafce5a9062b47038a4c12f5f29c2fc9a070be3e56f2b5a1625cc79570e1fd1a30ffea9aa107f844d57b
+  checksum: 10c0/36e8798d152c15a113e47474d14fd5e9d064a8baaf8ba7e7c802c85ecadc216681e9decce911eb9156cbf26524f14a39c0c3f8a04b02d0edf698c27da0a7653f
   languageName: node
   linkType: hard
 
