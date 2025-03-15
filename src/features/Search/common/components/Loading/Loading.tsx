@@ -9,7 +9,7 @@ type LoadingProps = {
 export const Loading: React.FC<LoadingProps> = ({ isLoading }) => {
   return (
     <>
-      {!isLoading && (
+      {isLoading && (
         <div className={styles.loadingContainer} data-testid='loading'>
           <ReactLoading className={styles.verticalCenter} type='bubbles' />
         </div>

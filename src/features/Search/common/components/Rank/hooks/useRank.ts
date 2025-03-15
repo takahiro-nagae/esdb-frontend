@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import useSWR from 'swr';
 
-import { RankData } from '@/repositories/search/_types';
+import { CACHE_TIME_24H } from '@/const/cache';
 import { fetchRankData } from '@/repositories/search/fetchRankData';
 
 type rankData = {
@@ -9,12 +9,11 @@ type rankData = {
 };
 
 export const useRank = (rank: string) => {
-  const [rankData, setRankData] = useState<RankData>();
-
-  useEffect(() => {
-    const res = async () => fetchRankData(rank);
-    res().then(res => setRankData(res));
-  }, []);
+  const { data: rankData } = useSWR(['rank', rank], () => fetchRankData(rank), {
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
+    dedupingInterval: CACHE_TIME_24H,
+  });
 
   const rowData: rankData = {
     rank: rankData?.rank ?? '-',
