@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import useSWR from 'swr';
 
+import { CACHE_TIME_24H } from '@/const/cache';
 import { useEnchantStore } from '@/features/Search/state/useEnchantStore';
 import { usePcLayoutStore } from '@/features/Search/state/usePcLayoutStore';
 import { fetchSearchEnchantData } from '@/repositories/search/fetchSearchEnchantData';
@@ -8,16 +9,18 @@ import { fetchSearchEnchantData } from '@/repositories/search/fetchSearchEnchant
 export const useSearchList = (isFreeSearch: boolean) => {
   const { setImmutableEnchants, setEffectName } = useEnchantStore();
   const { setOrderBy, setOrder, setPage } = usePcLayoutStore();
-  const [isLoading, setIsLoading] = useState(false);
-
   const [inputParams] = useSearchParams();
   const path = isFreeSearch ? '/search' : '/detail';
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetchSearchEnchantData(path, inputParams);
-        const enchantList = res.enchant_list;
+  const { isLoading } = useSWR(
+    [path, inputParams.toString()],
+    async ([currentPath, params]) => {
+      const searchParams = new URLSearchParams(params);
+      return await fetchSearchEnchantData(currentPath, searchParams);
+    },
+    {
+      onSuccess: data => {
+        const enchantList = data.enchant_list;
         setImmutableEnchants(enchantList);
 
         const dataLength = enchantList.length;
@@ -26,30 +29,19 @@ export const useSearchList = (isFreeSearch: boolean) => {
           setOrder('desc');
         }
 
-        if (res.effect_name) {
-          setEffectName(res.effect_name.effect);
+        if (data.effect_name) {
+          setEffectName(data.effect_name.effect);
         }
         setPage(0);
-        setIsLoading(true);
-      } catch (error) {
+      },
+      onError: error => {
         console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
-
-    return () => {
-      setImmutableEnchants([]);
-    };
-  }, [
-    path,
-    inputParams,
-    setImmutableEnchants,
-    setEffectName,
-    setOrderBy,
-    setOrder,
-    setPage,
-  ]);
+      },
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+      dedupingInterval: CACHE_TIME_24H,
+    },
+  );
 
   return {
     isLoading,
