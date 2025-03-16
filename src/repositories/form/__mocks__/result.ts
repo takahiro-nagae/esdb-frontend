@@ -25,6 +25,5 @@ export const FORM_RESULT_MOCK: GetFormQuery = {
     effects: EFFECT_MOCK,
     ranks: RANK_MOCK,
     targets: TARGET_MOCK,
-    positions: [],
   },
 };

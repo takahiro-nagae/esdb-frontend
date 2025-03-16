@@ -10,10 +10,6 @@ export const GET_FORM = gql`
       ranks {
         rank
       }
-      positions {
-        id
-        name
-      }
       targets {
         id
         name
