@@ -2,10 +2,11 @@ import { Grid } from '@mui/material';
 import Box from '@mui/material/Box';
 import { BrowserView, MobileView } from 'react-device-detect';
 
+import { Loading } from '../../common/Loading/Loading';
+
 import { SearchListContainer } from './Pc/SearchListContainer';
 import styles from './SearchList.module.css';
 import { SpSearchContainer } from './Sp/SpSearchContainer';
-import { Loading } from './common/components/Loading/Loading';
 import { SearchFilter } from './common/components/SearchFilter/SearchFilter';
 import { SearchResultHead } from './components/SearchResult/SearechResultHead';
 import { useSearchList } from './hooks/useSearchList';

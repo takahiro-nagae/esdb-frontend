@@ -1,7 +1,7 @@
 import { Grid } from '@mui/material';
 import Box from '@mui/material/Box';
 
-import { Loading } from '../../Loading/Loading';
+import { Loading } from '../../../../../../common/Loading/Loading';
 import { Detail } from '../Detail';
 
 import { useDetailIndex } from './hooks/useDetailIndex';
