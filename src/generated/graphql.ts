@@ -79,7 +79,6 @@ export type Position = {
   __typename?: 'Position';
   id: Scalars['ID']['output'];
   name: Scalars['String']['output'];
-  nameEn: Scalars['String']['output'];
 };
 
 export type Query = {
@@ -169,7 +168,7 @@ export type Target = {
 export type GetFormQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetFormQuery = { __typename?: 'Query', form?: { __typename?: 'Form', effects: Array<{ __typename?: 'Effect', id: string, name: string }>, ranks: Array<{ __typename?: 'Rank', rank: string }>, positions: Array<{ __typename?: 'Position', id: string, name: string }>, targets: Array<{ __typename?: 'Target', id: string, name: string }> } | null };
+export type GetFormQuery = { __typename?: 'Query', form?: { __typename?: 'Form', effects: Array<{ __typename?: 'Effect', id: string, name: string }>, ranks: Array<{ __typename?: 'Rank', rank: string }>, targets: Array<{ __typename?: 'Target', id: string, name: string }> } | null };
 
 export type GetEnchantDetailQueryVariables = Exact<{
   id: Scalars['String']['input'];
@@ -216,10 +215,6 @@ export const GetFormDocument = gql`
     }
     ranks {
       rank
-    }
-    positions {
-      id
-      name
     }
     targets {
       id

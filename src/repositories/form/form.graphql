@@ -7,10 +7,6 @@ query GetForm {
     ranks {
       rank
     }
-    positions {
-      id
-      name
-    }
     targets {
       id
       name
