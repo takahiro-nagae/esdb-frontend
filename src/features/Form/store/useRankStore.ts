@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 
-import { Rank } from '@/generated/graphql';
+import { Rank } from '@/repositories/generated/graphql';
 
 type State = {
   ranks: Rank[];

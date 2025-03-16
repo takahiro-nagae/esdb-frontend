@@ -1,6 +1,6 @@
 import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 
-import { CACHE_TIME_24H } from '../const/cache';
+import { CACHE_TIME_24H } from '@/const/cache';
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:3080/query',

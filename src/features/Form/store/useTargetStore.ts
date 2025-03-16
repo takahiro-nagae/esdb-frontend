@@ -1,7 +1,7 @@
 import { immer } from 'zustand/middleware/immer';
 import { create } from 'zustand/react';
 
-import { Target } from '@/generated/graphql';
+import { Target } from '@/repositories/generated/graphql';
 
 type State = {
   targets: Target[];

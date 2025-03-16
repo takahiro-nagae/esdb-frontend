@@ -7,8 +7,8 @@ import { usePositionStore } from '../store/usePositionStore';
 import { useRankStore } from '../store/useRankStore';
 import { useTargetStore } from '../store/useTargetStore';
 
-import { GetFormQuery } from '@/generated/graphql';
 import { GET_FORM } from '@/repositories/form/query';
+import { GetFormQuery } from '@/repositories/generated/graphql';
 
 export const useSearchForm = () => {
   const { enchantName } = useEnchantNameStore();

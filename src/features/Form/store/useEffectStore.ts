@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 
-import { Effect } from '@/generated/graphql';
+import { Effect } from '@/repositories/generated/graphql';
 
 type State = {
   effects: Effect[];

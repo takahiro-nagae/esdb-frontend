@@ -1,4 +1,4 @@
-import { Effect, GetFormQuery, Target } from '@/generated/graphql';
+import { Effect, GetFormQuery, Target } from '@/repositories/generated/graphql';
 
 export const EFFECT_MOCK: Effect[] = [
   {
