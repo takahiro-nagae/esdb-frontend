@@ -1,16 +1,32 @@
+import { MockedProvider } from '@apollo/client/testing';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { BrowserRouter } from 'react-router-dom';
 import { describe, expect, it } from 'vitest';
 
 import { SearchFormContainer } from '@/features/Form/SearchFormContainer';
+import { FORM_RESULT_MOCK } from '@/repositories/form/__mocks__/result';
+import { GET_FORM } from '@/repositories/form/query';
+
+const mocks = [
+  {
+    request: {
+      query: GET_FORM,
+    },
+    result: {
+      data: FORM_RESULT_MOCK,
+    },
+  },
+];
 
 describe('Form Integration Tests', () => {
   it('フォームが表示される', async () => {
     render(
-      <BrowserRouter>
-        <SearchFormContainer />
-      </BrowserRouter>,
+      <MockedProvider mocks={mocks} addTypename={false}>
+        <BrowserRouter>
+          <SearchFormContainer />
+        </BrowserRouter>
+      </MockedProvider>,
     );
     // 検索条件というh3タグが表示される
     expect(screen.getByText('検索条件')).toBeInTheDocument();

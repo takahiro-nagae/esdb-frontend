@@ -1,26 +1,26 @@
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 
-import { FormRankType } from '@/repositories/form/_types';
+import { Rank } from '@/generated/graphql';
 
 type State = {
-  ranks: Array<FormRankType>;
+  ranks: Rank[];
   selected: string;
   range: string;
 };
 
 type Action = {
-  setRanks: (ranks: Array<FormRankType>) => void;
+  setRanks: (ranks: Rank[]) => void;
   setSelected: (selected: string) => void;
   setRange: (range: string) => void;
 };
 
 const useStore = create<State & Action>()(
-  immer(set => ({
+  immer<State & Action>(set => ({
     ranks: [],
     selected: '',
     range: '1',
-    setRanks: (ranks: Array<FormRankType>) => set({ ranks }),
+    setRanks: (ranks: Rank[]) => set({ ranks }),
     setSelected: (selected: string) => set({ selected }),
     setRange: (range: string) => set({ range }),
   })),
