@@ -7,25 +7,31 @@ import { positionName } from '../Search/common/functions/positionFunction';
 
 import * as stories from './Bookmark.stories';
 
+import { GetEnchantDetailsQuery } from '@/repositories/generated/graphql';
 import { EnchantData } from '@/repositories/search/_types';
 
 const { Default, Empty } = composeStories(stories);
 
 describe('Bookmark Component', () => {
-  const rowCheck = (row: HTMLElement, data: EnchantData) => {
+  const rowCheck = (
+    row: HTMLElement,
+    data: Omit<GetEnchantDetailsQuery['details']['enchants'][number], 'value'>,
+  ) => {
     // エンチャント名
-    expect(row.children[1]).toHaveTextContent(data.enchant_name);
+    expect(row.children[1]).toHaveTextContent(data.name);
     // 位置
-    expect(row.children[2]).toHaveTextContent(positionName(data.position_id));
+    expect(row.children[2]).toHaveTextContent(data.positionName);
     // ランク
     expect(row.children[3]).toHaveTextContent(data.rank);
     // 対象
-    expect(row.children[4]).toHaveTextContent(data.target_name);
+    expect(row.children[4]).toHaveTextContent(data.target);
 
     // 効果
-    expect(row.children[5]).toHaveTextContent(data.effect_name);
+    expect(row.children[5]).toHaveTextContent(
+      data.effect.map(e => e?.name).join(','),
+    );
     // 入手先
-    expect(row.children[6]).toHaveTextContent(data.route_name || '');
+    expect(row.children[6]).toHaveTextContent(data.route.map(r => r).join(''));
   };
 
   it('renders the Bookmark component', () => {

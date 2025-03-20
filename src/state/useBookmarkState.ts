@@ -2,15 +2,22 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
 
-import { EnchantData } from '@/repositories/search/_types';
+import { GetEnchantDetailsQuery } from '@/repositories/generated/graphql';
+
+type SaveEnchants = Omit<
+  GetEnchantDetailsQuery['details']['enchants'][number],
+  'value'
+>[];
+
+type ReceiveEnchants = GetEnchantDetailsQuery['details']['enchants'];
 
 type State = {
-  enchants: EnchantData[];
+  enchants: SaveEnchants;
 };
 
 type Action = {
-  setEnchants: (enchants: EnchantData[]) => void;
-  pushEnchant: (enchant: EnchantData) => void;
+  setEnchants: (enchants: ReceiveEnchants) => void;
+  pushEnchant: (enchant: ReceiveEnchants[number]) => void;
   removeEnchant: (enchantId: string) => void;
   removeAllEnchants: () => void;
 };
@@ -18,32 +25,32 @@ type Action = {
 export const isFavorite = (enchantId: string) =>
   useStore
     .getState()
-    .enchants.find((enchant: EnchantData) => enchant.enchant_id === enchantId);
+    .enchants.find((enchant: SaveEnchants[number]) => enchant.id === enchantId);
 
 const useStore = create<State & Action>()(
   persist(
     immer(set => ({
       enchants: [],
-      setEnchants: (enchants: EnchantData[]) =>
+      setEnchants: (enchants: ReceiveEnchants) =>
         set((state: State) => {
           state.enchants = enchants.map(enchant => {
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            const { disp_val, ...rest } = enchant;
+            const { value, ...rest } = enchant;
             return rest;
           });
         }),
-      pushEnchant: (enchant: EnchantData) =>
+      pushEnchant: (enchant: ReceiveEnchants[number]) =>
         set((state: State) => {
-          if (!isFavorite(enchant.enchant_id)) {
+          if (!isFavorite(enchant.id)) {
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            const { disp_val, ...rest } = enchant;
+            const { value, ...rest } = enchant;
             state.enchants.push(rest);
           }
         }),
       removeEnchant: (enchantId: string) =>
         set(state => {
           state.enchants = state.enchants.filter(
-            (enchant: EnchantData) => enchant.enchant_id !== enchantId,
+            (enchant: SaveEnchants[number]) => enchant.id !== enchantId,
           );
         }),
       removeAllEnchants: () =>

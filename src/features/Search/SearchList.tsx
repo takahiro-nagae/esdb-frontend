@@ -17,11 +17,11 @@ type SearchListProps = {
 };
 
 export const SearchList: React.FC<SearchListProps> = ({ isFreeSearch }) => {
-  const { isLoading } = useSearchList(isFreeSearch);
+  const { loading } = useSearchList(isFreeSearch);
   const { immutableEnchants } = useEnchantStore();
   return (
     <>
-      <Loading isLoading={isLoading} />
+      <Loading isLoading={loading} />
       <MobileView className={styles.mobileHeader}>
         <SearchFilter xs={12} />
       </MobileView>

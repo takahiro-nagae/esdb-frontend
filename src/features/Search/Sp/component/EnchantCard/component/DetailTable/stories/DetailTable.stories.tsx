@@ -22,7 +22,7 @@ export const Open = {
   args: {
     enchant: {
       ...ENCHANT_DATA_MOCK,
-      route_name: OPEN_ROUTE_NAME,
+      route: OPEN_ROUTE_NAME,
     },
     isOpen: true,
   },

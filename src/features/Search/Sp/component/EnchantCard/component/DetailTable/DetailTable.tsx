@@ -13,10 +13,10 @@ import { RouteList } from '../../../../../common/components/RouteList/RouteList'
 
 import styles from './DetailTable.module.css';
 
-import { EnchantData } from '@/repositories/search/_types';
+import { GetEnchantDetailsQuery } from '@/repositories/generated/graphql';
 
 type DetailTableProps = {
-  enchant: EnchantData;
+  enchant: GetEnchantDetailsQuery['details']['enchants'][number];
   isOpen: boolean;
 };
 
@@ -25,29 +25,25 @@ export const DetailTable: React.FC<DetailTableProps> = ({
   isOpen,
 }) => {
   const omtCount = 3;
-  const routeNames = enchant.route_name ? enchant.route_name.split('@') : [];
 
   return (
     <Collapse in={isOpen} timeout='auto' unmountOnExit>
       <Box sx={{ paddingBottom: 10 }}>
-        <p className={styles.target}>対象：{enchant.target_name}</p>
+        <p className={styles.target}>対象：{enchant.target}</p>
         <Table size='small'>
           <TableBody>
             <TableRow>
               <TableCell className={styles.acoHead}>効果</TableCell>
               <TableCell className={styles.acoBody}>
-                <EffectList
-                  effectKbn={enchant.effect_kbn}
-                  effectName={enchant.effect_name}
-                />
+                <EffectList effects={enchant.effect} />
               </TableCell>
             </TableRow>
             <TableRow>
               <TableCell className={styles.acoHead}>入手先</TableCell>
               <TableCell className={styles.acoBody}>
-                <RouteList routeNames={routeNames} omtCount={omtCount} />
+                <RouteList routeNames={enchant.route} omtCount={omtCount} />
                 <DetailModal
-                  count={routeNames.length - omtCount}
+                  count={enchant.route.length - omtCount}
                   data-testid='routeModal'
                   enchant={enchant}
                 />

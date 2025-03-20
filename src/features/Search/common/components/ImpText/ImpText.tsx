@@ -1,11 +1,9 @@
 import styles from './ImpText.module.css';
 
 type ImpTextProps = {
-  impFlg: string;
+  isImp: boolean;
 };
 
-export const ImpText: React.FC<ImpTextProps> = ({ impFlg }) => {
-  return (
-    <>{impFlg == '0' && <small className={styles.notImped}>未実装</small>}</>
-  );
+export const ImpText: React.FC<ImpTextProps> = ({ isImp: impFlg }) => {
+  return <>{!impFlg && <small className={styles.notImped}>未実装</small>}</>;
 };

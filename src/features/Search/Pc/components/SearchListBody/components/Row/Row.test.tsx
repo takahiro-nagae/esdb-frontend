@@ -10,8 +10,7 @@ import {
   Dummy1NotDispVal,
 } from '@/features/Search/Pc/data/SearchListMockData';
 import { Rank } from '@/features/Search/common/components/Rank/Rank';
-import { positionName } from '@/features/Search/common/functions/positionFunction';
-import { EnchantData } from '@/repositories/search/_types';
+import { GetEnchantDetailsQuery } from '@/repositories/generated/graphql';
 
 vi.mock('../../../../../common/components/Rank/Rank');
 describe('SearchList Row', () => {
@@ -19,32 +18,30 @@ describe('SearchList Row', () => {
 
   const rowCheck = (
     row: HTMLElement,
-    data: EnchantData,
+    data: GetEnchantDetailsQuery['details']['enchants'][number],
     isDispVal: boolean,
   ) => {
     // エンチャント名
-    expect(row.children[1]).toHaveTextContent(data.enchant_name);
+    expect(row.children[1]).toHaveTextContent(data.name);
     // 位置
-    expect(row.children[2]).toHaveTextContent(positionName(data.position_id));
+    expect(row.children[2]).toHaveTextContent(data.positionName);
     // ランク
     expect(row.children[3]).toHaveTextContent(data.rank);
     clickRank(row.children[3] as HTMLElement);
     // 対象
-    expect(row.children[4]).toHaveTextContent(data.target_name);
+    expect(row.children[4]).toHaveTextContent(data.target);
     if (isDispVal) {
       // 値
-      expect(row.children[5]).toHaveTextContent(
-        data.disp_val?.toString() || '',
-      );
+      expect(row.children[5]).toHaveTextContent(data.value?.toString() || '');
       // 効果
-      expect(row.children[6]).toHaveTextContent(data.effect_name);
+      expect(row.children[6]).toHaveTextContent(data.effect[0]?.name || '');
       // 入手先
-      expect(row.children[7]).toHaveTextContent(data.route_name || '');
+      expect(row.children[7]).toHaveTextContent(data.route[0] || '');
     } else {
       // 効果
-      expect(row.children[5]).toHaveTextContent(data.effect_name);
+      expect(row.children[5]).toHaveTextContent(data.effect[0]?.name || '');
       // 入手先
-      expect(row.children[6]).toHaveTextContent(data.route_name || '');
+      expect(row.children[6]).toHaveTextContent(data.route[0] || '');
     }
   };
 

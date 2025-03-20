@@ -17,6 +17,7 @@ export const SearchListBody: React.FC<SearchListBodyProps> = ({
   const { page } = usePcLayoutStore();
   const { enchants } = useEnchantStore();
   const { order, orderBy } = usePcLayoutStore();
+  const { effectName } = useEnchantStore();
 
   const sliceFrom = page * rowsPerPage;
   const sliceTo = sliceFrom + rowsPerPage;
@@ -26,9 +27,9 @@ export const SearchListBody: React.FC<SearchListBodyProps> = ({
       {stableSort(enchants, getComparator(order, orderBy))
         .slice(sliceFrom, sliceTo)
         .map((enchant, index) => (
-          <Row enchant={enchant} key={enchant.enchant_id} index={index} />
+          <Row enchant={enchant} key={enchant.id} index={index} />
         ))}
-      <LastInfeedAd disp_val={enchants[0]?.disp_val} />
+      <LastInfeedAd isValue={!!effectName} />
     </TableBody>
   );
 };

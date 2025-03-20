@@ -1,18 +1,22 @@
 import { immer } from 'zustand/middleware/immer';
 import { create } from 'zustand/react';
 
-import { EnchantData } from '@/repositories/search/_types';
+import { GetEnchantDetailsQuery } from '@/repositories/generated/graphql';
 
 type State = {
-  immutableEnchants: EnchantData[];
-  enchants: EnchantData[];
+  immutableEnchants: GetEnchantDetailsQuery['details']['enchants'];
+  enchants: GetEnchantDetailsQuery['details']['enchants'];
   enchantsLength: number;
   effectName: string;
 };
 
 type Action = {
-  setImmutableEnchants: (immutableEnchants: EnchantData[]) => void;
-  setEnchants: (enchants: EnchantData[]) => void;
+  setImmutableEnchants: (
+    immutableEnchants: GetEnchantDetailsQuery['details']['enchants'],
+  ) => void;
+  setEnchants: (
+    enchants: GetEnchantDetailsQuery['details']['enchants'],
+  ) => void;
   setEffectName: (effectName: string) => void;
 };
 
@@ -22,13 +26,15 @@ const useStore = create<State & Action>()(
     enchants: [],
     enchantsLength: 0,
     effectName: '',
-    setImmutableEnchants: (immutableEnchants: EnchantData[]) =>
+    setImmutableEnchants: (
+      immutableEnchants: GetEnchantDetailsQuery['details']['enchants'],
+    ) =>
       set({
         immutableEnchants,
         enchantsLength: immutableEnchants.length,
         enchants: immutableEnchants,
       }),
-    setEnchants: (enchants: EnchantData[]) =>
+    setEnchants: (enchants: GetEnchantDetailsQuery['details']['enchants']) =>
       set({ enchants, enchantsLength: enchants.length }),
     setEffectName: (effectName: string) => set({ effectName }),
   })),

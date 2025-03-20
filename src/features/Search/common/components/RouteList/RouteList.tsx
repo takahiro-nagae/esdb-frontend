@@ -5,7 +5,7 @@ import { isMobile } from 'react-device-detect';
 import styles from './RouteList.module.css';
 
 type RouteListProps = {
-  routeNames: string[];
+  routeNames: (string | null)[];
   omtCount: number;
 };
 
@@ -13,10 +13,13 @@ export const RouteList: React.FC<RouteListProps> = ({
   routeNames,
   omtCount,
 }) => {
+  const routes = routeNames?.filter(
+    (route): route is string => route !== null,
+  ) ?? [''];
   return (
     <>
-      {routeNames &&
-        routeNames
+      {routes &&
+        routes
           .slice(0, omtCount)
           .map((route, index) => (
             <p

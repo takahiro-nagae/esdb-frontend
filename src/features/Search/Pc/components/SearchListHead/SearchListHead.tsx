@@ -15,7 +15,7 @@ import { useEnchantStore } from '@/features/Search/state/useEnchantStore';
 import { usePcLayoutStore } from '@/features/Search/state/usePcLayoutStore';
 
 export const SearchListHead: React.FC = () => {
-  const { enchants } = useEnchantStore();
+  const { effectName } = useEnchantStore();
   const { order, orderBy, setOrder, setOrderBy } = usePcLayoutStore();
 
   const createSortHandler = (property: keyof HeadData) => {
@@ -30,7 +30,7 @@ export const SearchListHead: React.FC = () => {
         <TableCell className={styles.tableHeader}></TableCell>
         {HeadCellData.map(
           headCell =>
-            isDisplayCell(headCell.id, enchants[0]?.disp_val !== undefined) && (
+            isDisplayCell(headCell.id, !!effectName) && (
               <TableCell
                 className={styles.tableHeader}
                 key={headCell.id}

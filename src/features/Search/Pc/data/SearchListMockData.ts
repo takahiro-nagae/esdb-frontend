@@ -1,71 +1,87 @@
-import { EnchantData } from '@/repositories/search/_types';
+import { GetEnchantDetailsQuery } from '@/repositories/generated/graphql';
 
-export const Dummy1: EnchantData = {
-  enchant_id: '',
-  enchant_name: 'りんご',
-  enchant_name_2: '',
-  enchant_name_en: '',
-  position_id: '1',
+export const Dummy1: GetEnchantDetailsQuery['details']['enchants'][number] = {
+  id: '1',
+  name: 'りんご',
+  nameEn: 'Apple',
+  isInvalidTarget: false,
+  invalidTargetName: '',
+  position: '1',
+  positionName: '接頭(prefix)',
   rank: 'F',
-  rank_seq: 0,
-  target_code: '1',
-  target_name: 'すりおろし',
-  effect_kbn: 'test',
-  effect_name: '赤い',
-  route_name: '青森',
-  imp_flg: '1',
-  invalid_target_flg: 0,
-  disp_val: 2,
+  rankSeq: 0,
+  target: 'すりおろし',
+  effect: [
+    {
+      type: 'test',
+      name: '赤い',
+    },
+  ],
+  route: ['青森'],
+  value: 2,
 };
 
-export const Dummy1NotDispVal: EnchantData = {
-  enchant_id: '',
-  enchant_name: 'りんご',
-  enchant_name_2: '',
-  enchant_name_en: '',
-  position_id: '1',
+export const Dummy1NotDispVal: GetEnchantDetailsQuery['details']['enchants'][number] =
+  {
+    id: '1',
+    name: 'りんご',
+    nameEn: 'Apple',
+    isInvalidTarget: false,
+    invalidTargetName: '',
+    position: '1',
+    positionName: '接頭(prefix)',
+    rank: 'F',
+    rankSeq: 0,
+    target: 'すりおろし',
+    effect: [
+      {
+        type: 'test',
+        name: '赤い',
+      },
+    ],
+    route: ['青森'],
+    value: 2,
+  };
+
+export const Dummy2: GetEnchantDetailsQuery['details']['enchants'][number] = {
+  id: '2',
+  name: 'れもん',
+  nameEn: 'Ramen',
+  isInvalidTarget: false,
+  invalidTargetName: '',
+  position: '2',
+  positionName: '接尾(suffix)',
   rank: 'F',
-  rank_seq: 0,
-  target_code: '1',
-  target_name: 'すりおろし',
-  effect_kbn: 'test',
-  effect_name: '赤い',
-  route_name: '青森',
-  imp_flg: '1',
-  invalid_target_flg: 0,
+  rankSeq: 0,
+  target: 'からあげ',
+  effect: [
+    {
+      type: 'test',
+      name: '黄色い',
+    },
+  ],
+  route: ['広島'],
+  value: 3,
 };
 
-export const Dummy2: EnchantData = {
-  enchant_id: '',
-  enchant_name: 'れもん',
-  enchant_name_2: '',
-  enchant_name_en: '',
-  position_id: '2',
-  rank: 'F',
-  rank_seq: 0,
-  target_code: '2',
-  target_name: 'からあげ',
-  effect_kbn: 'test',
-  effect_name: '黄色い',
-  route_name: '広島',
-  imp_flg: '1',
-  invalid_target_flg: 0,
-  disp_val: 3,
-};
-
-export const Dummy2NotDispVal: EnchantData = {
-  enchant_id: '',
-  enchant_name: 'れもん',
-  enchant_name_2: '',
-  enchant_name_en: '',
-  position_id: '2',
-  rank: 'F',
-  rank_seq: 0,
-  target_code: '2',
-  target_name: 'からあげ',
-  effect_kbn: 'test',
-  effect_name: '黄色い',
-  route_name: '広島',
-  imp_flg: '1',
-  invalid_target_flg: 0,
-};
+export const Dummy2NotDispVal: GetEnchantDetailsQuery['details']['enchants'][number] =
+  {
+    id: '2',
+    name: 'れもん',
+    nameEn: 'Ramen',
+    isInvalidTarget: false,
+    invalidTargetName: '',
+    position: '2',
+    positionName: '接尾(suffix)',
+    rank: 'F',
+    rankSeq: 0,
+    target: 'からあげ',
+    effect: [
+      {
+        type: 'test',
+        name: '黄色い',
+      },
+    ],
+    route: ['広島'],
+    value: 3,
+  };

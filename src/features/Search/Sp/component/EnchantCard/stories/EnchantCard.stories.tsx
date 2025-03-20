@@ -2,6 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import { EnchantCard } from '../EnchantCard';
 
+import { useEnchantStore } from '@/features/Search/state/useEnchantStore';
 import { ENCHANT_DATA_MOCK } from '@/repositories/search/__mocks__/fetchSearchEnchantData';
 
 export default {
@@ -16,12 +17,18 @@ export const Normal: StoryObj<typeof EnchantCard> = {
 };
 
 export const AllView: StoryObj<typeof EnchantCard> = {
+  decorators: [
+    Story => {
+      const { setEffectName } = useEnchantStore();
+      setEffectName('テスト');
+      return <Story />;
+    },
+  ],
   args: {
     enchant: {
       ...ENCHANT_DATA_MOCK,
-      imp_flg: '0',
-      invalid_target_flg: '1',
-      disp_val: 100,
+      isInvalidTarget: true,
+      value: 100,
     },
   },
 };
