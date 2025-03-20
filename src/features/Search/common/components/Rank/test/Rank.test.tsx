@@ -1,15 +1,35 @@
+import { MockedProvider } from '@apollo/client/testing';
 import { render, screen, waitFor } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
 import { Rank } from '../Rank';
 
+import { RANK_RESULT_MOCK } from '@/repositories/rank/__mocks__/result';
+import { GET_RANK } from '@/repositories/rank/query';
+
+const mocks = [
+  {
+    request: {
+      query: GET_RANK,
+      variables: { rank: 'F' },
+    },
+    result: {
+      data: RANK_RESULT_MOCK,
+    },
+  },
+];
+
 describe('Rank', () => {
   it('表示確認', async () => {
-    render(<Rank rank={'F'} />);
+    render(
+      <MockedProvider mocks={mocks}>
+        <Rank rank={'F'} />
+      </MockedProvider>,
+    );
 
-    // ランクの表示が想定通りか
-    expect(screen.getByTestId('rank-prefix').textContent).toBe('ランク：');
     await waitFor(() => {
+      // ランクの表示が想定通りか
+      expect(screen.getByTestId('rank-prefix').textContent).toBe('ランク：');
       expect(screen.getByTestId('rank').textContent).toBe('F');
     });
 
@@ -30,13 +50,13 @@ describe('Rank', () => {
     expect(tableHeader.children[5].textContent).toBe('稀代');
 
     // 木曜日以外のデータが想定通りか
-    const nomalData = rows[1];
-    expect(nomalData.children[0].textContent).toBe('木曜日以外');
-    expect(nomalData.children[1].textContent).toBe('1');
-    expect(nomalData.children[2].textContent).toBe('2');
-    expect(nomalData.children[3].textContent).toBe('3');
-    expect(nomalData.children[4].textContent).toBe('4');
-    expect(nomalData.children[5].textContent).toBe('5');
+    const normalData = rows[1];
+    expect(normalData.children[0].textContent).toBe('木曜日以外');
+    expect(normalData.children[1].textContent).toBe('1');
+    expect(normalData.children[2].textContent).toBe('2');
+    expect(normalData.children[3].textContent).toBe('3');
+    expect(normalData.children[4].textContent).toBe('4');
+    expect(normalData.children[5].textContent).toBe('5');
 
     // 木曜日のデータが想定通りか
     const thursdayData = rows[2];

@@ -11,13 +11,22 @@ import { RANK_HEADER_LABELS } from './const';
 import { useRank } from './hooks/useRank';
 
 import { DisplayWideAd } from '@/adsense/DisplayWideAd';
+import { Loading } from '@/common/Loading/Loading';
 
 export type RankProps = {
   rank: string;
 };
 
 export const Rank: React.FC<RankProps> = ({ rank }) => {
-  const { rankData } = useRank(rank);
+  const { rankData, loading } = useRank(rank);
+
+  if (loading) {
+    return <Loading isLoading={loading} />;
+  }
+
+  if (!rankData) {
+    return <div>データがありません</div>;
+  }
 
   return (
     <>
