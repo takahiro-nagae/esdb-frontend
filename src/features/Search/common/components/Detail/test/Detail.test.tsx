@@ -3,13 +3,13 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, test, vi } from 'vitest';
 
+import { BeginnerData } from '../../../../../../repositories/detail/__mock__/result';
 import {
   createEnchantName,
   createEnchantNameEn,
 } from '../../../functions/enchantNameFunction';
 import { positionName } from '../../../functions/positionFunction';
 import { Rank } from '../../Rank/Rank';
-import { BeginnerData } from '../mock/DetailMockData';
 import * as stories from '../stories/Detail.stories';
 
 vi.mock('../../Rank/Rank');
@@ -19,32 +19,26 @@ describe('Detail', () => {
   test('表示内容の確認', async () => {
     render(<DetailView />);
     const enchantData = BeginnerData;
-    const rowDatas = screen.getAllByRole('row');
+    const rowDates = screen.getAllByRole('row');
 
     // 名称
-    const nameRow = rowDatas[0];
+    const nameRow = rowDates[0];
     // カラム名が「名称」であること
     expect(nameRow.children[0].textContent).toBe('名称');
     // データのエンチャントの名称が意図した形式で表示されること
     expect(nameRow.children[1].textContent).toBe(
-      createEnchantName(enchantData.enchant_name, enchantData.enchant_name_2) +
-        createEnchantNameEn(
-          enchantData.enchant_name_en,
-          enchantData.position_id,
-        ),
+      enchantData.name + enchantData.nameEn,
     );
 
     // 位置
-    const positionRow = rowDatas[1];
+    const positionRow = rowDates[1];
     // カラム名が「位置」であること
     expect(positionRow.children[0].textContent).toBe('位置');
     // データのエンチャントの位置が意図した形式で表示されること
-    expect(positionRow.children[1].textContent).toBe(
-      positionName(enchantData.position_id),
-    );
+    expect(positionRow.children[1].textContent).toBe(enchantData.positionName);
 
     // ランク
-    const rankRow = rowDatas[2];
+    const rankRow = rowDates[2];
     // カラム名が「ランク」であること
     expect(rankRow.children[0].textContent).toBe('ランク');
     // データのエンチャントのランクが意図した形式で表示されること
@@ -57,22 +51,21 @@ describe('Detail', () => {
     });
 
     // 効果
-    const effectRow = rowDatas[3];
+    const effectRow = rowDates[3];
     // カラム名が「効果」であること
     expect(effectRow.children[0].textContent).toBe('効果');
     // データのエンチャントの効果が意図した形式で表示されること
     expect(effectRow.children[1].textContent).toBe(
-      enchantData.effect_name.replaceAll('@', ''),
+      enchantData.effect.map(effect => effect?.name).join(''),
     );
 
     // 入手先
-    const routeRow = rowDatas[4];
+    const routeRow = rowDates[4];
     // カラム名が「入手先」であること
     expect(routeRow.children[0].textContent).toBe('入手先');
     // データのエンチャントの入手先が意図した形式で表示されること
-    const routeName = enchantData.route_name
-      ? enchantData.route_name.replaceAll('@', '').replaceAll('<br>', '')
-      : '';
-    expect(routeRow.children[1].textContent).toBe(routeName);
+    expect(routeRow.children[1].textContent).toBe(
+      enchantData.route.map(route => route?.replaceAll('<br>', '')).join(''),
+    );
   });
 });
