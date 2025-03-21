@@ -33,7 +33,10 @@ export const Bookmark: React.FC = () => {
   }, [enchants]);
 
   useEffect(() => {
-    return () => setIsRender(false);
+    return () => {
+      setIsRender(false);
+      setImmutableEnchants([]);
+    };
   }, []);
 
   const onDragEnd = (e: DragEndEvent) => {
@@ -41,11 +44,11 @@ export const Bookmark: React.FC = () => {
 
     const oldId = e.active.id;
     const oldIndex = immutableEnchants.findIndex(
-      enchant => enchant.enchant_id === oldId,
+      enchant => enchant.id === oldId,
     );
     const newId = e.over.id;
     const newIndex = immutableEnchants.findIndex(
-      enchant => enchant.enchant_id === newId,
+      enchant => enchant.id === newId,
     );
 
     const newEnchants = [...immutableEnchants];
@@ -78,7 +81,7 @@ export const Bookmark: React.FC = () => {
               <BrowserView className={styles.pcContainer}>
                 <DndContext onDragEnd={onDragEnd} sensors={sensors}>
                   <SortableContext
-                    items={immutableEnchants.map(enchant => enchant.enchant_id)}
+                    items={immutableEnchants.map(enchant => enchant.id)}
                   >
                     <SearchListContainer />
                   </SortableContext>

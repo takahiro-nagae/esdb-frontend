@@ -10,13 +10,10 @@ export const useSearchFilter = () => {
   const [searchWord, setSearchWord] = useState('');
 
   const filterEnchantData = useCallback(() => {
-    const trimmedSearchWord = searchWord.trim();
-    if (trimmedSearchWord === '') return immutableEnchants;
-
     const listData = immutableEnchants.filter(enchant => {
       // 検索用に各値を設定
-      const enchant_name: string = enchant.name;
-      const enchant_name_en: string = enchant.nameEn;
+      const name: string = enchant.name;
+      const nameEn: string = enchant.nameEn;
       const position: string = enchant.positionName;
       const rank: string = enchant.rank;
       const target: string = enchant.target;
@@ -24,8 +21,8 @@ export const useSearchFilter = () => {
       const route: string = enchant.route.filter(r => r !== null).join('');
 
       return (
-        enchant_name.match(searchWord) ||
-        enchant_name_en.match(searchWord) ||
+        name.match(searchWord) ||
+        nameEn.match(searchWord) ||
         position.match(searchWord) ||
         rank.match(searchWord) ||
         target.match(searchWord) ||
@@ -39,6 +36,9 @@ export const useSearchFilter = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
+      const trimmedSearchWord = searchWord.trim();
+      if (trimmedSearchWord === '') return;
+
       const filterList = filterEnchantData();
       setEnchants(filterList);
       if (isBrowser) {

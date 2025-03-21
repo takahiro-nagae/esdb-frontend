@@ -1,5 +1,6 @@
 import { Grid } from '@mui/material';
 import Box from '@mui/material/Box';
+import { useEffect } from 'react';
 import { BrowserView, MobileView } from 'react-device-detect';
 
 import { Loading } from '../../common/Loading/Loading';
@@ -17,8 +18,17 @@ type SearchListProps = {
 };
 
 export const SearchList: React.FC<SearchListProps> = ({ isFreeSearch }) => {
+  const { immutableEnchants, setImmutableEnchants, setEffectName } =
+    useEnchantStore();
   const { loading } = useSearchList(isFreeSearch);
-  const { immutableEnchants } = useEnchantStore();
+
+  useEffect(() => {
+    return () => {
+      setEffectName('');
+      setImmutableEnchants([]);
+    };
+  }, [setEffectName, setImmutableEnchants]);
+
   return (
     <>
       <Loading isLoading={loading} />

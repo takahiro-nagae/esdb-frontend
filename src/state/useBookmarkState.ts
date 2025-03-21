@@ -4,20 +4,13 @@ import { immer } from 'zustand/middleware/immer';
 
 import { Enchant } from '@/features/Search/state/useEnchantStore';
 
-export type SaveEnchants = Omit<
-  Enchant,
-  'value' | 'isInvalidTarget' | 'invalidTargetName' | 'isImp' | 'impName'
->[];
-
-type ReceiveEnchants = Enchant[];
-
 type State = {
-  enchants: SaveEnchants;
+  enchants: Enchant[];
 };
 
 type Action = {
-  setEnchants: (enchants: ReceiveEnchants) => void;
-  pushEnchant: (enchant: ReceiveEnchants[number]) => void;
+  setEnchants: (enchants: Enchant[]) => void;
+  pushEnchant: (enchant: Enchant) => void;
   removeEnchant: (enchantId: string) => void;
   removeAllEnchants: () => void;
 };
@@ -25,46 +18,38 @@ type Action = {
 export const isFavorite = (enchantId: string) =>
   useStore
     .getState()
-    .enchants.find((enchant: SaveEnchants[number]) => enchant.id === enchantId);
+    .enchants.find((enchant: Enchant) => enchant.id === enchantId);
 
 const useStore = create<State & Action>()(
   persist(
     immer(set => ({
       enchants: [],
-      setEnchants: (enchants: ReceiveEnchants) =>
+      setEnchants: (enchants: Enchant[]) =>
         set((state: State) => {
           state.enchants = enchants.map(enchant => {
-            const {
-              isImp,
-              impName,
-              isInvalidTarget,
-              invalidTargetName,
-              value,
-              ...rest
-            } = enchant;
             return {
-              ...rest,
+              ...enchant,
+              isInvalidTarget: false,
+              invalidTargetName: '',
+              value: 0,
             };
           });
         }),
-      pushEnchant: (enchant: ReceiveEnchants[number]) =>
+      pushEnchant: (enchant: Enchant) =>
         set((state: State) => {
           if (!isFavorite(enchant.id)) {
-            const {
-              isImp,
-              impName,
-              isInvalidTarget,
-              invalidTargetName,
-              value,
-              ...rest
-            } = enchant;
-            state.enchants.push(rest);
+            state.enchants.push({
+              ...enchant,
+              isInvalidTarget: false,
+              invalidTargetName: '',
+              value: 0,
+            });
           }
         }),
       removeEnchant: (enchantId: string) =>
         set(state => {
           state.enchants = state.enchants.filter(
-            (enchant: SaveEnchants[number]) => enchant.id !== enchantId,
+            (enchant: Enchant) => enchant.id !== enchantId,
           );
         }),
       removeAllEnchants: () =>
