@@ -6,12 +6,12 @@ import { describe, expect, it } from 'vitest';
 
 import { SearchFormContainer } from '@/features/Form/SearchFormContainer';
 import { FORM_RESULT_MOCK } from '@/repositories/form/__mocks__/result';
-import { GET_FORM } from '@/repositories/form/query';
+import { GetFormDocument } from '@/repositories/generated/graphql';
 
 const mocks = [
   {
     request: {
-      query: GET_FORM,
+      query: GetFormDocument,
     },
     result: {
       data: FORM_RESULT_MOCK,

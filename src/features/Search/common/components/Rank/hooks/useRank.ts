@@ -1,8 +1,6 @@
-import { useQuery } from '@apollo/client';
 import { useState } from 'react';
 
-import { GetRankQuery } from '@/repositories/generated/graphql';
-import { GET_RANK } from '@/repositories/rank/query';
+import { useGetRankQuery } from '@/repositories/generated/graphql';
 
 type rankData = {
   rank: string;
@@ -11,9 +9,9 @@ type rankData = {
 
 export const useRank = (rank: string) => {
   const [rankData, setRankData] = useState<rankData | null>(null);
-  const { loading } = useQuery(GET_RANK, {
+  const { loading } = useGetRankQuery({
     variables: { rank },
-    onCompleted: (data: GetRankQuery) => {
+    onCompleted: data => {
       if (!data.rank) {
         setRankData(null);
         return;

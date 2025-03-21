@@ -1,4 +1,3 @@
-import { gql, useQuery } from '@apollo/client';
 import { createSearchParams, useNavigate } from 'react-router-dom';
 
 import { useEffectStore } from '../store/useEffectStore';
@@ -7,8 +6,7 @@ import { usePositionStore } from '../store/usePositionStore';
 import { useRankStore } from '../store/useRankStore';
 import { useTargetStore } from '../store/useTargetStore';
 
-import { GET_FORM } from '@/repositories/form/query';
-import { GetFormQuery } from '@/repositories/generated/graphql';
+import { useGetFormQuery } from '@/repositories/generated/graphql';
 
 export const useSearchForm = () => {
   const { enchantName } = useEnchantNameStore();
@@ -25,8 +23,8 @@ export const useSearchForm = () => {
 
   const navigate = useNavigate();
 
-  const { loading } = useQuery(GET_FORM, {
-    onCompleted: (data: GetFormQuery) => {
+  const { loading } = useGetFormQuery({
+    onCompleted: data => {
       if (data.form) {
         setEffects(data.form.effects);
         setRanks(data.form.ranks);

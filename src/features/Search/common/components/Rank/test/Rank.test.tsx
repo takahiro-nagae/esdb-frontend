@@ -4,13 +4,13 @@ import { describe, expect, it } from 'vitest';
 
 import { Rank } from '../Rank';
 
+import { GetRankDocument } from '@/repositories/generated/graphql';
 import { RANK_RESULT_MOCK } from '@/repositories/rank/__mocks__/result';
-import { GET_RANK } from '@/repositories/rank/query';
 
 const mocks = [
   {
     request: {
-      query: GET_RANK,
+      query: GetRankDocument,
       variables: { rank: 'F' },
     },
     result: {

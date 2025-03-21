@@ -1,14 +1,13 @@
-import { useQuery } from '@apollo/client';
 import { useSearchParams } from 'react-router-dom';
 
 import { useEnchantStore } from '@/features/Search/state/useEnchantStore';
 import { usePcLayoutStore } from '@/features/Search/state/usePcLayoutStore';
-import { GET_DETAILS } from '@/repositories/details/query';
 import {
   GetEnchantDetailsQuery,
   SearchEnchantQuery,
+  useGetEnchantDetailsQuery,
+  useSearchEnchantQuery,
 } from '@/repositories/generated/graphql';
-import { GET_SEARCH_ENCHANT_DATA } from '@/repositories/search/query';
 
 const handleError = (error: unknown) => {
   console.error('Error fetching data:', error);
@@ -55,9 +54,9 @@ const useFreeSearch = () => {
   const { setPage } = usePcLayoutStore();
   const [inputParams] = useSearchParams();
 
-  return useQuery<SearchEnchantQuery>(GET_SEARCH_ENCHANT_DATA, {
+  return useSearchEnchantQuery({
     variables: {
-      keyword: inputParams.get('search'),
+      keyword: inputParams.get('search') ?? '',
     },
     onCompleted: data => {
       setImmutableEnchants(data.search.map(convertEnchant));
@@ -72,16 +71,16 @@ const useDetailedSearch = () => {
   const { setOrderBy, setOrder, setPage } = usePcLayoutStore();
   const [inputParams] = useSearchParams();
 
-  return useQuery<GetEnchantDetailsQuery>(GET_DETAILS, {
+  return useGetEnchantDetailsQuery({
     variables: {
-      enchantName: inputParams.get('enchantName'),
-      effect: inputParams.get('effect'),
-      effectVal: inputParams.get('effectVal'),
-      rangeVal: inputParams.get('range'),
-      position: inputParams.get('position'),
-      rank: inputParams.get('rank'),
-      rankRange: inputParams.get('rankRange'),
-      target: inputParams.get('target'),
+      enchantName: inputParams.get('enchantName') ?? '',
+      effect: inputParams.get('effect') ?? '',
+      effectVal: inputParams.get('effectVal') ?? '',
+      rangeVal: inputParams.get('range') ?? '',
+      position: inputParams.get('position') ?? '',
+      rank: inputParams.get('rank') ?? '',
+      rankRange: inputParams.get('rankRange') ?? '',
+      target: inputParams.get('target') ?? '',
     },
     onCompleted: data => {
       const enchants = data.details.enchants;
