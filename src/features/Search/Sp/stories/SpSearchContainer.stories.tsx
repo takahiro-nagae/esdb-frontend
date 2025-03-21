@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useEnchantStore } from '../../state/useEnchantStore';
 import { SpSearchContainer } from '../SpSearchContainer';
 
-import { ENCHANT_DATA_MOCK } from '@/repositories/search/__mocks__/fetchSearchEnchantData';
+import { ENCHANT_DATA_MOCK } from '@/repositories/search/__mocks__/result';
 
 export default {
   title: 'search/sp/SpSearchContainer',

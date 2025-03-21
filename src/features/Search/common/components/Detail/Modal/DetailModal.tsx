@@ -1,10 +1,10 @@
 import { Detail } from '../Detail';
 
 import { ModalContainer } from '@/common/ModalContainer';
-import { GetEnchantDetailsQuery } from '@/repositories/generated/graphql';
+import { Enchant } from '@/features/Search/state/useEnchantStore';
 
 type DetailModalProps = {
-  enchant: GetEnchantDetailsQuery['details']['enchants'][number];
+  enchant: Enchant;
   count: number;
 };
 
@@ -19,24 +19,7 @@ export const DetailModal: React.FC<DetailModalProps> = ({ enchant, count }) => {
           </a>
         }
         height={80}
-        // TODO: Searchをなおすときに、isImpをなおす
-        openComponent={
-          <Detail
-            enchant={{
-              id: enchant.id,
-              name: enchant.name,
-              nameEn: enchant.nameEn,
-              position: enchant.position,
-              positionName: enchant.positionName,
-              rank: enchant.rank,
-              route: enchant.route,
-              target: enchant.target,
-              effect: enchant.effect,
-              isImp: true,
-              impName: '',
-            }}
-          />
-        }
+        openComponent={<Detail enchant={enchant} />}
         width={95}
       />
     </>

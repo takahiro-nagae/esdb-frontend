@@ -1,9 +1,9 @@
 import styles from './EffectList.module.css';
 
-import { GetEnchantDetailsQuery } from '@/repositories/generated/graphql';
+import { Enchant } from '@/features/Search/state/useEnchantStore';
 
 type EffectListProps = {
-  effects: GetEnchantDetailsQuery['details']['enchants'][number]['effect'];
+  effects: Enchant['effect'];
 };
 
 export const EffectList: React.FC<EffectListProps> = ({ effects }) => {

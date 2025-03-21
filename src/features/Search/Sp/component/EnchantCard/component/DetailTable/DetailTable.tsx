@@ -13,10 +13,10 @@ import { RouteList } from '../../../../../common/components/RouteList/RouteList'
 
 import styles from './DetailTable.module.css';
 
-import { GetEnchantDetailsQuery } from '@/repositories/generated/graphql';
+import { Enchant } from '@/features/Search/state/useEnchantStore';
 
 type DetailTableProps = {
-  enchant: GetEnchantDetailsQuery['details']['enchants'][number];
+  enchant: Enchant;
   isOpen: boolean;
 };
 

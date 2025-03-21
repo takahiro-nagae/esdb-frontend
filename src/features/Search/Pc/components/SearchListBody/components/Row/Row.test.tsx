@@ -10,17 +10,13 @@ import {
   Dummy1NotDispVal,
 } from '@/features/Search/Pc/data/SearchListMockData';
 import { Rank } from '@/features/Search/common/components/Rank/Rank';
-import { GetEnchantDetailsQuery } from '@/repositories/generated/graphql';
+import { Enchant } from '@/features/Search/state/useEnchantStore';
 
 vi.mock('../../../../../common/components/Rank/Rank');
 describe('SearchList Row', () => {
   const { IsDispVal, IsNotDispVal } = composeStories(stories);
 
-  const rowCheck = (
-    row: HTMLElement,
-    data: GetEnchantDetailsQuery['details']['enchants'][number],
-    isDispVal: boolean,
-  ) => {
+  const rowCheck = (row: HTMLElement, data: Enchant, isDispVal: boolean) => {
     // エンチャント名
     expect(row.children[1]).toHaveTextContent(data.name);
     // 位置

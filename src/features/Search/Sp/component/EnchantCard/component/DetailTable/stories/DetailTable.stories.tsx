@@ -4,7 +4,7 @@ import { DetailTable } from '../DetailTable';
 
 import { OPEN_ROUTE_NAME } from './mockRouteName';
 
-import { ENCHANT_DATA_MOCK } from '@/repositories/search/__mocks__/fetchSearchEnchantData';
+import { ENCHANT_DATA_MOCK } from '@/repositories/search/__mocks__/result';
 
 export default {
   title: 'search/sp/component/DetailTable',

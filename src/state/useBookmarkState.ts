@@ -2,14 +2,14 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
 
-import { GetEnchantDetailsQuery } from '@/repositories/generated/graphql';
+import { Enchant } from '@/features/Search/state/useEnchantStore';
 
-type SaveEnchants = Omit<
-  GetEnchantDetailsQuery['details']['enchants'][number],
-  'value'
+export type SaveEnchants = Omit<
+  Enchant,
+  'value' | 'isInvalidTarget' | 'invalidTargetName' | 'isImp' | 'impName'
 >[];
 
-type ReceiveEnchants = GetEnchantDetailsQuery['details']['enchants'];
+type ReceiveEnchants = Enchant[];
 
 type State = {
   enchants: SaveEnchants;
@@ -34,16 +34,30 @@ const useStore = create<State & Action>()(
       setEnchants: (enchants: ReceiveEnchants) =>
         set((state: State) => {
           state.enchants = enchants.map(enchant => {
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            const { value, ...rest } = enchant;
-            return rest;
+            const {
+              isImp,
+              impName,
+              isInvalidTarget,
+              invalidTargetName,
+              value,
+              ...rest
+            } = enchant;
+            return {
+              ...rest,
+            };
           });
         }),
       pushEnchant: (enchant: ReceiveEnchants[number]) =>
         set((state: State) => {
           if (!isFavorite(enchant.id)) {
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            const { value, ...rest } = enchant;
+            const {
+              isImp,
+              impName,
+              isInvalidTarget,
+              invalidTargetName,
+              value,
+              ...rest
+            } = enchant;
             state.enchants.push(rest);
           }
         }),

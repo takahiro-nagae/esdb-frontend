@@ -1,21 +1,78 @@
 import { useQuery } from '@apollo/client';
 import { useSearchParams } from 'react-router-dom';
-import useSWR from 'swr';
 
-import { CACHE_TIME_24H } from '@/const/cache';
 import { useEnchantStore } from '@/features/Search/state/useEnchantStore';
 import { usePcLayoutStore } from '@/features/Search/state/usePcLayoutStore';
 import { GET_DETAILS } from '@/repositories/details/query';
-import { GetEnchantDetailsQuery } from '@/repositories/generated/graphql';
-import { fetchSearchEnchantData } from '@/repositories/search/fetchSearchEnchantData';
+import {
+  GetEnchantDetailsQuery,
+  SearchEnchantQuery,
+} from '@/repositories/generated/graphql';
+import { GET_SEARCH_ENCHANT_DATA } from '@/repositories/search/query';
 
-export const useSearchList = (isFreeSearch: boolean) => {
+const handleError = (error: unknown) => {
+  console.error('Error fetching data:', error);
+};
+
+const convertEnchant = (
+  enchant:
+    | SearchEnchantQuery['search'][number]
+    | GetEnchantDetailsQuery['details']['enchants'][number],
+) => {
+  const isInvalidTarget =
+    'isInvalidTarget' in enchant ? enchant.isInvalidTarget : false;
+  const invalidTargetName =
+    'invalidTargetName' in enchant ? enchant.invalidTargetName : '';
+  const isImp = 'isImp' in enchant ? enchant.isImp : true;
+  const impName = 'impName' in enchant ? enchant.impName : '';
+  const effect = enchant.effect
+    ? enchant.effect.map(e => ({ name: e?.name ?? '', type: e?.type ?? '' }))
+    : [];
+  const route = enchant.route.filter(r => r !== null) as string[];
+
+  const value = 'value' in enchant ? enchant.value : null;
+  return {
+    id: enchant.id,
+    name: enchant.name,
+    nameEn: enchant.nameEn,
+    isInvalidTarget,
+    invalidTargetName,
+    isImp,
+    impName,
+    effect,
+    position: enchant.position,
+    positionName: enchant.positionName,
+    rank: enchant.rank,
+    rankSeq: enchant.rankSeq,
+    route,
+    target: enchant.target,
+    value,
+  };
+};
+
+const useFreeSearch = () => {
+  const { setImmutableEnchants } = useEnchantStore();
+  const { setPage } = usePcLayoutStore();
+  const [inputParams] = useSearchParams();
+
+  return useQuery<SearchEnchantQuery>(GET_SEARCH_ENCHANT_DATA, {
+    variables: {
+      keyword: inputParams.get('search'),
+    },
+    onCompleted: data => {
+      setImmutableEnchants(data.search.map(convertEnchant));
+      setPage(0);
+    },
+    onError: handleError,
+  });
+};
+
+const useDetailedSearch = () => {
   const { setImmutableEnchants, setEffectName } = useEnchantStore();
   const { setOrderBy, setOrder, setPage } = usePcLayoutStore();
   const [inputParams] = useSearchParams();
-  // const path = isFreeSearch ? '/search' : '/detail';
 
-  const { loading } = useQuery<GetEnchantDetailsQuery>(GET_DETAILS, {
+  return useQuery<GetEnchantDetailsQuery>(GET_DETAILS, {
     variables: {
       enchantName: inputParams.get('enchantName'),
       effect: inputParams.get('effect'),
@@ -28,11 +85,10 @@ export const useSearchList = (isFreeSearch: boolean) => {
     },
     onCompleted: data => {
       const enchants = data.details.enchants;
-      setImmutableEnchants(enchants);
+      setImmutableEnchants(enchants.map(convertEnchant));
 
-      const dataLength = enchants.length;
-      if (dataLength > 0 && enchants[0].value) {
-        setOrderBy('disp_val');
+      if (enchants.length > 0 && enchants[0].value) {
+        setOrderBy('value');
         setOrder('desc');
       }
 
@@ -41,11 +97,11 @@ export const useSearchList = (isFreeSearch: boolean) => {
       }
       setPage(0);
     },
-    onError: error => {
-      console.error('Error fetching data:', error);
-    },
+    onError: handleError,
   });
-  return {
-    loading,
-  };
+};
+
+export const useSearchList = (isFreeSearch: boolean) => {
+  const { loading } = isFreeSearch ? useFreeSearch() : useDetailedSearch();
+  return { loading };
 };

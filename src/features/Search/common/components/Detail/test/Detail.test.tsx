@@ -4,11 +4,6 @@ import userEvent from '@testing-library/user-event';
 import { describe, expect, test, vi } from 'vitest';
 
 import { BeginnerData } from '../../../../../../repositories/detail/__mock__/result';
-import {
-  createEnchantName,
-  createEnchantNameEn,
-} from '../../../functions/enchantNameFunction';
-import { positionName } from '../../../functions/positionFunction';
 import { Rank } from '../../Rank/Rank';
 import * as stories from '../stories/Detail.stories';
 

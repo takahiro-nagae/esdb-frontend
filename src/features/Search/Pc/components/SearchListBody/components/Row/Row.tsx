@@ -16,12 +16,14 @@ import { ImpText } from '@/features/Search/common/components/ImpText/ImpText';
 import { InvalidText } from '@/features/Search/common/components/ImvalidText/InvalidText';
 import { RankModal } from '@/features/Search/common/components/Rank/Modal/RankModal';
 import { RouteList } from '@/features/Search/common/components/RouteList/RouteList';
-import { useEnchantStore } from '@/features/Search/state/useEnchantStore';
-import { GetEnchantDetailsQuery } from '@/repositories/generated/graphql';
+import {
+  Enchant,
+  useEnchantStore,
+} from '@/features/Search/state/useEnchantStore';
 import { isFavorite, useBookmarkState } from '@/state/useBookmarkState';
 
 type RowProps = {
-  enchant: GetEnchantDetailsQuery['details']['enchants'][number];
+  enchant: Enchant;
   index: number;
 };
 
@@ -65,8 +67,7 @@ export const Row: React.FC<RowProps> = ({ enchant, index }) => {
         <TableCell>
           <span data-testid='enchantName'>{enchant.name}</span>
           <InvalidText isInvalidTarget={enchant.isInvalidTarget} />
-          {/* TODO: searchをGraphQL化したら修正 */}
-          <ImpText isImp={true} />
+          <ImpText isImp={enchant.isImp} />
           <br />
           <small
             className={enchantNameStyles.subTitleStyle}

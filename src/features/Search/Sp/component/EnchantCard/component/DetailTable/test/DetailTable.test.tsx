@@ -7,7 +7,7 @@ import { Detail } from '../../../../../../common/components/Detail/Detail';
 import * as stories from '../stories/DetailTable.stories';
 import { OPEN_ROUTE_NAME } from '../stories/mockRouteName';
 
-import { ENCHANT_DATA_MOCK } from '@/repositories/search/__mocks__/fetchSearchEnchantData';
+import { ENCHANT_DATA_MOCK } from '@/repositories/search/__mocks__/result';
 
 vi.mock('../../../../../../common/components/Detail/Detail');
 describe('DetailTable', () => {

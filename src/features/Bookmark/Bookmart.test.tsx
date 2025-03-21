@@ -3,20 +3,15 @@ import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
 import { Dummy1, Dummy2 } from '../Search/Pc/data/SearchListMockData';
-import { positionName } from '../Search/common/functions/positionFunction';
 
 import * as stories from './Bookmark.stories';
 
-import { GetEnchantDetailsQuery } from '@/repositories/generated/graphql';
-import { EnchantData } from '@/repositories/search/_types';
+import { SaveEnchants } from '@/state/useBookmarkState';
 
 const { Default, Empty } = composeStories(stories);
 
 describe('Bookmark Component', () => {
-  const rowCheck = (
-    row: HTMLElement,
-    data: Omit<GetEnchantDetailsQuery['details']['enchants'][number], 'value'>,
-  ) => {
+  const rowCheck = (row: HTMLElement, data: SaveEnchants[number]) => {
     // エンチャント名
     expect(row.children[1]).toHaveTextContent(data.name);
     // 位置

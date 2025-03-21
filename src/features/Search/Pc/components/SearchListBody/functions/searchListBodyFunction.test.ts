@@ -4,15 +4,10 @@ import { Dummy1, Dummy2 } from '../../../data/SearchListMockData';
 
 import { getComparator, stableSort } from './searchListBodyFunction';
 
-import { GetEnchantDetailsQuery } from '@/repositories/generated/graphql';
+import { Enchant } from '@/features/Search/state/useEnchantStore';
 
 describe('getComparator', () => {
-  const mockComparator = (
-    comparator: (
-      a: GetEnchantDetailsQuery['details']['enchants'][number],
-      b: GetEnchantDetailsQuery['details']['enchants'][number],
-    ) => number,
-  ) => {
+  const mockComparator = (comparator: (a: Enchant, b: Enchant) => number) => {
     return comparator(Dummy1, Dummy2);
   };
 

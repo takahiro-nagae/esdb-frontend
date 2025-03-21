@@ -8,10 +8,10 @@ import { RankModal } from '../Rank/Modal/RankModal';
 import styles from './Detail.module.css';
 
 import { DisplayWideAd } from '@/adsense/DisplayWideAd';
-import { GetEnchantDetailQuery } from '@/repositories/generated/graphql';
+import { Enchant } from '@/features/Search/state/useEnchantStore';
 
 type DetailProps = {
-  enchant: GetEnchantDetailQuery['detail'];
+  enchant: Enchant;
 };
 
 export const Detail: React.FC<DetailProps> = ({ enchant }) => {

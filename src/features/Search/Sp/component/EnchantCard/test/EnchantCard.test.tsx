@@ -6,12 +6,7 @@ import { describe, expect, test, vi } from 'vitest';
 import { DetailTable } from '../component/DetailTable/DetailTable';
 import * as stories from '../stories/EnchantCard.stories';
 
-import {
-  createEnchantName,
-  createEnchantNameEn,
-} from '@/features/Search/common/functions/enchantNameFunction';
-import { positionName } from '@/features/Search/common/functions/positionFunction';
-import { ENCHANT_DATA_MOCK } from '@/repositories/search/__mocks__/fetchSearchEnchantData';
+import { ENCHANT_DATA_MOCK } from '@/repositories/search/__mocks__/result';
 
 vi.mock('../component/DetailTable/DetailTable');
 describe('EnchantCard', () => {
@@ -88,8 +83,7 @@ describe('EnchantCard', () => {
     // 貼付不可が表示されていることの確認
     expect(screen.getByText(invalidText)).toBeInTheDocument();
     // 未実装が表示されていることの確認
-    // TODO: searchのGraphQLのデータを変更したら、ここのテストも変更する
-    // expect(screen.getByText(impText)).toBeInTheDocument();
+    expect(screen.getByText(impText)).toBeInTheDocument();
     // 値が表示されていることの確認
     expect(screen.getByTestId(dispValId).textContent).toBe('100');
   });

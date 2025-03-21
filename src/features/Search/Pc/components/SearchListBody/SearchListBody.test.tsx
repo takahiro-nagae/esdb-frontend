@@ -13,9 +13,7 @@ import {
 import * as stories from './SearchListBody.stories';
 
 import { Rank } from '@/features/Search/common/components/Rank/Rank';
-import { positionName } from '@/features/Search/common/functions/positionFunction';
-import { GetEnchantDetailsQuery } from '@/repositories/generated/graphql';
-import { EnchantData } from '@/repositories/search/_types';
+import { Enchant } from '@/features/Search/state/useEnchantStore';
 
 vi.mock('../../../common/components/Rank/Rank');
 describe('SearchListBody', () => {
@@ -28,11 +26,7 @@ describe('SearchListBody', () => {
     DispRowPerPage2,
   } = composeStories(stories);
 
-  const rowCheck = (
-    row: HTMLElement,
-    data: GetEnchantDetailsQuery['details']['enchants'][number],
-    isDispVal: boolean,
-  ) => {
+  const rowCheck = (row: HTMLElement, data: Enchant, isDispVal: boolean) => {
     // エンチャント名
     expect(row.children[1]).toHaveTextContent(data.name);
     // 位置

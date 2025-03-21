@@ -16,12 +16,14 @@ import styles from './EnchantCard.module.css';
 import { AccordionButton } from './component/AccordionButton/AccordionButton';
 import { DetailTable } from './component/DetailTable/DetailTable';
 
-import { useEnchantStore } from '@/features/Search/state/useEnchantStore';
-import { GetEnchantDetailsQuery } from '@/repositories/generated/graphql';
+import {
+  Enchant,
+  useEnchantStore,
+} from '@/features/Search/state/useEnchantStore';
 import { isFavorite, useBookmarkState } from '@/state/useBookmarkState';
 
 type EnchantCardProps = {
-  enchant: GetEnchantDetailsQuery['details']['enchants'][number];
+  enchant: Enchant;
 };
 
 export const EnchantCard: React.FC<EnchantCardProps> = ({ enchant }) => {
@@ -48,7 +50,7 @@ export const EnchantCard: React.FC<EnchantCardProps> = ({ enchant }) => {
           <Typography className={styles.title}>
             <span data-testid='enchantName'>{enchant.name}</span>
             <InvalidText isInvalidTarget={enchant.isInvalidTarget} />
-            <ImpText isImp={true} />
+            <ImpText isImp={enchant.isImp} />
           </Typography>
           <Typography
             className={enchantNameStyles.subTitleStyle}

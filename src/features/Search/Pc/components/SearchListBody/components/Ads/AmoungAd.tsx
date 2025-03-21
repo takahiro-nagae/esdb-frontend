@@ -7,7 +7,7 @@ import { InfeedAd } from '@/adsense/InfeedAd';
 
 type AmongAdProps = {
   index: number;
-  disp_val: number | undefined;
+  disp_val: number | null;
 };
 
 export const AmongAd: React.FC<AmongAdProps> = ({ index, disp_val }) => {

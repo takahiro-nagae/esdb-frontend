@@ -1,21 +1,14 @@
 import { Order } from '../../../types/Order';
 import { HeadData } from '../../SearchListHead/types/HeadData';
 
-import { GetEnchantDetailsQuery } from '@/repositories/generated/graphql';
+import { Enchant } from '@/features/Search/state/useEnchantStore';
 
 export const stableSort = (
-  array: GetEnchantDetailsQuery['details']['enchants'],
-  comparator: (
-    a: GetEnchantDetailsQuery['details']['enchants'][number],
-    b: GetEnchantDetailsQuery['details']['enchants'][number],
-  ) => number,
+  array: Enchant[],
+  comparator: (a: Enchant, b: Enchant) => number,
 ) => {
   const stabilizedThis = array.map(
-    (el, index) =>
-      [el, index] as [
-        GetEnchantDetailsQuery['details']['enchants'][number],
-        number,
-      ],
+    (el, index) => [el, index] as [Enchant, number],
   );
   stabilizedThis.sort((a, b) => comparator(a[0], b[0]));
 
@@ -24,19 +17,13 @@ export const stableSort = (
 
 export const getComparator = (order: Order, orderBy: keyof HeadData | '') => {
   return order === 'desc'
-    ? (
-        a: GetEnchantDetailsQuery['details']['enchants'][number],
-        b: GetEnchantDetailsQuery['details']['enchants'][number],
-      ) => descendingComparator(a, b, orderBy)
-    : (
-        a: GetEnchantDetailsQuery['details']['enchants'][number],
-        b: GetEnchantDetailsQuery['details']['enchants'][number],
-      ) => -descendingComparator(a, b, orderBy);
+    ? (a: Enchant, b: Enchant) => descendingComparator(a, b, orderBy)
+    : (a: Enchant, b: Enchant) => -descendingComparator(a, b, orderBy);
 };
 
 const descendingComparator = (
-  a: GetEnchantDetailsQuery['details']['enchants'][number],
-  b: GetEnchantDetailsQuery['details']['enchants'][number],
+  a: Enchant,
+  b: Enchant,
   orderBy: keyof HeadData | '',
 ) => {
   if (orderBy === '') {

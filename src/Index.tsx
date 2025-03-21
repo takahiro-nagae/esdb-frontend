@@ -19,7 +19,7 @@ import { RankIndex } from './features/Search/common/components/Rank/Index/RankIn
 import { About } from './features/Static/About';
 import { AppHistory } from './features/Static/AppHistory';
 import { PrivacyPolicy } from './features/Static/PrivacyPolicy';
-import { client } from './repositories/lib/apollo';
+import { client } from './repositories/client';
 
 const rootElement = document.getElementById('root');
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
