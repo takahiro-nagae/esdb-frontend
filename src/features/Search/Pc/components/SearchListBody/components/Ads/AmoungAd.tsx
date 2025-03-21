@@ -7,10 +7,10 @@ import { InfeedAd } from '@/adsense/InfeedAd';
 
 type AmongAdProps = {
   index: number;
-  disp_val: number | null;
+  isValue: boolean;
 };
 
-export const AmongAd: React.FC<AmongAdProps> = ({ index, disp_val }) => {
+export const AmongAd: React.FC<AmongAdProps> = ({ index, isValue }) => {
   if (displayAmongAd(index)) {
     // カードが描画されるためproduction以外はreturn null
     if (process.env.NODE_ENV !== 'production') {
@@ -19,7 +19,7 @@ export const AmongAd: React.FC<AmongAdProps> = ({ index, disp_val }) => {
 
     return (
       <TableRow className={styles.tableContent} key={index}>
-        <TableCell colSpan={disp_val ? 8 : 7} className={styles.tableData}>
+        <TableCell colSpan={isValue ? 8 : 7} className={styles.tableData}>
           <InfeedAd />
         </TableCell>
       </TableRow>

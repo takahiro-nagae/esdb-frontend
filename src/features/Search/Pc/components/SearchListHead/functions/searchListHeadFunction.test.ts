@@ -3,19 +3,19 @@ import { describe, expect, test } from 'vitest';
 import { isDisplayCell } from './searchListHeadFunction';
 
 describe('isDisplayCell', () => {
-  test('cellIdがdisp_valではなく、isDispValがfalseであればtrue', () => {
+  test('cellIdがvalueではなく、isDispValがfalseであればtrue', () => {
     expect(isDisplayCell('name', false)).toBe(true);
   });
 
-  test('cellIdがdisp_valで、isDispValがfalseであればfalse', () => {
+  test('cellIdがvalueで、isDispValがfalseであればfalse', () => {
     expect(isDisplayCell('value', false)).toBe(false);
   });
 
-  test('cellIdがdisp_valではなく、isDispValがtrueであればtrue', () => {
+  test('cellIdがvalueではなく、isDispValがtrueであればtrue', () => {
     expect(isDisplayCell('name', true)).toBe(true);
   });
 
-  test('cellIdがdisp_valで、isDispValがtrueであればtrue', () => {
+  test('cellIdがvalueで、isDispValがtrueであればtrue', () => {
     expect(isDisplayCell('value', true)).toBe(true);
   });
 });

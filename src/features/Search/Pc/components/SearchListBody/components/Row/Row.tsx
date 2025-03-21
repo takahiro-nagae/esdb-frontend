@@ -44,7 +44,7 @@ export const Row: React.FC<RowProps> = ({ enchant, index }) => {
 
   return (
     <>
-      <AmongAd index={index} disp_val={enchant.value} />
+      <AmongAd index={index} isValue={!!effectName} />
       <TableRow
         className={styles.tableContent}
         {...listeners}
