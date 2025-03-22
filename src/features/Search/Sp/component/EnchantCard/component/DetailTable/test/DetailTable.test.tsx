@@ -32,7 +32,7 @@ describe('DetailTable', () => {
     // 効果の確認
     expect(rows[0].children[0]).toHaveTextContent('効果');
     expect(rows[0].children[1]).toHaveTextContent(
-      ENCHANT_DATA_MOCK.effect.map(effect => effect?.name).join(''),
+      ENCHANT_DATA_MOCK.effects.map(effect => effect?.name).join(''),
     );
 
     // 入手先の確認

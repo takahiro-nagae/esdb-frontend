@@ -20,14 +20,11 @@ const convertEnchant = (
 ) => {
   const isInvalidTarget =
     'isInvalidTarget' in enchant ? enchant.isInvalidTarget : false;
-  const invalidTargetName =
-    'invalidTargetName' in enchant ? enchant.invalidTargetName : '';
   const isImp = 'isImp' in enchant ? enchant.isImp : true;
-  const impName = 'impName' in enchant ? enchant.impName : '';
-  const effect = enchant.effect
-    ? enchant.effect.map(e => ({ name: e?.name ?? '', type: e?.type ?? '' }))
+  const effects = enchant.effects
+    ? enchant.effects.map(e => ({ name: e?.name ?? '', type: e?.type ?? '' }))
     : [];
-  const route = enchant.route.filter(r => r !== null) as string[];
+  const routes = enchant.routes.filter(r => r !== null) as string[];
 
   const value = 'value' in enchant ? enchant.value : null;
   return {
@@ -35,15 +32,13 @@ const convertEnchant = (
     name: enchant.name,
     nameEn: enchant.nameEn,
     isInvalidTarget,
-    invalidTargetName,
     isImp,
-    impName,
-    effect,
+    effects,
     position: enchant.position,
     positionName: enchant.positionName,
     rank: enchant.rank,
     rankSeq: enchant.rankSeq,
-    route,
+    routes,
     target: enchant.target,
     value,
   };

@@ -3,7 +3,7 @@ import styles from './EffectList.module.css';
 import { Enchant } from '@/features/Search/state/useEnchantStore';
 
 type EffectListProps = {
-  effects: Enchant['effect'];
+  effects: Enchant['effects'];
 };
 
 export const EffectList: React.FC<EffectListProps> = ({ effects }) => {

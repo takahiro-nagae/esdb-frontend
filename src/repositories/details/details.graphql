@@ -23,8 +23,7 @@ query GetEnchantDetails(
       name
       nameEn
       isInvalidTarget
-      invalidTargetName
-      effect {
+      effects {
         name
         type
       }
@@ -32,7 +31,7 @@ query GetEnchantDetails(
       positionName
       rank
       rankSeq
-      route
+      routes
       target
       value
     }

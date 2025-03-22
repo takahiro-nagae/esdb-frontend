@@ -3,15 +3,14 @@ import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
 import { Dummy1, Dummy2 } from '../Search/Pc/data/SearchListMockData';
+import { Enchant } from '../Search/state/useEnchantStore';
 
 import * as stories from './Bookmark.stories';
-
-import { SaveEnchants } from '@/state/useBookmarkState';
 
 const { Default, Empty } = composeStories(stories);
 
 describe('Bookmark Component', () => {
-  const rowCheck = (row: HTMLElement, data: SaveEnchants[number]) => {
+  const rowCheck = (row: HTMLElement, data: Enchant) => {
     // エンチャント名
     expect(row.children[1]).toHaveTextContent(data.name);
     // 位置
@@ -23,10 +22,10 @@ describe('Bookmark Component', () => {
 
     // 効果
     expect(row.children[5]).toHaveTextContent(
-      data.effect.map(e => e?.name).join(','),
+      data.effects.map(e => e?.name).join(','),
     );
     // 入手先
-    expect(row.children[6]).toHaveTextContent(data.route.map(r => r).join(''));
+    expect(row.children[6]).toHaveTextContent(data.routes.map(r => r).join(''));
   };
 
   it('renders the Bookmark component', () => {

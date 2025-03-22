@@ -17,8 +17,8 @@ export const useSearchFilter = () => {
       const position: string = enchant.positionName;
       const rank: string = enchant.rank;
       const target: string = enchant.target;
-      const effect: string = enchant.effect.map(e => e?.name).join('');
-      const route: string = enchant.route.filter(r => r !== null).join('');
+      const effects: string = enchant.effects.map(e => e?.name).join('');
+      const routes: string = enchant.routes.filter(r => r !== null).join('');
 
       return (
         name.match(searchWord) ||
@@ -26,8 +26,8 @@ export const useSearchFilter = () => {
         position.match(searchWord) ||
         rank.match(searchWord) ||
         target.match(searchWord) ||
-        effect.match(searchWord) ||
-        route.match(searchWord)
+        effects.match(searchWord) ||
+        routes.match(searchWord)
       );
     });
 

@@ -93,12 +93,12 @@ export const Row: React.FC<RowProps> = ({ enchant, index }) => {
           <TableCell data-testid='dispVal'>{enchant.value}</TableCell>
         )}
         <TableCell>
-          <EffectList effects={enchant.effect} />
+          <EffectList effects={enchant.effects} />
         </TableCell>
         <TableCell>
-          <RouteList routeNames={enchant.route} omtCount={omtCount} />
+          <RouteList routeNames={enchant.routes} omtCount={omtCount} />
           <DetailModal
-            count={enchant.route.length - omtCount}
+            count={enchant.routes.length - omtCount}
             data-testid='routeModal'
             enchant={enchant}
           />

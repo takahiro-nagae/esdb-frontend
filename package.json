@@ -12,6 +12,7 @@
     "test": "vitest run",
     "test:ui": "vitest --ui",
     "format": "prettier --write ./src/**/*.{ts,tsx}",
+    "typecheck": "tsc --noEmit",
     "lint": "ESLINT_USE_FLAT_CONFIG=false eslint ./src --ext ts,tsx,js,jsx",
     "fix:lint": "ESLINT_USE_FLAT_CONFIG=false eslint ./src --ext ts,tsx,js,jsx --fix",
     "storybook": "storybook dev -p 6006",

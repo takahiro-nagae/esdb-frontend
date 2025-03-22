@@ -35,15 +35,15 @@ export const DetailTable: React.FC<DetailTableProps> = ({
             <TableRow>
               <TableCell className={styles.acoHead}>効果</TableCell>
               <TableCell className={styles.acoBody}>
-                <EffectList effects={enchant.effect} />
+                <EffectList effects={enchant.effects} />
               </TableCell>
             </TableRow>
             <TableRow>
               <TableCell className={styles.acoHead}>入手先</TableCell>
               <TableCell className={styles.acoBody}>
-                <RouteList routeNames={enchant.route} omtCount={omtCount} />
+                <RouteList routeNames={enchant.routes} omtCount={omtCount} />
                 <DetailModal
-                  count={enchant.route.length - omtCount}
+                  count={enchant.routes.length - omtCount}
                   data-testid='routeModal'
                   enchant={enchant}
                 />

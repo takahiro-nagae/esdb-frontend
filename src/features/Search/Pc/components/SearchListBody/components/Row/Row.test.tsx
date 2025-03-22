@@ -30,14 +30,14 @@ describe('SearchList Row', () => {
       // 値
       expect(row.children[5]).toHaveTextContent(data.value?.toString() || '');
       // 効果
-      expect(row.children[6]).toHaveTextContent(data.effect[0]?.name || '');
+      expect(row.children[6]).toHaveTextContent(data.effects[0]?.name || '');
       // 入手先
-      expect(row.children[7]).toHaveTextContent(data.route[0] || '');
+      expect(row.children[7]).toHaveTextContent(data.routes[0] || '');
     } else {
       // 効果
-      expect(row.children[5]).toHaveTextContent(data.effect[0]?.name || '');
+      expect(row.children[5]).toHaveTextContent(data.effects[0]?.name || '');
       // 入手先
-      expect(row.children[6]).toHaveTextContent(data.route[0] || '');
+      expect(row.children[6]).toHaveTextContent(data.routes[0] || '');
     }
   };
 

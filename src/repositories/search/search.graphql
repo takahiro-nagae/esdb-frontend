@@ -4,8 +4,7 @@ query SearchEnchant($keyword: String!) {
     name
     nameEn
     isImp
-    impName
-    effect {
+    effects {
       name
       type
     }
@@ -13,7 +12,7 @@ query SearchEnchant($keyword: String!) {
     positionName
     rank
     rankSeq
-    route
+    routes
     target
   }
 }

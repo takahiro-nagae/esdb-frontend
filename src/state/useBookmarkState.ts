@@ -41,7 +41,6 @@ const useStore = create<State & Action>()(
             state.enchants.push({
               ...enchant,
               isInvalidTarget: false,
-              invalidTargetName: '',
               value: 0,
             });
           }

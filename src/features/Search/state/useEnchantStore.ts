@@ -6,15 +6,13 @@ export type Enchant = {
   name: string;
   nameEn: string;
   isInvalidTarget: boolean;
-  invalidTargetName: string;
   isImp: boolean;
-  impName: string;
-  effect: { name: string; type: string }[];
+  effects: { name: string; type: string }[];
   position: string;
   positionName: string;
   rank: string;
   rankSeq: number;
-  route: string[];
+  routes: string[];
   target: string;
   value: number | null;
 };

@@ -4,15 +4,14 @@ query GetEnchantDetail($id: String!) {
     name
     nameEn
     isImp
-    impName
-    effect {
+    effects {
       name
       type
     }
     position
     positionName
     rank
-    route
+    routes
     target
   }
 }

@@ -41,20 +41,20 @@ describe('SearchListBody', () => {
       expect(row.children[5]).toHaveTextContent(data.value?.toString() || '');
       // 効果
       expect(row.children[6]).toHaveTextContent(
-        data.effect.map(e => e?.name).join(''),
+        data.effects.map(e => e?.name).join(''),
       );
       // 入手先
       expect(row.children[7]).toHaveTextContent(
-        data.route.map(r => r).join(''),
+        data.routes.map(r => r).join(''),
       );
     } else {
       // 効果
       expect(row.children[5]).toHaveTextContent(
-        data.effect.map(e => e?.name).join(','),
+        data.effects.map(e => e?.name).join(','),
       );
       // 入手先
       expect(row.children[6]).toHaveTextContent(
-        data.route.map(r => r).join(''),
+        data.routes.map(r => r).join(''),
       );
     }
   };

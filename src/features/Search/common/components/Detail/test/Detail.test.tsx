@@ -51,7 +51,7 @@ describe('Detail', () => {
     expect(effectRow.children[0].textContent).toBe('効果');
     // データのエンチャントの効果が意図した形式で表示されること
     expect(effectRow.children[1].textContent).toBe(
-      enchantData.effect.map(effect => effect?.name).join(''),
+      enchantData.effects.map(effect => effect?.name).join(''),
     );
 
     // 入手先
@@ -60,7 +60,7 @@ describe('Detail', () => {
     expect(routeRow.children[0].textContent).toBe('入手先');
     // データのエンチャントの入手先が意図した形式で表示されること
     expect(routeRow.children[1].textContent).toBe(
-      enchantData.route.map(route => route?.replaceAll('<br>', '')).join(''),
+      enchantData.routes.map(route => route?.replaceAll('<br>', '')).join(''),
     );
   });
 });

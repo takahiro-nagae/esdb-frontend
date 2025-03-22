@@ -25,24 +25,22 @@ export type DetailEffect = {
 
 export type DetailEnchantData = {
   __typename?: 'DetailEnchantData';
-  effect: Array<Maybe<DetailEffect>>;
+  effects: Array<Maybe<DetailEffect>>;
   id: Scalars['String']['output'];
-  impName: Scalars['String']['output'];
   isImp: Scalars['Boolean']['output'];
   name: Scalars['String']['output'];
   nameEn: Scalars['String']['output'];
   position: Scalars['String']['output'];
   positionName: Scalars['String']['output'];
   rank: Scalars['String']['output'];
-  route: Array<Maybe<Scalars['String']['output']>>;
+  routes: Array<Maybe<Scalars['String']['output']>>;
   target: Scalars['String']['output'];
 };
 
 export type DetailListEnchantData = {
   __typename?: 'DetailListEnchantData';
-  effect: Array<Maybe<DetailEffect>>;
+  effects: Array<Maybe<DetailEffect>>;
   id: Scalars['String']['output'];
-  invalidTargetName: Scalars['String']['output'];
   isInvalidTarget: Scalars['Boolean']['output'];
   name: Scalars['String']['output'];
   nameEn: Scalars['String']['output'];
@@ -50,7 +48,7 @@ export type DetailListEnchantData = {
   positionName: Scalars['String']['output'];
   rank: Scalars['String']['output'];
   rankSeq: Scalars['Int']['output'];
-  route: Array<Maybe<Scalars['String']['output']>>;
+  routes: Array<Maybe<Scalars['String']['output']>>;
   target: Scalars['String']['output'];
   value: Scalars['Int']['output'];
 };
@@ -145,9 +143,8 @@ export type SearchEffect = {
 
 export type SearchEnchantData = {
   __typename?: 'SearchEnchantData';
-  effect: Array<Maybe<SearchEffect>>;
+  effects: Array<Maybe<SearchEffect>>;
   id: Scalars['String']['output'];
-  impName: Scalars['String']['output'];
   isImp: Scalars['Boolean']['output'];
   name: Scalars['String']['output'];
   nameEn: Scalars['String']['output'];
@@ -155,7 +152,7 @@ export type SearchEnchantData = {
   positionName: Scalars['String']['output'];
   rank: Scalars['String']['output'];
   rankSeq: Scalars['Int']['output'];
-  route: Array<Maybe<Scalars['String']['output']>>;
+  routes: Array<Maybe<Scalars['String']['output']>>;
   target: Scalars['String']['output'];
 };
 
@@ -165,17 +162,12 @@ export type Target = {
   name: Scalars['String']['output'];
 };
 
-export type GetFormQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetFormQuery = { __typename?: 'Query', form?: { __typename?: 'Form', effects: Array<{ __typename?: 'Effect', id: string, name: string }>, ranks: Array<{ __typename?: 'Rank', rank: string }>, targets: Array<{ __typename?: 'Target', id: string, name: string }> } | null };
-
 export type GetEnchantDetailQueryVariables = Exact<{
   id: Scalars['String']['input'];
 }>;
 
 
-export type GetEnchantDetailQuery = { __typename?: 'Query', detail: { __typename?: 'DetailEnchantData', id: string, name: string, nameEn: string, isImp: boolean, impName: string, position: string, positionName: string, rank: string, route: Array<string | null>, target: string, effect: Array<{ __typename?: 'DetailEffect', name: string, type: string } | null> } };
+export type GetEnchantDetailQuery = { __typename?: 'Query', detail: { __typename?: 'DetailEnchantData', id: string, name: string, nameEn: string, isImp: boolean, position: string, positionName: string, rank: string, routes: Array<string | null>, target: string, effects: Array<{ __typename?: 'DetailEffect', name: string, type: string } | null> } };
 
 export type GetEnchantDetailsQueryVariables = Exact<{
   enchantName: Scalars['String']['input'];
@@ -189,7 +181,12 @@ export type GetEnchantDetailsQueryVariables = Exact<{
 }>;
 
 
-export type GetEnchantDetailsQuery = { __typename?: 'Query', details: { __typename?: 'Details', effectName: string, enchants: Array<{ __typename?: 'DetailListEnchantData', id: string, name: string, nameEn: string, isInvalidTarget: boolean, invalidTargetName: string, position: string, positionName: string, rank: string, rankSeq: number, route: Array<string | null>, target: string, value: number, effect: Array<{ __typename?: 'DetailEffect', name: string, type: string } | null> }> } };
+export type GetEnchantDetailsQuery = { __typename?: 'Query', details: { __typename?: 'Details', effectName: string, enchants: Array<{ __typename?: 'DetailListEnchantData', id: string, name: string, nameEn: string, isInvalidTarget: boolean, position: string, positionName: string, rank: string, rankSeq: number, routes: Array<string | null>, target: string, value: number, effects: Array<{ __typename?: 'DetailEffect', name: string, type: string } | null> }> } };
+
+export type GetFormQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetFormQuery = { __typename?: 'Query', form?: { __typename?: 'Form', effects: Array<{ __typename?: 'Effect', id: string, name: string }>, ranks: Array<{ __typename?: 'Rank', rank: string }>, targets: Array<{ __typename?: 'Target', id: string, name: string }> } | null };
 
 export type GetRankQueryVariables = Exact<{
   rank: Scalars['String']['input'];
@@ -203,58 +200,9 @@ export type SearchEnchantQueryVariables = Exact<{
 }>;
 
 
-export type SearchEnchantQuery = { __typename?: 'Query', search: Array<{ __typename?: 'SearchEnchantData', id: string, name: string, nameEn: string, isImp: boolean, impName: string, position: string, positionName: string, rank: string, rankSeq: number, route: Array<string | null>, target: string, effect: Array<{ __typename?: 'SearchEffect', name: string, type: string } | null> }> };
+export type SearchEnchantQuery = { __typename?: 'Query', search: Array<{ __typename?: 'SearchEnchantData', id: string, name: string, nameEn: string, isImp: boolean, position: string, positionName: string, rank: string, rankSeq: number, routes: Array<string | null>, target: string, effects: Array<{ __typename?: 'SearchEffect', name: string, type: string } | null> }> };
 
 
-export const GetFormDocument = gql`
-    query GetForm {
-  form {
-    effects {
-      id
-      name
-    }
-    ranks {
-      rank
-    }
-    targets {
-      id
-      name
-    }
-  }
-}
-    `;
-
-/**
- * __useGetFormQuery__
- *
- * To run a query within a React component, call `useGetFormQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetFormQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetFormQuery({
- *   variables: {
- *   },
- * });
- */
-export function useGetFormQuery(baseOptions?: Apollo.QueryHookOptions<GetFormQuery, GetFormQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetFormQuery, GetFormQueryVariables>(GetFormDocument, options);
-      }
-export function useGetFormLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetFormQuery, GetFormQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetFormQuery, GetFormQueryVariables>(GetFormDocument, options);
-        }
-export function useGetFormSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetFormQuery, GetFormQueryVariables>) {
-          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<GetFormQuery, GetFormQueryVariables>(GetFormDocument, options);
-        }
-export type GetFormQueryHookResult = ReturnType<typeof useGetFormQuery>;
-export type GetFormLazyQueryHookResult = ReturnType<typeof useGetFormLazyQuery>;
-export type GetFormSuspenseQueryHookResult = ReturnType<typeof useGetFormSuspenseQuery>;
-export type GetFormQueryResult = Apollo.QueryResult<GetFormQuery, GetFormQueryVariables>;
 export const GetEnchantDetailDocument = gql`
     query GetEnchantDetail($id: String!) {
   detail(id: $id) {
@@ -262,15 +210,14 @@ export const GetEnchantDetailDocument = gql`
     name
     nameEn
     isImp
-    impName
-    effect {
+    effects {
       name
       type
     }
     position
     positionName
     rank
-    route
+    routes
     target
   }
 }
@@ -325,8 +272,7 @@ export const GetEnchantDetailsDocument = gql`
       name
       nameEn
       isInvalidTarget
-      invalidTargetName
-      effect {
+      effects {
         name
         type
       }
@@ -334,7 +280,7 @@ export const GetEnchantDetailsDocument = gql`
       positionName
       rank
       rankSeq
-      route
+      routes
       target
       value
     }
@@ -382,6 +328,55 @@ export type GetEnchantDetailsQueryHookResult = ReturnType<typeof useGetEnchantDe
 export type GetEnchantDetailsLazyQueryHookResult = ReturnType<typeof useGetEnchantDetailsLazyQuery>;
 export type GetEnchantDetailsSuspenseQueryHookResult = ReturnType<typeof useGetEnchantDetailsSuspenseQuery>;
 export type GetEnchantDetailsQueryResult = Apollo.QueryResult<GetEnchantDetailsQuery, GetEnchantDetailsQueryVariables>;
+export const GetFormDocument = gql`
+    query GetForm {
+  form {
+    effects {
+      id
+      name
+    }
+    ranks {
+      rank
+    }
+    targets {
+      id
+      name
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetFormQuery__
+ *
+ * To run a query within a React component, call `useGetFormQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetFormQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetFormQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetFormQuery(baseOptions?: Apollo.QueryHookOptions<GetFormQuery, GetFormQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetFormQuery, GetFormQueryVariables>(GetFormDocument, options);
+      }
+export function useGetFormLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetFormQuery, GetFormQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetFormQuery, GetFormQueryVariables>(GetFormDocument, options);
+        }
+export function useGetFormSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetFormQuery, GetFormQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetFormQuery, GetFormQueryVariables>(GetFormDocument, options);
+        }
+export type GetFormQueryHookResult = ReturnType<typeof useGetFormQuery>;
+export type GetFormLazyQueryHookResult = ReturnType<typeof useGetFormLazyQuery>;
+export type GetFormSuspenseQueryHookResult = ReturnType<typeof useGetFormSuspenseQuery>;
+export type GetFormQueryResult = Apollo.QueryResult<GetFormQuery, GetFormQueryVariables>;
 export const GetRankDocument = gql`
     query GetRank($rank: String!) {
   rank(rank: $rank) {
@@ -439,8 +434,7 @@ export const SearchEnchantDocument = gql`
     name
     nameEn
     isImp
-    impName
-    effect {
+    effects {
       name
       type
     }
@@ -448,7 +442,7 @@ export const SearchEnchantDocument = gql`
     positionName
     rank
     rankSeq
-    route
+    routes
     target
   }
 }

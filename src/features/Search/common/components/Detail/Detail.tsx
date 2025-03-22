@@ -15,8 +15,8 @@ type DetailProps = {
 };
 
 export const Detail: React.FC<DetailProps> = ({ enchant }) => {
-  const effects = enchant.effect;
-  const routes = enchant.route;
+  const effects = enchant.effects;
+  const routes = enchant.routes;
   return (
     <>
       <Table size='small'>
