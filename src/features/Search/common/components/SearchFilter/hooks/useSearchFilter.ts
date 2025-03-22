@@ -38,7 +38,6 @@ export const useSearchFilter = () => {
     const timer = setTimeout(() => {
       const trimmedSearchWord = searchWord.trim();
       if (trimmedSearchWord === '') return;
-
       const filterList = filterEnchantData();
       setEnchants(filterList);
       if (isBrowser) {

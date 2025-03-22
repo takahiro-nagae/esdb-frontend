@@ -45,7 +45,7 @@ const convertEnchant = (
 };
 
 const useFreeSearch = () => {
-  const { setImmutableEnchants } = useEnchantStore();
+  const { setImmutableEnchants, setEffectName } = useEnchantStore();
   const { setPage } = usePcLayoutStore();
   const [inputParams] = useSearchParams();
 
@@ -55,6 +55,7 @@ const useFreeSearch = () => {
     },
     onCompleted: data => {
       setImmutableEnchants(data.search.map(convertEnchant));
+      setEffectName('');
       setPage(0);
     },
     onError: handleError,
@@ -86,9 +87,8 @@ const useDetailedSearch = () => {
         setOrder('desc');
       }
 
-      if (data.details.effectName) {
-        setEffectName(data.details.effectName);
-      }
+      setEffectName(data.details.effectName);
+
       setPage(0);
     },
     onError: handleError,

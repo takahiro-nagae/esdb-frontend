@@ -23,21 +23,16 @@ import { useBookmarkState } from '@/state/useBookmarkState';
 export const Bookmark: React.FC = () => {
   const [isRender, setIsRender] = useState(false);
   const { enchants, setEnchants } = useBookmarkState();
-  const { immutableEnchants, setImmutableEnchants } = useEnchantStore();
+  const { immutableEnchants, setImmutableEnchants, setEffectName } =
+    useEnchantStore();
 
   useEffect(() => {
     if (!isRender) {
       setImmutableEnchants(enchants);
+      setEffectName('');
       setIsRender(true);
     }
   }, [enchants]);
-
-  useEffect(() => {
-    return () => {
-      setIsRender(false);
-      setImmutableEnchants([]);
-    };
-  }, []);
 
   const onDragEnd = (e: DragEndEvent) => {
     if (e.over === null || e.active.id === e.over.id) return;

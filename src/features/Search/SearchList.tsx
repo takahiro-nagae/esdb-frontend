@@ -18,16 +18,8 @@ type SearchListProps = {
 };
 
 export const SearchList: React.FC<SearchListProps> = ({ isFreeSearch }) => {
-  const { immutableEnchants, setImmutableEnchants, setEffectName } =
-    useEnchantStore();
+  const { immutableEnchants } = useEnchantStore();
   const { loading } = useSearchList(isFreeSearch);
-
-  useEffect(() => {
-    return () => {
-      setEffectName('');
-      setImmutableEnchants([]);
-    };
-  }, [setEffectName, setImmutableEnchants]);
 
   return (
     <>
