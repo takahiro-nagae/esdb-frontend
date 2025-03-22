@@ -1,7 +1,6 @@
-import useSWR from 'swr';
+import { useState } from 'react';
 
-import { CACHE_TIME_24H } from '@/const/cache';
-import { fetchRankData } from '@/repositories/search/fetchRankData';
+import { useGetRankQuery } from '@/repositories/generated/graphql';
 
 type rankData = {
   rank: string;
@@ -9,37 +8,43 @@ type rankData = {
 };
 
 export const useRank = (rank: string) => {
-  const { data: rankData } = useSWR(['rank', rank], () => fetchRankData(rank), {
-    revalidateOnFocus: false,
-    revalidateOnReconnect: false,
-    dedupingInterval: CACHE_TIME_24H,
+  const [rankData, setRankData] = useState<rankData | null>(null);
+  const { loading } = useGetRankQuery({
+    variables: { rank },
+    onCompleted: data => {
+      if (!data.rank) {
+        setRankData(null);
+        return;
+      }
+
+      const rowData: rankData = {
+        rank: data.rank.rank,
+        data: [
+          {
+            label: '木曜日以外',
+            values: [
+              data.rank.normalRate,
+              data.rank.eliteRate,
+              data.rank.elfRate,
+              data.rank.ancientRate,
+              data.rank.rareHolyRate,
+            ],
+          },
+          {
+            label: '木曜日',
+            values: [
+              data.rank.normalRateThu,
+              data.rank.eliteRateThu,
+              data.rank.elfRateThu,
+              data.rank.ancientRateThu,
+              data.rank.rareHolyRateThu,
+            ],
+          },
+        ],
+      };
+      setRankData(rowData);
+    },
   });
 
-  const rowData: rankData = {
-    rank: rankData?.rank ?? '-',
-    data: [
-      {
-        label: '木曜日以外',
-        values: [
-          rankData?.normal_rate ?? '-',
-          rankData?.elite_rate ?? '-',
-          rankData?.elf_rate ?? '-',
-          rankData?.ancient_rate ?? '-',
-          rankData?.rare_holy_rate ?? '-',
-        ],
-      },
-      {
-        label: '木曜日',
-        values: [
-          rankData?.normal_rate_thu ?? '-',
-          rankData?.elite_rate_thu ?? '-',
-          rankData?.elf_rate_thu ?? '-',
-          rankData?.ancient_rate_thu ?? '-',
-          rankData?.rare_holy_rate_thu ?? '-',
-        ],
-      },
-    ],
-  };
-
-  return { rankData: rowData };
+  return { rankData, loading };
 };

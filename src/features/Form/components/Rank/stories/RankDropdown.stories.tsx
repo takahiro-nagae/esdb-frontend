@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { RankDropdown } from '../RankDropdown';
 
 import { useRankStore } from '@/features/Form/store/useRankStore';
-import { RANK_MOCK } from '@/repositories/form/__mocks__/fetchInitData';
+import { RANK_MOCK } from '@/repositories/form/__mocks__/result';
 
 export default {
   title: 'form/Rank/RankDropdown',

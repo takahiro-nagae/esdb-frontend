@@ -1,10 +1,10 @@
 import { Detail } from '../Detail';
 
 import { ModalContainer } from '@/common/ModalContainer';
-import { EnchantData } from '@/repositories/search/_types';
+import { Enchant } from '@/features/Search/state/useEnchantStore';
 
 type DetailModalProps = {
-  enchant: EnchantData;
+  enchant: Enchant;
   count: number;
 };
 

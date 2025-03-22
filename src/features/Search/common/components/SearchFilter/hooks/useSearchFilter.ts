@@ -1,7 +1,5 @@
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { isBrowser } from 'react-device-detect';
-
-import { positionName } from '../../../functions/positionFunction';
 
 import { useEnchantStore } from '@/features/Search/state/useEnchantStore';
 import { usePcLayoutStore } from '@/features/Search/state/usePcLayoutStore';
@@ -12,29 +10,24 @@ export const useSearchFilter = () => {
   const [searchWord, setSearchWord] = useState('');
 
   const filterEnchantData = useCallback(() => {
-    const trimmedSearchWord = searchWord.trim();
-    if (trimmedSearchWord === '') return immutableEnchants;
-
     const listData = immutableEnchants.filter(enchant => {
       // 検索用に各値を設定
-      const enchant_name: string = enchant.enchant_name;
-      const enchant_name_2: string = enchant.enchant_name_2;
-      const enchant_name_en: string = enchant.enchant_name_en;
-      const position: string = positionName(enchant.position_id);
+      const name: string = enchant.name;
+      const nameEn: string = enchant.nameEn;
+      const position: string = enchant.positionName;
       const rank: string = enchant.rank;
-      const target_name: string = enchant.target_name;
-      const effect_name: string = enchant.effect_name;
-      const route_name: string = enchant.route_name ? enchant.route_name : '';
+      const target: string = enchant.target;
+      const effects: string = enchant.effects.map(e => e?.name).join('');
+      const routes: string = enchant.routes.filter(r => r !== null).join('');
 
       return (
-        enchant_name.match(searchWord) ||
-        enchant_name_2.match(searchWord) ||
-        enchant_name_en.match(searchWord) ||
+        name.match(searchWord) ||
+        nameEn.match(searchWord) ||
         position.match(searchWord) ||
         rank.match(searchWord) ||
-        target_name.match(searchWord) ||
-        effect_name.match(searchWord) ||
-        route_name.match(searchWord)
+        target.match(searchWord) ||
+        effects.match(searchWord) ||
+        routes.match(searchWord)
       );
     });
 
@@ -43,6 +36,8 @@ export const useSearchFilter = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
+      const trimmedSearchWord = searchWord.trim();
+      if (trimmedSearchWord === '') return;
       const filterList = filterEnchantData();
       setEnchants(filterList);
       if (isBrowser) {

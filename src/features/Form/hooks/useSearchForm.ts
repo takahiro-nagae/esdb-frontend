@@ -1,5 +1,4 @@
 import { createSearchParams, useNavigate } from 'react-router-dom';
-import useSWR from 'swr';
 
 import { useEffectStore } from '../store/useEffectStore';
 import { useEnchantNameStore } from '../store/useEnchantNameStore';
@@ -7,10 +6,7 @@ import { usePositionStore } from '../store/usePositionStore';
 import { useRankStore } from '../store/useRankStore';
 import { useTargetStore } from '../store/useTargetStore';
 
-import { CACHE_TIME_24H } from '@/const/cache';
-import { fetchInitData } from '@/repositories/form/fetchInitData';
-
-const INIT_DATA_KEY = 'form/init-data';
+import { useGetFormQuery } from '@/repositories/generated/graphql';
 
 export const useSearchForm = () => {
   const { enchantName } = useEnchantNameStore();
@@ -27,21 +23,18 @@ export const useSearchForm = () => {
 
   const navigate = useNavigate();
 
-  useSWR(
-    INIT_DATA_KEY,
-    async () => {
-      const result = await fetchInitData();
-      setEffects(result.effect);
-      setRanks(result.rank);
-      setTargets(result.target);
-      return result;
+  const { loading } = useGetFormQuery({
+    onCompleted: data => {
+      if (data.form) {
+        setEffects(data.form.effects);
+        setRanks(data.form.ranks);
+        setTargets(data.form.targets);
+      }
     },
-    {
-      revalidateOnFocus: false,
-      revalidateOnReconnect: false,
-      dedupingInterval: CACHE_TIME_24H,
+    onError: error => {
+      console.error('Error fetching form data:', error);
     },
-  );
+  });
 
   const handleSubmit = () => {
     const params = new URLSearchParams();
@@ -61,6 +54,7 @@ export const useSearchForm = () => {
   };
 
   return {
+    loading,
     handleSubmit,
   };
 };

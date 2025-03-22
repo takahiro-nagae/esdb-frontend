@@ -1,17 +1,17 @@
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 
-import { FormEffectType } from '@/repositories/form/_types';
+import { Effect } from '@/repositories/generated/graphql';
 
 type State = {
-  effects: Array<FormEffectType>;
+  effects: Effect[];
   selected: string;
   value: string;
   range: string;
 };
 
 type Action = {
-  setEffects: (effects: Array<FormEffectType>) => void;
+  setEffects: (effects: Effect[]) => void;
   setSelected: (selected: string) => void;
   setValue: (value: string) => void;
   setRange: (range: string) => void;
@@ -23,7 +23,7 @@ const useStore = create<State & Action>()(
     selected: '',
     value: '',
     range: '0',
-    setEffects: (effects: Array<FormEffectType>) => set({ effects }),
+    setEffects: (effects: Effect[]) => set({ effects }),
     setSelected: (selected: string) => set({ selected }),
     setValue: (value: string) => set({ value }),
     setRange: (range: string) => set({ range }),

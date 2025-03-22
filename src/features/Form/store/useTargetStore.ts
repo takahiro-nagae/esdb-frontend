@@ -1,15 +1,15 @@
 import { immer } from 'zustand/middleware/immer';
 import { create } from 'zustand/react';
 
-import { FormTargetType } from '@/repositories/form/_types';
+import { Target } from '@/repositories/generated/graphql';
 
 type State = {
-  targets: Array<FormTargetType>;
+  targets: Target[];
   selected: string;
 };
 
 type Action = {
-  setTargets: (targets: Array<FormTargetType>) => void;
+  setTargets: (targets: Target[]) => void;
   setSelected: (selected: string) => void;
 };
 
@@ -17,7 +17,7 @@ const useStore = create<State & Action>()(
   immer(set => ({
     targets: [],
     selected: '',
-    setTargets: (targets: Array<FormTargetType>) => set({ targets }),
+    setTargets: (targets: Target[]) => set({ targets }),
     setSelected: (selected: string) => set({ selected }),
   })),
 );

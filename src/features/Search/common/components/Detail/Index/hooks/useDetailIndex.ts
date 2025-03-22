@@ -1,23 +1,38 @@
 import { useParams } from 'react-router-dom';
-import useSWR from 'swr';
 
-import { CACHE_TIME_24H } from '@/const/cache';
-import { EnchantDataDetail } from '@/repositories/search/_types';
-import { fetchEnchantDetailData } from '@/repositories/search/fetchEnchantDetailData';
+import { Enchant } from '@/features/Search/state/useEnchantStore';
+import { useGetEnchantDetailQuery } from '@/repositories/generated/graphql';
 
 export const useDetailIndex = () => {
   const params = useParams();
   const enchantIdParam = params.enchant_id ?? '';
 
-  const { data: enchantData, isLoading } = useSWR<EnchantDataDetail>(
-    ['enchantDetail', enchantIdParam],
-    () => fetchEnchantDetailData(enchantIdParam),
-    {
-      revalidateOnFocus: false,
-      revalidateOnReconnect: false,
-      dedupingInterval: CACHE_TIME_24H,
-    },
-  );
+  const { data, loading } = useGetEnchantDetailQuery({
+    variables: { id: enchantIdParam },
+  });
 
-  return { enchantData, isLoading };
+  if (!data?.detail) {
+    return { data: null, loading };
+  }
+
+  const enchant: Enchant = {
+    id: data.detail.id,
+    name: data.detail.name,
+    nameEn: data.detail.nameEn,
+    isInvalidTarget: false,
+    isImp: data.detail.isImp,
+    effects: data.detail.effects.map(effect => ({
+      name: effect?.name ?? '',
+      type: effect?.type ?? '',
+    })),
+    position: data.detail.position,
+    positionName: data.detail.positionName,
+    rank: data.detail.rank,
+    rankSeq: 0,
+    routes: data.detail.routes.filter(route => route !== null) as string[],
+    target: data.detail.target,
+    value: null,
+  };
+
+  return { data: enchant, loading };
 };

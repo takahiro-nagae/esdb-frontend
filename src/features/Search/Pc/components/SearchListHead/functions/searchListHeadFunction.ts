@@ -4,8 +4,8 @@ export const isDisplayCell = (cellId: string, isDispVal: boolean) => {
     return true;
   }
 
-  if (cellId === 'disp_val') {
-    // isDispValがfalseの場合はdisp_valのcellは表示しない
+  if (cellId === 'value') {
+    // isDispValがfalseの場合はvalueのcellは表示しない
     return false;
   } else {
     return true;

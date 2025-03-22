@@ -1,0 +1,17 @@
+query GetEnchantDetail($id: String!) {
+  detail(id: $id) {
+    id
+    name
+    nameEn
+    isImp
+    effects {
+      name
+      type
+    }
+    position
+    positionName
+    rank
+    routes
+    target
+  }
+}

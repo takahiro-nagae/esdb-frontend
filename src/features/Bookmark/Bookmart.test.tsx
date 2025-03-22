@@ -3,29 +3,29 @@ import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
 import { Dummy1, Dummy2 } from '../Search/Pc/data/SearchListMockData';
-import { positionName } from '../Search/common/functions/positionFunction';
+import { Enchant } from '../Search/state/useEnchantStore';
 
 import * as stories from './Bookmark.stories';
-
-import { EnchantData } from '@/repositories/search/_types';
 
 const { Default, Empty } = composeStories(stories);
 
 describe('Bookmark Component', () => {
-  const rowCheck = (row: HTMLElement, data: EnchantData) => {
+  const rowCheck = (row: HTMLElement, data: Enchant) => {
     // エンチャント名
-    expect(row.children[1]).toHaveTextContent(data.enchant_name);
+    expect(row.children[1]).toHaveTextContent(data.name);
     // 位置
-    expect(row.children[2]).toHaveTextContent(positionName(data.position_id));
+    expect(row.children[2]).toHaveTextContent(data.positionName);
     // ランク
     expect(row.children[3]).toHaveTextContent(data.rank);
     // 対象
-    expect(row.children[4]).toHaveTextContent(data.target_name);
+    expect(row.children[4]).toHaveTextContent(data.target);
 
     // 効果
-    expect(row.children[5]).toHaveTextContent(data.effect_name);
+    expect(row.children[5]).toHaveTextContent(
+      data.effects.map(e => e?.name).join(','),
+    );
     // 入手先
-    expect(row.children[6]).toHaveTextContent(data.route_name || '');
+    expect(row.children[6]).toHaveTextContent(data.routes.map(r => r).join(''));
   };
 
   it('renders the Bookmark component', () => {

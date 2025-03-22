@@ -5,10 +5,10 @@ import styles from './Ad.module.css';
 import { InfeedAd } from '@/adsense/InfeedAd';
 
 type LastInfeedAdProps = {
-  disp_val: number | undefined;
+  isValue: boolean;
 };
 
-export const LastInfeedAd: React.FC<LastInfeedAdProps> = ({ disp_val }) => {
+export const LastInfeedAd: React.FC<LastInfeedAdProps> = ({ isValue }) => {
   // カードが描画されるためproduction以外はreturn null
   if (process.env.VITE_APP_ENV !== 'prod') {
     return null;
@@ -16,7 +16,7 @@ export const LastInfeedAd: React.FC<LastInfeedAdProps> = ({ disp_val }) => {
 
   return (
     <TableRow className={styles.tableContent}>
-      <TableCell colSpan={disp_val ? 8 : 7} className={styles.tableData}>
+      <TableCell colSpan={isValue ? 8 : 7} className={styles.tableData}>
         <InfeedAd />
       </TableCell>
     </TableRow>

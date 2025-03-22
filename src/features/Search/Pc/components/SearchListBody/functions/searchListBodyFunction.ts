@@ -1,14 +1,14 @@
 import { Order } from '../../../types/Order';
 import { HeadData } from '../../SearchListHead/types/HeadData';
 
-import { EnchantData } from '@/repositories/search/_types';
+import { Enchant } from '@/features/Search/state/useEnchantStore';
 
 export const stableSort = (
-  array: Array<EnchantData>,
-  comparator: (a: EnchantData, b: EnchantData) => number,
+  array: Enchant[],
+  comparator: (a: Enchant, b: Enchant) => number,
 ) => {
   const stabilizedThis = array.map(
-    (el, index) => [el, index] as [EnchantData, number],
+    (el, index) => [el, index] as [Enchant, number],
   );
   stabilizedThis.sort((a, b) => comparator(a[0], b[0]));
 
@@ -17,21 +17,20 @@ export const stableSort = (
 
 export const getComparator = (order: Order, orderBy: keyof HeadData | '') => {
   return order === 'desc'
-    ? (a: EnchantData, b: EnchantData) => descendingComparator(a, b, orderBy)
-    : (a: EnchantData, b: EnchantData) => -descendingComparator(a, b, orderBy);
+    ? (a: Enchant, b: Enchant) => descendingComparator(a, b, orderBy)
+    : (a: Enchant, b: Enchant) => -descendingComparator(a, b, orderBy);
 };
 
 const descendingComparator = (
-  a: EnchantData,
-  b: EnchantData,
+  a: Enchant,
+  b: Enchant,
   orderBy: keyof HeadData | '',
 ) => {
   if (orderBy === '') {
     return 0;
   }
-
-  const aValue = a[orderBy];
-  const bValue = b[orderBy];
+  const aValue = a[orderBy as keyof typeof a];
+  const bValue = b[orderBy as keyof typeof b];
 
   if (aValue == null || bValue == null) {
     return 0;

@@ -3,7 +3,7 @@ import { Meta, StoryFn } from '@storybook/react';
 import { Rank } from '../Rank';
 
 import { useRankStore } from '@/features/Form/store/useRankStore';
-import { RANK_MOCK } from '@/repositories/form/__mocks__/fetchInitData';
+import { RANK_MOCK } from '@/repositories/form/__mocks__/result';
 
 export default {
   title: 'form/Rank/Rank',

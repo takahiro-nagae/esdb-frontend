@@ -26,8 +26,8 @@ export const EffectDropdown: React.FC = () => {
       >
         <MenuItem value=''>指定なし</MenuItem>
         {effects.map(effect => (
-          <MenuItem key={effect['effect_id']} value={effect['effect_id']}>
-            {effect['effect']}
+          <MenuItem key={effect.id} value={effect.id}>
+            {effect.name}
           </MenuItem>
         ))}
       </TextField>

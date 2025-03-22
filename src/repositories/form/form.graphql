@@ -1,0 +1,15 @@
+query GetForm {
+  form {
+    effects {
+      id
+      name
+    }
+    ranks {
+      rank
+    }
+    targets {
+      id
+      name
+    }
+  }
+}

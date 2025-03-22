@@ -7,7 +7,7 @@ import { Detail } from '../../../../../../common/components/Detail/Detail';
 import * as stories from '../stories/DetailTable.stories';
 import { OPEN_ROUTE_NAME } from '../stories/mockRouteName';
 
-import { ENCHANT_DATA_MOCK } from '@/repositories/search/__mocks__/fetchSearchEnchantData';
+import { ENCHANT_DATA_MOCK } from '@/repositories/search/__mocks__/result';
 
 vi.mock('../../../../../../common/components/Detail/Detail');
 describe('DetailTable', () => {
@@ -24,7 +24,7 @@ describe('DetailTable', () => {
 
     // 対象の確認
     expect(
-      screen.getByText('対象：' + ENCHANT_DATA_MOCK.target_name),
+      screen.getByText('対象：' + ENCHANT_DATA_MOCK.target),
     ).toBeInTheDocument();
 
     const rows = screen.getAllByRole('row');
@@ -32,13 +32,13 @@ describe('DetailTable', () => {
     // 効果の確認
     expect(rows[0].children[0]).toHaveTextContent('効果');
     expect(rows[0].children[1]).toHaveTextContent(
-      ENCHANT_DATA_MOCK.effect_name.replaceAll('@', ''),
+      ENCHANT_DATA_MOCK.effects.map(effect => effect?.name).join(''),
     );
 
     // 入手先の確認
     expect(rows[1].children[0]).toHaveTextContent('入手先');
     const omtCount = 3;
-    const routeNames = OPEN_ROUTE_NAME.split('@');
+    const routeNames = OPEN_ROUTE_NAME;
     let dispRouteNames = '';
     routeNames.forEach((routeName, i) => {
       if (i < omtCount) {

@@ -14,24 +14,28 @@ export default {
   decorators: [
     (Story, context) => {
       const { setOrderBy, setOrder } = usePcLayoutStore();
-      const { setImmutableEnchants } = useEnchantStore();
+      const { setImmutableEnchants, setEffectName } = useEnchantStore();
       useEffect(() => {
         if (context.name === 'Default') {
-          setOrderBy('enchant_id');
+          setOrderBy('id');
           setOrder('asc');
           setImmutableEnchants([Dummy1NotDispVal]);
+          setEffectName('');
         } else if (context.name === 'Enchant Name Asc') {
-          setOrderBy('enchant_name');
+          setOrderBy('name');
           setOrder('asc');
           setImmutableEnchants([Dummy1NotDispVal]);
+          setEffectName('');
         } else if (context.name === 'Enchant Name Desc') {
-          setOrderBy('enchant_name');
+          setOrderBy('name');
           setOrder('desc');
           setImmutableEnchants([Dummy1NotDispVal]);
+          setEffectName('');
         } else if (context.name === 'Desc Val') {
-          setOrderBy('disp_val');
+          setOrderBy('value');
           setOrder('asc');
           setImmutableEnchants([Dummy1]);
+          setEffectName('test');
         }
       }, [context.name, setOrderBy, setOrder]);
 
