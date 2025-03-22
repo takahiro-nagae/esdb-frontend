@@ -56,7 +56,7 @@ const useStore = create<State & Action>()(
           state.enchants = [];
         }),
     })),
-    { name: 'favoriteEnchants' },
+    { name: 'favoriteEnchantsV2' },
   ),
 );
 
