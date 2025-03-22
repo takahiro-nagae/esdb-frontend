@@ -12,7 +12,6 @@ import {
   otherItemData,
 } from '../stories/EffectListStoryData';
 
-
 const {
   NoItems,
   IncreaseItem,
@@ -33,31 +32,31 @@ describe('EffectList', () => {
   it('増加効果の時', () => {
     render(<IncreaseItem />);
     const screenEffect = screen.getByTestId(testId);
-    expect(screenEffect.textContent).toBe(increaseItemData.effectName);
+    expect(screenEffect.textContent).toBe(increaseItemData.name);
   });
 
   it('減少効果の時', () => {
     render(<DecreaseItem />);
     const screenEffect = screen.getByTestId(testId);
-    expect(screenEffect.textContent).toBe(decreaseItemData.effectName);
+    expect(screenEffect.textContent).toBe(decreaseItemData.name);
   });
 
   it('専用効果の時', () => {
     render(<DesignatedItem />);
     const screenEffect = screen.getByTestId(testId);
-    expect(screenEffect.textContent).toBe(designatedItemData.effectName);
+    expect(screenEffect.textContent).toBe(designatedItemData.name);
   });
 
   it('その他効果の時', () => {
     render(<OthersItem />);
     const screenEffect = screen.getByTestId(testId);
-    expect(screenEffect.textContent).toBe(otherItemData.effectName);
+    expect(screenEffect.textContent).toBe(otherItemData.name);
   });
 
   it('複数の値が渡ってきた時', async () => {
     render(<AllItems />);
 
-    const effectNameArray = allItemsData.effectName.split('@');
+    const effectNameArray = allItemsData.effects.map(effect => effect.name);
 
     screen.getAllByTestId(testId).map((screenEffect, index) => {
       expect(screenEffect.textContent).toBe(effectNameArray[index]);

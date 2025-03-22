@@ -1,3 +1,4 @@
+import { ApolloProvider } from '@apollo/client';
 import { ThemeProvider } from '@mui/material';
 import React from 'react';
 import { BrowserView, MobileView } from 'react-device-detect';
@@ -18,6 +19,7 @@ import { RankIndex } from './features/Search/common/components/Rank/Index/RankIn
 import { About } from './features/Static/About';
 import { AppHistory } from './features/Static/AppHistory';
 import { PrivacyPolicy } from './features/Static/PrivacyPolicy';
+import { client } from './repositories/client';
 
 const rootElement = document.getElementById('root');
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -26,28 +28,33 @@ const root = createRoot(rootElement);
 
 root.render(
   <React.StrictMode>
-    <ThemeProvider theme={Theme}>
-      <DefaultGlobalStyles />
-      <Router>
-        <BrowserView>
-          <PcHeader />
-        </BrowserView>
-        <MobileView>
-          <MobileHeader />
-        </MobileView>
-        <Routes>
-          <Route element={<Home />} path='/' />
-          <Route element={<AppHistory />} path='history' />
-          <Route element={<About />} path='about' />
-          <Route element={<PrivacyPolicy />} path='privacyPolicy' />
-          <Route element={<SearchList isFreeSearch={false} />} path='detail' />
-          <Route element={<SearchList isFreeSearch={true} />} path='search' />
-          <Route element={<RankIndex />} path='rank/:rank' />
-          <Route element={<DetailIndex />} path='detail/:enchant_id' />
-          <Route element={<Bookmark />} path='bookmark' />
-        </Routes>
-        <Footer />
-      </Router>
-    </ThemeProvider>
+    <ApolloProvider client={client}>
+      <ThemeProvider theme={Theme}>
+        <DefaultGlobalStyles />
+        <Router>
+          <BrowserView>
+            <PcHeader />
+          </BrowserView>
+          <MobileView>
+            <MobileHeader />
+          </MobileView>
+          <Routes>
+            <Route element={<Home />} path='/' />
+            <Route element={<AppHistory />} path='history' />
+            <Route element={<About />} path='about' />
+            <Route element={<PrivacyPolicy />} path='privacyPolicy' />
+            <Route
+              element={<SearchList isFreeSearch={false} />}
+              path='detail'
+            />
+            <Route element={<SearchList isFreeSearch={true} />} path='search' />
+            <Route element={<RankIndex />} path='rank/:rank' />
+            <Route element={<DetailIndex />} path='detail/:enchant_id' />
+            <Route element={<Bookmark />} path='bookmark' />
+          </Routes>
+          <Footer />
+        </Router>
+      </ThemeProvider>
+    </ApolloProvider>
   </React.StrictMode>,
 );

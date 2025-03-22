@@ -23,29 +23,27 @@ import { useBookmarkState } from '@/state/useBookmarkState';
 export const Bookmark: React.FC = () => {
   const [isRender, setIsRender] = useState(false);
   const { enchants, setEnchants } = useBookmarkState();
-  const { immutableEnchants, setImmutableEnchants } = useEnchantStore();
+  const { immutableEnchants, setImmutableEnchants, setEffectName } =
+    useEnchantStore();
 
   useEffect(() => {
     if (!isRender) {
       setImmutableEnchants(enchants);
+      setEffectName('');
       setIsRender(true);
     }
   }, [enchants]);
-
-  useEffect(() => {
-    return () => setIsRender(false);
-  }, []);
 
   const onDragEnd = (e: DragEndEvent) => {
     if (e.over === null || e.active.id === e.over.id) return;
 
     const oldId = e.active.id;
     const oldIndex = immutableEnchants.findIndex(
-      enchant => enchant.enchant_id === oldId,
+      enchant => enchant.id === oldId,
     );
     const newId = e.over.id;
     const newIndex = immutableEnchants.findIndex(
-      enchant => enchant.enchant_id === newId,
+      enchant => enchant.id === newId,
     );
 
     const newEnchants = [...immutableEnchants];
@@ -78,7 +76,7 @@ export const Bookmark: React.FC = () => {
               <BrowserView className={styles.pcContainer}>
                 <DndContext onDragEnd={onDragEnd} sensors={sensors}>
                   <SortableContext
-                    items={immutableEnchants.map(enchant => enchant.enchant_id)}
+                    items={immutableEnchants.map(enchant => enchant.id)}
                   >
                     <SearchListContainer />
                   </SortableContext>

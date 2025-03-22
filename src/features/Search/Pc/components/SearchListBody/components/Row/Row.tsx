@@ -17,26 +17,25 @@ import { InvalidText } from '@/features/Search/common/components/ImvalidText/Inv
 import { RankModal } from '@/features/Search/common/components/Rank/Modal/RankModal';
 import { RouteList } from '@/features/Search/common/components/RouteList/RouteList';
 import {
-  createEnchantName,
-  createEnchantNameEn,
-} from '@/features/Search/common/functions/enchantNameFunction';
-import { positionName } from '@/features/Search/common/functions/positionFunction';
-import { EnchantData } from '@/repositories/search/_types';
+  Enchant,
+  useEnchantStore,
+} from '@/features/Search/state/useEnchantStore';
 import { isFavorite, useBookmarkState } from '@/state/useBookmarkState';
 
 type RowProps = {
-  enchant: EnchantData;
+  enchant: Enchant;
   index: number;
 };
 
 export const Row: React.FC<RowProps> = ({ enchant, index }) => {
   const omtCount = 3;
-  const routeNames = enchant.route_name ? enchant.route_name.split('@') : [];
   const { pushEnchant, removeEnchant } = useBookmarkState();
+
+  const { effectName } = useEnchantStore();
 
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({
-      id: enchant.enchant_id,
+      id: enchant.id,
     });
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -45,7 +44,7 @@ export const Row: React.FC<RowProps> = ({ enchant, index }) => {
 
   return (
     <>
-      <AmongAd index={index} disp_val={enchant.disp_val} />
+      <AmongAd index={index} isValue={!!effectName} />
       <TableRow
         className={styles.tableContent}
         {...listeners}
@@ -55,8 +54,8 @@ export const Row: React.FC<RowProps> = ({ enchant, index }) => {
         data-testid='enchantRow'
       >
         <TableCell>
-          {isFavorite(enchant.enchant_id) ? (
-            <IconButton onClick={() => removeEnchant(enchant.enchant_id)}>
+          {isFavorite(enchant.id) ? (
+            <IconButton onClick={() => removeEnchant(enchant.id)}>
               <BookmarkIcon color='info' />
             </IconButton>
           ) : (
@@ -66,45 +65,40 @@ export const Row: React.FC<RowProps> = ({ enchant, index }) => {
           )}
         </TableCell>
         <TableCell>
-          <span data-testid='enchantName'>
-            {createEnchantName(enchant.enchant_name, enchant.enchant_name_2)}
-          </span>
-          <InvalidText invalidTargetFlg={enchant.invalid_target_flg} />
-          <ImpText impFlg={enchant.imp_flg} />
+          <span data-testid='enchantName'>{enchant.name}</span>
+          <InvalidText isInvalidTarget={enchant.isInvalidTarget} />
+          <ImpText isImp={enchant.isImp} />
           <br />
           <small
             className={enchantNameStyles.subTitleStyle}
             data-testid='enchantNameEn'
           >
-            {createEnchantNameEn(enchant.enchant_name_en, enchant.position_id)}
+            {enchant.nameEn}
           </small>
         </TableCell>
         <TableCell
           className={
-            enchant.position_id === '1'
+            enchant.position === '1'
               ? positionStyles.prefix
               : positionStyles.suffix
           }
         >
-          {positionName(enchant.position_id)}
+          {enchant.positionName}
         </TableCell>
         <TableCell>
           <RankModal rank={enchant.rank} />
         </TableCell>
-        <TableCell>{enchant.target_name}</TableCell>
-        {enchant.disp_val && (
-          <TableCell data-testid='dispVal'>{enchant.disp_val}</TableCell>
+        <TableCell>{enchant.target}</TableCell>
+        {effectName && (
+          <TableCell data-testid='dispVal'>{enchant.value}</TableCell>
         )}
         <TableCell>
-          <EffectList
-            effectKbn={enchant.effect_kbn}
-            effectName={enchant.effect_name}
-          />
+          <EffectList effects={enchant.effects} />
         </TableCell>
         <TableCell>
-          <RouteList routeNames={routeNames} omtCount={omtCount} />
+          <RouteList routeNames={enchant.routes} omtCount={omtCount} />
           <DetailModal
-            count={routeNames.length - omtCount}
+            count={enchant.routes.length - omtCount}
             data-testid='routeModal'
             enchant={enchant}
           />

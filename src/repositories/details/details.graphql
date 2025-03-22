@@ -1,0 +1,40 @@
+query GetEnchantDetails(
+  $enchantName: String!
+  $effect: String!
+  $effectVal: String!
+  $rangeVal: String!
+  $position: String!
+  $rank: String!
+  $rankRange: String!
+  $target: String!
+) {
+  details(
+    enchantName: $enchantName
+    effect: $effect
+    effectVal: $effectVal
+    rangeVal: $rangeVal
+    position: $position
+    rank: $rank
+    rankRange: $rankRange
+    target: $target
+  ) {
+    enchants {
+      id
+      name
+      nameEn
+      isInvalidTarget
+      effects {
+        name
+        type
+      }
+      position
+      positionName
+      rank
+      rankSeq
+      routes
+      target
+      value
+    }
+    effectName
+  }
+}

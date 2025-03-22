@@ -1,11 +1,13 @@
 import { Grid } from '@mui/material';
 import Box from '@mui/material/Box';
+import { useEffect } from 'react';
 import { BrowserView, MobileView } from 'react-device-detect';
+
+import { Loading } from '../../common/Loading/Loading';
 
 import { SearchListContainer } from './Pc/SearchListContainer';
 import styles from './SearchList.module.css';
 import { SpSearchContainer } from './Sp/SpSearchContainer';
-import { Loading } from './common/components/Loading/Loading';
 import { SearchFilter } from './common/components/SearchFilter/SearchFilter';
 import { SearchResultHead } from './components/SearchResult/SearechResultHead';
 import { useSearchList } from './hooks/useSearchList';
@@ -16,11 +18,12 @@ type SearchListProps = {
 };
 
 export const SearchList: React.FC<SearchListProps> = ({ isFreeSearch }) => {
-  const { isLoading } = useSearchList(isFreeSearch);
   const { immutableEnchants } = useEnchantStore();
+  const { loading } = useSearchList(isFreeSearch);
+
   return (
     <>
-      <Loading isLoading={isLoading} />
+      <Loading isLoading={loading} />
       <MobileView className={styles.mobileHeader}>
         <SearchFilter xs={12} />
       </MobileView>

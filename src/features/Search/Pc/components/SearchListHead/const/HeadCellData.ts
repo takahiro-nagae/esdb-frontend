@@ -10,11 +10,11 @@ type HeadCell = {
  */
 export const HeadCellData: ReadonlyArray<HeadCell> = [
   {
-    id: 'enchant_name',
+    id: 'name',
     label: 'エンチャント名',
   },
   {
-    id: 'position_id',
+    id: 'position',
     label: ' 位置',
   },
   {
@@ -22,11 +22,11 @@ export const HeadCellData: ReadonlyArray<HeadCell> = [
     label: 'ランク',
   },
   {
-    id: 'target_name',
+    id: 'target',
     label: '対象',
   },
   {
-    id: 'disp_val',
+    id: 'value',
     label: '値',
   },
 ] as const;

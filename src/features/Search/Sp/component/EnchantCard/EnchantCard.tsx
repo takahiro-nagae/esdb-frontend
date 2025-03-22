@@ -9,11 +9,6 @@ import { useState } from 'react';
 import { ImpText } from '../../../common/components/ImpText/ImpText';
 import { InvalidText } from '../../../common/components/ImvalidText/InvalidText';
 import { RankModal } from '../../../common/components/Rank/Modal/RankModal';
-import {
-  createEnchantName,
-  createEnchantNameEn,
-} from '../../../common/functions/enchantNameFunction';
-import { positionName } from '../../../common/functions/positionFunction';
 import enchantNameStyles from '../../../common/styles/EnchantName.module.css';
 import positionStyles from '../../../common/styles/Position.module.css';
 
@@ -21,24 +16,28 @@ import styles from './EnchantCard.module.css';
 import { AccordionButton } from './component/AccordionButton/AccordionButton';
 import { DetailTable } from './component/DetailTable/DetailTable';
 
-import { EnchantData } from '@/repositories/search/_types';
+import {
+  Enchant,
+  useEnchantStore,
+} from '@/features/Search/state/useEnchantStore';
 import { isFavorite, useBookmarkState } from '@/state/useBookmarkState';
 
 type EnchantCardProps = {
-  enchant: EnchantData;
+  enchant: Enchant;
 };
 
 export const EnchantCard: React.FC<EnchantCardProps> = ({ enchant }) => {
   const [open, setOpen] = useState(false);
   const { pushEnchant, removeEnchant } = useBookmarkState();
+  const { effectName } = useEnchantStore();
 
   return (
     <Card className={styles.enchantCard}>
       <Box className={styles.cardBox}>
-        {isFavorite(enchant.enchant_id) ? (
-          <IconButton onClick={() => removeEnchant(enchant.enchant_id)}>
+        {isFavorite(enchant.id) ? (
+          <IconButton onClick={() => removeEnchant(enchant.id)}>
             <BookmarkIcon
-              onClick={() => removeEnchant(enchant.enchant_id)}
+              onClick={() => removeEnchant(enchant.id)}
               color='info'
             />
           </IconButton>
@@ -49,29 +48,27 @@ export const EnchantCard: React.FC<EnchantCardProps> = ({ enchant }) => {
         )}
         <Box>
           <Typography className={styles.title}>
-            <span data-testid='enchantName'>
-              {createEnchantName(enchant.enchant_name, enchant.enchant_name_2)}
-            </span>
-            <InvalidText invalidTargetFlg={enchant.invalid_target_flg} />
-            <ImpText impFlg={enchant.imp_flg} />
+            <span data-testid='enchantName'>{enchant.name}</span>
+            <InvalidText isInvalidTarget={enchant.isInvalidTarget} />
+            <ImpText isImp={enchant.isImp} />
           </Typography>
           <Typography
             className={enchantNameStyles.subTitleStyle}
             data-testid='enchantNameEn'
           >
-            {createEnchantNameEn(enchant.enchant_name_en, enchant.position_id)}
+            {enchant.nameEn}
           </Typography>
           <div>
             <Typography
               className={
-                enchant.position_id === '1'
+                enchant.position === '1'
                   ? positionStyles.prefix
                   : positionStyles.suffix
               }
               data-testid='position'
               style={{ display: 'inline' }}
             >
-              {positionName(enchant.position_id)}
+              {enchant.positionName}
             </Typography>
             <Typography className={styles.inline}>
               <small>ランク</small>
@@ -80,9 +77,9 @@ export const EnchantCard: React.FC<EnchantCardProps> = ({ enchant }) => {
           </div>
         </Box>
         <Box>
-          {enchant.disp_val && (
+          {effectName && (
             <p className={styles.value} data-testid='dispVal'>
-              {enchant.disp_val}
+              {enchant.value}
             </p>
           )}
         </Box>

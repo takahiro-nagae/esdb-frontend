@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { Loading } from '../Loading';
 
 export default {
-  title: 'search/common/component/Loading',
+  title: 'common/component/Loading',
   component: Loading,
 } as Meta<typeof Loading>;
 

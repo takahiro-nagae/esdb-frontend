@@ -20,44 +20,56 @@ export default {
   decorators: [
     (Story, context) => {
       const { setOrder, setOrderBy, setPage } = usePcLayoutStore();
-      const { setImmutableEnchants } = useEnchantStore();
+      const { setImmutableEnchants, setEffectName } = useEnchantStore();
       useEffect(() => {
         switch (context.name) {
           case 'Enchant Name Asc':
           case 'Disp Row Per Page 1':
             setOrder('asc');
-            setOrderBy('enchant_name');
+            setOrderBy('name');
             setImmutableEnchants([Dummy1, Dummy2]);
             setPage(0);
+            setEffectName('test');
             break;
           case 'Enchant Name Desc':
             setOrder('desc');
-            setOrderBy('enchant_name');
+            setOrderBy('name');
             setImmutableEnchants([Dummy1, Dummy2]);
             setPage(0);
+            setEffectName('test');
             break;
           case 'Not Val Enchant Name Asc':
             setOrder('asc');
-            setOrderBy('enchant_name');
+            setOrderBy('name');
             setImmutableEnchants([Dummy1NotDispVal, Dummy2NotDispVal]);
             setPage(0);
+            setEffectName('');
             break;
           case 'Same Sort Value':
             setOrder('asc');
             setOrderBy('rank');
             setImmutableEnchants([Dummy1, Dummy2]);
             setPage(0);
+            setEffectName('test');
             break;
           case 'Disp Row Per Page 2':
             setOrder('asc');
-            setOrderBy('enchant_name');
+            setOrderBy('name');
             setImmutableEnchants([Dummy1, Dummy2]);
             setPage(1);
+            setEffectName('test');
             break;
           default:
             break;
         }
-      }, [context.name]);
+      }, [
+        context.name,
+        setOrder,
+        setOrderBy,
+        setPage,
+        setImmutableEnchants,
+        setEffectName,
+      ]);
 
       return <Story />;
     },

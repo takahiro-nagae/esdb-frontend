@@ -9,12 +9,12 @@ export default {
 
 export const NotInvalid: StoryObj<typeof InvalidText> = {
   args: {
-    invalidTargetFlg: '0',
+    isInvalidTarget: false,
   },
 };
 
 export const Invalid: StoryObj<typeof InvalidText> = {
   args: {
-    invalidTargetFlg: '1',
+    isInvalidTarget: true,
   },
 };

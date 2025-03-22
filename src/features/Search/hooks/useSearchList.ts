@@ -1,49 +1,101 @@
 import { useSearchParams } from 'react-router-dom';
-import useSWR from 'swr';
 
-import { CACHE_TIME_24H } from '@/const/cache';
 import { useEnchantStore } from '@/features/Search/state/useEnchantStore';
 import { usePcLayoutStore } from '@/features/Search/state/usePcLayoutStore';
-import { fetchSearchEnchantData } from '@/repositories/search/fetchSearchEnchantData';
+import {
+  GetEnchantDetailsQuery,
+  SearchEnchantQuery,
+  useGetEnchantDetailsQuery,
+  useSearchEnchantQuery,
+} from '@/repositories/generated/graphql';
 
-export const useSearchList = (isFreeSearch: boolean) => {
+const handleError = (error: unknown) => {
+  console.error('Error fetching data:', error);
+};
+
+const convertEnchant = (
+  enchant:
+    | SearchEnchantQuery['search'][number]
+    | GetEnchantDetailsQuery['details']['enchants'][number],
+) => {
+  const isInvalidTarget =
+    'isInvalidTarget' in enchant ? enchant.isInvalidTarget : false;
+  const isImp = 'isImp' in enchant ? enchant.isImp : true;
+  const effects = enchant.effects
+    ? enchant.effects.map(e => ({ name: e?.name ?? '', type: e?.type ?? '' }))
+    : [];
+  const routes = enchant.routes.filter(r => r !== null) as string[];
+
+  const value = 'value' in enchant ? enchant.value : null;
+  return {
+    id: enchant.id,
+    name: enchant.name,
+    nameEn: enchant.nameEn,
+    isInvalidTarget,
+    isImp,
+    effects,
+    position: enchant.position,
+    positionName: enchant.positionName,
+    rank: enchant.rank,
+    rankSeq: enchant.rankSeq,
+    routes,
+    target: enchant.target,
+    value,
+  };
+};
+
+const useFreeSearch = () => {
+  const { setImmutableEnchants, setEffectName } = useEnchantStore();
+  const { setPage } = usePcLayoutStore();
+  const [inputParams] = useSearchParams();
+
+  return useSearchEnchantQuery({
+    variables: {
+      keyword: inputParams.get('search') ?? '',
+    },
+    onCompleted: data => {
+      setImmutableEnchants(data.search.map(convertEnchant));
+      setEffectName('');
+      setPage(0);
+    },
+    onError: handleError,
+  });
+};
+
+const useDetailedSearch = () => {
   const { setImmutableEnchants, setEffectName } = useEnchantStore();
   const { setOrderBy, setOrder, setPage } = usePcLayoutStore();
   const [inputParams] = useSearchParams();
-  const path = isFreeSearch ? '/search' : '/detail';
 
-  const { isLoading } = useSWR(
-    [path, inputParams.toString()],
-    async ([currentPath, params]) => {
-      const searchParams = new URLSearchParams(params);
-      return await fetchSearchEnchantData(currentPath, searchParams);
+  return useGetEnchantDetailsQuery({
+    variables: {
+      enchantName: inputParams.get('enchantName') ?? '',
+      effect: inputParams.get('effect') ?? '',
+      effectVal: inputParams.get('effectVal') ?? '',
+      rangeVal: inputParams.get('range') ?? '',
+      position: inputParams.get('position') ?? '',
+      rank: inputParams.get('rank') ?? '',
+      rankRange: inputParams.get('rankRange') ?? '',
+      target: inputParams.get('target') ?? '',
     },
-    {
-      onSuccess: data => {
-        const enchantList = data.enchant_list;
-        setImmutableEnchants(enchantList);
+    onCompleted: data => {
+      const enchants = data.details.enchants;
+      setImmutableEnchants(enchants.map(convertEnchant));
 
-        const dataLength = enchantList.length;
-        if (dataLength > 0 && enchantList[0].disp_val) {
-          setOrderBy('disp_val');
-          setOrder('desc');
-        }
+      if (enchants.length > 0 && enchants[0].value) {
+        setOrderBy('value');
+        setOrder('desc');
+      }
 
-        if (data.effect_name) {
-          setEffectName(data.effect_name.effect);
-        }
-        setPage(0);
-      },
-      onError: error => {
-        console.error('Error fetching data:', error);
-      },
-      revalidateOnFocus: false,
-      revalidateOnReconnect: false,
-      dedupingInterval: CACHE_TIME_24H,
+      setEffectName(data.details.effectName);
+
+      setPage(0);
     },
-  );
+    onError: handleError,
+  });
+};
 
-  return {
-    isLoading,
-  };
+export const useSearchList = (isFreeSearch: boolean) => {
+  const { loading } = isFreeSearch ? useFreeSearch() : useDetailedSearch();
+  return { loading };
 };

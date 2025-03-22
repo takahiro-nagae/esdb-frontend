@@ -1,21 +1,13 @@
 import styles from './InvalidText.module.css';
 
 type InvalidTextProps = {
-  invalidTargetFlg: string | number | undefined;
+  isInvalidTarget: boolean;
 };
 
 export const InvalidText: React.FC<InvalidTextProps> = ({
-  invalidTargetFlg,
+  isInvalidTarget,
 }) => {
-  if (!invalidTargetFlg) {
-    return null;
-  }
-
   return (
-    <>
-      {invalidTargetFlg === '1' && (
-        <small className={styles.invalid}>貼付不可</small>
-      )}
-    </>
+    <>{isInvalidTarget && <small className={styles.invalid}>貼付不可</small>}</>
   );
 };

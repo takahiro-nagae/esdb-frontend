@@ -2,15 +2,15 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
 
-import { EnchantData } from '@/repositories/search/_types';
+import { Enchant } from '@/features/Search/state/useEnchantStore';
 
 type State = {
-  enchants: EnchantData[];
+  enchants: Enchant[];
 };
 
 type Action = {
-  setEnchants: (enchants: EnchantData[]) => void;
-  pushEnchant: (enchant: EnchantData) => void;
+  setEnchants: (enchants: Enchant[]) => void;
+  pushEnchant: (enchant: Enchant) => void;
   removeEnchant: (enchantId: string) => void;
   removeAllEnchants: () => void;
 };
@@ -18,32 +18,37 @@ type Action = {
 export const isFavorite = (enchantId: string) =>
   useStore
     .getState()
-    .enchants.find((enchant: EnchantData) => enchant.enchant_id === enchantId);
+    .enchants.find((enchant: Enchant) => enchant.id === enchantId);
 
 const useStore = create<State & Action>()(
   persist(
     immer(set => ({
       enchants: [],
-      setEnchants: (enchants: EnchantData[]) =>
+      setEnchants: (enchants: Enchant[]) =>
         set((state: State) => {
           state.enchants = enchants.map(enchant => {
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            const { disp_val, ...rest } = enchant;
-            return rest;
+            return {
+              ...enchant,
+              isInvalidTarget: false,
+              invalidTargetName: '',
+              value: 0,
+            };
           });
         }),
-      pushEnchant: (enchant: EnchantData) =>
+      pushEnchant: (enchant: Enchant) =>
         set((state: State) => {
-          if (!isFavorite(enchant.enchant_id)) {
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            const { disp_val, ...rest } = enchant;
-            state.enchants.push(rest);
+          if (!isFavorite(enchant.id)) {
+            state.enchants.push({
+              ...enchant,
+              isInvalidTarget: false,
+              value: 0,
+            });
           }
         }),
       removeEnchant: (enchantId: string) =>
         set(state => {
           state.enchants = state.enchants.filter(
-            (enchant: EnchantData) => enchant.enchant_id !== enchantId,
+            (enchant: Enchant) => enchant.id !== enchantId,
           );
         }),
       removeAllEnchants: () =>
@@ -51,7 +56,7 @@ const useStore = create<State & Action>()(
           state.enchants = [];
         }),
     })),
-    { name: 'favoriteEnchants' },
+    { name: 'favoriteEnchantsV2' },
   ),
 );
 

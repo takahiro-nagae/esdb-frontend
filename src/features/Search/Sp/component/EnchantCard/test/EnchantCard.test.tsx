@@ -6,13 +6,7 @@ import { describe, expect, test, vi } from 'vitest';
 import { DetailTable } from '../component/DetailTable/DetailTable';
 import * as stories from '../stories/EnchantCard.stories';
 
-import {
-  createEnchantName,
-  createEnchantNameEn,
-} from '@/features/Search/common/functions/enchantNameFunction';
-import { positionName } from '@/features/Search/common/functions/positionFunction';
-import { ENCHANT_DATA_MOCK } from '@/repositories/search/__mocks__/fetchSearchEnchantData';
-
+import { ENCHANT_DATA_MOCK } from '@/repositories/search/__mocks__/result';
 
 vi.mock('../component/DetailTable/DetailTable');
 describe('EnchantCard', () => {
@@ -32,21 +26,15 @@ describe('EnchantCard', () => {
 
     // エンチャント名の確認
     expect(screen.getByTestId(enchantNameId).textContent).toBe(
-      createEnchantName(
-        ENCHANT_DATA_MOCK.enchant_name,
-        ENCHANT_DATA_MOCK.enchant_name_2,
-      ),
+      ENCHANT_DATA_MOCK.name,
     );
     // エンチャント英名の確認
     expect(screen.getByTestId(enchantNameEnId).textContent).toBe(
-      createEnchantNameEn(
-        ENCHANT_DATA_MOCK.enchant_name_en,
-        ENCHANT_DATA_MOCK.position_id,
-      ),
+      ENCHANT_DATA_MOCK.nameEn,
     );
     // 位置の確認
     expect(screen.getByTestId(positionTestId).textContent).toBe(
-      positionName(ENCHANT_DATA_MOCK.position_id),
+      ENCHANT_DATA_MOCK.positionName,
     );
     // TODO: ランクの確認できるようにしたい
     // TODO: ランクのクリックをして、モーダルが表示されるか確認したい

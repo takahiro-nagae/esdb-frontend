@@ -22,8 +22,8 @@ export const Target: React.FC = () => {
     >
       <MenuItem value=''>指定なし</MenuItem>
       {targets.map(target => (
-        <MenuItem key={target.target_code} value={target.target_code}>
-          {target.target_name}
+        <MenuItem key={target.id} value={target.id}>
+          {target.name}
         </MenuItem>
       ))}
     </TextField>

@@ -1,18 +1,32 @@
 import { immer } from 'zustand/middleware/immer';
 import { create } from 'zustand/react';
 
-import { EnchantData } from '@/repositories/search/_types';
+export type Enchant = {
+  id: string;
+  name: string;
+  nameEn: string;
+  isInvalidTarget: boolean;
+  isImp: boolean;
+  effects: { name: string; type: string }[];
+  position: string;
+  positionName: string;
+  rank: string;
+  rankSeq: number;
+  routes: string[];
+  target: string;
+  value: number | null;
+};
 
 type State = {
-  immutableEnchants: EnchantData[];
-  enchants: EnchantData[];
+  immutableEnchants: Enchant[];
+  enchants: Enchant[];
   enchantsLength: number;
   effectName: string;
 };
 
 type Action = {
-  setImmutableEnchants: (immutableEnchants: EnchantData[]) => void;
-  setEnchants: (enchants: EnchantData[]) => void;
+  setImmutableEnchants: (immutableEnchants: Enchant[]) => void;
+  setEnchants: (enchants: Enchant[]) => void;
   setEffectName: (effectName: string) => void;
 };
 
@@ -22,13 +36,13 @@ const useStore = create<State & Action>()(
     enchants: [],
     enchantsLength: 0,
     effectName: '',
-    setImmutableEnchants: (immutableEnchants: EnchantData[]) =>
+    setImmutableEnchants: (immutableEnchants: Enchant[]) =>
       set({
         immutableEnchants,
         enchantsLength: immutableEnchants.length,
         enchants: immutableEnchants,
       }),
-    setEnchants: (enchants: EnchantData[]) =>
+    setEnchants: (enchants: Enchant[]) =>
       set({ enchants, enchantsLength: enchants.length }),
     setEffectName: (effectName: string) => set({ effectName }),
   })),

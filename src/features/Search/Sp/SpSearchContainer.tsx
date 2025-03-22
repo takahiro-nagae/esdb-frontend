@@ -15,7 +15,7 @@ export const SpSearchContainer: React.FC = () => {
       <Grid className={styles.dataWidth} item xs={12}>
         <Box sx={{ p: 1 }}>
           {enchants.map((enchant, index) => (
-            <div key={enchant.enchant_id}>
+            <div key={enchant.id}>
               <AmongAd index={index} />
               <EnchantCard enchant={enchant} />
             </div>

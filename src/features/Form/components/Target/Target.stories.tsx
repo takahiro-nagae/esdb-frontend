@@ -5,7 +5,7 @@ import { useTargetStore } from '../../store/useTargetStore';
 
 import { Target } from './Target';
 
-import { TARGET_MOCK } from '@/repositories/form/__mocks__/fetchInitData';
+import { TARGET_MOCK } from '@/repositories/form/__mocks__/result';
 
 export default {
   title: 'form/Target',

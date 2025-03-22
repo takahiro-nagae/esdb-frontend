@@ -1,29 +1,22 @@
 import styles from './EffectList.module.css';
 
+import { Enchant } from '@/features/Search/state/useEnchantStore';
+
 type EffectListProps = {
-  effectKbn: string;
-  effectName: string;
+  effects: Enchant['effects'];
 };
 
-export const EffectList: React.FC<EffectListProps> = ({
-  effectKbn,
-  effectName,
-}) => {
-  /** 効果区分を配列化 */
-  const effectKbnArray: '' | string[] = effectKbn && effectKbn.split('@');
-  /** 効果名を配列化 */
-  const effectNameArray: '' | string[] = effectName && effectName.split('@');
-
+export const EffectList: React.FC<EffectListProps> = ({ effects }) => {
   return (
     <>
-      {effectKbnArray &&
-        effectKbnArray.map((effectKbn, index) => (
+      {effects &&
+        effects.map((effect, index) => (
           <p
-            className={styles[`${effectKbn}`]}
+            className={styles[`${effect?.type}`]}
             data-testid='effect'
             key={index}
           >
-            {effectNameArray[index]}
+            {effect?.name}
           </p>
         ))}
     </>

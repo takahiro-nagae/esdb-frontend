@@ -1,21 +1,21 @@
 import { Grid } from '@mui/material';
 import Box from '@mui/material/Box';
 
-import { Loading } from '../../Loading/Loading';
+import { Loading } from '../../../../../../common/Loading/Loading';
 import { Detail } from '../Detail';
 
 import { useDetailIndex } from './hooks/useDetailIndex';
 
 export const DetailIndex: React.FC = () => {
-  const { enchantData, isLoading } = useDetailIndex();
+  const { data, loading } = useDetailIndex();
 
   return (
     <>
-      <Loading isLoading={isLoading} />
+      <Loading isLoading={loading} />
       <Box sx={{ mt: 5, ml: 5 }}>
-        {enchantData && (
+        {data && (
           <Grid item xs={11}>
-            <Detail enchant={enchantData} />
+            <Detail enchant={data} />
           </Grid>
         )}
       </Box>

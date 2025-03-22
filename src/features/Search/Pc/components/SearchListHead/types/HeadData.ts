@@ -1,18 +1,18 @@
 export type HeadData = {
   /**  エンチャントID */
-  enchant_id: string;
+  id: string;
   /** エンチャント名 */
-  enchant_name: string;
+  name: string;
   /** 位置ID */
-  position_id: string;
+  position: string;
   /** ランク */
   rank: string;
-  /** 対象名 */
-  target_name: string;
+  /** 対象 */
+  target: string;
   /** 値 */
-  disp_val: string;
+  value: number;
   /** 効果 */
-  effect_name: string;
+  effect: string;
   /** 入手先 */
-  route_name: string;
+  route: string;
 };

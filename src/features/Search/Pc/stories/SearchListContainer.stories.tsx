@@ -15,7 +15,7 @@ export default {
       const { setOrderBy, setOrder, setPage } = usePcLayoutStore();
       useEffect(() => {
         setImmutableEnchants([Dummy1, Dummy2]);
-        setOrderBy('enchant_name');
+        setOrderBy('name');
         setOrder('asc');
         setPage(0);
       }, [setImmutableEnchants, setOrderBy, setOrder, setPage]);
